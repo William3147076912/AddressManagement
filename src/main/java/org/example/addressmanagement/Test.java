@@ -20,15 +20,11 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import org.kordamp.bootstrapfx.BootstrapFX;
-import org.kordamp.bootstrapfx.BootstrapFX.*;
-
-public class AddressBookFX extends Application {
+public class Test extends Application {
 
     static final int BLOCK_NUM = 27;//链条(JavaFX界面中分块)的个数
     static Label[] anchorLabels = new Label[BLOCK_NUM];//点击导航标签
@@ -231,7 +227,6 @@ public class AddressBookFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {//初始主界面
-
         TextField searchTf = new TextField();
         Button searchBt = new Button("搜索");
         Button addContactPersonBt = new Button("添加联系人");
@@ -612,7 +607,6 @@ public class AddressBookFX extends Application {
             searchResultStage.show();
         });
 
-        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         primaryStage.setScene(scene);
         primaryStage.setTitle("AddressBook");
         primaryStage.setResizable(false);
