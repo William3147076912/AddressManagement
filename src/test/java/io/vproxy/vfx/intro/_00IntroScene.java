@@ -14,11 +14,11 @@ public class _00IntroScene extends DemoVScene {
             FontManager.get().setFont(this, settings -> settings.setSize(50));
         }};
         getContentPane().getChildren().add(label);
-        FXUtils.observeWidthHeightCenter(getContentPane(), label);
+        FXUtils.observeWidthHeightCenter(getContentPane(), label);//让label居中
     }
 
     @Override
     public String title() {
         return "Intro";
-    }
+    }//给予scene一个标题
 }
