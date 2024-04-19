@@ -1,5 +1,8 @@
 package org.example.addressmanagement;
 
+import ezvcard.parameter.AddressType;
+import ezvcard.parameter.ImageType;
+import ezvcard.property.*;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -14,9 +17,31 @@ public class ContactPerson implements Comparable<ContactPerson> {
     private char firstChar;//联系人姓名拼音的首字母
     private String namePinyin;//联系人姓名的拼音
     private ArrayList<String> phoneNumber;
-    private ArrayList<String> email;
+
+    private ArrayList<String> email;//两种email产生了冲突
+//    private static Email email=new Email("234232@qq.com");//vCard 下的email
+    Url url=new Url("www.baidu.com");
+    Birthday birthday=new Birthday("2023/04/01");
+    byte[] photodata;
+    Photo photo=new Photo(photodata, ImageType.JPEG);
+    Organization organization=new Organization();
+
+    Address adr=new Address();
+
+
+
+    private ArrayList<Impp> impps;
+
 
     public ContactPerson(String name, ArrayList<String> phoneNumber, ArrayList<String> email) {
+        organization.getValues().add("224");
+        adr.setStreetAddress("123 Main St.");
+        adr.setLocality("Austin");
+        adr.setRegion("TX");
+        adr.setPostalCode("12345");
+        adr.setCountry("USA");
+        adr.getTypes().add(AddressType.WORK);
+
         this.name = name;
         this.namePinyin = getPinYin(name);
         this.firstChar = namePinyin.toUpperCase().charAt(0);

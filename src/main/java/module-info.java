@@ -11,6 +11,7 @@ module org.example.addressmanagement {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires pinyin4j;
+    requires com.googlecode.ezvcard;
 
     opens org.example.addressmanagement to javafx.fxml;
     exports org.example.addressmanagement;
