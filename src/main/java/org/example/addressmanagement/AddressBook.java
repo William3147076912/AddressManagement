@@ -43,7 +43,7 @@ public class AddressBook {
      */
     public void add(VCard person) {//将一个联系人添加到链表中
         AddressBookHeadNode headNode;
-        char firstChar = person.getFormattedName().getFirstChar();
+        char firstChar = person.getFormattedName().getFirstChar();//在contactperson中
         AddressBookNode node = new AddressBookNode(person);//以待添加联系人作为数据创建链表结点
 
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -112,7 +112,8 @@ public class AddressBook {
         }
 
         AddressBookNode pointer = headNode.getFirstNode();//在链表中找到以待删除联系人为数据元素结点的位置
-        if (pointer.getData().getName().equals(name) && pointer.getData().getPhoneNumber().get(0).equals(phoneNumber)) {
+
+        if (pointer.getData().getFormattedName().getValue().equals(name) && pointer.getData().getTelephoneNumbers().get(0).equals(phoneNumber)) {
             headNode.setFirstNode(pointer.getNext()); //以待删除联系人为数据元素结点为首结点的后一个结点
         } else {//使用while循环在链表中定位以待删除联系人为数据元素结点
             while (pointer.getNext() != null && (!pointer.getNext().getData().getName().equals(name) || !pointer.getNext().getData().getPhoneNumber().get(0).equals(phoneNumber))) {

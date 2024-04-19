@@ -35,7 +35,8 @@ public class vCardToObject {
 
                 List<Telephone> telephone=vcard.getTelephoneNumbers();
 
-                System.out.println(name + " " );
+
+                System.out.println(name + " " +telephone.get(0));
                 for (Telephone num : telephone) {
                     System.out.println(num.getText());
                 }
