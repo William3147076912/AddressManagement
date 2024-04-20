@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7ee4ff31-94ed-4d86-83e3-0a0f108d5607" name="更改" comment="AddressBookManagement">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/management/VTableViewScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/management/VTableViewScene.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;William3147076912&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/William3147076912/AddressManagement.git&quot;,
+    &quot;accountId&quot;: &quot;4e93f03a-a174-4e58-906f-cc86f91677d3&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\fcj\.m2\repository" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+        <option name="userSettingsFile" value="D:\IDEA_Profession\plugins\maven\lib\maven3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xms1024m -Xmx2048m" />
+        <option name="workspaceImportForciblyTurnedOn" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="11" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2f58gGjgKdoHOgMW8mSdj4Y31gE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.AddressBookFX.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.IntroFXMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.IntroMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.fcj (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.fcj.executor&quot;: &quot;Run&quot;,
+    &quot;Application.io.vproxy.vfx.intro.IntroMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.example.addressmanagement.AddressBookFX.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.example.addressmanagement.intro.IntroMain.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fcj/Desktop/java/AddressManagement/resources/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.AppMain.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.AudioSpectrumAnalyzer.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.FcjMain.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.IntroFXMain.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.IntroMain.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.MainPane.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.SpeakerAudioVisualizer.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.TestTranslationButton.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.app.controller.AudioSpectrumAnalyzer.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.fcj.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.io.vproxy.vfx.intro.IntroMain.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.management.fcjd.FcjMain.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.org.example.addressmanagement.AddressBookFX.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.org.example.addressmanagement.AudioSpectrumAnalyzer.executor&quot;: &quot;Run&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\resources\images" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src\main\java" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src\main\java\vfx" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src\main" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src\main\java" />
+      <recent name="C:\Users\fcj\Desktop\java\AddressManagement\src\main\java\org\example\addressmanagement" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example.addressmanagement" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="utils" />
+      <recent name="management" />
+      <recent name="fcjd" />
+    </key>
+  </component>
+  <component name="RunManager" selected="应用程序.FcjMain">
+    <configuration name="AppMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app.AppMain" />
+      <module name="AddressManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FcjMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="management.FcjMain" />
+      <module name="AddressManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntroFXMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.vproxy.vfx.intro.IntroFXMain" />
+      <module name="AddressManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.vproxy.vfx.intro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IntroMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.vproxy.vfx.intro.IntroMain" />
+      <module name="AddressManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.vproxy.vfx.intro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="应用程序.IntroFXMain" />
+      <item itemvalue="应用程序.FcjMain" />
+      <item itemvalue="应用程序.IntroMain" />
+      <item itemvalue="应用程序.AppMain" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.FcjMain" />
+        <item itemvalue="应用程序.IntroMain" />
+        <item itemvalue="应用程序.IntroFXMain" />
+        <item itemvalue="应用程序.AppMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="7ee4ff31-94ed-4d86-83e3-0a0f108d5607" name="更改" comment="" />
+      <created>1713079690045</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713079690045</updated>
+      <workItem from="1713079691192" duration="3675000" />
+      <workItem from="1713088233942" duration="1958000" />
+      <workItem from="1713110008715" duration="264000" />
+      <workItem from="1713241638768" duration="1563000" />
+      <workItem from="1713243225074" duration="9463000" />
+      <workItem from="1713316706428" duration="15245000" />
+      <workItem from="1713412875545" duration="18050000" />
+      <workItem from="1713445753775" duration="3651000" />
+      <workItem from="1713482874921" duration="16193000" />
+      <workItem from="1713526589950" duration="7247000" />
+      <workItem from="1713578602670" duration="28644000" />
+      <workItem from="1713613115889" duration="2967000" />
+    </task>
+    <task id="LOCAL-00001" summary="AddressBookManagement">
+      <option name="closed" value="true" />
+      <created>1713317077362</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713317077362</updated>
+    </task>
+    <task id="LOCAL-00002" summary="AddressBookManagement">
+      <option name="closed" value="true" />
+      <created>1713425870656</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713425870656</updated>
+    </task>
+    <task id="LOCAL-00003" summary="AddressBookManagement">
+      <option name="closed" value="true" />
+      <created>1713426490010</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713426490010</updated>
+    </task>
+    <task id="LOCAL-00004" summary="AddressBookManagement">
+      <option name="closed" value="true" />
+      <created>1713610137090</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713610137090</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="AddressBookManagement" />
+    <option name="LAST_COMMIT_MESSAGE" value="AddressBookManagement" />
+  </component>
+</project>
