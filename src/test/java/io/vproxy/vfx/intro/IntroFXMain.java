@@ -17,6 +17,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class IntroFXMain extends Application {
     private VSceneGroup sceneGroup;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         ImageManager.get().loadBlackAndChangeColor("images/menu.png", Map.of("white", 0xffffffff));
         ImageManager.get().loadBlackAndChangeColor("images/up-arrow.png", Map.of("white", 0xffffffff));
 

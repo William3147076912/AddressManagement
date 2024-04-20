@@ -1,4 +1,4 @@
-module org.example.addressmanagement {
+module management {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -12,8 +12,12 @@ module org.example.addressmanagement {
     requires com.almasb.fxgl.all;
     requires pinyin4j;
     requires io.vproxy.vfx;
+    requires java.desktop;
+    requires JTransforms;
     requires io.vproxy.base;
 
-    opens org.example.addressmanagement to javafx.fxml;
-    exports org.example.addressmanagement;
+    opens management to javafx.fxml;
+    exports management;
+    exports utils;
+    opens utils to javafx.fxml;
 }

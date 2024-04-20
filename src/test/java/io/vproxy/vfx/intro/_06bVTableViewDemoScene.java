@@ -31,9 +31,10 @@ public class _06bVTableViewDemoScene extends DemoVScene {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
 
+
         var msgLabel = new ThemeLabel(
-            "Click the column name to sort the rows (some of them are sortable).\n" +
-            "Tips: try to sort by multiple columns, and try to hover on \"name\" cells :)"
+                "Click the column name to sort the rows (some of them are sortable).\n" +
+                        "Tips: try to sort by multiple columns, and try to hover on \"name\" cells :)"
         );
         FXUtils.observeWidthCenter(getContentPane(), msgLabel);
         msgLabel.setLayoutY(40);
@@ -44,13 +45,13 @@ public class _06bVTableViewDemoScene extends DemoVScene {
 
         var idCol = new VTableColumn<Data, String>("id", data -> data.id);
         var nameCol = new VTableColumn<Data, Data>("name", data -> data);
-        var addressCol = new VTableColumn<Data, String>("address", data -> data.address);
+        var addressCol = new VTableColumn<Data, Data>("address", data -> data);
         var typeCol = new VTableColumn<Data, String>("type", data -> data.type);
         var bandwidthCol = new VTableColumn<Data, Integer>("bandwidth", data -> data.bandwidth);
-        var createTimeCol = new VTableColumn<Data, ZonedDateTime>("createtime", data ->
-            ZonedDateTime.ofInstant(
-                Instant.ofEpochMilli(data.createtime), ZoneId.systemDefault()
-            ));
+        var createTimeCol = new VTableColumn<Data, ZonedDateTime>("createTime", data ->
+                ZonedDateTime.ofInstant(
+                        Instant.ofEpochMilli(data.createTime), ZoneId.systemDefault()
+                ));
 
         idCol.setMinWidth(300);
         nameCol.setComparator(Comparator.comparing(data -> data.name));
@@ -69,7 +70,21 @@ public class _06bVTableViewDemoScene extends DemoVScene {
             return text;
         });
         addressCol.setAlignment(Pos.CENTER);
-        addressCol.setComparator(String::compareTo);
+        addressCol.setComparator(Comparator.comparing(data -> data.address));
+        addressCol.setNodeBuilder(data -> {
+            var textField = new TextField();
+            var text = new FusionW(textField) {{
+                FontManager.get().setFont(FontUsages.tableCellText, getLabel());
+            }};
+            textField.setText(data.address);
+            textField.focusedProperty().addListener((ob, old, now) -> {
+                if (old == null || now == null) return;
+                if (old && !now) {
+                    data.address = textField.getText();
+                }
+            });
+            return text;
+        });
         typeCol.setAlignment(Pos.CENTER);
         typeCol.setComparator(String::compareTo);
         bandwidthCol.setAlignment(Pos.CENTER);
@@ -87,23 +102,23 @@ public class _06bVTableViewDemoScene extends DemoVScene {
 
         var controlPane = new FusionPane(false);
         controlPane.getContentPane().getChildren().add(new VBox(
-            new FusionButton("Add") {{
-                setOnAction(e -> table.getItems().add(new Data()));
-                setPrefWidth(120);
-                setPrefHeight(40);
-            }},
-            new VPadding(10),
-            new FusionButton("Del") {{
-                setOnAction(e -> {
-                    var selected = table.getSelectedItem();
-                    if (selected == null) {
-                        return;
-                    }
-                    table.getItems().remove(selected);
-                });
-                setPrefWidth(120);
-                setPrefHeight(40);
-            }}
+                new FusionButton("Add") {{
+                    setOnAction(e -> table.getItems().add(new Data()));
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }},
+                new VPadding(10),
+                new FusionButton("Del") {{
+                    setOnAction(e -> {
+                        var selected = table.getSelectedItem();
+                        if (selected == null) {
+                            return;
+                        }
+                        table.getItems().remove(selected);
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }}
         ));
 
         var hbox = new HBox(table.getNode(), new HPadding(10), controlPane.getNode());
@@ -124,7 +139,7 @@ public class _06bVTableViewDemoScene extends DemoVScene {
         public String address;
         public String type;
         public int bandwidth;
-        public long createtime;
+        public long createTime;
 
         public Data() {
             id = UUID.randomUUID().toString();
@@ -132,7 +147,7 @@ public class _06bVTableViewDemoScene extends DemoVScene {
             address = TUtils.randomIPAddress();
             type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
             bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
-            createtime = System.currentTimeMillis();
+            createTime = System.currentTimeMillis();
         }
     }
 }
