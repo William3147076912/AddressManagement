@@ -54,12 +54,13 @@ public class AddressBook {
         AddressBookNode pointer = headNode.getFirstNode();//将联系人放到链表中的合适位置
         if (pointer == null) {//若链表除首结点外无其他结点,则将联系人作为数据创建结点插入该链表首结点后
             headNode.setFirstNode(new AddressBookNode(contactPerson));
-        } else if (contactPerson.compareTo(pointer.getData()) < 0) {/*若待插入联系人小于链表首结点后的结点存储的联系人，
+           // Pinyin.getPinYin(this.name)
+        } else if (Pinyin.getPinYin(contactPerson.getName()).compareTo(Pinyin.getPinYin(pointer.getData().getName()) ) < 0) {/*若待插入联系人小于链表首结点后的结点存储的联系人，
                                                                       则将联系人作为数据创建结点插入到首结点后*/
             node.setNext(pointer);
             headNode.setFirstNode(node);
         } else {//否则通过while循环找到待添加联系人的合适位置，进行添加
-            while (pointer.getNext() != null && pointer.getNext().getData().compareTo(contactPerson) < 0) {
+            while (pointer.getNext() != null &&Pinyin.getPinYin(pointer.getNext().getData().getName()).compareTo(Pinyin.getPinYin(contactPerson.getName()) ) < 0) {
                 pointer = pointer.getNext();
             }
             node.setNext(pointer.getNext());

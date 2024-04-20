@@ -9,7 +9,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 
 import java.util.ArrayList;
 
-public class ContactPerson implements Comparable<ContactPerson> {
+public class ContactPerson {
     private String name;
     private char firstChar;//联系人姓名拼音的首字母
     private String namePinyin;//联系人姓名的拼音
@@ -64,9 +64,10 @@ public class ContactPerson implements Comparable<ContactPerson> {
         this.email = email;
     }
 
-    @Override
-    public int compareTo(ContactPerson o) {//用联系人的姓名拼音作为比较的主键
-        return Integer.compare(this.namePinyin.compareTo(o.namePinyin), 0);
+    public int compareTo(String namePinyin1,String namePinyin2) {//用联系人的姓名拼音作为比较的主键
+        return Integer.compare( namePinyin1.compareTo(namePinyin2), 0);
+        //Pinyin.getPinYin(this.name)  Pinyin.getPinYin(o.name)
+
     }
 
 
