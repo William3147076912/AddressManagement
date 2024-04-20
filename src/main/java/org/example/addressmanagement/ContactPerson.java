@@ -49,13 +49,7 @@ public class ContactPerson {
     public void setEmail(ArrayList<String> email) {
         this.email = email;
     }
-
-    public int compareTo(String namePinyin1,String namePinyin2) {//用联系人的姓名拼音作为比较的主键
-        return Integer.compare( namePinyin1.compareTo(namePinyin2), 0);
-        //Pinyin.getPinYin(this.name)  Pinyin.getPinYin(o.name)
-
-    }
-
+    
 
 
 }
