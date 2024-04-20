@@ -35,27 +35,33 @@ public class AddressBookFX extends Application {
     static int[] blocksContactPeopleNum = new int[BLOCK_NUM];//用于存放当前块以及之前所有块所含联系人以及标签数目之和
     static Stage contactPersonInformationStage;//用于显示联系人信息的舞台
 
-
     static {
-        Platform.runLater(() -> contactPersonInformationStage = new Stage());
-        anchorLabels[0] = new Label("#");//初始化右侧导航栏数据
-        for (int i = 1; i < anchorLabels.length ; i++) {
-            anchorLabels[i ] = new Label(String.valueOf((char) ('A' + i-1)));
+        contactPersonInformationStage = new Stage();
+    }
+
+    public void init() throws Exception {
+        super.init();
+        AddressBookFX.anchorLabels[0] = new Label("#");//初始化右侧导航栏数据
+        for (int i = 1; i < AddressBookFX.anchorLabels.length; i++) {
+            AddressBookFX.anchorLabels[i] = new Label(String.valueOf((char) ('A' + i - 1)));
         }
-        String[] name = {"*anonymous", "雷军", "扎克伯格", "贝佐斯", "比尔盖茨", "张一鸣", "丁磊", "马云", "马化腾", "马斯克", "巴菲特", "沃尔顿", "拉里佩奇", "谢尔盖布林", "李嘉诚", "何享健", "许家印", "吴清亮", "乔布斯", "李书福", "蔡崇信", "安东尼"};
-        for (int i = name.length; i < name.length * 2; i++) {//初始化通讯录信息
+//        for (Label anchorLabel : AddressBookFX.anchorLabels) {
+//            System.out.println(anchorLabel);
+//        }
+        for (int i =Main.name.length; i < Main.name.length * 2; i++) {//初始化通讯录信息
             ArrayList<String> phoneNumber = new ArrayList<>();
             ArrayList<String> email = new ArrayList<>();
             phoneNumber.add("159989606" + i);
             email.add(i + "0117522@qq.com");
-            VCard person=new VCard();
-            person.setFormattedName(name[i - name.length]);
-            Telephone telephone=new Telephone(phoneNumber.get(0));
+            VCard person = new VCard();
+            person.setFormattedName(Main.name[i - Main.name.length]);
+            Telephone telephone = new Telephone(phoneNumber.get(0));
             person.addTelephoneNumber(telephone);
-            Email email1=new Email(email.get(0));
+            Email email1 = new Email(email.get(0));
             person.addEmail(email1);
-            addressBook.add(person);
+            AddressBookFX.addressBook.add(person);
         }
+    }
 
 /*        for (int i = 0; i < addressBookHeadNodes.length; i++) {//初始化范围递增块包含的联系人的数目以及标签的数目之和
             for (int j = 0; j <= i; j++) {
@@ -66,7 +72,7 @@ public class AddressBookFX extends Application {
             blocksContactPeopleNum[i]--;//因为ListView初始下标为0，所以为了后续定位准确将每个块元素的总数-1；
         }*/
 
-    }
+
 
     /**
      * 更新用来存放展示在FX界面上所有联系人的对象--contactPeopleArr
@@ -221,9 +227,9 @@ public class AddressBookFX extends Application {
     }
 
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+//    public static void main(String[] args) {
+//        Application.launch(args);
+//    }
 
     @Override
     public void start(Stage primaryStage) {//初始主界面
@@ -253,6 +259,7 @@ public class AddressBookFX extends Application {
 
         VBox anchorPane = new VBox(2);//垂直导航条
         anchorPane.setPadding(new Insets(30, 10, 0, 10));
+
 
         for (Label anchorLabel : anchorLabels) {
             anchorPane.getChildren().add(anchorLabel);//用(#和字母标签)填充垂直导航条面板
