@@ -50,13 +50,17 @@ public class AddressBookFX extends Application {
 //        for (Label anchorLabel : AddressBookFX.anchorLabels) {
 //            System.out.println(anchorLabel);
 //        }
-        for (int i =Main.name.length; i < Main.name.length * 2; i++) {//初始化通讯录信息
+        String[] name = {"*anonymous", "雷军", "扎克伯格",
+                "贝佐斯", "比尔盖茨", "张一鸣", "丁磊", "马云", "马化腾", "马斯克",
+                "巴菲特", "沃尔顿", "拉里佩奇", "谢尔盖布林", "李嘉诚", "何享健", "许家印", "吴清亮",
+                "乔布斯", "李书福", "蔡崇信", "安东尼"};
+        for (int i =name.length; i < name.length * 2; i++) {//初始化通讯录信息
             ArrayList<String> phoneNumber = new ArrayList<>();
             ArrayList<String> email = new ArrayList<>();
             phoneNumber.add("159989606" + i);
             email.add(i + "0117522@qq.com");
             VCard person = new VCard();
-            person.setFormattedName(Main.name[i - Main.name.length]);
+            person.setFormattedName(name[i - name.length]);
             Telephone telephone = new Telephone(phoneNumber.get(0));
             person.addTelephoneNumber(telephone);
             Email email1 = new Email(email.get(0));
@@ -574,7 +578,7 @@ public class AddressBookFX extends Application {
                 boolean isSearched = false;//作为是否在单个联系人信息中查到搜索内容的标志
                 StringBuilder content = new StringBuilder();//用于存储查询到的单个联系人的姓名/电话号码/邮箱等信息
                 String name = contactPerson.getFormattedName().getValue();
-                String namePinYin = Pinyin.getPinYin(name);
+                String namePinYin = management.Pinyin.getPinYin(name);
                 ArrayList<String> phoneNumbers = new ArrayList<>();
                 for (Telephone telephone : contactPerson.getTelephoneNumbers()) {
                     phoneNumbers.add(telephone.getText());

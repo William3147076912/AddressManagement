@@ -284,10 +284,10 @@ public class VTableViewScene extends VScene {
         public String address;
         public String type;
 
+        public int bandwidth;
+        public long createTime;
+
         public Data() {
-            Data person=new Data();
-            Telephone telephone=new Telephone("80284392084");
-            person.addTelephoneNumber(telephone);
             choiceButton = new FusionButton() {{
                 setPrefWidth(10);
                 setPrefHeight(50);
@@ -297,7 +297,7 @@ public class VTableViewScene extends VScene {
             name = TUtils.randomString(10, 15);
             address = TUtils.randomIPAddress();
             type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
-            bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
+            bandwidth= ThreadLocalRandom.current().nextInt(10) * 100 + 100;
             createTime = System.currentTimeMillis();
         }
     }
