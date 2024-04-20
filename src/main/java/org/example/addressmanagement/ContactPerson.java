@@ -1,17 +1,10 @@
 package org.example.addressmanagement;
 
-import net.sourceforge.pinyin4j.PinyinHelper;
-import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.util.ArrayList;
 
 public class ContactPerson {
     private String name;
-    private char firstChar;//联系人姓名拼音的首字母
     private String namePinyin;//联系人姓名的拼音
     private ArrayList<String> phoneNumber;
     private ArrayList<String> email;
@@ -19,7 +12,6 @@ public class ContactPerson {
     public ContactPerson(String name, ArrayList<String> phoneNumber, ArrayList<String> email) {
         this.name = name;
         this.namePinyin = Pinyin.getPinYin(name);
-        this.firstChar = namePinyin.toUpperCase().charAt(0);
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
@@ -32,13 +24,7 @@ public class ContactPerson {
         this.name = name;
     }
 
-    public char getFirstChar() {
-        return firstChar;
-    }
 
-    public void setFirstChar(char firstChar) {
-        this.firstChar = firstChar;
-    }
 
     public String getNamePinyin() {
         return namePinyin;

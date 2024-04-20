@@ -33,10 +33,6 @@ public class Pinyin {
         }
         return t4.toString();
     }
-    public static char getFisrtChar(String namePinyin)
-    {
-        return namePinyin.toUpperCase().charAt(0);
-    }
     public static int compareTo(String o1,String o2) {
         return Integer.compare(o1.compareTo(o2), 0);
     }

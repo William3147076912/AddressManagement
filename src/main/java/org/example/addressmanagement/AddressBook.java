@@ -1,11 +1,5 @@
 package org.example.addressmanagement;
 
-import net.sourceforge.pinyin4j.PinyinHelper;
-import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.util.ArrayList;
 
@@ -42,7 +36,7 @@ public class AddressBook {
      */
     public void add(ContactPerson contactPerson) {//将一个联系人添加到链表中
         AddressBookHeadNode headNode;
-        char firstChar = contactPerson.getFirstChar();
+        char firstChar = Pinyin.getPinYin(contactPerson.getName()).toUpperCase().charAt(0);
         AddressBookNode node = new AddressBookNode(contactPerson);//以待添加联系人作为数据创建链表结点
 
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -60,7 +54,7 @@ public class AddressBook {
             node.setNext(pointer);
             headNode.setFirstNode(node);
         } else {//否则通过while循环找到待添加联系人的合适位置，进行添加
-            while (pointer.getNext() != null &&Pinyin.getPinYin(pointer.getNext().getData().getName()).compareTo(Pinyin.getPinYin(contactPerson.getName()) ) < 0) {
+            while (pointer.getNext() != null &&Pinyin.getPinYin(pointer.getNext().getData().getName()).compareTo(Pinyin.getPinYin(contactPerson.getName())) < 0) {
                 pointer = pointer.getNext();
             }
             node.setNext(pointer.getNext());
