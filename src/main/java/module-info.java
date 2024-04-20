@@ -18,6 +18,8 @@ module org.example.addressmanagement {
     requires rxcontrols;
     requires com.googlecode.ezvcard;
 
-    opens org.example.addressmanagement to javafx.fxml;
-    exports org.example.addressmanagement;
+    opens management to javafx.fxml;
+    exports management;
+    exports utils;
+    opens utils to javafx.fxml;
 }
