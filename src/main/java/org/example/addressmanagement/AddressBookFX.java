@@ -1,5 +1,8 @@
 package org.example.addressmanagement;
 
+import ezvcard.VCard;
+import ezvcard.property.Email;
+import ezvcard.property.Telephone;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
