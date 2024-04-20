@@ -1,5 +1,8 @@
 package org.example.addressmanagement;
 
+import ezvcard.VCard;
+import ezvcard.property.Email;
+import ezvcard.property.Telephone;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -32,7 +35,7 @@ public class AddressBookFX extends Application {
     static int activeLabelIndex = 0;//被点击的当前的活跃标签
     static AddressBook addressBook = new AddressBook();
     static AddressBookHeadNode[] addressBookHeadNodes = addressBook.getAddressBookHeadNodes();
-    static ArrayList<ContactPerson> contactPeopleArr = new ArrayList<>();//用来存放展示在FX界面的上的所有联系人
+    static ArrayList<VCard> contactPeopleArr = new ArrayList<>();//用来存放展示在FX界面的上的所有联系人
     static ObservableList<String> contactPersonOL;//用于存放主ListView中显示的数据（字符串类型的联系人姓名）
     static ListView<String> contactPersonLV;//主ListView
     static int[] blocksContactPeopleNum = new int[BLOCK_NUM];//用于存放当前块以及之前所有块所含联系人以及标签数目之和
@@ -51,7 +54,14 @@ public class AddressBookFX extends Application {
             ArrayList<String> email = new ArrayList<>();
             phoneNumber.add("159989606" + i);
             email.add(i + "0117522@qq.com");
-            addressBook.add(new ContactPerson(name[i - name.length], phoneNumber, email));
+            VCard person=new VCard();
+            person.setFormattedName(name[i - name.length]);
+            Telephone telephone=new Telephone(phoneNumber.get(0));
+            person.addTelephoneNumber(telephone);
+
+            Email email1=new Email(email.get(0));
+            person.addEmail(email1);
+            addressBook.add(person);
         }
 
 /*        for (int i = 0; i < addressBookHeadNodes.length; i++) {//初始化范围递增块包含的联系人的数目以及标签的数目之和
@@ -78,10 +88,10 @@ public class AddressBookFX extends Application {
         for (AddressBookHeadNode addressBookHeadNode : addressBookHeadNodes) {
             if (addressBookHeadNode.getNumberOfLinked() != 0) {//若链表中含有联系人，则在JavaFX界面中展示该链表头结点存放的标志(#或大写字母)
                 contactPersonOL.add(String.valueOf(addressBookHeadNode.getSymbol()));
-                contactPeopleArr.add(new ContactPerson(" ", new ArrayList<>(), new ArrayList<>()));//与标志相对应创建一个空对象，便于后续点击跳转事件方法的处理
+                contactPeopleArr.add(new VCard());//ContactPerson(" ", new ArrayList<>(), new ArrayList<>())与标志相对应创建一个空对象，便于后续点击跳转事件方法的处理
                 AddressBookNode pointer = addressBookHeadNode.getFirstNode();
                 while (pointer != null) {//遍历将对应链条中每个联系人的姓名(字符串类型)存储在存放主ListView中显示的数据的对象中
-                    contactPersonOL.add(pointer.getData().getName());
+                    contactPersonOL.add(pointer.getData().getFormattedName().getValue());
                     contactPeopleArr.add(pointer.getData());
                     pointer = pointer.getNext();
                 }
@@ -155,7 +165,7 @@ public class AddressBookFX extends Application {
      * @param emailTfs       一个或多个邮箱输入框输入框
      * @return ContactPerson类型的联系人对象
      */
-    public static ContactPerson createContactPerson(TextField nameTf, ArrayList<TextField> phoneNumberTfs, ArrayList<TextField> emailTfs) {//使用修改联系人信息界面和新建联系人界面的信息创建联系人对象并返回
+    public static VCard createContactPerson(TextField nameTf, ArrayList<TextField> phoneNumberTfs, ArrayList<TextField> emailTfs) {//使用修改联系人信息界面和新建联系人界面的信息创建联系人对象并返回
         String name = nameTf.getText();
         String phoneNumber;
         ArrayList<String> phoneNumberArr = new ArrayList<>();
@@ -192,35 +202,31 @@ public class AddressBookFX extends Application {
             enterEmptyWarningAlert();
             return null;
         }
-        return new ContactPerson(name, phoneNumberArr, emailArr);
+//        VCard person=new VCard();
+//        person.setFormattedName(name[i - name.length]);
+//        Telephone telephone=new Telephone(phoneNumber.get(i- name.length));
+//        person.addTelephoneNumber(telephone);
+//
+//        Email email1=new Email(email.get(i-name.length));
+//        person.addEmail(email1);
+//
+        VCard person=new VCard();
+        person.setFormattedName(name);
+        Telephone telephone=null;
+        for(String phonenumber:phoneNumberArr)
+        {
+            telephone=new Telephone(phonenumber);
+            person.addTelephoneNumber(telephone);
+        }
+        Email email1=null;
+        for(String emai:emailArr)
+        {
+            email1=new Email(emai);
+            person.addEmail(email1);
+        }
+        return person;
     }
 
-    private static String getPinYin(String src) {//通过联系人姓名汉字获取对应的拼音(小写字母形式)
-        char[] t1;
-        t1 = src.toCharArray();
-        String[] t2;
-        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
-        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
-        StringBuilder t4 = new StringBuilder();
-        int t0 = t1.length;
-        try {
-            for (char c : t1) {
-                // 判断是否为汉字字符
-                if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
-                    t2 = PinyinHelper.toHanyuPinyinStringArray(c, t3);
-                    t4.append(t2[0]);
-                } else {
-                    t4.append(c);
-                }
-            }
-            return t4.toString();
-        } catch (BadHanyuPinyinOutputFormatCombination e1) {
-            e1.printStackTrace();
-        }
-        return t4.toString();
-    }
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -314,7 +320,7 @@ public class AddressBookFX extends Application {
             }
             //使用户点击ListView中的A B C D...等选项时，无弹框信息响应,巧妙的运用了"||"短路的特点避免了数组越界异常抛出
             //&&的优先级大于||
-            ContactPerson person;
+            VCard person;
             try {//避免删除ListView中联系人后，由于事件监听而自动抛出数组越界异常;
                 person = contactPeopleArr.get((Integer) newValue);
             } catch (Exception e) {
@@ -325,20 +331,20 @@ public class AddressBookFX extends Application {
             cPInformGridPane.setVgap(12);
 
             int curRowIndex = 1;//这个变量很重要,记录当前要向GridPane界面中填充TextFiled文本输入框结点的行标
-            TextField nameTf = new TextField(person.getName());
+            TextField nameTf = new TextField(person.getFormattedName().getValue());
             nameTf.setEditable(false);/*用户不可以修改姓名(根据普遍情况人们也不会轻易修改联系人姓名，而多是修改联系人更换的电话号码)
                                        若想要修改姓名需要删除联系人后，新建联系人，将姓名和电话号码均修改*/
             Button addPhoneNumberBt = new Button("+");
             ArrayList<TextField> phoneNumberTfs = new ArrayList<>();
-            for (int i = 0; i < person.getPhoneNumber().size(); i++) {
-                phoneNumberTfs.add(new TextField(person.getPhoneNumber().get(i)));
+            for (int i = 0; i < person.getTelephoneNumbers().size(); i++) {
+                phoneNumberTfs.add(new TextField(person.getTelephoneNumbers().get(i).getText()));
             }
 
             Label emailLabel = new Label("邮箱:");
             Button addEmailBt = new Button("+");
             ArrayList<TextField> emailTfs = new ArrayList<>();
-            for (int i = 0; i < person.getEmail().size(); i++) {
-                emailTfs.add(new TextField(person.getEmail().get(i)));
+            for (int i = 0; i < person.getEmails().size(); i++) {
+                emailTfs.add(new TextField(person.getEmails().get(i).getValue()));
             }
             cPInformGridPane.add(new Label("姓名:"), 0, 0);
             cPInformGridPane.add(nameTf, 1, 0);
@@ -403,7 +409,7 @@ public class AddressBookFX extends Application {
              * 缺点：没有判断用户是否修改了联系人信息，每次点击都会执行相应方法，删除联系人，在将由当前联系人信息界面信息获取创建联系人，重新添加到相应位置
              */
             saveBt.setOnAction(e -> {//修改当前被选中的查看联系人信息界面的联系人的信息
-                ContactPerson contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
+                VCard contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
                 if (contactPerson == null) {
                     return;
                 }
@@ -529,7 +535,7 @@ public class AddressBookFX extends Application {
              * 修改时,用于展示的contactPeopleArr内的数据以及AddressBook内相应链表内的数据都要更新
              */
             saveBt.setOnAction(e -> {//使用添加联系人界面的信息创建联系人并添加该联系人
-                ContactPerson contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
+                VCard contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
                 if (contactPerson == null) {
                     return;
                 }
@@ -559,13 +565,21 @@ public class AddressBookFX extends Application {
                 return;//搜索框内容为空或任何空白字符，结束搜索直接返回
             }
             ObservableList<String> searchContactOL = FXCollections.observableArrayList(); //用于存放搜索到的联系人的数据
-            for (ContactPerson contactPerson : contactPeopleArr) {
+            for (VCard contactPerson : contactPeopleArr) {
                 boolean isSearched = false;//作为是否在单个联系人信息中查到搜索内容的标志
                 StringBuilder content = new StringBuilder();//用于存储查询到的单个联系人的姓名/电话号码/邮箱等信息
-                String name = contactPerson.getName();
-                String namePinYin = getPinYin(name);
-                ArrayList<String> phoneNumbers = contactPerson.getPhoneNumber();
-                ArrayList<String> emails = contactPerson.getEmail();
+                String name = contactPerson.getFormattedName().getValue();
+                String namePinYin =Pinyin.getPinYin(name);
+                ArrayList<String> phoneNumbers = null;
+                for(Telephone telephone:contactPerson.getTelephoneNumbers())
+                {
+                    phoneNumbers.add(telephone.getText());
+                }
+                ArrayList<String> emails = null;
+                for(Email email:contactPerson.getEmails())
+                {
+                    emails.add( email.getValue());
+                }
                 if (name.contains(searchContent) || namePinYin.contains(searchContent) || namePinYin.toUpperCase().contains(searchContent)) {
                     isSearched = true;
                 }

@@ -1,12 +1,6 @@
 package org.example.addressmanagement;
 
 import ezvcard.VCard;
-import net.sourceforge.pinyin4j.PinyinHelper;
-import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.util.ArrayList;
 
@@ -23,8 +17,8 @@ public class AddressBook {
 
     static {//初始化数组
         addressBookHeadNodes[0] = new AddressBookHeadNode('#');
-        for (int i = 0; i < addressBookHeadNodes.length - 1; i++) {
-            addressBookHeadNodes[i + 1] = new AddressBookHeadNode((char) ('A' + i));
+        for (int i = 1; i < addressBookHeadNodes.length ; i++) {
+            addressBookHeadNodes[i] = new AddressBookHeadNode((char) ('A' + i));
         }
     }
 
@@ -43,7 +37,7 @@ public class AddressBook {
      */
     public void add(VCard person) {//将一个联系人添加到链表中
         AddressBookHeadNode headNode;
-        char firstChar = person.getFormattedName().getFirstChar();//在contactperson中
+        char firstChar = Pinyin.getFisrtChar(person.getFormattedName().getValue()) ;//在contactperson中
         AddressBookNode node = new AddressBookNode(person);//以待添加联系人作为数据创建链表结点
 
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -55,45 +49,21 @@ public class AddressBook {
         AddressBookNode pointer = headNode.getFirstNode();//将联系人放到链表中的合适位置
         if (pointer == null) {//若链表除首结点外无其他结点,则将联系人作为数据创建结点插入该链表首结点后
             headNode.setFirstNode(new AddressBookNode(person));
-        } else if (person.compareTo(pointer.getData()) < 0) {/*若待插入联系人小于链表首结点后的结点存储的联系人，
+        } else if (Pinyin.compareTo(Pinyin.getPinYin(person.getFormattedName().getValue()),Pinyin.getPinYin(pointer.getData().getFormattedName().getValue()) ) < 0) {/*若待插入联系人小于链表首结点后的结点存储的联系人，
                                                                       则将联系人作为数据创建结点插入到首结点后*/
             node.setNext(pointer);
             headNode.setFirstNode(node);
         } else {//否则通过while循环找到待添加联系人的合适位置，进行添加
-            while (pointer.getNext() != null && pointer.getNext().getData().compareTo(person) < 0) {
+            while (pointer.getNext() != null &&Pinyin.compareTo(Pinyin.getPinYin(pointer.getNext().getData().getFormattedName().getValue()),Pinyin.getPinYin(person.getFormattedName().getValue()))< 0) {
                 pointer = pointer.getNext();
-            }
+            }// pointer.getData().compareTo(person)
             node.setNext(pointer.getNext());
             pointer.setNext(node);
         }
         headNode.setNumberOfLinked(headNode.getNumberOfLinked() + 1);//该链表首结点记录存储联系人数目的变量加1
     }
 
-    private static String getPinYin(String src) {//通过联系人姓名汉字获取对应的拼音(小写字母形式)
-        char[] t1;
-        t1 = src.toCharArray();
-        String[] t2;
-        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
-        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
-        StringBuilder t4 = new StringBuilder();
-        try {
-            for (char c : t1) {
-                // 判断是否为汉字字符
-                if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
-                    t2 = PinyinHelper.toHanyuPinyinStringArray(c, t3);
-                    t4.append(t2[0]);
-                } else {
-                    t4.append(c);
-                }
-            }
-            return t4.toString();
-        } catch (BadHanyuPinyinOutputFormatCombination e1) {
-            e1.printStackTrace();
-        }
-        return t4.toString();
-    }
+
 
     /**
      * 为了避免相同name存在而错误删除,另外用第一个phoneNumber作为区别
@@ -102,7 +72,7 @@ public class AddressBook {
      * @param phoneNumber 待删除联系人的第一个手机号码
      */
     public void remove(String name, String phoneNumber) {//根据联系人的姓名和联系人的第一个手机号码将联系人从链表中删除
-        String namePinyin = getPinYin(name);//处理待删除联系人的姓名获取其姓名拼音首字母以便后续定位
+        String namePinyin = Pinyin.getPinYin(name);//处理待删除联系人的姓名获取其姓名拼音首字母以便后续定位
         char firstChar = namePinyin.toUpperCase().charAt(0);
         AddressBookHeadNode headNode;
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -116,7 +86,7 @@ public class AddressBook {
         if (pointer.getData().getFormattedName().getValue().equals(name) && pointer.getData().getTelephoneNumbers().get(0).equals(phoneNumber)) {
             headNode.setFirstNode(pointer.getNext()); //以待删除联系人为数据元素结点为首结点的后一个结点
         } else {//使用while循环在链表中定位以待删除联系人为数据元素结点
-            while (pointer.getNext() != null && (!pointer.getNext().getData().getName().equals(name) || !pointer.getNext().getData().getPhoneNumber().get(0).equals(phoneNumber))) {
+            while (pointer.getNext() != null && (!pointer.getNext().getData().getFormattedName().getValue().equals(name) || !pointer.getNext().getData().getTelephoneNumbers().get(0).equals(phoneNumber))) {
                 pointer = pointer.getNext();
             }
             pointer.setNext(pointer.getNext().getNext());
@@ -137,9 +107,9 @@ public class AddressBook {
      * @param person 包含修改("新增")的联系人信息
      * @param index         修改的联系人的结点在对应链表中的位置
      */
-    public void modify(ContactPerson person, int index) {//对链表中指定联系人信息进行修改
+    public void modify(VCard person, int index) {//对链表中指定联系人信息进行修改
         AddressBookNode node = new AddressBookNode(person);
-        String namePinyin = person.getNamePinyin();
+        String namePinyin =Pinyin.getPinYin(person.getFormattedName().getValue()) ;
         char firstChar = namePinyin.toUpperCase().charAt(0);
         AddressBookHeadNode headNode;
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -171,8 +141,8 @@ public class AddressBook {
      * @param index 联系人的结点在对应链表中的位置
      * @return 返回查找到的联系人
      */
-    public ContactPerson get(String name, int index) {//根据联系人姓名和联系人的结点在对应链表中的位置获取联系人
-        String namePinyin = getPinYin(name);
+    public VCard get(String name, int index) {//根据联系人姓名和联系人的结点在对应链表中的位置获取联系人
+        String namePinyin =Pinyin.getPinYin(name);
         char firstChar = namePinyin.toUpperCase().charAt(0);
         AddressBookHeadNode headNode;
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -195,8 +165,8 @@ public class AddressBook {
      *
      * @return ArrayList<ContactPerson> 类型对象存储的 按顺序存放的所有链表中的所有联系人
      */
-    public ArrayList<ContactPerson> getAll() {//获取按顺序存放的所有链表中的所有联系人
-        ArrayList<ContactPerson> contactPersonList = new ArrayList<>();
+    public ArrayList<VCard> getAll() {//获取按顺序存放的所有链表中的所有联系人
+        ArrayList<VCard> contactPersonList = new ArrayList<>();
         AddressBookNode pointer;
         for (AddressBookHeadNode addressBookHeadNode : addressBookHeadNodes) {
             pointer = addressBookHeadNode.getFirstNode();
