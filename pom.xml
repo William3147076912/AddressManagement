@@ -13,6 +13,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.0</junit.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
 
     <dependencies>
 
@@ -21,18 +28,17 @@
             <artifactId>ez-vcard</artifactId>
             <version>0.12.1</version>
         </dependency>
+
         <dependency>
             <groupId>com.github.wendykierp</groupId>
             <artifactId>JTransforms</artifactId>
             <version>3.1</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.github.leewyatt</groupId>
-            <artifactId>rxcontrols</artifactId>
-            <!-- 11.x.y -->
-            <version>11.0.3</version>
-        </dependency>
+            <dependency>
+                <groupId>com.github.leewyatt</groupId>
+                <artifactId>rxcontrols</artifactId>
+                <version>11.0.3</version>
+            </dependency>
         <!--JavaFX CSS开源框架-->
         <dependency>
             <groupId>org.kordamp.bootstrapfx</groupId>

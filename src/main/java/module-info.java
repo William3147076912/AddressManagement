@@ -15,6 +15,8 @@ module management {
     requires java.desktop;
     requires JTransforms;
     requires io.vproxy.base;
+    requires rxcontrols;
+    requires com.googlecode.ezvcard;
 
     opens management to javafx.fxml;
     exports management;

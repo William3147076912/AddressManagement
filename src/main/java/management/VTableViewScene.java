@@ -1,5 +1,7 @@
 package management;
 
+import ezvcard.VCard;
+import ezvcard.property.Telephone;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsages;
 import io.vproxy.vfx.theme.Theme;
@@ -274,16 +276,18 @@ public class VTableViewScene extends VScene {
         getContentPane().getChildren().addAll(msgLabel, vBox);
     }
 
-    public static class Data {
+
+    public static class Data extends VCard{
         public FusionButton choiceButton;
         public String id;
         public String name;
         public String address;
         public String type;
-        public int bandwidth;
-        public long createTime;
 
         public Data() {
+            Data person=new Data();
+            Telephone telephone=new Telephone("80284392084");
+            person.addTelephoneNumber(telephone);
             choiceButton = new FusionButton() {{
                 setPrefWidth(10);
                 setPrefHeight(50);
