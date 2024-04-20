@@ -17,12 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import net.sourceforge.pinyin4j.PinyinHelper;
-import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
-import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
-import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -45,8 +39,8 @@ public class AddressBookFX extends Application {
     static {
         Platform.runLater(() -> contactPersonInformationStage = new Stage());
         anchorLabels[0] = new Label("#");//初始化右侧导航栏数据
-        for (int i = 0; i < anchorLabels.length - 1; i++) {
-            anchorLabels[i + 1] = new Label(String.valueOf((char) ('A' + i)));
+        for (int i = 1; i < anchorLabels.length ; i++) {
+            anchorLabels[i ] = new Label(String.valueOf((char) ('A' + i-1)));
         }
         String[] name = {"*anonymous", "雷军", "扎克伯格", "贝佐斯", "比尔盖茨", "张一鸣", "丁磊", "马云", "马化腾", "马斯克", "巴菲特", "沃尔顿", "拉里佩奇", "谢尔盖布林", "李嘉诚", "何享健", "许家印", "吴清亮", "乔布斯", "李书福", "蔡崇信", "安东尼"};
         for (int i = name.length; i < name.length * 2; i++) {//初始化通讯录信息
@@ -58,7 +52,6 @@ public class AddressBookFX extends Application {
             person.setFormattedName(name[i - name.length]);
             Telephone telephone=new Telephone(phoneNumber.get(0));
             person.addTelephoneNumber(telephone);
-
             Email email1=new Email(email.get(0));
             person.addEmail(email1);
             addressBook.add(person);
@@ -88,7 +81,7 @@ public class AddressBookFX extends Application {
         for (AddressBookHeadNode addressBookHeadNode : addressBookHeadNodes) {
             if (addressBookHeadNode.getNumberOfLinked() != 0) {//若链表中含有联系人，则在JavaFX界面中展示该链表头结点存放的标志(#或大写字母)
                 contactPersonOL.add(String.valueOf(addressBookHeadNode.getSymbol()));
-                contactPeopleArr.add(new VCard());//ContactPerson(" ", new ArrayList<>(), new ArrayList<>())与标志相对应创建一个空对象，便于后续点击跳转事件方法的处理
+                contactPeopleArr.add(null);//ContactPerson(" ", new ArrayList<>(), new ArrayList<>())与标志相对应创建一个空对象，便于后续点击跳转事件方法的处理//差评
                 AddressBookNode pointer = addressBookHeadNode.getFirstNode();
                 while (pointer != null) {//遍历将对应链条中每个联系人的姓名(字符串类型)存储在存放主ListView中显示的数据的对象中
                     contactPersonOL.add(pointer.getData().getFormattedName().getValue());
@@ -212,13 +205,13 @@ public class AddressBookFX extends Application {
 //
         VCard person=new VCard();
         person.setFormattedName(name);
-        Telephone telephone=null;
+        Telephone telephone;
         for(String phonenumber:phoneNumberArr)
         {
             telephone=new Telephone(phonenumber);
             person.addTelephoneNumber(telephone);
         }
-        Email email1=null;
+        Email email1;
         for(String emai:emailArr)
         {
             email1=new Email(emai);
@@ -564,21 +557,21 @@ public class AddressBookFX extends Application {
             if (Pattern.matches("^\\s*$", searchContent)) {
                 return;//搜索框内容为空或任何空白字符，结束搜索直接返回
             }
-            ObservableList<String> searchContactOL = FXCollections.observableArrayList(); //用于存放搜索到的联系人的数据
+            ObservableList<String> searchContactOL = FXCollections.observableArrayList();//用于存放搜索到的联系人的数据
             for (VCard contactPerson : contactPeopleArr) {
+                if (contactPerson == null)
+                    continue;
                 boolean isSearched = false;//作为是否在单个联系人信息中查到搜索内容的标志
                 StringBuilder content = new StringBuilder();//用于存储查询到的单个联系人的姓名/电话号码/邮箱等信息
                 String name = contactPerson.getFormattedName().getValue();
-                String namePinYin =Pinyin.getPinYin(name);
-                ArrayList<String> phoneNumbers = null;
-                for(Telephone telephone:contactPerson.getTelephoneNumbers())
-                {
+                String namePinYin = Pinyin.getPinYin(name);
+                ArrayList<String> phoneNumbers = new ArrayList<>();
+                for (Telephone telephone : contactPerson.getTelephoneNumbers()) {
                     phoneNumbers.add(telephone.getText());
                 }
-                ArrayList<String> emails = null;
-                for(Email email:contactPerson.getEmails())
-                {
-                    emails.add( email.getValue());
+                ArrayList<String> emails = new ArrayList<>();
+                for (Email email : contactPerson.getEmails()) {
+                    emails.add(email.getValue());
                 }
                 if (name.contains(searchContent) || namePinYin.contains(searchContent) || namePinYin.toUpperCase().contains(searchContent)) {
                     isSearched = true;
@@ -606,7 +599,6 @@ public class AddressBookFX extends Application {
                     searchContactOL.add(content.toString());
                 }
             }
-
             if (searchContactOL.isEmpty()) {//若遍历所有联系人的所有信息均未查找到搜索内容，则弹框提示未搜索到内容
                 searchNullAlert();
                 return;
