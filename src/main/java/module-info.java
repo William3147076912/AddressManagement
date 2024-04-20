@@ -11,6 +11,11 @@ module org.example.addressmanagement {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires pinyin4j;
+    requires io.vproxy.vfx;
+    requires java.desktop;
+    requires JTransforms;
+    requires io.vproxy.base;
+    requires rxcontrols;
     requires com.googlecode.ezvcard;
 
     opens org.example.addressmanagement to javafx.fxml;
