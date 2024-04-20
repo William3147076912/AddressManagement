@@ -68,31 +68,7 @@ public class AddressBook {
         headNode.setNumberOfLinked(headNode.getNumberOfLinked() + 1);//该链表首结点记录存储联系人数目的变量加1
     }
 
-    private static String getPinYin(String src) {//通过联系人姓名汉字获取对应的拼音(小写字母形式)
-        char[] t1;
-        t1 = src.toCharArray();
-        String[] t2;
-        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
-        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
-        StringBuilder t4 = new StringBuilder();
-        try {
-            for (char c : t1) {
-                // 判断是否为汉字字符
-                if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
-                    t2 = PinyinHelper.toHanyuPinyinStringArray(c, t3);
-                    t4.append(t2[0]);
-                } else {
-                    t4.append(c);
-                }
-            }
-            return t4.toString();
-        } catch (BadHanyuPinyinOutputFormatCombination e1) {
-            e1.printStackTrace();
-        }
-        return t4.toString();
-    }
+
 
     /**
      * 为了避免相同name存在而错误删除,另外用第一个phoneNumber作为区别
@@ -101,7 +77,7 @@ public class AddressBook {
      * @param phoneNumber 待删除联系人的第一个手机号码
      */
     public void remove(String name, String phoneNumber) {//根据联系人的姓名和联系人的第一个手机号码将联系人从链表中删除
-        String namePinyin = getPinYin(name);//处理待删除联系人的姓名获取其姓名拼音首字母以便后续定位
+        String namePinyin =Pinyin.getPinYin(name);//处理待删除联系人的姓名获取其姓名拼音首字母以便后续定位
         char firstChar = namePinyin.toUpperCase().charAt(0);
         AddressBookHeadNode headNode;
         if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -170,7 +146,7 @@ public class AddressBook {
      * @return 返回查找到的联系人
      */
     public ContactPerson get(String name, int index) {//根据联系人姓名和联系人的结点在对应链表中的位置获取联系人
-        String namePinyin = getPinYin(name);
+        String namePinyin = Pinyin.getPinYin(name);
         char firstChar = namePinyin.toUpperCase().charAt(0);
         AddressBookHeadNode headNode;
         if (firstChar >= 'A' && firstChar <= 'Z') {

@@ -18,7 +18,7 @@ public class ContactPerson implements Comparable<ContactPerson> {
 
     public ContactPerson(String name, ArrayList<String> phoneNumber, ArrayList<String> email) {
         this.name = name;
-        this.namePinyin = getPinYin(name);
+        this.namePinyin = Pinyin.getPinYin(name);
         this.firstChar = namePinyin.toUpperCase().charAt(0);
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -69,30 +69,6 @@ public class ContactPerson implements Comparable<ContactPerson> {
         return Integer.compare(this.namePinyin.compareTo(o.namePinyin), 0);
     }
 
-    private String getPinYin(String src) {//通过联系人姓名汉字获取对应的拼音(小写字母形式)
-        char[] t1;
-        t1 = src.toCharArray();
-        String[] t2;
-        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
-        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
-        StringBuilder t4 = new StringBuilder();
-        try {
-            for (char c : t1) {
-                // 判断是否为汉字字符
-                if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
-                    t2 = PinyinHelper.toHanyuPinyinStringArray(c, t3);
-                    t4.append(t2[0]);
-                } else {
-                    t4.append(c);
-                }
-            }
-            return t4.toString();
-        } catch (BadHanyuPinyinOutputFormatCombination e1) {
-            e1.printStackTrace();
-        }
-        return t4.toString();
-    }
+
 
 }

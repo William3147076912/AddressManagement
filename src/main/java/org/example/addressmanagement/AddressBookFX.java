@@ -195,32 +195,6 @@ public class AddressBookFX extends Application {
         return new ContactPerson(name, phoneNumberArr, emailArr);
     }
 
-    private static String getPinYin(String src) {//通过联系人姓名汉字获取对应的拼音(小写字母形式)
-        char[] t1;
-        t1 = src.toCharArray();
-        String[] t2;
-        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
-        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
-        StringBuilder t4 = new StringBuilder();
-        int t0 = t1.length;
-        try {
-            for (char c : t1) {
-                // 判断是否为汉字字符
-                if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
-                    t2 = PinyinHelper.toHanyuPinyinStringArray(c, t3);
-                    t4.append(t2[0]);
-                } else {
-                    t4.append(c);
-                }
-            }
-            return t4.toString();
-        } catch (BadHanyuPinyinOutputFormatCombination e1) {
-            e1.printStackTrace();
-        }
-        return t4.toString();
-    }
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -563,7 +537,7 @@ public class AddressBookFX extends Application {
                 boolean isSearched = false;//作为是否在单个联系人信息中查到搜索内容的标志
                 StringBuilder content = new StringBuilder();//用于存储查询到的单个联系人的姓名/电话号码/邮箱等信息
                 String name = contactPerson.getName();
-                String namePinYin = getPinYin(name);
+                String namePinYin =Pinyin.getPinYin(name);
                 ArrayList<String> phoneNumbers = contactPerson.getPhoneNumber();
                 ArrayList<String> emails = contactPerson.getEmail();
                 if (name.contains(searchContent) || namePinYin.contains(searchContent) || namePinYin.toUpperCase().contains(searchContent)) {
