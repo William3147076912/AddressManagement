@@ -1,5 +1,6 @@
 package management;
 
+import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsages;
 import io.vproxy.vfx.theme.Theme;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import utils.MyImageManager;
 import utils.TUtils;
 
@@ -51,6 +53,7 @@ public class VTableViewScene extends VScene {
         getNode().setPrefWidth(500);
         getNode().setPrefHeight(500);
     }};
+    public static List<FusionButton> groupList = new ArrayList<>();//组列表
 
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
         super(VSceneRole.MAIN);
@@ -174,7 +177,6 @@ public class VTableViewScene extends VScene {
 
         for (int i = 0; i < 10; ++i) {
             table.getItems().add(new Data());
-
         }
 
 
@@ -252,14 +254,34 @@ public class VTableViewScene extends VScene {
                 }}
         ));
 
-        var menuPane = new FusionPane(false) {{
+        var menuPane = new VScrollPane() {{
             getNode().setPrefWidth(150);
+            getNode().setPrefHeight(400);
         }};
         var contactLabel = new Label("all people") {{
-            FontManager.get().setFont(this, settings -> settings.setSize(30));
+            FontManager.get().setFont(this, settings -> settings.setSize(15));
         }};
         FXUtils.observeWidthCenter(getContentPane(), contactLabel);
-        menuPane.getContentPane().getChildren().addAll(contactLabel);
+        var vbox = new VBox(new ThemeLabel("address list") {{
+            FontManager.get().setFont(this, settings -> settings.setSize(20));
+            setAlignment(Pos.CENTER_RIGHT);
+            setBackground(new Background(new BackgroundFill(
+                    null,
+                    CornerRadii.EMPTY,
+                    Insets.EMPTY
+            )));
+        }},
+                new ThemeLabel("----------------------")
+        );
+        menuPane.setContent(vbox);
+        var allContactBtn = new FusionButton("All People(" + table.getItems().size() + ")") {{
+            //setDisable(true);//默认“所有联系人”按钮不可用
+            setLayoutX(300);
+            setLayoutY(300);
+            setPrefWidth(100);
+            setPrefHeight(50);
+        }};
+        vbox.getChildren().addAll(allContactBtn);
 
         var hBox = new HBox(
                 table.getNode(),
