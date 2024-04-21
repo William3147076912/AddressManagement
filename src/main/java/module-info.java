@@ -17,6 +17,7 @@ module org.example.addressmanagement {
     requires io.vproxy.base;
     requires rxcontrols;
     requires com.googlecode.ezvcard;
+    requires org.jetbrains.annotations;
 
     opens management to javafx.fxml;
     exports management;

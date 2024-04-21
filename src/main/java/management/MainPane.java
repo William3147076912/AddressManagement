@@ -1,5 +1,10 @@
 package management;
 
+import ezvcard.VCard;
+import ezvcard.VCardVersion;
+import ezvcard.io.text.VCardReader;
+import ezvcard.io.text.VCardWriter;
+import ezvcard.property.*;
 import io.vproxy.vfx.control.globalscreen.GlobalScreenUtils;
 import io.vproxy.vfx.manager.task.TaskManager;
 import io.vproxy.vfx.theme.Theme;
@@ -13,11 +18,21 @@ import io.vproxy.vfx.ui.stage.VStage;
 import io.vproxy.vfx.util.FXUtils;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import utils.MyImageManager;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.interfaces.ECPublicKey;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,19 +44,63 @@ import java.util.Map;
 public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
     private VSceneGroup sceneGroup;
+    private AddressBook addressBook;
+    private final Path file= Paths.get("D:\\desktop\\00001.vcf");
 
     public static void main(String[] args) {
         Application.launch(args);
     }
+    @Override
+    public void init() throws Exception {
+        super.init();
+        addressBook=new AddressBook();
+        VCardReader reader = new VCardReader(file);
+        try {
+            VCard person;
+            while ((person = reader.readNext()) != null) {
+                addressBook.add(person);
+                List<Photo> photoList=person.getPhotos();
+                if(!photoList.isEmpty())
+                {
+                    Photo photo;
+                    for(int i = 0; i<photoList.size(); i++)
+                    {
+                        photo= photoList.get(i);
+                        byte[] data =photo.getData();
+                        String filepath="D:\\desktop\\"+person.getFormattedName().getValue()+i+".jpg";
+                        File file1=new File(filepath);
+                        file1.createNewFile();
+                        FileOutputStream fos=new FileOutputStream(file1);
+                        fos.write(data);
+                        fos.close();
+                    }
+
+                }
+            }
+        } finally {
+            reader.close();
+        }
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MyImageManager.get().loadBlackAndChangeColor("file:resources/images/setting.png", Map.of("white", 0xffffffff));
-        MyImageManager.get().loadBlackAndChangeColor("file:resources/images/up-arrow.png", Map.of("white", 0xffffffff));
+        MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/setting.png", Map.of("white", 0xffffffff));
+        MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/up-arrow.png", Map.of("white", 0xffffffff));
 
         var stage = new VStage(primaryStage) {
             @Override
             public void close() {
+                try {
+                    VCardWriter vCardWriter=new VCardWriter(file, VCardVersion.V3_0);
+                    ArrayList<VCard> PersonList= addressBook.getAll();
+                    for(VCard person:PersonList)
+                    {
+                        vCardWriter.write(person);
+                    }
+                    vCardWriter.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 super.close();
                 TaskManager.get().terminate();
                 GlobalScreenUtils.unregister();

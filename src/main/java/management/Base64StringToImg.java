@@ -1,4 +1,4 @@
-package org.example.addressmanagement;
+package management;
 
 import java.io.*;
 import java.util.Base64;

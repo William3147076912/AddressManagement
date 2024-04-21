@@ -18,7 +18,7 @@ public class AddressBook {
     static {//初始化数组
         addressBookHeadNodes[0] = new AddressBookHeadNode('#');
         for (int i = 1; i < addressBookHeadNodes.length ; i++) {
-            addressBookHeadNodes[i] = new AddressBookHeadNode((char) ('A' + i));
+            addressBookHeadNodes[i] = new AddressBookHeadNode((char) ('A' + i-1));
         }
     }
 
@@ -49,12 +49,12 @@ public class AddressBook {
         AddressBookNode pointer = headNode.getFirstNode();//将联系人放到链表中的合适位置
         if (pointer == null) {//若链表除首结点外无其他结点,则将联系人作为数据创建结点插入该链表首结点后
             headNode.setFirstNode(new AddressBookNode(person));
-        } else if (Pinyin.compareTo(Pinyin.getPinYin(person.getFormattedName().getValue()),Pinyin.getPinYin(pointer.getData().getFormattedName().getValue()) ) < 0) {/*若待插入联系人小于链表首结点后的结点存储的联系人，
+        } else if (Pinyin.getPinYin(person.getFormattedName().getValue()).compareTo(Pinyin.getPinYin(pointer.getData().getFormattedName().getValue())) < 0) {/*若待插入联系人小于链表首结点后的结点存储的联系人，
                                                                       则将联系人作为数据创建结点插入到首结点后*/
             node.setNext(pointer);
             headNode.setFirstNode(node);
         } else {//否则通过while循环找到待添加联系人的合适位置，进行添加
-            while (pointer.getNext() != null &&Pinyin.compareTo(Pinyin.getPinYin(pointer.getNext().getData().getFormattedName().getValue()),Pinyin.getPinYin(person.getFormattedName().getValue()))< 0) {
+            while (pointer.getNext() != null &&Pinyin.getPinYin(pointer.getNext().getData().getFormattedName().getValue()).compareTo(Pinyin.getPinYin(person.getFormattedName().getValue()))< 0) {
                 pointer = pointer.getNext();
             }// pointer.getData().compareTo(person)
             node.setNext(pointer.getNext());

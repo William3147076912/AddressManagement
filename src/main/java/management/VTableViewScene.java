@@ -1,7 +1,10 @@
 package management;
 
 import ezvcard.VCard;
+import ezvcard.property.Address;
+import ezvcard.property.FormattedName;
 import ezvcard.property.Telephone;
+import ezvcard.property.Uid;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsages;
 import io.vproxy.vfx.theme.Theme;
@@ -16,6 +19,7 @@ import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import io.vproxy.vfx.util.MiscUtils;
+import io.vproxy.vpacket.dns.rdata.A;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -105,48 +109,57 @@ public class VTableViewScene extends VScene {
         });
         idCol.setMinWidth(300);
         idCol.setAlignment(Pos.CENTER);
+
         idCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            textField.setText(data.id);
+
+            textField.setText(data.getUid().getValue());
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    data.id = textField.getText();
+                    Uid uid=new Uid(textField.getText());
+                    data.setUid(uid);
                 }
             });
             return text;
         });
-        nameCol.setComparator(Comparator.comparing(data -> data.name));
+        nameCol.setComparator(Comparator.comparing(data -> data.getFormattedName().getValue()));
         nameCol.setAlignment(Pos.CENTER);
         nameCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            textField.setText(data.name);
+            textField.setText(data.getFormattedName().getValue());
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    data.name = textField.getText();
+                    FormattedName name=new FormattedName(textField.getText());
+                    data.setFormattedName(name);
                 }
             });
             return text;
         });
         addressCol.setAlignment(Pos.CENTER);
-        addressCol.setComparator(Comparator.comparing(data -> data.address));
+        addressCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getStreetAddress()));
         addressCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            textField.setText(data.address);
+
+            textField.setText(data.getAddresses().get(0).getStreetAddress());
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    data.address = textField.getText();
+                    String addr=textField.getText();
+                    Address address=new Address();
+                    address.setStreetAddress(addr);
+                    data.addAddress(address);
+//                    data.address =;
                 }
             });
             return text;
@@ -158,11 +171,15 @@ public class VTableViewScene extends VScene {
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            textField.setText(data.address);
+            List<Address>  addresses=data.getAddresses();
+            Address address=addresses.get(0);
+            textField.setText(address.getStreetAddress());
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    data.address = textField.getText();
+                    String addr=textField.getText();
+                    address.setStreetAddress(addr);
+                    addresses.add(address);
                 }
             });
             return text;
@@ -277,30 +294,8 @@ public class VTableViewScene extends VScene {
     }
 
 
-    public static class Data extends VCard{
-        public FusionButton choiceButton;
-        public String id;
-        public String name;
-        public String address;
-        public String type;
 
-        public int bandwidth;
-        public long createTime;
 
-        public Data() {
-            choiceButton = new FusionButton() {{
-                setPrefWidth(10);
-                setPrefHeight(50);
-                //setOnlyAnimateWhenNotClicked(true);
-            }};
-            id = UUID.randomUUID().toString();
-            name = TUtils.randomString(10, 15);
-            address = TUtils.randomIPAddress();
-            type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
-            bandwidth= ThreadLocalRandom.current().nextInt(10) * 100 + 100;
-            createTime = System.currentTimeMillis();
-        }
-    }
 
 
 }
