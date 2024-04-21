@@ -44,7 +44,7 @@ import java.util.Map;
 public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
     private VSceneGroup sceneGroup;
-    private AddressBook addressBook;
+    public static AddressBook addressBook;
     private final Path file= Paths.get("D:\\desktop\\00001.vcf");
 
     public static void main(String[] args) {
@@ -57,7 +57,8 @@ public class MainPane extends Application {
         VCardReader reader = new VCardReader(file);
         try {
             VCard person;
-            while ((person = reader.readNext()) != null) {
+            while ((person =  reader.readNext()) != null) {
+                person=(Data)person;
                 addressBook.add(person);
                 List<Photo> photoList=person.getPhotos();
                 if(!photoList.isEmpty())
@@ -80,6 +81,7 @@ public class MainPane extends Application {
         } finally {
             reader.close();
         }
+
     }
 
     @Override

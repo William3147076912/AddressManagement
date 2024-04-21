@@ -220,7 +220,7 @@ class AddressBookNode {
         this.person = person;
     }
 
-    public VCard getData() {
+    public Data getData() {
         return person;
     }
 

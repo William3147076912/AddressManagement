@@ -191,8 +191,21 @@ public class VTableViewScene extends VScene {
         //noinspection unchecked
         table.getColumns().addAll(choiceCol, idCol, nameCol, addressCol, typeCol, createTimeCol);
 
-        for (int i = 0; i < 10; ++i) {
-            table.getItems().add(new Data());
+//        for (int i = 0; i < 10; ++i) {
+//            table.getItems().add(new Data());
+//
+//        }
+        AddressBookHeadNode[] headNodes=MainPane.addressBook.getAddressBookHeadNodes();
+        for(int i=0;i<27;i++)
+        {
+            AddressBookHeadNode headNode=headNodes[i];
+            AddressBookNode bookNode=headNode.getFirstNode();
+            while (bookNode!=null)
+            {
+                table.getItems().add(bookNode.getData());
+                bookNode=bookNode.getNext();
+            }
+
 
         }
 
