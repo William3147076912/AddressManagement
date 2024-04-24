@@ -56,10 +56,11 @@ public class MainPane extends Application {
         addressBook=new AddressBook();
         VCardReader reader = new VCardReader(file);
         try {
-            VCard person;
-            while ((person =  reader.readNext()) != null) {
-                person=(Data)person;
-                addressBook.add(person);
+            Data person;
+            VCard temp;
+            while (  (person=(Data) reader.readNext()) != null) {
+
+                addressBook.add( person);
                 List<Photo> photoList=person.getPhotos();
                 if(!photoList.isEmpty())
                 {
@@ -94,8 +95,8 @@ public class MainPane extends Application {
             public void close() {
                 try {
                     VCardWriter vCardWriter=new VCardWriter(file, VCardVersion.V3_0);
-                    ArrayList<VCard> PersonList= addressBook.getAll();
-                    for(VCard person:PersonList)
+                    ArrayList<Data> PersonList= addressBook.getAll();
+                    for(Data person:PersonList)
                     {
                         vCardWriter.write(person);
                     }
