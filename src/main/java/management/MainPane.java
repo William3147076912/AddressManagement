@@ -21,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import utils.MyImageManager;
 
 import java.io.File;
@@ -43,34 +44,33 @@ import java.util.Map;
  */
 public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
+    private final Path file = Paths.get("src/main/resources/vCard/00001.vcf");
     private VSceneGroup sceneGroup;
     private AddressBook addressBook;
-    private final Path file= Paths.get("D:\\desktop\\00001.vcf");
 
     public static void main(String[] args) {
         Application.launch(args);
     }
+
     @Override
     public void init() throws Exception {
         super.init();
-        addressBook=new AddressBook();
+        addressBook = new AddressBook();
         VCardReader reader = new VCardReader(file);
         try {
             VCard person;
             while ((person = reader.readNext()) != null) {
                 addressBook.add(person);
-                List<Photo> photoList=person.getPhotos();
-                if(!photoList.isEmpty())
-                {
+                List<Photo> photoList = person.getPhotos();
+                if (!photoList.isEmpty()) {
                     Photo photo;
-                    for(int i = 0; i<photoList.size(); i++)
-                    {
-                        photo= photoList.get(i);
-                        byte[] data =photo.getData();
-                        String filepath="D:\\desktop\\"+person.getFormattedName().getValue()+i+".jpg";
-                        File file1=new File(filepath);
+                    for (int i = 0; i < photoList.size(); i++) {
+                        photo = photoList.get(i);
+                        byte[] data = photo.getData();
+                        String filepath = "src/main/resources/vCard/" + person.getFormattedName().getValue() + i + ".jpg";
+                        File file1 = new File(filepath);
                         file1.createNewFile();
-                        FileOutputStream fos=new FileOutputStream(file1);
+                        FileOutputStream fos = new FileOutputStream(file1);
                         fos.write(data);
                         fos.close();
                     }
@@ -91,10 +91,9 @@ public class MainPane extends Application {
             @Override
             public void close() {
                 try {
-                    VCardWriter vCardWriter=new VCardWriter(file, VCardVersion.V3_0);
-                    ArrayList<VCard> PersonList= addressBook.getAll();
-                    for(VCard person:PersonList)
-                    {
+                    VCardWriter vCardWriter = new VCardWriter(file, VCardVersion.V3_0);
+                    ArrayList<VCard> PersonList = addressBook.getAll();
+                    for (VCard person : PersonList) {
                         vCardWriter.write(person);
                     }
                     vCardWriter.close();
@@ -110,7 +109,7 @@ public class MainPane extends Application {
 
         stage.setTitle("VFX Intro");
         mainScenes.add(new IntroScene());
-        mainScenes.add(new VTableViewScene(()->sceneGroup));
+        mainScenes.add(new VTableViewScene(() -> sceneGroup));
         var initialScene = mainScenes.get(0);
         sceneGroup = new VSceneGroup(initialScene);
         for (var scene : mainScenes) {
@@ -210,7 +209,7 @@ public class MainPane extends Application {
         settingScene.getContentPane().getChildren().add(settingBox);
         settingBox.getChildren().add(new VPadding(20));
 
-        var settingBtn = new FusionImageButton(MyImageManager.get().load("file:resources/images/setting.png")) {{
+        var settingBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/setting.png")) {{
             setPrefWidth(40);
             setPrefHeight(VStage.TITLE_BAR_HEIGHT + 1);
             getImageView().setFitHeight(15);
@@ -223,6 +222,7 @@ public class MainPane extends Application {
         stage.getStage().setWidth(1280);
         stage.getStage().setHeight(800);
         stage.getStage().centerOnScreen();
+        stage.getStage().initStyle(StageStyle.TRANSPARENT);
         stage.getStage().show();
     }
 }

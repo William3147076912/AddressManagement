@@ -1,6 +1,7 @@
 package management;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
+import io.vproxy.vfx.ui.scene.VScene;
 import io.vproxy.vfx.ui.scene.VSceneGroup;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -28,6 +29,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import utils.PopupScene;
 
 import java.util.ArrayList;
 import java.util.Objects;
