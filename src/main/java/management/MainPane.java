@@ -102,7 +102,7 @@ public class MainPane extends Application {
                 }
                 super.close();
                 TaskManager.get().terminate();
-                GlobalScreenUtils.unregister();
+                //GlobalScreenUtils.unregister();
             }
         };
         stage.getInitialScene().enableAutoContentWidthHeight();
