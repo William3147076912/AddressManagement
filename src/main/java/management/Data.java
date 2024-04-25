@@ -60,22 +60,22 @@ public  class Data extends VCard {
         return person;
     }
 
-//    public Data() {
-//        choiceButton = new FusionButton() {{
-//            setPrefWidth(10);
-//            setPrefHeight(50);
-//            //setOnlyAnimateWhenNotClicked(true);
-//        }};
-//        Uid uid = new Uid("2022253104xx");
-//        this.setUid(uid);
-//        FormattedName name = new FormattedName("某某某");
-//        this.addFormattedName(name);
-//        Address address = new Address();
-//        address.setStreetAddress("二仙桥");
-//        this.addAddress(address);
-//
-//        type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
-//        bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
-//        createTime = System.currentTimeMillis();
-//    }
+    public Data() {
+        choiceButton = new FusionButton() {{
+            setPrefWidth(10);
+            setPrefHeight(50);
+            //setOnlyAnimateWhenNotClicked(true);
+        }};
+        Uid uid = new Uid("2022253104xx");
+        this.setUid(uid);
+        FormattedName name = new FormattedName("某某某");
+        this.addFormattedName(name);
+        Address address = new Address();
+        address.setStreetAddress("二仙桥");
+        this.addAddress(address);
+
+        type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
+        bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
+        createTime = System.currentTimeMillis();
+    }
 }

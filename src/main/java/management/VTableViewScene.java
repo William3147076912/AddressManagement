@@ -246,7 +246,7 @@ public class VTableViewScene extends VScene {
                 new FusionButton("Add Contact") {{
                     setOnAction(e -> {
                         //打开添加联系人窗口
-                        table.getItems().add(new Data());
+//                        table.getItems().add(new Data());
                         allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
                         Scene scene;
                         try {
