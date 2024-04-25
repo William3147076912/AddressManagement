@@ -5,6 +5,7 @@ import ezvcard.property.Address;
 import ezvcard.property.FormattedName;
 import ezvcard.property.Telephone;
 import ezvcard.property.Uid;
+import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsages;
 import io.vproxy.vfx.theme.Theme;
@@ -19,18 +20,21 @@ import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import io.vproxy.vfx.util.MiscUtils;
-import io.vproxy.vpacket.dns.rdata.A;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import utils.MyImageManager;
-import utils.TUtils;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.jetbrains.annotations.NotNull;
+import utils.PopupScene;
 
-import io.vproxy.vfx.ui.wrapper.FusionW;
-
+import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -46,30 +50,29 @@ import java.util.function.Supplier;
  */
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
-    public static VScene popUpScene = new VScene(VSceneRole.POPUP) {{
-        enableAutoContentWidthHeight();
+    public static List<FusionButton> groupList = new ArrayList<>();//组列表
 
-        getNode().setBackground(new Background(new BackgroundFill(
-                Theme.current().subSceneBackgroundColor(),
-                CornerRadii.EMPTY,
-                Insets.EMPTY
-        )));
-        getNode().setPrefWidth(500);
-        getNode().setPrefHeight(500);
+    public static FusionButton allContactBtn = new FusionButton() {{
+        setDisable(true);//默认“所有联系人”按钮不可用
+        setLayoutX(300);
+        setLayoutY(300);
+        setPrefWidth(100);
+        setPrefHeight(50);
     }};
 
-    public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
+    public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) throws IOException {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
 
+        var table = setTable();
+        var vBox = setContentPane(table, sceneGroupSup);
 
-        var msgLabel = new ThemeLabel(
-                "Click the column name to sort the rows (some of them are sortable).\n" +
-                        "Tips: try to sort by multiple columns, and try to hover on \"name\" cells :)"
-        );
-        FXUtils.observeWidthCenter(getContentPane(), msgLabel);
-        msgLabel.setLayoutY(40);
+        FXUtils.observeWidthCenter(getContentPane(), vBox);
 
+        getContentPane().getChildren().addAll(vBox);
+    }
+
+    public VTableView<Data> setTable() {
         var table = new VTableView<Data>();
         table.getNode().setPrefWidth(1000);
         table.getNode().setPrefHeight(500);
@@ -120,7 +123,7 @@ public class VTableViewScene extends VScene {
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    Uid uid=new Uid(textField.getText());
+                    Uid uid = new Uid(textField.getText());
                     data.setUid(uid);
                 }
             });
@@ -137,7 +140,7 @@ public class VTableViewScene extends VScene {
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    FormattedName name=new FormattedName(textField.getText());
+                    FormattedName name = new FormattedName(textField.getText());
                     data.setFormattedName(name);
                 }
             });
@@ -155,8 +158,8 @@ public class VTableViewScene extends VScene {
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    String addr=textField.getText();
-                    Address address=new Address();
+                    String addr = textField.getText();
+                    Address address = new Address();
                     address.setStreetAddress(addr);
                     data.addAddress(address);
 //                    data.address =;
@@ -214,8 +217,10 @@ public class VTableViewScene extends VScene {
 
 
         }
+        return table;
+    }
 
-
+    public VBox setContentPane(@NotNull VTableView<Data> table, Supplier<VSceneGroup> sceneGroupSup) {
         var controlPane = new FusionPane(false) {{
             getNode().setPrefHeight(60);
         }};
@@ -239,7 +244,25 @@ public class VTableViewScene extends VScene {
                 }},
                 new HPadding(10),
                 new FusionButton("Add Contact") {{
-                    setOnAction(e -> table.getItems().add(new Data()));
+                    setOnAction(e -> {
+                        //打开添加联系人窗口
+                        table.getItems().add(new Data());
+                        allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                        Scene scene;
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                            scene = new Scene(fxmlLoader.load());
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        scene.setFill(Color.TRANSPARENT);//舞台透明
+                        new Stage() {{
+                            setScene(scene);
+                            initStyle(StageStyle.TRANSPARENT);//窗口透明
+                            initModality(Modality.APPLICATION_MODAL);
+                            show();
+                        }};
+                    });
                     setPrefWidth(120);
                     setPrefHeight(40);
                 }},
@@ -247,6 +270,7 @@ public class VTableViewScene extends VScene {
                 new FusionButton("Del Contact") {{
                     setOnAction(e -> {
                         if (delList.isEmpty()) return;
+                        var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
                         //进行删除确认
                         Label msgLabel = new ThemeLabel("Are you sure you want to delete this contact?") {{
                             FontManager.get().setFont(this, settings -> settings.setSize(20));
@@ -265,6 +289,7 @@ public class VTableViewScene extends VScene {
                             for (Data data : delList) {//删除数据
                                 table.getItems().remove(data);
                             }
+                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
                             delList.clear();//清空删除列表
                             sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
                             FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
@@ -281,7 +306,6 @@ public class VTableViewScene extends VScene {
                         });
                         //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));设置背景图片
                         popUpScene.getContentPane().getChildren().addAll(msgLabel, sureBtn, closeBtn);
-                        FXUtils.observeWidthHeightCenter(popUpScene.getContentPane(), this);
                         sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
                         FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));
                     });
@@ -290,31 +314,46 @@ public class VTableViewScene extends VScene {
                 }}
         ));
 
-        var menuPane = new FusionPane(false) {{
+        var menuPane = new VScrollPane() {{
             getNode().setPrefWidth(150);
+            getNode().setPrefHeight(400);
         }};
         var contactLabel = new Label("all people") {{
-            FontManager.get().setFont(this, settings -> settings.setSize(30));
+            FontManager.get().setFont(this, settings -> settings.setSize(15));
         }};
         FXUtils.observeWidthCenter(getContentPane(), contactLabel);
-        menuPane.getContentPane().getChildren().addAll(contactLabel);
+        var vbox = new VBox(
+                new ThemeLabel("address list") {{
+                    FontManager.get().setFont(this, settings -> settings.setSize(20));
+                    setAlignment(Pos.CENTER_RIGHT);
+                    setBackground(new Background(new BackgroundFill(
+                            null,
+                            CornerRadii.EMPTY,
+                            Insets.EMPTY
+                    )));
+                }},
+                new ThemeLabel("----------------------")
+        );
+        menuPane.setContent(vbox);
+
+        allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
+        vbox.getChildren().addAll(allContactBtn);
 
         var hBox = new HBox(
                 table.getNode(),
                 new HPadding(10),
                 menuPane.getNode()
         );
-        var vBox = new VBox(controlPane.getNode(), new HPadding(10), hBox);
-        FXUtils.observeWidthCenter(getContentPane(), vBox);
-        vBox.setLayoutY(100);
+        FXUtils.observeWidthCenter(getContentPane(), hBox);
 
+        var msgLabel = new ThemeLabel(
+                "Click the column name to sort the rows (some of them are sortable).\n" +
+                        "Tips: try to sort by multiple columns, and try to hover on \"name\" cells, and try to drag the table:)"
+        );
+        FXUtils.observeWidthCenter(controlPane.getContentPane(), msgLabel);
+        msgLabel.setLayoutY(40);
 
-        getContentPane().getChildren().addAll(msgLabel, vBox);
+        return new VBox(msgLabel, controlPane.getNode(), hBox);
     }
-
-
-
-
-
 
 }

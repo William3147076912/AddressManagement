@@ -1,4 +1,51 @@
-.idea/**
-mvnw
-mvnw.cmd
-target/**
+##ignore this file##
+target/*
+.idea/*
+.settings/*
+.vscode/*
+bin/*
+
+ .idea/workspace.xml
+.classpath
+.project
+.settings
+.idea
+ ##filter databfile、sln file##
+*.mdb
+*.ldb
+*.sln
+##class file##
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+# compression file
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.via
+*.tmp
+*.err
+*.log
+*.iml
+*.jpg
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+.factorypath
+/.mvn/
+/mvnw.cmd
+/mvnw

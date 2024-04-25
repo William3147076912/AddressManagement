@@ -21,6 +21,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import utils.MyImageManager;
 
 import java.io.File;
@@ -50,10 +51,11 @@ public class MainPane extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
+
     @Override
     public void init() throws Exception {
         super.init();
-        addressBook=new AddressBook();
+        addressBook = new AddressBook();
         VCardReader reader = new VCardReader(file);
         try {
             Data person;
@@ -61,18 +63,16 @@ public class MainPane extends Application {
             while (  (temp=reader.readNext()) != null) {
                 person =Data.vCardtoData(temp);
                 addressBook.add(person);
-                List<Photo> photoList=person.getPhotos();
-                if(!photoList.isEmpty())
-                {
+                List<Photo> photoList = person.getPhotos();
+                if (!photoList.isEmpty()) {
                     Photo photo;
-                    for(int i = 0; i<photoList.size(); i++)
-                    {
-                        photo= photoList.get(i);
-                        byte[] data =photo.getData();
-                        String filepath="D:\\desktop\\"+person.getFormattedName().getValue()+i+".jpg";
-                        File file1=new File(filepath);
+                    for (int i = 0; i < photoList.size(); i++) {
+                        photo = photoList.get(i);
+                        byte[] data = photo.getData();
+                        String filepath = "src/main/resources/vCard/" + person.getFormattedName().getValue() + i + ".jpg";
+                        File file1 = new File(filepath);
                         file1.createNewFile();
-                        FileOutputStream fos=new FileOutputStream(file1);
+                        FileOutputStream fos = new FileOutputStream(file1);
                         fos.write(data);
                         fos.close();
                     }
@@ -106,14 +106,14 @@ public class MainPane extends Application {
                 }
                 super.close();
                 TaskManager.get().terminate();
-                GlobalScreenUtils.unregister();
+                //GlobalScreenUtils.unregister();
             }
         };
         stage.getInitialScene().enableAutoContentWidthHeight();
 
         stage.setTitle("VFX Intro");
         mainScenes.add(new IntroScene());
-        mainScenes.add(new VTableViewScene(()->sceneGroup));
+        mainScenes.add(new VTableViewScene(() -> sceneGroup));
         var initialScene = mainScenes.get(0);
         sceneGroup = new VSceneGroup(initialScene);
         for (var scene : mainScenes) {
@@ -213,7 +213,7 @@ public class MainPane extends Application {
         settingScene.getContentPane().getChildren().add(settingBox);
         settingBox.getChildren().add(new VPadding(20));
 
-        var settingBtn = new FusionImageButton(MyImageManager.get().load("file:resources/images/setting.png")) {{
+        var settingBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/setting.png")) {{
             setPrefWidth(40);
             setPrefHeight(VStage.TITLE_BAR_HEIGHT + 1);
             getImageView().setFitHeight(15);
@@ -226,6 +226,7 @@ public class MainPane extends Application {
         stage.getStage().setWidth(1280);
         stage.getStage().setHeight(800);
         stage.getStage().centerOnScreen();
+        stage.getStage().initStyle(StageStyle.TRANSPARENT);
         stage.getStage().show();
     }
 }
