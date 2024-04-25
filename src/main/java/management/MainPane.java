@@ -58,9 +58,9 @@ public class MainPane extends Application {
         try {
             Data person;
             VCard temp;
-            while (  (person=(Data) reader.readNext()) != null) {
-
-                addressBook.add( person);
+            while (  (temp=reader.readNext()) != null) {
+                person =Data.vCardtoData(temp);
+                addressBook.add(person);
                 List<Photo> photoList=person.getPhotos();
                 if(!photoList.isEmpty())
                 {

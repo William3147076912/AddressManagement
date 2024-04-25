@@ -172,16 +172,22 @@ public class VTableViewScene extends VScene {
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
             List<Address>  addresses=data.getAddresses();
-            Address address=addresses.get(0);
-            textField.setText(address.getStreetAddress());
-            textField.focusedProperty().addListener((ob, old, now) -> {
-                if (old == null || now == null) return;
-                if (old && !now) {
-                    String addr=textField.getText();
-                    address.setStreetAddress(addr);
-                    addresses.add(address);
-                }
-            });
+            Address address;
+            if (!addresses.isEmpty()) {
+                address= addresses.get(0);
+                textField.setText(address.getStreetAddress());
+                textField.focusedProperty().addListener((ob, old, now) -> {
+                    if (old == null || now == null) return;
+                    if (old && !now) {
+                        String addr=textField.getText();
+                        address.setStreetAddress(addr);
+                        addresses.add(address);
+                    }
+                });
+            } else {
+                address = null;
+            }
+
             return text;
         });
         createTimeCol.setMinWidth(200);
