@@ -97,6 +97,10 @@ public class ContactController {
         stage.close();
     }
 
+    public static void addOrUpdateContact(int sign, Data vCardProperties) {
+        flag=sign;
+        data=vCardProperties;
+    }
 
     public void initialize() {
         //判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框

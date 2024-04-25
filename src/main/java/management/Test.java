@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.controller.ContactController;
+import utils.ConstantSet;
 
 public class Test extends Application {
     public static void main(String[] args) {
@@ -16,9 +17,9 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        ContactController.flag= ConstantSet.UPDATE_CONTACT;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
         scene.setFill(Color.TRANSPARENT);//背景透明化
         scene.setUserData(this.getHostServices());
         scene.setCamera(new PerspectiveCamera());//透视相机
