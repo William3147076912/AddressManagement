@@ -1,7 +1,6 @@
-package management;
+package management.controller;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
-import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -10,43 +9,78 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import management.Data;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ContactController {
-    private static Data data;
+    public static Data data;
     @FXML
     private AnchorPane pane;
     @FXML
-    private RXTextField addressField;
-    @FXML
-    private DatePicker birthdayField;
-    @FXML
-    private RXTextField companyField;
-    @FXML
-    private RXTextField emailField;
-    @FXML
-    private RXTextField homepageField;
-    @FXML
-    private RXAvatar image;
-    @FXML
-    private RXTextField nameField;
-    @FXML
-    private RXTextField phoneField;
-    @FXML
-    private RXTextField postalCodeField;
-    @FXML
-    private TextArea remarkField;
+    private static RXTextField addressField;
 
-    public Data getData() {
-        return ContactController.data;
+    @FXML
+    private static DatePicker birthdayField;
+
+    @FXML
+    private static RXTextField companyField;
+
+    @FXML
+    private static AnchorPane contactPane;
+
+    @FXML
+    private static RXTextField emailField;
+
+    @FXML
+    private static RXTextField homepageField;
+
+    @FXML
+    private static RXAvatar image;
+
+    @FXML
+    private static RXTextField nameField;
+
+    @FXML
+    private static RXTextField phoneField;
+
+    @FXML
+    private static RXTextField postalCodeField;
+
+    @FXML
+    private static TextArea remarkField;
+
+    //private static Data;
+
+    public  void init(int flag, Data data) {//判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框
+        //用int不用flag是为了后期增加新功能的方便
+        if (flag == 1) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            //nameField.setText();
+            //phoneField.setText();
+            //emailField.setText();
+            //homepageField.setText();
+            birthdayField.setValue(LocalDate.parse("2022/01/01", formatter));
+            //companyField.setText();
+            //addressField.setText();
+            //postalCodeField.setText();
+            //remarkField.setText();
+        } else if (flag == 0) {
+            //。。。。
+            return;
+        }
     }
 
     public void setData(Data data) {
         ContactController.data = data;
+    }
+
+    public void getData() {
+
     }
 
     @FXML

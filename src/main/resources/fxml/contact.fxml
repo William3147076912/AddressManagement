@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="595.0" style="-fx-background-color: rgb(23, 27, 30);-fx-effect: dropshadow(gaussian, black, 50, 0, 0, 0);   -fx-background-insets: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="management.ContactController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="595.0" style="-fx-background-color: rgb(23, 27, 30);-fx-effect: dropshadow(gaussian, black, 50, 0, 0, 0);   -fx-background-insets: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="management.controller.ContactController">
     <children>
         <RXTextField fx:id="nameField" layoutX="228.0" layoutY="132.0" promptText="昵称" />
         <RXTextField fx:id="phoneField" layoutX="229.0" layoutY="176.0" promptText="通讯工具的号码" />

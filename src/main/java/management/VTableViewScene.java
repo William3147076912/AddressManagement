@@ -1,17 +1,13 @@
 package management;
 
-import ezvcard.VCard;
 import ezvcard.property.Address;
 import ezvcard.property.FormattedName;
-import ezvcard.property.Telephone;
 import ezvcard.property.Uid;
 import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsages;
-import io.vproxy.vfx.theme.Theme;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.layout.HPadding;
-import io.vproxy.vfx.ui.layout.VPadding;
 import io.vproxy.vfx.ui.pane.FusionPane;
 import io.vproxy.vfx.ui.scene.*;
 import io.vproxy.vfx.ui.table.VTableColumn;
@@ -20,11 +16,9 @@ import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import io.vproxy.vfx.util.MiscUtils;
-import io.vproxy.vpacket.dns.rdata.A;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -34,11 +28,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
-import utils.MyImageManager;
 import utils.PopupScene;
-import utils.TUtils;
-
-import io.vproxy.vfx.ui.wrapper.FusionW;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -47,8 +37,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 /**
@@ -237,7 +225,7 @@ public class VTableViewScene extends VScene {
                         allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
                         Scene scene;
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/add_Contact.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
                             scene = new Scene(fxmlLoader.load());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
