@@ -22,7 +22,7 @@ public class Test extends Application {
         scene.setUserData(this.getHostServices());
         scene.setCamera(new PerspectiveCamera());//透视相机
         primaryStage.setScene(scene);
-        //new ContactController().init(1, null);
+        new ContactController().initialize();
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("MainTest Window");
         primaryStage.show();

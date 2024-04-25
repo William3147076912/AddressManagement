@@ -22,6 +22,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -90,16 +92,12 @@ public class VTableViewScene extends VScene {
                 if ("✓".equals(text)) {//取消选中
                     textNode.setText("");
                     delList.remove(data);
-                    /*for (var v : delList) {
-                        System.out.println(v.name);
-                    }*/
+                    //System.out.println(data.type);
                 } else {//选中
                     textNode.setText("✓");
                     //...
                     delList.add(data);
-                    /*for (var v : delList) {
-                        System.out.println(v.name);
-                    }*/
+                    //System.out.println(data.type);
                 }
             });
             return data.choiceButton;
@@ -262,6 +260,7 @@ public class VTableViewScene extends VScene {
                         }};
                         sureBtn.setOnAction(ee -> {
                             for (Data data : delList) {//删除数据
+                                //System.out.println(data.type);
                                 table.getItems().remove(data);
                             }
                             allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
