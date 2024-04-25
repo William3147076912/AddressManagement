@@ -22,32 +22,32 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
-public class ContactController  {
+public class ContactController {
     //flag与data是外界与本类交互的工具
     public static int flag = ConstantSet.CREATE_CONTACT;//默认显示添加联系人界面
     public static Data data;
     @FXML
-    private static RXTextField addressField;
+    private RXTextField addressField;
     @FXML
-    private static DatePicker birthdayField;
+    private DatePicker birthdayField;
     @FXML
-    private static RXTextField companyField;
+    private RXTextField companyField;
     @FXML
-    private static AnchorPane contactPane;
+    private AnchorPane contactPane;
     @FXML
-    private static RXTextField emailField;
+    private RXTextField emailField;
     @FXML
-    private static RXTextField homepageField;
+    private RXTextField homepageField;
     @FXML
-    private static RXAvatar image;
+    private RXAvatar image;
     @FXML
-    private static RXTextField nameField;
+    private RXTextField nameField;
     @FXML
-    private static RXTextField phoneField;
+    private RXTextField phoneField;
     @FXML
-    private static RXTextField postalCodeField;
+    private RXTextField postalCodeField;
     @FXML
-    private static TextArea remarkField;
+    private TextArea remarkField;
     @FXML
     private AnchorPane pane;
 
@@ -96,6 +96,7 @@ public class ContactController  {
         Stage stage = (Stage) pane.getScene().getWindow();
         stage.close();
     }
+
 
     public void initialize() {
         //判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框

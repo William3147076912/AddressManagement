@@ -18,11 +18,11 @@ public class Test extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+
         scene.setFill(Color.TRANSPARENT);//背景透明化
         scene.setUserData(this.getHostServices());
         scene.setCamera(new PerspectiveCamera());//透视相机
         primaryStage.setScene(scene);
-        new ContactController().initialize();
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("MainTest Window");
         primaryStage.show();
