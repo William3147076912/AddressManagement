@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ee4ff31-94ed-4d86-83e3-0a0f108d5607" name="更改" comment="修复了图片打不开的问题" />
+    <list default="true" id="7ee4ff31-94ed-4d86-83e3-0a0f108d5607" name="更改" comment="修复了图片打不开的问题">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +90,7 @@
     "Application.org.example.addressmanagement.intro.IntroMain.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "temp",
+    "git-widget-placeholder": "fcj",
     "jdk.selected.JAVA_MODULE": "11",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/fcj/Desktop/AddressManagement/pom.xml",
@@ -143,7 +145,7 @@
       <recent name="fcjd" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.FcjMain">
     <configuration name="FcjMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="management.FcjMain" />
       <module name="AddressManagement" />
