@@ -74,6 +74,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Application.AddressBookFX.executor": "Run",
     "Application.FcjMain.executor": "Run",
     "Application.HelloApplication.executor": "Run",
@@ -388,7 +389,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714104758177</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="修复了图片打不开的问题">
+      <option name="closed" value="true" />
+      <created>1714105095695</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1714105095695</updated>
+    </task>
+    <task id="LOCAL-00019" summary="修复了图片打不开的问题">
+      <option name="closed" value="true" />
+      <created>1714105992228</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1714105992228</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
