@@ -4,14 +4,9 @@ target/*
 .settings/*
 .vscode/*
 bin/*
-.idea/inspectionProfiles/Project_Default.xml
-.idea/jarRepositories.xml
-.idea/vcs.xml
-.idea/workspace.xml
 .classpath
 .project
 .settings
-.idea
  ##filter databfile、sln file##
 *.mdb
 *.ldb
