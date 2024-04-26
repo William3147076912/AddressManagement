@@ -3,6 +3,7 @@ package management.controller;
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -12,79 +13,55 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import management.Data;
+import utils.ConstantSet;
 
 import java.io.File;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class ContactController {
+    //flag与data是外界与本类交互的工具
+    public static int flag = ConstantSet.CREATE_CONTACT;//默认显示添加联系人界面
     public static Data data;
     @FXML
+    private RXTextField addressField;
+    @FXML
+    private DatePicker birthdayField;
+    @FXML
+    private RXTextField companyField;
+    @FXML
+    private AnchorPane contactPane;
+    @FXML
+    private RXTextField emailField;
+    @FXML
+    private RXTextField homepageField;
+    @FXML
+    private RXAvatar image;
+    @FXML
+    private RXTextField nameField;
+    @FXML
+    private RXTextField phoneField;
+    @FXML
+    private RXTextField postalCodeField;
+    @FXML
+    private TextArea remarkField;
+    @FXML
     private AnchorPane pane;
-    @FXML
-    private static RXTextField addressField;
 
-    @FXML
-    private static DatePicker birthdayField;
-
-    @FXML
-    private static RXTextField companyField;
-
-    @FXML
-    private static AnchorPane contactPane;
-
-    @FXML
-    private static RXTextField emailField;
-
-    @FXML
-    private static RXTextField homepageField;
-
-    @FXML
-    private static RXAvatar image;
-
-    @FXML
-    private static RXTextField nameField;
-
-    @FXML
-    private static RXTextField phoneField;
-
-    @FXML
-    private static RXTextField postalCodeField;
-
-    @FXML
-    private static TextArea remarkField;
-
-    //private static Data;
-
-    public  void init(int flag, Data data) {//判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框
-        //用int不用flag是为了后期增加新功能的方便
-        if (flag == 1) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            //nameField.setText();
-            //phoneField.setText();
-            //emailField.setText();
-            //homepageField.setText();
-            birthdayField.setValue(LocalDate.parse("2022/01/01", formatter));
-            //companyField.setText();
-            //addressField.setText();
-            //postalCodeField.setText();
-            //remarkField.setText();
-        } else if (flag == 0) {
-            //。。。。
-            return;
-        }
+    public Data getData() {
+        return ContactController.data;
     }
 
     public void setData(Data data) {
         ContactController.data = data;
     }
 
-    public void getData() {
-
-    }
-
     @FXML
     void setImage(MouseEvent event) {
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("选择图片");
         fileChooser.getExtensionFilters().addAll(
@@ -118,5 +95,30 @@ public class ContactController {
     void cancel(MouseEvent event) {
         Stage stage = (Stage) pane.getScene().getWindow();
         stage.close();
+    }
+
+    public static void addOrUpdateContact(int sign, Data vCardProperties) {
+        flag=sign;
+        data=vCardProperties;
+    }
+
+    public void initialize() {
+        //判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框
+        //用int不用flag是为了后期增加新功能的方便
+        if (flag == 1) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            //nameField.setText();
+            //phoneField.setText();
+            //emailField.setText();
+            //homepageField.setText();
+            birthdayField.setValue(LocalDate.parse("2022/01/01", formatter));
+            //companyField.setText();
+            //addressField.setText();
+            //postalCodeField.setText();
+            //remarkField.setText();
+        } else if (flag == 0) {
+            //。。。。
+            return;
+        }
     }
 }

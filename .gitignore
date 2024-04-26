@@ -4,8 +4,10 @@ target/*
 .settings/*
 .vscode/*
 bin/*
-
- .idea/workspace.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/jarRepositories.xml
+.idea/vcs.xml
+.idea/workspace.xml
 .classpath
 .project
 .settings
@@ -35,7 +37,6 @@ bin/*
 *.err
 *.log
 *.iml
-*.jpg
 # OS generated files #
 .DS_Store
 .DS_Store?
@@ -46,6 +47,14 @@ Icon?
 ehthumbs.db
 Thumbs.db
 .factorypath
-/.mvn/
-/mvnw.cmd
-/mvnw
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+!**/src/main/**/build/
+!**/src/test/**/build/
