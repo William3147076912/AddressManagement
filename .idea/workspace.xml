@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ee4ff31-94ed-4d86-83e3-0a0f108d5607" name="更改" comment="AddressBookManagement">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/management/VTableViewScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/management/VTableViewScene.java" afterDir="false" />
-    </list>
+    <list default="true" id="7ee4ff31-94ed-4d86-83e3-0a0f108d5607" name="更改" comment="修复了图片打不开的问题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +19,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="fcj" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
@@ -33,7 +35,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/William3147076912/AddressManagement.git&quot;,
+    &quot;url&quot;: &quot;git@github.com:William3147076912/AddressManagement.git&quot;,
     &quot;accountId&quot;: &quot;4e93f03a-a174-4e58-906f-cc86f91677d3&quot;
   }
 }</component>
@@ -69,50 +71,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.AddressBookFX.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.IntroFXMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.IntroMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.fcj (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.fcj.executor&quot;: &quot;Run&quot;,
-    &quot;Application.io.vproxy.vfx.intro.IntroMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.example.addressmanagement.AddressBookFX.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.example.addressmanagement.intro.IntroMain.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fcj/Desktop/java/AddressManagement/resources/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;应用程序.AppMain.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.AudioSpectrumAnalyzer.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.FcjMain.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.IntroFXMain.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.IntroMain.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.MainPane.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.SpeakerAudioVisualizer.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.TestTranslationButton.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.app.controller.AudioSpectrumAnalyzer.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.fcj.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.io.vproxy.vfx.intro.IntroMain.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.management.fcjd.FcjMain.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.org.example.addressmanagement.AddressBookFX.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.org.example.addressmanagement.AudioSpectrumAnalyzer.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.AddressBookFX.executor": "Run",
+    "Application.FcjMain.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Application.IntroFXMain.executor": "Run",
+    "Application.IntroMain.executor": "Run",
+    "Application.Start.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.fcj (1).executor": "Run",
+    "Application.fcj.executor": "Run",
+    "Application.io.vproxy.vfx.intro.IntroMain.executor": "Run",
+    "Application.org.example.addressmanagement.AddressBookFX.executor": "Run",
+    "Application.org.example.addressmanagement.intro.IntroMain.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "temp",
+    "jdk.selected.JAVA_MODULE": "11",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/fcj/Desktop/AddressManagement/pom.xml",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.AppMain.executor": "Run",
+    "应用程序.AudioSpectrumAnalyzer.executor": "Run",
+    "应用程序.FcjMain.executor": "Run",
+    "应用程序.IntroFXMain.executor": "Run",
+    "应用程序.IntroMain.executor": "Run",
+    "应用程序.MainPane.executor": "Run",
+    "应用程序.SpeakerAudioVisualizer.executor": "Run",
+    "应用程序.Test.executor": "Run",
+    "应用程序.TestTranslationButton.executor": "Run",
+    "应用程序.app.controller.AudioSpectrumAnalyzer.executor": "Run",
+    "应用程序.fcj.executor": "Run",
+    "应用程序.io.vproxy.vfx.intro.IntroMain.executor": "Run",
+    "应用程序.management.fcjd.FcjMain.executor": "Run",
+    "应用程序.org.example.addressmanagement.AddressBookFX.executor": "Run",
+    "应用程序.org.example.addressmanagement.AudioSpectrumAnalyzer.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\fcj\Desktop\java\AddressManagement\resources\images" />
@@ -137,20 +143,7 @@
       <recent name="fcjd" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.FcjMain">
-    <configuration name="AppMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="app.AppMain" />
-      <module name="AddressManagement" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="FcjMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="management.FcjMain" />
       <module name="AddressManagement" />
@@ -190,18 +183,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Start" />
+      <module name="AddressManagement" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="management.Test" />
+      <module name="AddressManagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="management.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="应用程序.IntroFXMain" />
-      <item itemvalue="应用程序.FcjMain" />
-      <item itemvalue="应用程序.IntroMain" />
-      <item itemvalue="应用程序.AppMain" />
+      <item itemvalue="Application.FcjMain" />
+      <item itemvalue="Application.IntroFXMain" />
+      <item itemvalue="Application.IntroMain" />
+      <item itemvalue="Application.Start" />
+      <item itemvalue="Application.Test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.FcjMain" />
-        <item itemvalue="应用程序.IntroMain" />
-        <item itemvalue="应用程序.IntroFXMain" />
-        <item itemvalue="应用程序.AppMain" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.IntroMain" />
+        <item itemvalue="Application.IntroFXMain" />
+        <item itemvalue="Application.FcjMain" />
       </list>
     </recent_temporary>
   </component>
@@ -233,6 +248,9 @@
       <workItem from="1713526589950" duration="7247000" />
       <workItem from="1713578602670" duration="28644000" />
       <workItem from="1713613115889" duration="2967000" />
+      <workItem from="1713970704661" duration="1087000" />
+      <workItem from="1714008146950" duration="22175000" />
+      <workItem from="1714087884069" duration="4705000" />
     </task>
     <task id="LOCAL-00001" summary="AddressBookManagement">
       <option name="closed" value="true" />
@@ -266,18 +284,148 @@
       <option name="project" value="LOCAL" />
       <updated>1713610137090</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="添加addGroup.fxml">
+      <option name="closed" value="true" />
+      <created>1713974577907</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713974577907</updated>
+    </task>
+    <task id="LOCAL-00006" summary="添加Start.java">
+      <option name="closed" value="true" />
+      <created>1714040644261</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714040644261</updated>
+    </task>
+    <task id="LOCAL-00007" summary="添加Start.java">
+      <option name="closed" value="true" />
+      <created>1714046976074</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714046976074</updated>
+    </task>
+    <task id="LOCAL-00008" summary="修改.gitignore">
+      <option name="closed" value="true" />
+      <created>1714047562797</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714047562797</updated>
+    </task>
+    <task id="LOCAL-00009" summary="修改.gitignore">
+      <option name="closed" value="true" />
+      <created>1714050964061</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714050964061</updated>
+    </task>
+    <task id="LOCAL-00010" summary="修改.gitignore">
+      <option name="closed" value="true" />
+      <created>1714053289076</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714053289076</updated>
+    </task>
+    <task id="LOCAL-00011" summary="添加Start.java">
+      <option name="closed" value="true" />
+      <created>1714053377696</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714053377696</updated>
+    </task>
+    <task id="LOCAL-00012" summary="添加Start.java">
+      <option name="closed" value="true" />
+      <created>1714057915025</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714057915025</updated>
+    </task>
+    <task id="LOCAL-00013" summary="修复了图片打不开的问题">
+      <option name="closed" value="true" />
+      <created>1714060838024</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714060838024</updated>
+    </task>
+    <task id="LOCAL-00014" summary="修复了图片打不开的问题">
+      <option name="closed" value="true" />
+      <created>1714089148759</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1714089148759</updated>
+    </task>
+    <task id="LOCAL-00015" summary="修复了图片打不开的问题">
+      <option name="closed" value="true" />
+      <created>1714092287800</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714092287800</updated>
+    </task>
+    <task id="LOCAL-00016" summary="修复了图片打不开的问题">
+      <option name="closed" value="true" />
+      <created>1714092838519</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1714092838519</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="dev" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="user">
+                    <value>
+                      <list>
+                        <option value="*" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -285,7 +433,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Merge branch 'fcj' of github.com:William3147076912/AddressManagement into fcj&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;#&#9;pom.xml&#10;#&#9;src/main/java/management/VTableViewScene.java" />
     <MESSAGE value="AddressBookManagement" />
-    <option name="LAST_COMMIT_MESSAGE" value="AddressBookManagement" />
+    <MESSAGE value="添加addGroup.fxml" />
+    <MESSAGE value="修改.gitignore" />
+    <MESSAGE value="添加Start.java" />
+    <MESSAGE value="修复了图片打不开的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了图片打不开的问题" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
