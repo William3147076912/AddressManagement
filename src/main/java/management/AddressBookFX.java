@@ -59,7 +59,7 @@ public class AddressBookFX extends Application {
             ArrayList<String> email = new ArrayList<>();
             phoneNumber.add("159989606" + i);
             email.add(i + "0117522@qq.com");
-            VCard person = new VCard();
+            Data person = new Data();
             person.setFormattedName(name[i - name.length]);
             Telephone telephone = new Telephone(phoneNumber.get(0));
             person.addTelephoneNumber(telephone);
@@ -170,7 +170,7 @@ public class AddressBookFX extends Application {
      * @param emailTfs       一个或多个邮箱输入框输入框
      * @return ContactPerson类型的联系人对象
      */
-    public static VCard createContactPerson(TextField nameTf, ArrayList<TextField> phoneNumberTfs, ArrayList<TextField> emailTfs) {//使用修改联系人信息界面和新建联系人界面的信息创建联系人对象并返回
+    public static Data createContactPerson(TextField nameTf, ArrayList<TextField> phoneNumberTfs, ArrayList<TextField> emailTfs) {//使用修改联系人信息界面和新建联系人界面的信息创建联系人对象并返回
         String name = nameTf.getText();
         String phoneNumber;
         ArrayList<String> phoneNumberArr = new ArrayList<>();
@@ -215,7 +215,7 @@ public class AddressBookFX extends Application {
 //        Email email1=new Email(email.get(i-name.length));
 //        person.addEmail(email1);
 //
-        VCard person=new VCard();
+        Data person=new Data();
         person.setFormattedName(name);
         Telephone telephone;
         for(String phonenumber:phoneNumberArr)
@@ -416,7 +416,7 @@ public class AddressBookFX extends Application {
              * 缺点：没有判断用户是否修改了联系人信息，每次点击都会执行相应方法，删除联系人，在将由当前联系人信息界面信息获取创建联系人，重新添加到相应位置
              */
             saveBt.setOnAction(e -> {//修改当前被选中的查看联系人信息界面的联系人的信息
-                VCard contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
+                Data contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
                 if (contactPerson == null) {
                     return;
                 }
@@ -542,7 +542,7 @@ public class AddressBookFX extends Application {
              * 修改时,用于展示的contactPeopleArr内的数据以及AddressBook内相应链表内的数据都要更新
              */
             saveBt.setOnAction(e -> {//使用添加联系人界面的信息创建联系人并添加该联系人
-                VCard contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
+                Data contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
                 if (contactPerson == null) {
                     return;
                 }

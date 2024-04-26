@@ -44,9 +44,9 @@ import java.util.Map;
  */
 public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
-    private final Path file = Paths.get("src/main/resources/vCard/00001.vcf");
     private VSceneGroup sceneGroup;
-    private AddressBook addressBook;
+    public static AddressBook addressBook;
+    private final Path file= Paths.get("D:\\desktop\\00001.vcf");
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -58,8 +58,10 @@ public class MainPane extends Application {
         addressBook = new AddressBook();
         VCardReader reader = new VCardReader(file);
         try {
-            VCard person;
-            while ((person = reader.readNext()) != null) {
+            Data person;
+            VCard temp;
+            while (  (temp=reader.readNext()) != null) {
+                person =Data.vCardtoData(temp);
                 addressBook.add(person);
                 List<Photo> photoList = person.getPhotos();
                 if (!photoList.isEmpty()) {
@@ -80,6 +82,7 @@ public class MainPane extends Application {
         } finally {
             reader.close();
         }
+
     }
 
     @Override
@@ -91,9 +94,10 @@ public class MainPane extends Application {
             @Override
             public void close() {
                 try {
-                    VCardWriter vCardWriter = new VCardWriter(file, VCardVersion.V3_0);
-                    ArrayList<VCard> PersonList = addressBook.getAll();
-                    for (VCard person : PersonList) {
+                    VCardWriter vCardWriter=new VCardWriter(file, VCardVersion.V3_0);
+                    ArrayList<Data> PersonList= addressBook.getAll();
+                    for(Data person:PersonList)
+                    {
                         vCardWriter.write(person);
                     }
                     vCardWriter.close();

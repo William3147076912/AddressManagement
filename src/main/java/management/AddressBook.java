@@ -35,7 +35,7 @@ public class AddressBook {
      * “统一”到一个方法内来简化代码 后 再在增删改查（add remove modify get）方法 内分别进行他们独特的操作语句
      * 从而在这些方法中出现了大量类似操作语句
      */
-    public void add(VCard person) {//将一个联系人添加到链表中
+    public void add(Data person) {//将一个联系人添加到链表中
         AddressBookHeadNode headNode;
         char firstChar = Pinyin.getPinYin(person.getFormattedName().getValue()).toUpperCase().charAt(0) ;//在contactperson中
         AddressBookNode node = new AddressBookNode(person);//以待添加联系人作为数据创建链表结点
@@ -107,7 +107,7 @@ public class AddressBook {
      * @param person 包含修改("新增")的联系人信息
      * @param index         修改的联系人的结点在对应链表中的位置
      */
-    public void modify(VCard person, int index) {//对链表中指定联系人信息进行修改
+    public void modify(Data person, int index) {//对链表中指定联系人信息进行修改
         AddressBookNode node = new AddressBookNode(person);
         String namePinyin =Pinyin.getPinYin(person.getFormattedName().getValue()) ;
         char firstChar = namePinyin.toUpperCase().charAt(0);
@@ -141,7 +141,7 @@ public class AddressBook {
      * @param index 联系人的结点在对应链表中的位置
      * @return 返回查找到的联系人
      */
-    public VCard get(String name, int index) {//根据联系人姓名和联系人的结点在对应链表中的位置获取联系人
+    public Data get(String name, int index) {//根据联系人姓名和联系人的结点在对应链表中的位置获取联系人
         String namePinyin =Pinyin.getPinYin(name);
         char firstChar = namePinyin.toUpperCase().charAt(0);
         AddressBookHeadNode headNode;
@@ -165,8 +165,8 @@ public class AddressBook {
      *
      * @return ArrayList<ContactPerson> 类型对象存储的 按顺序存放的所有链表中的所有联系人
      */
-    public ArrayList<VCard> getAll() {//获取按顺序存放的所有链表中的所有联系人
-        ArrayList<VCard> contactPersonList = new ArrayList<>();
+    public ArrayList<Data> getAll() {//获取按顺序存放的所有链表中的所有联系人
+        ArrayList<Data> contactPersonList = new ArrayList<>();
         AddressBookNode pointer;
         for (AddressBookHeadNode addressBookHeadNode : addressBookHeadNodes) {
             pointer = addressBookHeadNode.getFirstNode();
@@ -213,18 +213,18 @@ class AddressBookHeadNode {//链表首结点
 }
 
 class AddressBookNode {
-    private VCard person;//存储联系人对象
+    private Data person;//存储联系人对象
     private AddressBookNode next;
 
-    public AddressBookNode(VCard person) {
+    public AddressBookNode(Data person) {
         this.person = person;
     }
 
-    public VCard getData() {
+    public Data getData() {
         return person;
     }
 
-    public void setData(VCard person) {
+    public void setData(Data person) {
         this.person = person;
     }
 

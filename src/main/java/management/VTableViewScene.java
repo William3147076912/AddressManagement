@@ -1,13 +1,17 @@
 package management;
 
+import ezvcard.VCard;
 import ezvcard.property.Address;
 import ezvcard.property.FormattedName;
+import ezvcard.property.Telephone;
 import ezvcard.property.Uid;
 import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsages;
+import io.vproxy.vfx.theme.Theme;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.layout.HPadding;
+import io.vproxy.vfx.ui.layout.VPadding;
 import io.vproxy.vfx.ui.pane.FusionPane;
 import io.vproxy.vfx.ui.scene.*;
 import io.vproxy.vfx.ui.table.VTableColumn;
@@ -39,6 +43,8 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 /**
@@ -166,17 +172,23 @@ public class VTableViewScene extends VScene {
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            List<Address> addresses = data.getAddresses();
-            Address address = addresses.get(0);
-            textField.setText(address.getStreetAddress());
-            textField.focusedProperty().addListener((ob, old, now) -> {
-                if (old == null || now == null) return;
-                if (old && !now) {
-                    String addr = textField.getText();
-                    address.setStreetAddress(addr);
-                    addresses.add(address);
-                }
-            });
+            List<Address>  addresses=data.getAddresses();
+            Address address;
+            if (!addresses.isEmpty()) {
+                address= addresses.get(0);
+                textField.setText(address.getStreetAddress());
+                textField.focusedProperty().addListener((ob, old, now) -> {
+                    if (old == null || now == null) return;
+                    if (old && !now) {
+                        String addr=textField.getText();
+                        address.setStreetAddress(addr);
+                        addresses.add(address);
+                    }
+                });
+            } else {
+                address = null;
+            }
+
             return text;
         });
         createTimeCol.setMinWidth(200);
@@ -186,8 +198,21 @@ public class VTableViewScene extends VScene {
         //noinspection unchecked
         table.getColumns().addAll(choiceCol, idCol, nameCol, addressCol, typeCol, createTimeCol);
 
-        for (int i = 0; i < 10; ++i) {
-            table.getItems().add(new Data());
+//        for (int i = 0; i < 10; ++i) {
+//            table.getItems().add(new Data());
+//
+//        }
+        AddressBookHeadNode[] headNodes=MainPane.addressBook.getAddressBookHeadNodes();
+        for(int i=0;i<27;i++)
+        {
+            AddressBookHeadNode headNode=headNodes[i];
+            AddressBookNode bookNode=headNode.getFirstNode();
+            while (bookNode!=null)
+            {
+                table.getItems().add(bookNode.getData());
+                bookNode=bookNode.getNext();
+            }
+
 
         }
         return table;
@@ -219,7 +244,7 @@ public class VTableViewScene extends VScene {
                 new FusionButton("Add Contact") {{
                     setOnAction(e -> {
                         //打开添加联系人窗口
-                        table.getItems().add(new Data());
+//                        table.getItems().add(new Data());
                         allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
                         Scene scene;
                         try {
