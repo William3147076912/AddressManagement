@@ -17,6 +17,7 @@ import io.vproxy.vfx.ui.scene.*;
 import io.vproxy.vfx.ui.stage.VStage;
 import io.vproxy.vfx.util.FXUtils;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -46,7 +47,7 @@ public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
     private VSceneGroup sceneGroup;
     public static AddressBook addressBook;
-    private final Path file= Paths.get("D:\\desktop\\00001.vcf");
+    private final Path file= Paths.get("src/main/resources/vCard/00001.vcf");
 
     public static void main(String[] args) {
         Application.launch(args);
