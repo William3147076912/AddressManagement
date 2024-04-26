@@ -4,8 +4,10 @@ target/*
 .settings/*
 .vscode/*
 bin/*
-
- .idea/workspace.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/jarRepositories.xml
+.idea/vcs.xml
+.idea/workspace.xml
 .classpath
 .project
 .settings
