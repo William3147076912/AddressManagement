@@ -61,11 +61,11 @@ public  class Data extends VCard {
     }
 
     public Data() {
-        choiceButton = new FusionButton() {{
-            setPrefWidth(10);
-            setPrefHeight(50);
-            //setOnlyAnimateWhenNotClicked(true);
-        }};
+//        choiceButton = new FusionButton() {{
+//            setPrefWidth(10);
+//            setPrefHeight(50);
+//            //setOnlyAnimateWhenNotClicked(true);
+//        }};
 
 //        FormattedName name = new FormattedName("某某某");
 //        this.addFormattedName(name);
@@ -73,9 +73,9 @@ public  class Data extends VCard {
 //        address.setStreetAddress("二仙桥");
 //        this.addAddress(address);
 
-        type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
-        bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
-        createTime = System.currentTimeMillis();
+//        type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
+//        bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
+//        createTime = System.currentTimeMillis();
 
     }
 }

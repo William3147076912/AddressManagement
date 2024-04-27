@@ -45,8 +45,6 @@ public class MainPane extends Application {
     private VSceneGroup sceneGroup;
     public static AddressBook addressBook;
     private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
-
-    private  ArrayList<VCard> groups;
     private final Path groupfile = Paths.get("src/main/resources/vCard/group.vcf");
     public static void main(String[] args) {
         Application.launch(args);
@@ -108,12 +106,32 @@ public class MainPane extends Application {
 //        vCardWriter.close();
 
         reader=new VCardReader(groupfile);
-        groups =new ArrayList<>();
+        ArrayList<VCard> groups = new ArrayList<>();
         VCard group;
         while ((group=reader.readNext())!=null)
         {
             groups.add(group);
         }
+
+        ArrayList<Data> allperson=addressBook.getAll();
+        for(VCard onegroup: groups)
+        {
+            List<Member> members=onegroup.getMembers();
+            Group group1=new Group(onegroup.getFormattedName().getValue());
+            for (Member member:members)
+            {
+                for(Data person:allperson)
+                {
+                    if(person.getUid().getValue() == member.getValue())
+                    {
+                        group1.addmember(person);
+                    }
+                }
+
+            }
+            ManageGroup.addgroup(group1);
+        }
+
     }
 
     @Override
