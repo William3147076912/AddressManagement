@@ -12,6 +12,9 @@ import java.util.Random;
 /**
  * 生成随机信息:
  * 姓名，年龄，性别，密码，邮箱，地址
+ * 部分使用jfairy，因为写快完才发现有这第三方库可以伪造数据┭┮﹏┭┮
+ * 注意点：用到本工具类的应用程序应当在 在 "VM options" 字段中添加你的命令行参数--add-opens java.base/java.lang=ALL-UNNAMED
+ * 因为jfairy的使用访问了 Java 核心库中的受保护方法
  */
 public class RandomInfo {
 
