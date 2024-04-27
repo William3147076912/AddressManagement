@@ -2,8 +2,10 @@ package management.controller;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import io.vproxy.vfx.ui.alert.SimpleAlert;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -17,6 +19,7 @@ import utils.ConstantSet;
 
 import java.io.File;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -32,8 +35,6 @@ public class ContactController {
     private DatePicker birthdayField;
     @FXML
     private RXTextField companyField;
-    @FXML
-    private AnchorPane contactPane;
     @FXML
     private RXTextField emailField;
     @FXML
@@ -77,6 +78,9 @@ public class ContactController {
 
     @FXML
     void save(MouseEvent event) {
+        if (nameField.getText().isEmpty()){
+            //SimpleAlert alert=new SimpleAlert()
+        }
         String name = nameField.getText();
         String phone = phoneField.getText();
         String email = emailField.getText();

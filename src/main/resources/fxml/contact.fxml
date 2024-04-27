@@ -3,7 +3,6 @@
 <?import com.leewyatt.rxcontrols.controls.RXAvatar?>
 <?import com.leewyatt.rxcontrols.controls.RXLineButton?>
 <?import com.leewyatt.rxcontrols.controls.RXTextField?>
-<?import io.vproxy.vfx.ui.wrapper.ThemeLabel?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -19,18 +18,10 @@
                 <Image url="@../images/康纳酱.gif" />
             </image>
         </RXAvatar>
-        <ThemeLabel layoutX="230.0" layoutY="110.0" prefHeight="23.0" prefWidth="94.0" text="姓名" textFill="WHITE" />
-        <ThemeLabel layoutX="230.0" layoutY="155.0" prefHeight="23.0" prefWidth="94.0" text="电话" textFill="WHITE" />
         <RXTextField fx:id="emailField" layoutX="228.0" layoutY="221.0" promptText="任意邮箱" />
         <RXTextField fx:id="homepageField" layoutX="229.0" layoutY="265.0" promptText="主页链接" />
-        <ThemeLabel layoutX="230.0" layoutY="199.0" prefHeight="23.0" prefWidth="94.0" text="电子邮箱" textFill="WHITE" />
-        <ThemeLabel layoutX="228.0" layoutY="241.0" prefHeight="23.0" prefWidth="94.0" text="个人主页" textFill="WHITE" />
         <RXTextField fx:id="companyField" layoutX="228.0" layoutY="354.0" promptText="公司昵称" />
-        <ThemeLabel layoutX="228.0" layoutY="286.0" prefHeight="23.0" prefWidth="94.0" text="生日" textFill="WHITE" />
-        <ThemeLabel layoutX="228.0" layoutY="335.0" prefHeight="23.0" prefWidth="94.0" text="工作单位" textFill="WHITE" />
         <RXTextField fx:id="addressField" layoutX="226.0" layoutY="399.0" promptText="具体地址" />
-        <ThemeLabel layoutX="228.0" layoutY="377.0" prefHeight="23.0" prefWidth="94.0" text="家庭地址" textFill="WHITE" />
-        <ThemeLabel layoutX="228.0" layoutY="422.0" prefHeight="23.0" prefWidth="94.0" text="备注" textFill="WHITE" />
         <RXAvatar layoutX="194.0" layoutY="128.0" prefHeight="35.0" prefWidth="31.0">
             <image>
                 <Image url="@../images/person.png" />
@@ -71,19 +62,18 @@
                 <Image url="@../images/remark.png" />
             </image>
         </RXAvatar>
-        <RXTextField fx:id="postalCodeField" layoutX="390.0" layoutY="399.0" prefHeight="23.0" prefWidth="54.0" />
-        <ThemeLabel layoutX="389.0" layoutY="377.0" prefHeight="23.0" prefWidth="94.0" text="邮政编码" textFill="WHITE" />
-        <RXLineButton layoutX="141.0" layoutY="497.0" lineType="RISE" onMouseClicked="#save" prefHeight="43.0" prefWidth="114.0" text="Save" textAlignment="CENTER" textFill="#f2efef">
+        <RXTextField fx:id="postalCodeField" layoutX="390.0" layoutY="399.0" prefHeight="26.0" prefWidth="70.0" promptText="邮政编码" />
+        <RXLineButton layoutX="177.0" layoutY="497.0" lineType="RISE" onMouseClicked="#save" prefHeight="43.0" prefWidth="114.0" text="Save" textAlignment="CENTER" textFill="#f2efef">
             <font>
                 <Font size="26.0" />
             </font>
         </RXLineButton>
-        <RXLineButton layoutX="329.0" layoutY="497.0" lineSpacing="3.0" lineType="RISE" onMouseClicked="#cancel" prefHeight="43.0" prefWidth="114.0" text="Cancel" textFill="#fcfbfb">
+        <RXLineButton layoutX="317.0" layoutY="497.0" lineSpacing="3.0" lineType="RISE" onMouseClicked="#cancel" prefHeight="43.0" prefWidth="114.0" text="Cancel" textFill="#fcfbfb">
             <font>
                 <Font size="26.0" />
             </font>
         </RXLineButton>
-        <TextArea fx:id="remarkField" layoutX="224.0" layoutY="443.0" prefHeight="43.0" prefWidth="162.0" promptText="描述" />
-        <DatePicker fx:id="birthdayField" layoutX="228.0" layoutY="309.0" prefHeight="23.0" prefWidth="162.0" promptText="选择生日" />
+        <TextArea fx:id="remarkField" layoutX="225.0" layoutY="443.0" prefHeight="43.0" prefWidth="162.0" promptText="备注" style="-fx-background-color: rgb(23, 27, 30);" />
+        <DatePicker fx:id="birthdayField" layoutX="228.0" layoutY="309.0" prefHeight="23.0" prefWidth="162.0" promptText="选择生日" style="-fx-background-color: rgb(23, 27, 30);" />
     </children>
 </AnchorPane>

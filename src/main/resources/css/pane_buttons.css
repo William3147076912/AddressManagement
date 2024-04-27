@@ -1,6 +1,7 @@
 .rx-translation-button{
     -fx-text-fill: white;
     -fx-font-size: 22;
+    -fx-background-color: #000000;
 }
 
 .rx-fill-button{
