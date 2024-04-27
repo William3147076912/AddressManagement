@@ -181,12 +181,16 @@ public class RandomInfo {
             } else {
                 System.out.print("女: " + getRandomGirlName() + "   ");
             }
+            //获取性别
+            System.out.print("性别: " + getRandomSex() + "   ");
             //获取年龄
             System.out.print("年龄: " + getRandomAge() + "   ");
             //获取密码
             System.out.print("密码: " + getRandomPassword() + "   ");
             //获取邮箱
             System.out.print("邮箱: " + getRandomQQEmail() + "   ");
+            //获取手机号
+            System.out.print("手机号: " + getRandomPhone() + "   ");
             //获取地址
             System.out.print("地址: " + getRandomAddress() + "   ");
             System.out.println();
