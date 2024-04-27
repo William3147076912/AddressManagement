@@ -27,15 +27,13 @@ import utils.MyImageManager;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.interfaces.ECPublicKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author fcj
@@ -48,6 +46,8 @@ public class MainPane extends Application {
     public static AddressBook addressBook;
     private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
 
+    private  ArrayList<VCard> groups;
+    private final Path groupfile = Paths.get("src/main/resources/vCard/group.vcf");
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -57,12 +57,30 @@ public class MainPane extends Application {
         super.init();
         addressBook = new AddressBook();
         VCardReader reader = new VCardReader(file);
+
+//        VCard un=new VCard();
+//        Kind kind=Kind.group();
+//        un.setKind(kind);
+//        un.setFormattedName("ungroup");
+
         try {
             Data person;
             VCard temp;
+
             while (  (temp=reader.readNext()) != null) {
                 person =Data.vCardtoData(temp);
                 addressBook.add(person);
+
+                if(person.getUid()==null)
+                {
+                    Uid uid = new Uid(UUID.randomUUID().toString());
+                    person.setUid(uid);
+                }
+
+//                System.out.println(person.getUid().getValue());
+//                Member member=new Member(person.getUid().getValue());
+//                un.addMember(member);
+
                 List<Photo> photoList = person.getPhotos();
                 if (!photoList.isEmpty()) {
                     Photo photo;
@@ -83,6 +101,19 @@ public class MainPane extends Application {
             reader.close();
         }
 
+//        File file2=new File(String.valueOf(groupfile));
+//        file2.createNewFile();
+//        VCardWriter vCardWriter=new VCardWriter(groupfile,VCardVersion.V4_0);
+//        vCardWriter.write(un);
+//        vCardWriter.close();
+
+        reader=new VCardReader(groupfile);
+        groups =new ArrayList<>();
+        VCard group;
+        while ((group=reader.readNext())!=null)
+        {
+            groups.add(group);
+        }
     }
 
     @Override
