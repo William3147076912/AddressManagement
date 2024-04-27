@@ -22,7 +22,18 @@
 
 
     <dependencies>
-
+        <!--一个流行的 SLF4J 实现库-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+        <!--帮助我们生成公司名称-->
+        <dependency>
+            <groupId>io.codearte.jfairy</groupId>
+            <artifactId>jfairy</artifactId>
+            <version>0.5.9</version>
+        </dependency>
         <dependency>
             <groupId>com.googlecode.ez-vcard</groupId>
             <artifactId>ez-vcard</artifactId>

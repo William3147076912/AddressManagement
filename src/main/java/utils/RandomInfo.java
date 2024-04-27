@@ -1,6 +1,12 @@
 package utils;
 
 
+import io.codearte.jfairy.Fairy;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -175,6 +181,20 @@ public class RandomInfo {
     }
 
     /**
+     * 获取随机生日
+     */
+    public static String getRandomBirthday() {
+        return RandomBirthdayGenerator.getRandomBirthday();
+    }
+
+    /**
+     * 获取随机公司名称
+     */
+    public static String getRandomCompany() {
+        return Fairy.create().company().getName();
+    }
+
+    /**
      * 获取随机住址
      */
     public static String getRandomAddress() {
@@ -208,18 +228,74 @@ public class RandomInfo {
             System.out.println("密码: " + getRandomPassword() + "   ");
             //获取性别和name
             if (randomInt(2) % 2 == 0) {
-                System.out.println("男: " + getRandomBoyName() + "   ");
+                System.out.println("姓名: " + getRandomBoyName() + "   ");
             } else {
-                System.out.println("女: " + getRandomGirlName() + "   ");
+                System.out.println("姓名: " + getRandomGirlName() + "   ");
             }
             //获取手机号
             System.out.println("手机号: " + getRandomPhone() + "   ");
             //获取邮箱
             System.out.println("邮箱: " + getRandomQQEmail() + "   ");
+            //获取个人主页
+            System.out.println("个人主页：" + getRandomPersonalHomepage() + "   ");
+            //获取生日
+            System.out.println("生日：: " + getRandomBirthday() + "   ");
+            //获取公司名称
+            System.out.println("工作单位: " + getRandomCompany() + "   ");
             //获取地址和邮编
             System.out.println("地址: " + getRandomAddress() + "   " + "邮政编码：" + getRandomPostalCode());
             System.out.println("---------------------------------------");
             System.out.println();
+        }
+    }
+
+    /**
+     * 生成随机生日的内部静态工具类
+     */
+    public static class RandomBirthdayGenerator {
+        public static String getRandomBirthday() {
+            // 创建随机的年份、月份和日期
+            int year = generateRandomYear();
+            int month = generateRandomMonth();
+            int day = generateRandomDay(month, year);
+
+            // 使用DateTimeFormatter格式化生日日期
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDate birthday = LocalDate.of(year, month, day);
+
+            return birthday.format(formatter);
+        }
+
+        // 生成随机年份
+        private static int generateRandomYear() {
+            int minYear = 1900;
+            int maxYear = 2024; // 可根据需求调整
+            return new Random().nextInt(maxYear - minYear + 1) + minYear;
+        }
+
+        // 生成随机月份
+        private static int generateRandomMonth() {
+            return new Random().nextInt(12) + 1;
+        }
+
+        // 生成随机日期
+        private static int generateRandomDay(int month, int year) {
+            int maxDay;
+            switch (month) {
+                case 2: // 二月
+                    maxDay = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) ? 29 : 28;
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11: // 四月、六月、九月、十一月
+                    maxDay = 30;
+                    break;
+                default: // 其他月份
+                    maxDay = 31;
+                    break;
+            }
+            return new Random().nextInt(maxDay) + 1;
         }
     }
 
