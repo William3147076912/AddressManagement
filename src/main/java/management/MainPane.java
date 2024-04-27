@@ -46,7 +46,7 @@ public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
     private VSceneGroup sceneGroup;
     public static AddressBook addressBook;
-    private final Path file= Paths.get("src/main/resources/vCard/00001.vcf");
+    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
 
     public static void main(String[] args) {
         Application.launch(args);
