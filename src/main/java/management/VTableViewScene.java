@@ -250,6 +250,7 @@ public class VTableViewScene extends VScene {
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
                             scene = new Scene(fxmlLoader.load());
+                            PopupScene.fadeTransition(scene);
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
