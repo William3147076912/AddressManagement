@@ -52,6 +52,11 @@ public class ContactController {
     @FXML
     private AnchorPane pane;
 
+    public static void addOrUpdateContact(int sign, Data vCardProperties) {
+        flag = sign;
+        data = vCardProperties;
+    }
+
     public Data getData() {
         return ContactController.data;
     }
@@ -78,8 +83,9 @@ public class ContactController {
 
     @FXML
     void save(MouseEvent event) {
-        if (nameField.getText().isEmpty()){
-            //SimpleAlert alert=new SimpleAlert()
+        if (nameField.getText().isEmpty()) {
+            SimpleAlert.showAndWait(Alert.AlertType.ERROR,
+                    "姓名不能为空哦owo");
         }
         String name = nameField.getText();
         String phone = phoneField.getText();
@@ -99,11 +105,6 @@ public class ContactController {
     void cancel(MouseEvent event) {
         Stage stage = (Stage) pane.getScene().getWindow();
         stage.close();
-    }
-
-    public static void addOrUpdateContact(int sign, Data vCardProperties) {
-        flag=sign;
-        data=vCardProperties;
     }
 
     public void initialize() {
