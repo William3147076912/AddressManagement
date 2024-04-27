@@ -44,8 +44,8 @@ public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
     private VSceneGroup sceneGroup;
     public static AddressBook addressBook;
+    private final ArrayList<VCard> groups = new ArrayList<>();
     private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
-    private final Path groupfile = Paths.get("src/main/resources/vCard/group.vcf");
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -66,34 +66,42 @@ public class MainPane extends Application {
             VCard temp;
 
             while (  (temp=reader.readNext()) != null) {
-                person =Data.vCardtoData(temp);
-                addressBook.add(person);
-
-                if(person.getUid()==null)
+                if(temp.getKind().isIndividual())
                 {
-                    Uid uid = new Uid(UUID.randomUUID().toString());
-                    person.setUid(uid);
-                }
+                    person =Data.vCardtoData(temp);
+                    addressBook.add(person);
+
+                    if(person.getUid()==null)
+                    {
+                        Uid uid = new Uid(UUID.randomUUID().toString());
+                        person.setUid(uid);
+                    }
 
 //                System.out.println(person.getUid().getValue());
 //                Member member=new Member(person.getUid().getValue());
 //                un.addMember(member);
 
-                List<Photo> photoList = person.getPhotos();
-                if (!photoList.isEmpty()) {
-                    Photo photo;
-                    for (int i = 0; i < photoList.size(); i++) {
-                        photo = photoList.get(i);
-                        byte[] data = photo.getData();
-                        String filepath = "src/main/resources/vCard/" + person.getFormattedName().getValue() + i + ".jpg";
-                        File file1 = new File(filepath);
-                        file1.createNewFile();
-                        FileOutputStream fos = new FileOutputStream(file1);
-                        fos.write(data);
-                        fos.close();
-                    }
+                    List<Photo> photoList = person.getPhotos();
+                    if (!photoList.isEmpty()) {
+                        Photo photo;
+                        for (int i = 0; i < photoList.size(); i++) {
+                            photo = photoList.get(i);
+                            byte[] data = photo.getData();
+                            String filepath = "src/main/resources/vCard/" + person.getFormattedName().getValue() + i + ".jpg";
+                            File file1 = new File(filepath);
+                            file1.createNewFile();
+                            FileOutputStream fos = new FileOutputStream(file1);
+                            fos.write(data);
+                            fos.close();
+                        }
 
+                    }
                 }
+                else if(temp.getKind().isGroup())
+                {
+                    groups.add(temp);
+                }
+
             }
         } finally {
             reader.close();
@@ -104,14 +112,6 @@ public class MainPane extends Application {
 //        VCardWriter vCardWriter=new VCardWriter(groupfile,VCardVersion.V4_0);
 //        vCardWriter.write(un);
 //        vCardWriter.close();
-
-        reader=new VCardReader(groupfile);
-        ArrayList<VCard> groups = new ArrayList<>();
-        VCard group;
-        while ((group=reader.readNext())!=null)
-        {
-            groups.add(group);
-        }
 
         ArrayList<Data> allperson=addressBook.getAll();
         for(VCard onegroup: groups)
