@@ -127,7 +127,7 @@ public class VTableViewScene extends VScene {
             });
             return text;
         });
-        phoneCol.setComparator(Comparator.comparing(data -> data.getTelephoneNumbers().get(0)));
+        phoneCol.setComparator(Comparator.comparing(data -> data.getTelephoneNumbers().get(0).getText()));
         phoneCol.setAlignment(Pos.CENTER);
         phoneCol.setNodeBuilder(data -> {
             var textField = new TextField();
@@ -144,7 +144,7 @@ public class VTableViewScene extends VScene {
             });
             return text;
         });
-        emailCol.setComparator(Comparator.comparing(data -> data.getEmails().get(0).getValue()));
+
         emailCol.setAlignment(Pos.CENTER);
         emailCol.setNodeBuilder(data -> {
             var textField = new TextField();
@@ -164,7 +164,7 @@ public class VTableViewScene extends VScene {
         homePageCol.setAlignment(Pos.CENTER);
 
         birthdayCol.setAlignment(Pos.CENTER);
-        //birthdayCol.setComparator(Comparator.comparing(VCard::getBirthday));
+        birthdayCol.setComparator(String::compareTo);
 
         companyCol.setAlignment(Pos.CENTER);
 
