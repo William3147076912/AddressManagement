@@ -1,7 +1,6 @@
 package utils;
 
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -44,6 +43,8 @@ public class RandomInfo {
     private static String[] home = {"金色家园", "耀江花园", "阳光翠竹苑", "东新大厦", "溢盈河畔别墅", "真新六街坊", "和亭佳苑", "协通公寓", "博泰新苑", "菊园五街坊", "住友嘉馨名园", "复华城市花园", "爱里舍花园"};
 
     private static String passwordForm = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz~!@#$%^&*()_+{}|<>?";
+    // 定义一个包含可能网址的数组
+    private static String[] possibleDomains = {"example.com", "personalwebsite.com", "myhomepage.net", "portfolio.org"};
 
     /**
      * 生成随机数
@@ -59,6 +60,45 @@ public class RandomInfo {
         return random.nextInt(maxNum);
     }
 
+    /**
+     * 获取随机性别
+     */
+    public static String getRandomSex() {
+        return randomInt(2) % 2 == 0 ? "男" : "女";
+    }
+
+    /**
+     * 获取随机年龄
+     */
+    public static int getRandomAge(int min, int max) {
+        return min + random.nextInt(max - min);
+    }
+
+    /**
+     * 获取随机年龄(18-25)
+     */
+    public static int getRandomAge() {
+        return getRandomAge(18, 25);
+    }
+
+    /**
+     * 获取随机密码(指定长度)
+     */
+    public static String getRandomPassword(int length) {
+        StringBuilder springBuilder = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int index = randomInt(passwordForm.length());
+            springBuilder.append(passwordForm.charAt(index));
+        }
+        return springBuilder.toString();
+    }
+
+    /**
+     * 获取随机密码
+     */
+    public static String getRandomPassword() {
+        return getRandomPassword(12);
+    }
 
     /**
      * 获取随机男生姓名
@@ -80,7 +120,6 @@ public class RandomInfo {
         }
     }
 
-
     /**
      * 获取女生姓名
      */
@@ -101,7 +140,6 @@ public class RandomInfo {
         }
     }
 
-
     /**
      * 获取随机手机号
      */
@@ -109,7 +147,6 @@ public class RandomInfo {
         int phoneTwoRandomIndex = randomInt(4);
         return "1" + phoneTwoNum.charAt(phoneTwoRandomIndex) + (100000000 + randomInt(899999999));
     }
-
 
     /**
      * 获取随机qq邮箱
@@ -119,27 +156,23 @@ public class RandomInfo {
     }
 
     /**
-     * 获取随机性别
+     * 生成随机个人主页（假的网址owo）
      */
-    public static String getRandomSex() {
-        return randomInt(2) % 2 == 0 ? "男" : "女";
+    public static String getRandomPersonalHomepage() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        int length = random.nextInt(characters.length());
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            sb.append(characters.charAt(index));
+        }
+        // 随机选择一个域名
+        String randomDomain = possibleDomains[new Random().nextInt(possibleDomains.length)];
+
+        // 生成随机的个人主页网址
+        return "http://www." + sb + "." + randomDomain;
     }
-
-    /**
-     * 获取随机年龄
-     */
-    public static int getRandomAge(int min, int max) {
-        return min + random.nextInt(max - min);
-    }
-
-
-    /**
-     * 获取随机年龄(18-25)
-     */
-    public static int getRandomAge() {
-        return getRandomAge(18, 25);
-    }
-
 
     /**
      * 获取随机住址
@@ -152,47 +185,40 @@ public class RandomInfo {
                 home[randomInt(home.length)];
     }
 
-
     /**
-     * 获取随机密码(指定长度)
+     * 获取随机邮编
      */
-    public static String getRandomPassword(int length) {
-        StringBuilder springBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            int index = randomInt(passwordForm.length());
-            springBuilder.append(passwordForm.charAt(index));
-        }
-        return springBuilder.toString();
-    }
-
-
-    /**
-     * 获取随机密码(指定长度)
-     */
-    public static String getRandomPassword() {
-        return getRandomPassword(12);
+    public static String getRandomPostalCode() {
+        Random random = new Random();
+        int min = 10000;
+        int max = 99999;
+        int randomNumber = random.nextInt(max - min + 1) + min;
+        int postalCodeLength = 6;
+        return String.format("%0" + postalCodeLength + "d", randomNumber);
     }
 
     public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
+            System.out.println("---------------------------------------");
+            //获取性别
+            System.out.println("性别: " + getRandomSex() + "   ");
+            //获取年龄
+            System.out.println("年龄: " + getRandomAge() + "   ");
+            //获取密码
+            System.out.println("密码: " + getRandomPassword() + "   ");
             //获取性别和name
             if (randomInt(2) % 2 == 0) {
-                System.out.print("男: " + getRandomBoyName() + "   ");
+                System.out.println("男: " + getRandomBoyName() + "   ");
             } else {
-                System.out.print("女: " + getRandomGirlName() + "   ");
+                System.out.println("女: " + getRandomGirlName() + "   ");
             }
-            //获取性别
-            System.out.print("性别: " + getRandomSex() + "   ");
-            //获取年龄
-            System.out.print("年龄: " + getRandomAge() + "   ");
-            //获取密码
-            System.out.print("密码: " + getRandomPassword() + "   ");
-            //获取邮箱
-            System.out.print("邮箱: " + getRandomQQEmail() + "   ");
             //获取手机号
-            System.out.print("手机号: " + getRandomPhone() + "   ");
-            //获取地址
-            System.out.print("地址: " + getRandomAddress() + "   ");
+            System.out.println("手机号: " + getRandomPhone() + "   ");
+            //获取邮箱
+            System.out.println("邮箱: " + getRandomQQEmail() + "   ");
+            //获取地址和邮编
+            System.out.println("地址: " + getRandomAddress() + "   " + "邮政编码：" + getRandomPostalCode());
+            System.out.println("---------------------------------------");
             System.out.println();
         }
     }
