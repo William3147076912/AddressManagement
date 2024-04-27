@@ -191,10 +191,17 @@ public class RandomInfo {
     }
 
     /**
-     * 获取随机公司名称
+     * 获取随机公司名称（默认中国地区）
      */
     public static String getRandomCompany() {
-        return Fairy.create().company().getName();
+        return Fairy.create(Locale.SIMPLIFIED_CHINESE).company().getName();
+    }
+
+    /**
+     * 获取随机公司名称（根据用户给定地区选择）
+     */
+    public static String getRandomCompany(Locale locale) {
+        return Fairy.create(locale).company().getName();
     }
 
     /**
@@ -244,7 +251,7 @@ public class RandomInfo {
             //获取生日
             System.out.println("生日：: " + getRandomBirthday() + "   ");
             //获取公司名称
-            System.out.println("工作单位: " + getRandomCompany() + "   ");
+            System.out.println("工作单位: " + getRandomCompany(/*默认为中国地区*/) + "   ");
             //获取地址和邮编
             System.out.println("地址: " + getRandomAddress() + "   " + "邮政编码：" + getRandomPostalCode());
             System.out.println("---------------------------------------");
