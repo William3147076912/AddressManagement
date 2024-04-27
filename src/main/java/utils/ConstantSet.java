@@ -8,6 +8,7 @@ package utils;
  */
 
 public final class ConstantSet {
-    public static final int CREATE_CONTACT=0;
-    public static final int UPDATE_CONTACT=1;
+
+    public static final int CREATE_CONTACT=0;    //创建联系人窗口
+    public static final int UPDATE_CONTACT=1;    //修改联系人窗口
 }

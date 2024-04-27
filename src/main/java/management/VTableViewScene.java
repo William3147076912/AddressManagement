@@ -79,36 +79,19 @@ public class VTableViewScene extends VScene {
         table.getNode().setPrefWidth(1000);
         table.getNode().setPrefHeight(500);
         //选中与否的按钮
-        var choiceCol = new VTableColumn<Data, Data>(null, data -> data);
-        var idCol = new VTableColumn<Data, Data>("id", data -> data);
-        var nameCol = new VTableColumn<Data, Data>("name", data -> data);
-        var addressCol = new VTableColumn<Data, Data>("address", data -> data);
-        var typeCol = new VTableColumn<Data, String>("type", data -> data.type);
-        var createTimeCol = new VTableColumn<Data, ZonedDateTime>("createTime", data ->
-                ZonedDateTime.ofInstant(
-                        Instant.ofEpochMilli(data.createTime), ZoneId.systemDefault()
-                ));
 
-        choiceCol.setAlignment(Pos.CENTER);
-        choiceCol.setPrefWidth(50);
-        choiceCol.setNodeBuilder(data -> {
-            data.choiceButton.setOnAction(e -> {
-                Label textNode = data.choiceButton.getTextNode();
-                String text = textNode.getText();
-                if ("✓".equals(text)) {//取消选中
-                    textNode.setText("");
-                    delList.remove(data);
-                    //System.out.println(data.type);
-                } else {//选中
-                    textNode.setText("✓");
-                    //...
-                    delList.add(data);
-                    //System.out.println(data.type);
-                }
-            });
-            return data.choiceButton;
-        });
-        idCol.setMinWidth(300);
+
+        var nameCol = new VTableColumn<Data, Data>("name", data -> data);
+        var phoneCol = new VTableColumn<Data, Data>("phone", data -> data);
+        var emailCol = new VTableColumn<Data, Data>("email", data -> data);
+        var homePageCol = new VTableColumn<Data, String>("homePage", data -> data.getUrls().isEmpty() ? "" : data.getUrls().get(0).getValue());
+        var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getText());
+        var companyCol = new VTableColumn<Data, String>("company", data -> data.getOrganizations().isEmpty() ? "" : data.getOrganizations().get(0).getValues().get(0));
+        var addressCol = new VTableColumn<Data, String>("address", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getStreetAddress());
+        var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses() == null ? "" : data.getAddresses().get(0).getPostalCode());
+        var remarkCol = new VTableColumn<Data, String>("remark", data -> data.getNotes().isEmpty() ? "" : data.getNotes().get(0).getValue());
+
+        /*idCol.setMinWidth(300);
         idCol.setAlignment(Pos.CENTER);
 
         idCol.setNodeBuilder(data -> {
@@ -126,7 +109,7 @@ public class VTableViewScene extends VScene {
                 }
             });
             return text;
-        });
+        });*/
         nameCol.setComparator(Comparator.comparing(data -> data.getFormattedName().getValue()));
         nameCol.setAlignment(Pos.CENTER);
         nameCol.setNodeBuilder(data -> {
@@ -144,73 +127,70 @@ public class VTableViewScene extends VScene {
             });
             return text;
         });
-        addressCol.setAlignment(Pos.CENTER);
-        addressCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getStreetAddress()));
-        addressCol.setNodeBuilder(data -> {
+        phoneCol.setComparator(Comparator.comparing(data -> data.getTelephoneNumbers().get(0)));
+        phoneCol.setAlignment(Pos.CENTER);
+        phoneCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-
-            textField.setText(data.getAddresses().get(0).getStreetAddress());
+            textField.setText(data.getTelephoneNumbers().isEmpty() ? "" : data.getTelephoneNumbers().get(0).getText());
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    String addr = textField.getText();
-                    Address address = new Address();
-                    address.setStreetAddress(addr);
-                    data.addAddress(address);
-//                    data.address =;
+                    FormattedName phone = new FormattedName(textField.getText());
+                    data.setFormattedName(phone);
                 }
             });
             return text;
         });
-        typeCol.setAlignment(Pos.CENTER);
-        typeCol.setComparator(String::compareTo);
-        addressCol.setNodeBuilder(data -> {
+        emailCol.setComparator(Comparator.comparing(data -> data.getEmails().get(0).getValue()));
+        emailCol.setAlignment(Pos.CENTER);
+        emailCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            List<Address>  addresses=data.getAddresses();
-            Address address;
-            if (!addresses.isEmpty()) {
-                address= addresses.get(0);
-                textField.setText(address.getStreetAddress());
-                textField.focusedProperty().addListener((ob, old, now) -> {
-                    if (old == null || now == null) return;
-                    if (old && !now) {
-                        String addr=textField.getText();
-                        address.setStreetAddress(addr);
-                        addresses.add(address);
-                    }
-                });
-            } else {
-                address = null;
-            }
-
+            textField.setText(data.getEmails().isEmpty() ? "" : data.getEmails().get(0).getValue());
+            textField.focusedProperty().addListener((ob, old, now) -> {
+                if (old == null || now == null) return;
+                if (old && !now) {
+                    FormattedName email = new FormattedName(textField.getText());
+                    data.setFormattedName(email);
+                }
+            });
             return text;
         });
-        createTimeCol.setMinWidth(200);
-        createTimeCol.setAlignment(Pos.CENTER);
-        createTimeCol.setTextBuilder(MiscUtils.YYYYMMddHHiissDateTimeFormatter::format);
+        homePageCol.setAlignment(Pos.CENTER);
+
+        birthdayCol.setAlignment(Pos.CENTER);
+        //birthdayCol.setComparator(Comparator.comparing(VCard::getBirthday));
+
+        companyCol.setAlignment(Pos.CENTER);
+
+        addressCol.setAlignment(Pos.CENTER);
+        //addressCol.setComparator(Comparator.comparing(data -> new StringBuilder(data.getAddresses().get(0).getStreetAddress())
+        //        .append(data.getAddresses().get(0).getRegion()).append(data.getAddresses().get(0).getCountries().get(0)).toString()));
+
+        postalCodeCol.setAlignment(Pos.CENTER);
+        //postalCodeCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getPostalCode()));
+
+        remarkCol.setAlignment(Pos.CENTER);
 
         //noinspection unchecked
-        table.getColumns().addAll(choiceCol, idCol, nameCol, addressCol, typeCol, createTimeCol);
+        table.getColumns().addAll(nameCol, phoneCol, emailCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
 
 //        for (int i = 0; i < 10; ++i) {
 //            table.getItems().add(new Data());
 //
 //        }
-        AddressBookHeadNode[] headNodes=MainPane.addressBook.getAddressBookHeadNodes();
-        for(int i=0;i<27;i++)
-        {
-            AddressBookHeadNode headNode=headNodes[i];
-            AddressBookNode bookNode=headNode.getFirstNode();
-            while (bookNode!=null)
-            {
+        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();
+        for (int i = 0; i < 27; i++) {
+            AddressBookHeadNode headNode = headNodes[i];
+            AddressBookNode bookNode = headNode.getFirstNode();
+            while (bookNode != null) {
                 table.getItems().add(bookNode.getData());
-                bookNode=bookNode.getNext();
+                bookNode = bookNode.getNext();
             }
 
 

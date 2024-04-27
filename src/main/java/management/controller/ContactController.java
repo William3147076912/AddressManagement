@@ -2,6 +2,8 @@ package management.controller;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import io.vproxy.vfx.manager.font.FontManager;
+import io.vproxy.vfx.manager.font.FontUsage;
 import io.vproxy.vfx.ui.alert.SimpleAlert;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -83,10 +85,6 @@ public class ContactController {
 
     @FXML
     void save(MouseEvent event) {
-        if (nameField.getText().isEmpty()) {
-            SimpleAlert.showAndWait(Alert.AlertType.ERROR,
-                    "姓名不能为空哦owo");
-        }
         String name = nameField.getText();
         String phone = phoneField.getText();
         String email = emailField.getText();
@@ -96,9 +94,13 @@ public class ContactController {
         String address = addressField.getText();
         String text = postalCodeField.getText();
         String remark = remarkField.getText();
-        setData(new Data(/*写入*/));
-        Stage stage = (Stage) pane.getScene().getWindow();
-        stage.close();
+        if (nameField.getText().isEmpty()) {
+            SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空哦owo");
+        } else {
+            setData(new Data(/*写入*/));
+            Stage stage = (Stage) pane.getScene().getWindow();
+            stage.close();
+        }
     }
 
     @FXML
@@ -110,7 +112,7 @@ public class ContactController {
     public void initialize() {
         //判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框
         //用int不用flag是为了后期增加新功能的方便
-        if (flag == 1) {
+        if (flag == ConstantSet.UPDATE_CONTACT) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             //nameField.setText();
             //phoneField.setText();
@@ -121,9 +123,15 @@ public class ContactController {
             //addressField.setText();
             //postalCodeField.setText();
             //remarkField.setText();
-        } else if (flag == 0) {
-            //。。。。
-            return;
+        } else if (flag == ConstantSet.CREATE_CONTACT) {
+            nameField.setText(null);
+            phoneField.setText(null);
+            emailField.setText(null);
+            homepageField.setText(null);
+            companyField.setText(null);
+            addressField.setText(null);
+            postalCodeField.setText(null);
+            remarkField.setText(null);
         }
     }
 }

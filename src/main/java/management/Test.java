@@ -24,7 +24,6 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ContactController.flag = ConstantSet.UPDATE_CONTACT;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         PopupScene.fadeTransition(scene);//实现界面淡入淡出

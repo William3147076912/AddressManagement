@@ -12,9 +12,9 @@ import java.util.jar.Attributes;
 
 public  class Data extends VCard {
     public FusionButton choiceButton;
-    public String type;
+/*    public String type;
     public int bandwidth;
-    public long createTime;
+    public long createTime;*/
 
     public static Data vCardtoData(VCard vCard)
     {
@@ -25,9 +25,9 @@ public  class Data extends VCard {
             setPrefHeight(50);
             //setOnlyAnimateWhenNotClicked(true);
         }};
-       person.type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
+/*       person.type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
         person. bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
-        person. createTime = System.currentTimeMillis();
+        person. createTime = System.currentTimeMillis();*/
 //        Uid uid = new Uid(UUID.randomUUID().toString());
 //        person.setUid(uid);
         for(Address address:vCard.getAddresses())

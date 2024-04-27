@@ -8,23 +8,23 @@ import java.util.ArrayList;
 
 public class Group {
     private VCard group;
-    private ArrayList<Data> groupmember;
+    private ArrayList<Data> groupMember;
 
     public VCard getGroup() {
         return group;
     }
 
-    public ArrayList<Data> getGroupmember() {
-        return groupmember;
+    public ArrayList<Data> getGroupMember() {
+        return groupMember;
     }
 
-    public Group(String groupname)
+    public Group(String groupName)
     {
-        this.groupmember = new ArrayList<>();
+        this.groupMember = new ArrayList<>();
         this.group=new VCard();
         Kind kind=Kind.group();
         this.group.setKind(kind);
-        this.group.setFormattedName(groupname);
+        this.group.setFormattedName(groupName);
     }
     public void addmember(Data data)
     {
@@ -32,7 +32,7 @@ public class Group {
 //        Telephone telephone=data.getTelephoneNumbers().get(0);
         member = new Member(data.getUid().toString());
         this.group.addMember(member);
-        this.groupmember.add(data);
+        this.groupMember.add(data);
     }
     public void delmember(String uid)
     {
@@ -41,11 +41,11 @@ public class Group {
             if (member.getValue() == uid)
             {
                 group.removeProperty(member);
-                for(Data data:groupmember)
+                for(Data data: groupMember)
                 {
                     if(data.getUid().toString()==uid)
                     {
-                        groupmember.remove(data);
+                        groupMember.remove(data);
                     }
                 }
             }
