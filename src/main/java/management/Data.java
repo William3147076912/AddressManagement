@@ -28,8 +28,8 @@ public  class Data extends VCard {
        person.type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
         person. bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
         person. createTime = System.currentTimeMillis();
-        Uid uid = new Uid(UUID.randomUUID().toString());
-        person.setUid(uid);
+//        Uid uid = new Uid(UUID.randomUUID().toString());
+//        person.setUid(uid);
         for(Address address:vCard.getAddresses())
         {
             person.addAddress(address);
@@ -61,21 +61,21 @@ public  class Data extends VCard {
     }
 
     public Data() {
-        choiceButton = new FusionButton() {{
-            setPrefWidth(10);
-            setPrefHeight(50);
-            //setOnlyAnimateWhenNotClicked(true);
-        }};
-        Uid uid = new Uid("2022253104xx");
-        this.setUid(uid);
-        FormattedName name = new FormattedName("某某某");
-        this.addFormattedName(name);
-        Address address = new Address();
-        address.setStreetAddress("二仙桥");
-        this.addAddress(address);
+//        choiceButton = new FusionButton() {{
+//            setPrefWidth(10);
+//            setPrefHeight(50);
+//            //setOnlyAnimateWhenNotClicked(true);
+//        }};
 
-        type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
-        bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
-        createTime = System.currentTimeMillis();
+//        FormattedName name = new FormattedName("某某某");
+//        this.addFormattedName(name);
+//        Address address = new Address();
+//        address.setStreetAddress("二仙桥");
+//        this.addAddress(address);
+
+//        type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
+//        bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
+//        createTime = System.currentTimeMillis();
+
     }
 }
