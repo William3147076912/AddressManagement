@@ -2,11 +2,14 @@ package utils;
 
 import io.vproxy.vfx.ui.loading.LoadingItem;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TUtils {
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
     private TUtils() {
     }
 
@@ -22,7 +25,7 @@ public class TUtils {
         StringBuilder buffer = new StringBuilder(len);
         for (int i = 0; i < len; i++) {
             int randomLimitedInt = leftLimit + (int)
-                (random.nextFloat() * (rightLimit - leftLimit + 1));
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
         return buffer.toString();

@@ -20,11 +20,15 @@ import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import io.vproxy.vfx.util.MiscUtils;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,11 +37,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import management.controller.ContactController;
 import org.jetbrains.annotations.NotNull;
+import utils.ConstantSet;
 import utils.PopupScene;
+import utils.TUtils;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -79,16 +87,36 @@ public class VTableViewScene extends VScene {
         table.getNode().setPrefWidth(1000);
         table.getNode().setPrefHeight(500);
         //选中与否的按钮
-        var choiceCol = new VTableColumn<Data, Data>(null, data -> data);
-        var idCol = new VTableColumn<Data, Data>("id", data -> data);
+        var choiceCol = new VTableColumn<Data, Data>("", data -> data);
         var nameCol = new VTableColumn<Data, Data>("name", data -> data);
-        var addressCol = new VTableColumn<Data, Data>("address", data -> data);
-        var typeCol = new VTableColumn<Data, String>("type", data -> data.type);
-        var createTimeCol = new VTableColumn<Data, ZonedDateTime>("createTime", data ->
-                ZonedDateTime.ofInstant(
-                        Instant.ofEpochMilli(data.createTime), ZoneId.systemDefault()
-                ));
+        var phoneCol = new VTableColumn<Data, Data>("phone", data -> data);
+        var emailCol = new VTableColumn<Data, Data>("email", data -> data);
+        var homePageCol = new VTableColumn<Data, String>("homePage", data -> data.getUrls().isEmpty() ? "" : data.getUrls().get(0).getValue());
+        var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getText());
+        var companyCol = new VTableColumn<Data, String>("company", data -> data.getOrganizations().isEmpty() ? "" : data.getOrganizations().get(0).getValues().get(0));
+        var addressCol = new VTableColumn<Data, String>("address", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getStreetAddress());
+        var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses() == null ? "" : data.getAddresses().get(0).getPostalCode());
+        var remarkCol = new VTableColumn<Data, String>("remark", data -> data.getNotes().isEmpty() ? "" : data.getNotes().get(0).getValue());
 
+        /*idCol.setMinWidth(300);
+        idCol.setAlignment(Pos.CENTER);
+
+        idCol.setNodeBuilder(data -> {
+            var textField = new TextField();
+            var text = new FusionW(textField) {{
+                FontManager.get().setFont(FontUsages.tableCellText, getLabel());
+            }};
+
+            textField.setText(data.getUid().getValue());
+            textField.focusedProperty().addListener((ob, old, now) -> {
+                if (old == null || now == null) return;
+                if (old && !now) {
+                    Uid uid = new Uid(textField.getText());
+                    data.setUid(uid);
+                }
+            });
+            return text;
+        });*/
         choiceCol.setAlignment(Pos.CENTER);
         choiceCol.setPrefWidth(50);
         choiceCol.setNodeBuilder(data -> {
@@ -108,25 +136,7 @@ public class VTableViewScene extends VScene {
             });
             return data.choiceButton;
         });
-        idCol.setMinWidth(300);
-        idCol.setAlignment(Pos.CENTER);
 
-        idCol.setNodeBuilder(data -> {
-            var textField = new TextField();
-            var text = new FusionW(textField) {{
-                FontManager.get().setFont(FontUsages.tableCellText, getLabel());
-            }};
-
-            textField.setText(data.getUid().getValue());
-            textField.focusedProperty().addListener((ob, old, now) -> {
-                if (old == null || now == null) return;
-                if (old && !now) {
-                    Uid uid = new Uid(textField.getText());
-                    data.setUid(uid);
-                }
-            });
-            return text;
-        });
         nameCol.setComparator(Comparator.comparing(data -> data.getFormattedName().getValue()));
         nameCol.setAlignment(Pos.CENTER);
         nameCol.setNodeBuilder(data -> {
@@ -144,76 +154,130 @@ public class VTableViewScene extends VScene {
             });
             return text;
         });
-        addressCol.setAlignment(Pos.CENTER);
-        addressCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getStreetAddress()));
-        addressCol.setNodeBuilder(data -> {
+        phoneCol.setComparator(Comparator.comparing(data -> data.getTelephoneNumbers().get(0).getText()));
+        phoneCol.setAlignment(Pos.CENTER);
+        phoneCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-
-            textField.setText(data.getAddresses().get(0).getStreetAddress());
+            textField.setText(data.getTelephoneNumbers().isEmpty() ? "" : data.getTelephoneNumbers().get(0).getText());
             textField.focusedProperty().addListener((ob, old, now) -> {
                 if (old == null || now == null) return;
                 if (old && !now) {
-                    String addr = textField.getText();
-                    Address address = new Address();
-                    address.setStreetAddress(addr);
-                    data.addAddress(address);
-//                    data.address =;
+                    FormattedName phone = new FormattedName(textField.getText());
+                    data.setFormattedName(phone);
                 }
             });
             return text;
         });
-        typeCol.setAlignment(Pos.CENTER);
-        typeCol.setComparator(String::compareTo);
-        addressCol.setNodeBuilder(data -> {
+
+        emailCol.setAlignment(Pos.CENTER);
+        emailCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
                 FontManager.get().setFont(FontUsages.tableCellText, getLabel());
             }};
-            List<Address>  addresses=data.getAddresses();
-            Address address;
-            if (!addresses.isEmpty()) {
-                address= addresses.get(0);
-                textField.setText(address.getStreetAddress());
-                textField.focusedProperty().addListener((ob, old, now) -> {
-                    if (old == null || now == null) return;
-                    if (old && !now) {
-                        String addr=textField.getText();
-                        address.setStreetAddress(addr);
-                        addresses.add(address);
-                    }
-                });
-            } else {
-                address = null;
-            }
-
+            textField.setText(data.getEmails().isEmpty() ? "" : data.getEmails().get(0).getValue());
+            textField.focusedProperty().addListener((ob, old, now) -> {
+                if (old == null || now == null) return;
+                if (old && !now) {
+                    FormattedName email = new FormattedName(textField.getText());
+                    data.setFormattedName(email);
+                }
+            });
             return text;
         });
-        createTimeCol.setMinWidth(200);
-        createTimeCol.setAlignment(Pos.CENTER);
-        createTimeCol.setTextBuilder(MiscUtils.YYYYMMddHHiissDateTimeFormatter::format);
+        homePageCol.setAlignment(Pos.CENTER);
+
+        birthdayCol.setAlignment(Pos.CENTER);
+        birthdayCol.setComparator(String::compareTo);
+
+        companyCol.setAlignment(Pos.CENTER);
+
+        addressCol.setAlignment(Pos.CENTER);
+        //addressCol.setComparator(Comparator.comparing(data -> new StringBuilder(data.getAddresses().get(0).getStreetAddress())
+        //        .append(data.getAddresses().get(0).getRegion()).append(data.getAddresses().get(0).getCountries().get(0)).toString()));
+
+        postalCodeCol.setAlignment(Pos.CENTER);
+        //postalCodeCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getPostalCode()));
+
+        remarkCol.setAlignment(Pos.CENTER);
 
         //noinspection unchecked
-        table.getColumns().addAll(choiceCol, idCol, nameCol, addressCol, typeCol, createTimeCol);
+        table.getColumns().addAll(choiceCol, nameCol, phoneCol, emailCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
 
 //        for (int i = 0; i < 10; ++i) {
 //            table.getItems().add(new Data());
 //
 //        }
-        AddressBookHeadNode[] headNodes=MainPane.addressBook.getAddressBookHeadNodes();
-        for(int i=0;i<27;i++)
-        {
-            AddressBookHeadNode headNode=headNodes[i];
-            AddressBookNode bookNode=headNode.getFirstNode();
-            while (bookNode!=null)
-            {
-                table.getItems().add(bookNode.getData());
-                bookNode=bookNode.getNext();
+        // 添加双击事件监听器
+        table.getScrollPane().getNode().setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // 检查双击事件
+               /* String selectedItem = table.getSelectedItem().getFormattedName().getValue();
+                // 在这里展示详细内容，可以是一个新的Stage或者一个弹出的窗口
+                // 这里只是简单地在控制台打印选中的行数据
+                System.out.println("双击了：" + selectedItem);*/
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                ContactController.flag = ConstantSet.UPDATE_CONTACT;//切换为修改联系人功能
+                Scene scene;
+                try {
+                    scene = new Scene(fxmlLoader.load());
+                    PopupScene.fadeTransition(scene);//实现界面淡入淡出
+                    scene.setFill(Color.TRANSPARENT);//背景透明化
+                    scene.setCamera(new PerspectiveCamera());//透视相机
+                    stage.setScene(scene);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("MainTest Window");
+                    stage.show();
+                    //取得该行联系人所有信息并展示在界面文本框
+                    Data selectedItem = table.getSelectedItem();
+                    var name = selectedItem.getFormattedName().getValue();
+                    var phone = selectedItem.getTelephoneNumbers().isEmpty() ? null : selectedItem.getTelephoneNumbers().get(0).getText();
+                    var email = selectedItem.getEmails().isEmpty() ? null : selectedItem.getEmails().get(0).getValue();
+                    var homePage = selectedItem.getUrls().isEmpty() ? null : selectedItem.getUrls().get(0).getValue();
+                    var birthday = selectedItem.getBirthday() == null ? null : selectedItem.getBirthday().getText();
+                    var company = selectedItem.getOrganizations().isEmpty() ? null : selectedItem.getOrganizations().get(0).getValues().get(0);
+                    var address = selectedItem.getAddresses().isEmpty() ? null : selectedItem.getAddresses().get(0).getStreetAddress();
+                    var postalCode = selectedItem.getAddresses().isEmpty() ? null : selectedItem.getAddresses().get(0).getPostalCode();
+                    var remark = selectedItem.getNotes().isEmpty() ? null : selectedItem.getNotes().get(0).getValue();
+                    ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();//取得fxml中所有拥有fx:id的组件
+                    TextField nameField = (TextField) namespace.get("nameField");
+                    TextField phoneField = (TextField) namespace.get("phoneField");
+                    TextField emailField = (TextField) namespace.get("emailField");
+                    TextField homepageField = (TextField) namespace.get("homepageField");
+                    DatePicker birthdayField = (DatePicker) namespace.get("birthdayField");
+                    TextField companyField = (TextField) namespace.get("companyField");
+                    TextField addressField = (TextField) namespace.get("addressField");
+                    TextField postalCodeField = (TextField) namespace.get("postalCodeField");
+                    TextArea remarkField = (TextArea) namespace.get("remarkField");
+                    nameField.setText(name);
+                    phoneField.setText(phone);
+                    emailField.setText(email);
+                    homepageField.setText(homePage);
+                    if (birthday != null) {
+                        birthdayField.setValue(LocalDate.parse(birthday, TUtils.formatter));
+                    }
+                    companyField.setText(company);
+                    addressField.setText(address);
+                    remarkField.setText(remark);
+                    postalCodeField.setText(postalCode);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
+        });
 
-
+        //从所有联系人所在的数据结构中取数据放入table中
+        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();//取联系人链表数组的地址
+        for (int i = 0; i < 27; i++) {//遍历该链表数组
+            AddressBookHeadNode headNode = headNodes[i];
+            AddressBookNode bookNode = headNode.getFirstNode();
+            while (bookNode != null) {
+                table.getItems().add(bookNode.getData());
+                bookNode = bookNode.getNext();
+            }
         }
         return table;
     }
@@ -249,6 +313,7 @@ public class VTableViewScene extends VScene {
                         Scene scene;
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                            ContactController.flag=ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
                             scene = new Scene(fxmlLoader.load());
                             PopupScene.fadeTransition(scene);
                         } catch (IOException ex) {

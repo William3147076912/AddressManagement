@@ -2,7 +2,11 @@ package management.controller;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import ezvcard.property.*;
+import io.vproxy.vfx.manager.font.FontManager;
+import io.vproxy.vfx.manager.font.FontUsage;
 import io.vproxy.vfx.ui.alert.SimpleAlert;
+import io.vproxy.vfx.ui.button.FusionButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -15,7 +19,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import management.Data;
+import management.MainPane;
 import utils.ConstantSet;
+import utils.TUtils;
 
 import java.io.File;
 import java.net.URL;
@@ -52,6 +58,7 @@ public class ContactController {
     @FXML
     private AnchorPane pane;
 
+
     public Data getData() {
         return ContactController.data;
     }
@@ -78,21 +85,36 @@ public class ContactController {
 
     @FXML
     void save(MouseEvent event) {
-        if (nameField.getText().isEmpty()){
-            //SimpleAlert alert=new SimpleAlert()
+        if (flag == ConstantSet.CREATE_CONTACT) {
+            String name = nameField.getText();
+            String phone = phoneField.getText();
+            String email = emailField.getText();
+            String homepage = homepageField.getText();
+            String birthday = birthdayField.getValue().toString();
+            String company = companyField.getText();
+            String address = addressField.getText();
+            String postalCode = postalCodeField.getText();
+            String remark = remarkField.getText();
+            if (name.isEmpty()) {
+                SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空哦owo");
+            } else {
+                Data person = new Data();
+                person.addFormattedName(new FormattedName(name));
+                person.addTelephoneNumber(new Telephone(phone));
+                person.addEmail(email);
+                person.addUrl(new Url(homepage));
+                person.setBirthday(LocalDate.parse(birthday));
+                person.setOrganization(company);
+                person.addAddress(new Address() {{
+                    setStreetAddress(address);
+                    setPostalCode(postalCode);
+                }});
+                person.addNote(remark);
+                MainPane.addressBook.add(person);
+                Stage stage = (Stage) pane.getScene().getWindow();
+                stage.close();
+            }
         }
-        String name = nameField.getText();
-        String phone = phoneField.getText();
-        String email = emailField.getText();
-        String homepage = homepageField.getText();
-        String birthday = birthdayField.getValue().toString();
-        String company = companyField.getText();
-        String address = addressField.getText();
-        String text = postalCodeField.getText();
-        String remark = remarkField.getText();
-        setData(new Data(/*写入*/));
-        Stage stage = (Stage) pane.getScene().getWindow();
-        stage.close();
     }
 
     @FXML
@@ -101,28 +123,19 @@ public class ContactController {
         stage.close();
     }
 
-    public static void addOrUpdateContact(int sign, Data vCardProperties) {
-        flag=sign;
-        data=vCardProperties;
-    }
-
     public void initialize() {
-        //判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框
+        //判断是新建联系人（0）or修改联系人（1），新建联系人则不需要初始化界面，修改联系人则要把联系人信息存入文本框（控制器外部实现改初始化）
         //用int不用flag是为了后期增加新功能的方便
-        if (flag == 1) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            //nameField.setText();
-            //phoneField.setText();
-            //emailField.setText();
-            //homepageField.setText();
-            birthdayField.setValue(LocalDate.parse("2022/01/01", formatter));
-            //companyField.setText();
-            //addressField.setText();
-            //postalCodeField.setText();
-            //remarkField.setText();
-        } else if (flag == 0) {
-            //。。。。
-            return;
+        if (flag == ConstantSet.CREATE_CONTACT) {
+            //清除文本框数据
+            nameField.setText(null);
+            phoneField.setText(null);
+            emailField.setText(null);
+            homepageField.setText(null);
+            companyField.setText(null);
+            addressField.setText(null);
+            postalCodeField.setText(null);
+            remarkField.setText(null);
         }
     }
 }
