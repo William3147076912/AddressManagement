@@ -78,10 +78,8 @@ public class Import {
                 }
                 MainPane.groups.add(un);
                 ManageGroup.addgroup(group);
-
-            }
-            //如果新导入的文件没有分组信息，则将新添加的联系人放入"ungroup"分组
-            if(!hasGroup&&!MainPane.groups.isEmpty())
+            }//如果新导入的文件没有分组信息，则将新添加的联系人放入"ungroup"分组
+            else if(!hasGroup)
             {
                 boolean hasUngroup=false;
                 VCard agroup = null;
@@ -118,26 +116,29 @@ public class Import {
                 }
                 MainPane.groups.add(un);
                 ManageGroup.addgroup(group);
+            }else
+            {
+                ArrayList<Data> allperson=MainPane.addressBook.getAll();
+                for(VCard onegroup: MainPane.groups)
+                {
+                    List<Member> members=onegroup.getMembers();
+                    Group group1=new Group(onegroup.getFormattedName().getValue());
+                    for (Member member:members)
+                    {
+                        for(Data person:allperson)
+                        {
+                            if(person.getUid().getValue() == member.getValue())
+                            {
+                                group1.addmember(person);
+                            }
+                        }
+
+                    }
+                    ManageGroup.addgroup(group1);
+                }
             }
             reader.close();
         }
-        ArrayList<Data> allperson=MainPane.addressBook.getAll();
-        for(VCard onegroup: MainPane.groups)
-        {
-            List<Member> members=onegroup.getMembers();
-            Group group1=new Group(onegroup.getFormattedName().getValue());
-            for (Member member:members)
-            {
-                for(Data person:allperson)
-                {
-                    if(person.getUid().getValue() == member.getValue())
-                    {
-                        group1.addmember(person);
-                    }
-                }
 
-            }
-            ManageGroup.addgroup(group1);
-        }
     }
 }
