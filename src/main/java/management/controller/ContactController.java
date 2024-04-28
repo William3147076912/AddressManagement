@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import management.Data;
 import management.MainPane;
+import management.VTableViewScene;
 import utils.ConstantSet;
 import utils.TUtils;
 
@@ -111,10 +112,12 @@ public class ContactController {
                 }});
                 person.addNote(remark);
                 MainPane.addressBook.add(person);
+                VTableViewScene.table.getItems().add(person);
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
+                SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了！");
             }
-        }else if(flag == ConstantSet.UPDATE_CONTACT){
+        } else if (flag == ConstantSet.UPDATE_CONTACT) {
 
         }
     }

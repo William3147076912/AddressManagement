@@ -61,6 +61,7 @@ import java.util.function.Supplier;
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
     public static List<FusionButton> groupList = new ArrayList<>();//组列表
+    public static VTableView<Data> table;
 
     public static FusionButton allContactBtn = new FusionButton() {{
         setDisable(true);//默认“所有联系人”按钮不可用
@@ -74,7 +75,7 @@ public class VTableViewScene extends VScene {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
 
-        var table = setTable();
+        table = setTable();
         var vBox = setContentPane(table, sceneGroupSup);
 
         FXUtils.observeWidthCenter(getContentPane(), vBox);
@@ -137,7 +138,7 @@ public class VTableViewScene extends VScene {
             return data.choiceButton;
         });
 
-        nameCol.setComparator(Comparator.comparing(data -> data.getFormattedName().getValue()));
+        nameCol.setComparator(Comparator.comparing(data -> Pinyin.getPinYin(data.getFormattedName().getValue())));//按拼音排序
         nameCol.setAlignment(Pos.CENTER);
         nameCol.setNodeBuilder(data -> {
             var textField = new TextField();
@@ -313,7 +314,7 @@ public class VTableViewScene extends VScene {
                         Scene scene;
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
-                            ContactController.flag=ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
+                            ContactController.flag = ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
                             scene = new Scene(fxmlLoader.load());
                             PopupScene.fadeTransition(scene);
                         } catch (IOException ex) {
@@ -343,6 +344,46 @@ public class VTableViewScene extends VScene {
                         FXUtils.observeWidth(popUpScene.getContentPane(), msgLabel);
                         msgLabel.setCenterShape(true);
                         msgLabel.setLayoutY(100);
+                        var sureBtn = new FusionButton("Yes") {{
+                            setLayoutX(100);
+                            setLayoutY(300);
+                            setPrefWidth(100);
+                            setPrefHeight(50);
+                        }};
+                        sureBtn.setOnAction(ee -> {
+                            for (Data data : delList) {//删除数据
+                                //System.out.println(data.type);
+                                table.getItems().remove(data);
+                            }
+                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            delList.clear();//清空删除列表
+                            sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
+                            FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
+                        });
+                        var closeBtn = new FusionButton("No") {{
+                            setLayoutX(300);
+                            setLayoutY(300);
+                            setPrefWidth(100);
+                            setPrefHeight(50);
+                        }};
+                        closeBtn.setOnAction(ee -> {
+                            sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
+                            FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
+                        });
+                        //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));设置背景图片
+                        popUpScene.getContentPane().getChildren().addAll(msgLabel, sureBtn, closeBtn);
+                        sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
+                        FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }},
+                new HPadding(10),
+                new FusionButton("Search") {{
+                    setOnAction(e -> {
+                        var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
+                        var table = setTable();
+                        FXUtils.observeWidth(popUpScene.getContentPane(), table.getNode());
                         var sureBtn = new FusionButton("Yes") {{
                             setLayoutX(100);
                             setLayoutY(300);
