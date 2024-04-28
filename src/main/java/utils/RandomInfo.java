@@ -1,8 +1,18 @@
 package utils;
 
 
+import com.beust.ah.A;
+import ezvcard.VCard;
+import ezvcard.VCardVersion;
+import ezvcard.io.scribe.BirthdayScribe;
+import ezvcard.io.text.VCardWriter;
+import ezvcard.property.*;
 import io.codearte.jfairy.Fairy;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -227,36 +237,68 @@ public class RandomInfo {
         return String.format("%0" + postalCodeLength + "d", randomNumber);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        File cr=new File("src/main/resources/vCard/sample.vcf");
+        cr.createNewFile();
+        Path file=Paths.get("src/main/resources/vCard/sample.vcf");
+
+        VCardWriter writer;
+        writer = new VCardWriter(file, VCardVersion.V3_0);
         for (int i = 0; i < 100; i++) {
+            VCard vCard=new VCard();
             System.out.println("---------------------------------------");
             //获取性别
             System.out.println("性别: " + getRandomSex() + "   ");
             //获取年龄
             System.out.println("年龄: " + getRandomAge() + "   ");
+//            int age =getRandomAge();
+//            int bir=2024-age;
+//            Birthday birthday=new Birthday(String.valueOf(bir) );
+//            vCard.setBirthday(birthday);
             //获取密码
             System.out.println("密码: " + getRandomPassword() + "   ");
             //获取性别和name
+            String name;
             if (randomInt(2) % 2 == 0) {
                 System.out.println("姓名: " + getRandomBoyName() + "   ");
+                name=getRandomBoyName();
             } else {
                 System.out.println("姓名: " + getRandomGirlName() + "   ");
+                name=getRandomGirlName();
             }
+            vCard.setFormattedName(name);
             //获取手机号
             System.out.println("手机号: " + getRandomPhone() + "   ");
+            Telephone telephone=new Telephone(getRandomPhone());
+            vCard.addTelephoneNumber(telephone);
             //获取邮箱
             System.out.println("邮箱: " + getRandomQQEmail() + "   ");
+            Email email=new Email(getRandomQQEmail());
+            vCard.addEmail(email);
             //获取个人主页
             System.out.println("个人主页：" + getRandomPersonalHomepage() + "   ");
+            Url url=new Url(getRandomPersonalHomepage());
+            vCard.addUrl(url);
             //获取生日
             System.out.println("生日：: " + getRandomBirthday() + "   ");
+            Birthday birthday=new Birthday(getRandomBirthday());
+            vCard.setBirthday(birthday);
             //获取公司名称
             System.out.println("工作单位: " + getRandomCompany(/*默认为中国地区*/) + "   ");
+            vCard.setOrganization(getRandomCompany());
             //获取地址和邮编
             System.out.println("地址: " + getRandomAddress() + "   " + "邮政编码：" + getRandomPostalCode());
+            Address address=new Address();
+            String street=getRandomAddress();
+            String post=getRandomPostalCode();
+            address.setStreetAddress(street);
+            address.setPostalCode(post);
+            vCard.addAddress(address);
             System.out.println("---------------------------------------");
             System.out.println();
+            writer.write(vCard);
         }
+        writer.close();
     }
 
     /**
