@@ -20,11 +20,15 @@ import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import io.vproxy.vfx.util.MiscUtils;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,11 +37,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import management.controller.ContactController;
 import org.jetbrains.annotations.NotNull;
+import utils.ConstantSet;
 import utils.PopupScene;
+import utils.TUtils;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -79,8 +87,7 @@ public class VTableViewScene extends VScene {
         table.getNode().setPrefWidth(1000);
         table.getNode().setPrefHeight(500);
         //选中与否的按钮
-
-
+        var choiceCol = new VTableColumn<Data, Data>("", data -> data);
         var nameCol = new VTableColumn<Data, Data>("name", data -> data);
         var phoneCol = new VTableColumn<Data, Data>("phone", data -> data);
         var emailCol = new VTableColumn<Data, Data>("email", data -> data);
@@ -110,6 +117,26 @@ public class VTableViewScene extends VScene {
             });
             return text;
         });*/
+        choiceCol.setAlignment(Pos.CENTER);
+        choiceCol.setPrefWidth(50);
+        choiceCol.setNodeBuilder(data -> {
+            data.choiceButton.setOnAction(e -> {
+                Label textNode = data.choiceButton.getTextNode();
+                String text = textNode.getText();
+                if ("✓".equals(text)) {//取消选中
+                    textNode.setText("");
+                    delList.remove(data);
+                    //System.out.println(data.type);
+                } else {//选中
+                    textNode.setText("✓");
+                    //...
+                    delList.add(data);
+                    //System.out.println(data.type);
+                }
+            });
+            return data.choiceButton;
+        });
+
         nameCol.setComparator(Comparator.comparing(data -> data.getFormattedName().getValue()));
         nameCol.setAlignment(Pos.CENTER);
         nameCol.setNodeBuilder(data -> {
@@ -178,22 +205,79 @@ public class VTableViewScene extends VScene {
         remarkCol.setAlignment(Pos.CENTER);
 
         //noinspection unchecked
-        table.getColumns().addAll(nameCol, phoneCol, emailCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
+        table.getColumns().addAll(choiceCol, nameCol, phoneCol, emailCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
 
 //        for (int i = 0; i < 10; ++i) {
 //            table.getItems().add(new Data());
 //
 //        }
-        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();
-        for (int i = 0; i < 27; i++) {
+        // 添加双击事件监听器
+        table.getScrollPane().getNode().setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // 检查双击事件
+               /* String selectedItem = table.getSelectedItem().getFormattedName().getValue();
+                // 在这里展示详细内容，可以是一个新的Stage或者一个弹出的窗口
+                // 这里只是简单地在控制台打印选中的行数据
+                System.out.println("双击了：" + selectedItem);*/
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                ContactController.flag = ConstantSet.UPDATE_CONTACT;//切换为修改联系人功能
+                Scene scene;
+                try {
+                    scene = new Scene(fxmlLoader.load());
+                    PopupScene.fadeTransition(scene);//实现界面淡入淡出
+                    scene.setFill(Color.TRANSPARENT);//背景透明化
+                    scene.setCamera(new PerspectiveCamera());//透视相机
+                    stage.setScene(scene);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setTitle("MainTest Window");
+                    stage.show();
+                    //取得该行联系人所有信息并展示在界面文本框
+                    Data selectedItem = table.getSelectedItem();
+                    var name = selectedItem.getFormattedName().getValue();
+                    var phone = selectedItem.getTelephoneNumbers().isEmpty() ? null : selectedItem.getTelephoneNumbers().get(0).getText();
+                    var email = selectedItem.getEmails().isEmpty() ? null : selectedItem.getEmails().get(0).getValue();
+                    var homePage = selectedItem.getUrls().isEmpty() ? null : selectedItem.getUrls().get(0).getValue();
+                    var birthday = selectedItem.getBirthday() == null ? null : selectedItem.getBirthday().getText();
+                    var company = selectedItem.getOrganizations().isEmpty() ? null : selectedItem.getOrganizations().get(0).getValues().get(0);
+                    var address = selectedItem.getAddresses().isEmpty() ? null : selectedItem.getAddresses().get(0).getStreetAddress();
+                    var postalCode = selectedItem.getAddresses().isEmpty() ? null : selectedItem.getAddresses().get(0).getPostalCode();
+                    var remark = selectedItem.getNotes().isEmpty() ? null : selectedItem.getNotes().get(0).getValue();
+                    ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();//取得fxml中所有拥有fx:id的组件
+                    TextField nameField = (TextField) namespace.get("nameField");
+                    TextField phoneField = (TextField) namespace.get("phoneField");
+                    TextField emailField = (TextField) namespace.get("emailField");
+                    TextField homepageField = (TextField) namespace.get("homepageField");
+                    DatePicker birthdayField = (DatePicker) namespace.get("birthdayField");
+                    TextField companyField = (TextField) namespace.get("companyField");
+                    TextField addressField = (TextField) namespace.get("addressField");
+                    TextField postalCodeField = (TextField) namespace.get("postalCodeField");
+                    TextArea remarkField = (TextArea) namespace.get("remarkField");
+                    nameField.setText(name);
+                    phoneField.setText(phone);
+                    emailField.setText(email);
+                    homepageField.setText(homePage);
+                    if (birthday != null) {
+                        birthdayField.setValue(LocalDate.parse(birthday, TUtils.formatter));
+                    }
+                    companyField.setText(company);
+                    addressField.setText(address);
+                    remarkField.setText(remark);
+                    postalCodeField.setText(postalCode);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        //从所有联系人所在的数据结构中取数据放入table中
+        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();//取联系人链表数组的地址
+        for (int i = 0; i < 27; i++) {//遍历该链表数组
             AddressBookHeadNode headNode = headNodes[i];
             AddressBookNode bookNode = headNode.getFirstNode();
             while (bookNode != null) {
                 table.getItems().add(bookNode.getData());
                 bookNode = bookNode.getNext();
             }
-
-
         }
         return table;
     }
@@ -229,6 +313,7 @@ public class VTableViewScene extends VScene {
                         Scene scene;
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                            ContactController.flag=ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
                             scene = new Scene(fxmlLoader.load());
                             PopupScene.fadeTransition(scene);
                         } catch (IOException ex) {
