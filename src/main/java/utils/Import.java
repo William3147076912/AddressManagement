@@ -57,12 +57,6 @@ public class Import {
                 }
                 else if(temp.getKind().isGroup())
                 {
-//                    VCard group=new VCard();
-//                    Kind kind=Kind.group();
-//                    group.setKind(kind);
-                    String group;
-                    group= temp.getMembers().get(0).getValue();
-//                    VCard newd=group.getAgent().getVCard();
                     MainPane.groups.add(temp);
                     hasGroup=true;
                 }
@@ -137,7 +131,7 @@ public class Import {
             {
                 System.out.println(person.getUid().getValue());
                 System.out.println(member.getValue());
-                if(person.getUid().getValue().equals(member.getValue()) )
+                if(person.getUid().getValue().equals(member.getValue()))
                 {
                     group1.addmember(person);
                 }

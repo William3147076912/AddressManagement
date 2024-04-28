@@ -18,7 +18,6 @@ public class Export {
         try {
             file.createNewFile();
             Path path= Paths.get(filename);
-
             VCardWriter writer=new VCardWriter(path, VCardVersion.V4_0);
             for(Group group: ManageGroup.groups)
             {
