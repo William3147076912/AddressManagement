@@ -76,8 +76,8 @@ public class VTableViewScene extends VScene {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
         var msgLabel = new ThemeLabel(
-                "Click the column name to sort the rows (some of them are sortable).\n" +
-                        "Tips: try to sort by multiple columns,try to hover on \"name\" cells, and try to drag the table:)"
+                "             Click the column name to sort the rows (name, phoneNumber and birthday are sortable).\n" +
+                        "Tips: try to sort by multiple columns, hover on \"name\" cells, drag the table, and click certain line twice:)"
         );
         FXUtils.observeWidthCenter(getContentPane(), msgLabel);
         msgLabel.setLayoutY(40);
@@ -217,7 +217,7 @@ public class VTableViewScene extends VScene {
                     setPrefHeight(40);
                 }}
         ));
-        FXUtils.observeWidthCenter(getContentPane(),controlPane.getNode());
+        FXUtils.observeWidthCenter(getContentPane(), controlPane.getNode());
 
         var menuPane = new VScrollPane() {{
             getNode().setPrefWidth(150);
@@ -268,7 +268,7 @@ public class VTableViewScene extends VScene {
         var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getText());
         var companyCol = new VTableColumn<Data, String>("company", data -> data.getOrganizations().isEmpty() ? "" : data.getOrganizations().get(0).getValues().get(0));
         var addressCol = new VTableColumn<Data, String>("address", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getStreetAddress());
-        var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses() == null ? "" : data.getAddresses().get(0).getPostalCode());
+        var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getPostalCode());
         var remarkCol = new VTableColumn<Data, String>("remark", data -> data.getNotes().isEmpty() ? "" : data.getNotes().get(0).getValue());
 
         /*idCol.setMinWidth(300);
