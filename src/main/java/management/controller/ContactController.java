@@ -1,7 +1,9 @@
 package management.controller;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
+import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import com.leewyatt.rxcontrols.event.RXActionEvent;
 import ezvcard.VCard;
 import ezvcard.property.*;
 import io.vproxy.vfx.manager.font.FontManager;
@@ -37,6 +39,11 @@ public class ContactController {
     //flag与data是外界与本类交互的工具
     public static int flag = ConstantSet.CREATE_CONTACT;//默认显示添加联系人界面
     public static Data data;
+
+    @FXML
+    private RXLineButton save;
+    @FXML
+    private RXLineButton cancel;
     @FXML
     private RXTextField addressField;
     @FXML
@@ -70,6 +77,12 @@ public class ContactController {
     }
 
     @FXML
+    void deleteText(RXActionEvent event) {//文本框删除功能
+        RXTextField tf = (RXTextField) event.getSource();
+        tf.clear();
+    }
+
+    @FXML
     void setImage(MouseEvent event) {
 
         FileChooser fileChooser = new FileChooser();
@@ -97,28 +110,36 @@ public class ContactController {
             String address = addressField.getText();
             String postalCode = postalCodeField.getText();
             String remark = remarkField.getText();
+
             if (name == null) {
-                SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空哦owo");
-            } else {
-                VCard person = new VCard();
-                person.addFormattedName(new FormattedName(name));
-                person.addTelephoneNumber(new Telephone(phone));
-                person.addEmail(email);
-                person.addUrl(new Url(homepage));
-                person.setBirthday(birthday);
-                person.setOrganization(company);
-                person.addAddress(new Address() {{
-                    setStreetAddress(address);
-                    setPostalCode(postalCode);
-                }});
-                person.addNote(remark);
-                Data vCardProperties = Data.vCardtoData(person);
-                MainPane.addressBook.add(vCardProperties);
-                VTableViewScene.table.getItems().add(vCardProperties);
-                Stage stage = (Stage) pane.getScene().getWindow();
-                stage.close();
-                SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了！");
+                SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空<(｀^´)>");
+                return;
             }
+            for (char c : name.toCharArray()) {
+                if (c >= '0' && c <= '9') {
+                    SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能含有数字(ꐦ ಠ皿ಠ )");
+                    return;
+                }
+            }
+            VCard person = new VCard();
+            person.addFormattedName(new FormattedName(name));
+            person.addTelephoneNumber(new Telephone(phone));
+            person.addEmail(email);
+            person.addUrl(new Url(homepage));
+            person.setBirthday(birthday);
+            person.setOrganization(company);
+            person.addAddress(new Address() {{
+                setStreetAddress(address);
+                setPostalCode(postalCode);
+            }});
+            person.addNote(remark);
+            Data vCardProperties = Data.vCardtoData(person);
+            MainPane.addressBook.add(vCardProperties);
+            VTableViewScene.table.getItems().add(vCardProperties);
+            Stage stage = (Stage) pane.getScene().getWindow();
+            stage.close();
+            SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了(* ^ ω ^)");
+
         } else if (flag == ConstantSet.UPDATE_CONTACT) {
 
         }

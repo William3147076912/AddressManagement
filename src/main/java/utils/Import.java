@@ -129,8 +129,8 @@ public class Import {
         {
             for(Data person:allperson)
             {
-                System.out.println(person.getUid().getValue());
-                System.out.println(member.getValue());
+                //System.out.println(person.getUid().getValue());
+                //System.out.println(member.getValue());
                 if(person.getUid().getValue().equals(member.getValue()))
                 {
                     group1.addmember(person);
