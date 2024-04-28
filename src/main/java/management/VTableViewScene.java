@@ -34,6 +34,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -61,6 +62,7 @@ import java.util.function.Supplier;
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
     public static List<FusionButton> groupList = new ArrayList<>();//组列表
+    public static VTableView<Data> table;
 
     public static FusionButton allContactBtn = new FusionButton() {{
         setDisable(true);//默认“所有联系人”按钮不可用
@@ -73,18 +75,189 @@ public class VTableViewScene extends VScene {
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) throws IOException {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
+        var msgLabel = new ThemeLabel(
+                "             Click the column name to sort the rows (name, phoneNumber and birthday are sortable).\n" +
+                        "Tips: try to sort by multiple columns, hover on \"name\" cells, drag the table, and click certain line twice:)"
+        );
+        FXUtils.observeWidthCenter(getContentPane(), msgLabel);
+        msgLabel.setLayoutY(40);
+        msgLabel.setAlignment(Pos.CENTER);
+        msgLabel.setFont(Font.font(20));
+        FXUtils.observeWidthCenter(getContentPane(), msgLabel);//组件水平居中
+        table = setTable();
+        table.getNode().setCenterShape(true);
+        var hScrollPane = VScrollPane.makeHorizontalScrollPaneToManage(table);
+        hScrollPane.getNode().setPrefWidth(800);
+        hScrollPane.getNode().setLayoutY(300);
+        FXUtils.observeWidthCenter(getContentPane(), hScrollPane.getNode());
+        var controlPane = new FusionPane(false) {{
+            getNode().setLayoutY(100);
+            getNode().setPrefHeight(60);
+        }};
+        controlPane.getContentPane().getChildren().add(new HBox(
+                new FusionButton("Select All") {{
+                    setOnAction(e -> {
+                        if (delList.isEmpty()) {
+                            delList.addAll(table.getItems());//添加所有联系人进删除列表
+                            for (Data item : table.getItems()) {//选中所有联系人
+                                item.choiceButton.getTextNode().setText("✓");
+                            }
+                        } else {
+                            delList.clear();//清空删除列表
+                            for (Data item : table.getItems()) {
+                                item.choiceButton.getTextNode().setText("");
+                            }
+                        }
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }},
+                new HPadding(10),
+                new FusionButton("Add Contact") {{
+                    setOnAction(e -> {
+                        //打开添加联系人窗口
+//                        table.getItems().add(new Data());
+                        allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                        Scene scene;
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                            ContactController.flag = ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
+                            scene = new Scene(fxmlLoader.load());
+                            PopupScene.fadeTransition(scene);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        scene.setFill(Color.TRANSPARENT);//舞台透明
+                        new Stage() {{
+                            setScene(scene);
+                            initStyle(StageStyle.TRANSPARENT);//窗口透明
+                            initModality(Modality.APPLICATION_MODAL);
+                            show();
+                        }};
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }},
+                new HPadding(10),
+                new FusionButton("Del Contact") {{
+                    setOnAction(e -> {
+                        if (delList.isEmpty()) return;
+                        var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
+                        //进行删除确认
+                        Label msgLabel = new ThemeLabel("Are you sure you want to delete this contact?") {{
+                            FontManager.get().setFont(this, settings -> settings.setSize(20));
+                            setAlignment(Pos.CENTER);
+                        }};
+                        FXUtils.observeWidth(popUpScene.getContentPane(), msgLabel);
+                        msgLabel.setCenterShape(true);
+                        msgLabel.setLayoutY(100);
+                        var sureBtn = new FusionButton("Yes") {{
+                            setLayoutX(100);
+                            setLayoutY(300);
+                            setPrefWidth(100);
+                            setPrefHeight(50);
+                        }};
+                        sureBtn.setOnAction(ee -> {
+                            for (Data data : delList) {//删除数据
+                                //System.out.println(data.type);
+                                table.getItems().remove(data);
+                            }
+                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            delList.clear();//清空删除列表
+                            sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
+                            FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
+                        });
+                        var closeBtn = new FusionButton("No") {{
+                            setLayoutX(300);
+                            setLayoutY(300);
+                            setPrefWidth(100);
+                            setPrefHeight(50);
+                        }};
+                        closeBtn.setOnAction(ee -> {
+                            sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
+                            FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
+                        });
+                        //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));设置背景图片
+                        popUpScene.getContentPane().getChildren().addAll(msgLabel, sureBtn, closeBtn);
+                        sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
+                        FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }},
+                new HPadding(10),
+                new FusionButton("Search") {{
+                    setOnAction(e -> {
+                        var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
+                        Label msgLabel = new ThemeLabel("Search Contact") {{
+                            FontManager.get().setFont(this, settings -> settings.setSize(20));
+                            setAlignment(Pos.CENTER);
+                        }};
+                        FXUtils.observeWidth(popUpScene.getContentPane(), msgLabel);
+                        msgLabel.setCenterShape(true);
+                        msgLabel.setLayoutY(100);
+                        var table = setTable();
+                        FXUtils.observeWidth(popUpScene.getContentPane(), table.getNode());
+                        var closeBtn = new FusionButton("Close") {{
+                            setLayoutX(300);
+                            setLayoutY(300);
+                            setPrefWidth(100);
+                            setPrefHeight(50);
+                        }};
+                        closeBtn.setOnAction(ee -> {
+                            sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
+                            FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
+                        });
+                        //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));设置背景图片
+                        popUpScene.getContentPane().getChildren().addAll(msgLabel, table.getNode(), closeBtn);
+                        sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
+                        FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
+                }}
+        ));
+        FXUtils.observeWidthCenter(getContentPane(), controlPane.getNode());
 
-        var table = setTable();
-        var vBox = setContentPane(table, sceneGroupSup);
+        var menuPane = new VScrollPane() {{
+            getNode().setPrefWidth(150);
+            getNode().setPrefHeight(400);
+        }};
+        FXUtils.observeWidthCenter(getContentPane(), menuPane.getNode());
+        var contactLabel = new Label("all people") {{
+            FontManager.get().setFont(this, settings -> settings.setSize(15));
+        }};
+        FXUtils.observeWidthCenter(menuPane.getNode(), contactLabel);
+        var vbox = new VBox(
+                new ThemeLabel("address list") {{
+                    FontManager.get().setFont(this, settings -> settings.setSize(20));
+                    setAlignment(Pos.CENTER_RIGHT);
+                    setBackground(new Background(new BackgroundFill(
+                            null,
+                            CornerRadii.EMPTY,
+                            Insets.EMPTY
+                    )));
+                }},
+                new ThemeLabel("----------------------")
+        );
+        menuPane.setContent(vbox);
 
-        FXUtils.observeWidthCenter(getContentPane(), vBox);
+        allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
+        vbox.getChildren().addAll(allContactBtn);
 
-        getContentPane().getChildren().addAll(vBox);
+        var hBox = new HBox(
+                hScrollPane.getNode(),
+                new HPadding(10),
+                menuPane.getNode()
+        );
+        hBox.setLayoutY(170);
+        FXUtils.observeWidthCenter(getContentPane(), hBox);
+        getContentPane().getChildren().addAll(msgLabel, controlPane.getNode(), hBox);
     }
 
     public VTableView<Data> setTable() {
         var table = new VTableView<Data>();
-        table.getNode().setPrefWidth(1000);
+        table.getNode().setPrefWidth(3000);
         table.getNode().setPrefHeight(500);
         //选中与否的按钮
         var choiceCol = new VTableColumn<Data, Data>("", data -> data);
@@ -95,7 +268,7 @@ public class VTableViewScene extends VScene {
         var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getText());
         var companyCol = new VTableColumn<Data, String>("company", data -> data.getOrganizations().isEmpty() ? "" : data.getOrganizations().get(0).getValues().get(0));
         var addressCol = new VTableColumn<Data, String>("address", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getStreetAddress());
-        var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses() == null ? "" : data.getAddresses().get(0).getPostalCode());
+        var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getPostalCode());
         var remarkCol = new VTableColumn<Data, String>("remark", data -> data.getNotes().isEmpty() ? "" : data.getNotes().get(0).getValue());
 
         /*idCol.setMinWidth(300);
@@ -137,8 +310,8 @@ public class VTableViewScene extends VScene {
             return data.choiceButton;
         });
 
-        nameCol.setComparator(Comparator.comparing(data -> data.getFormattedName().getValue()));
-        nameCol.setAlignment(Pos.CENTER);
+        nameCol.setComparator(Comparator.comparing(data -> Pinyin.getPinYin(data.getFormattedName().getValue())));//按拼音排序
+        nameCol.setMaxWidth(70);
         nameCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
@@ -155,7 +328,7 @@ public class VTableViewScene extends VScene {
             return text;
         });
         phoneCol.setComparator(Comparator.comparing(data -> data.getTelephoneNumbers().get(0).getText()));
-        phoneCol.setAlignment(Pos.CENTER);
+        phoneCol.setMaxWidth(100);
         phoneCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
@@ -172,7 +345,9 @@ public class VTableViewScene extends VScene {
             return text;
         });
 
+
         emailCol.setAlignment(Pos.CENTER);
+        emailCol.setMaxWidth(200);
         emailCol.setNodeBuilder(data -> {
             var textField = new TextField();
             var text = new FusionW(textField) {{
@@ -188,14 +363,17 @@ public class VTableViewScene extends VScene {
             });
             return text;
         });
-        homePageCol.setAlignment(Pos.CENTER);
+        emailCol.setAlignment(Pos.CENTER);
 
+        homePageCol.setAlignment(Pos.CENTER);
+        homePageCol.setMinWidth(600);
         birthdayCol.setAlignment(Pos.CENTER);
         birthdayCol.setComparator(String::compareTo);
 
         companyCol.setAlignment(Pos.CENTER);
 
         addressCol.setAlignment(Pos.CENTER);
+        addressCol.setMinWidth(600);
         //addressCol.setComparator(Comparator.comparing(data -> new StringBuilder(data.getAddresses().get(0).getStreetAddress())
         //        .append(data.getAddresses().get(0).getRegion()).append(data.getAddresses().get(0).getCountries().get(0)).toString()));
 
@@ -203,10 +381,9 @@ public class VTableViewScene extends VScene {
         //postalCodeCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getPostalCode()));
 
         remarkCol.setAlignment(Pos.CENTER);
-
+        remarkCol.setMaxWidth(800);
         //noinspection unchecked
         table.getColumns().addAll(choiceCol, nameCol, phoneCol, emailCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
-
 //        for (int i = 0; i < 10; ++i) {
 //            table.getItems().add(new Data());
 //
@@ -282,7 +459,7 @@ public class VTableViewScene extends VScene {
         return table;
     }
 
-    public VBox setContentPane(@NotNull VTableView<Data> table, Supplier<VSceneGroup> sceneGroupSup) {
+   /* public VBox setContentPane(@NotNull VTableView<Data> table, Supplier<VSceneGroup> sceneGroupSup) {
         var controlPane = new FusionPane(false) {{
             getNode().setPrefHeight(60);
         }};
@@ -313,7 +490,7 @@ public class VTableViewScene extends VScene {
                         Scene scene;
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
-                            ContactController.flag=ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
+                            ContactController.flag = ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
                             scene = new Scene(fxmlLoader.load());
                             PopupScene.fadeTransition(scene);
                         } catch (IOException ex) {
@@ -376,6 +553,37 @@ public class VTableViewScene extends VScene {
                     });
                     setPrefWidth(120);
                     setPrefHeight(40);
+                }},
+                new HPadding(10),
+                new FusionButton("Search") {{
+                    setOnAction(e -> {
+                        var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
+                        Label msgLabel = new ThemeLabel("Search Contact") {{
+                            FontManager.get().setFont(this, settings -> settings.setSize(20));
+                            setAlignment(Pos.CENTER);
+                        }};
+                        FXUtils.observeWidth(popUpScene.getContentPane(), msgLabel);
+                        msgLabel.setCenterShape(true);
+                        msgLabel.setLayoutY(100);
+                        var table = setTable();
+                        FXUtils.observeWidth(popUpScene.getContentPane(), table.getNode());
+                        var closeBtn = new FusionButton("Close") {{
+                            setLayoutX(300);
+                            setLayoutY(300);
+                            setPrefWidth(100);
+                            setPrefHeight(50);
+                        }};
+                        closeBtn.setOnAction(ee -> {
+                            sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
+                            FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
+                        });
+                        //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));设置背景图片
+                        popUpScene.getContentPane().getChildren().addAll(msgLabel, table.getNode(), closeBtn);
+                        sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
+                        FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));
+                    });
+                    setPrefWidth(120);
+                    setPrefHeight(40);
                 }}
         ));
 
@@ -386,7 +594,7 @@ public class VTableViewScene extends VScene {
         var contactLabel = new Label("all people") {{
             FontManager.get().setFont(this, settings -> settings.setSize(15));
         }};
-        FXUtils.observeWidthCenter(getContentPane(), contactLabel);
+        FXUtils.observeWidthCenter(controlPane.getContentPane(), contactLabel);
         var vbox = new VBox(
                 new ThemeLabel("address list") {{
                     FontManager.get().setFont(this, settings -> settings.setSize(20));
@@ -403,22 +611,26 @@ public class VTableViewScene extends VScene {
 
         allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
         vbox.getChildren().addAll(allContactBtn);
-
+        var hScrollPane = VScrollPane.makeHorizontalScrollPaneToManage(table);
+        hScrollPane.getNode().setPrefWidth(1000);
+        hScrollPane.getNode().setLayoutY(550);
         var hBox = new HBox(
-                table.getNode(),
+                hScrollPane.getNode(),
                 new HPadding(10),
                 menuPane.getNode()
         );
-        FXUtils.observeWidthCenter(getContentPane(), hBox);
+        //FXUtils.observeWidthCenter(controlPane.getContentPane(), hBox);
 
         var msgLabel = new ThemeLabel(
                 "Click the column name to sort the rows (some of them are sortable).\n" +
                         "Tips: try to sort by multiple columns, and try to hover on \"name\" cells, and try to drag the table:)"
         );
-        FXUtils.observeWidthCenter(controlPane.getContentPane(), msgLabel);
+        FXUtils.observeWidthCenter(getContentPane(), msgLabel);
         msgLabel.setLayoutY(40);
+        msgLabel.setAlignment(Pos.CENTER);
+        msgLabel.setFont(Font.font(20));
 
         return new VBox(msgLabel, controlPane.getNode(), hBox);
-    }
+    }*/
 
 }

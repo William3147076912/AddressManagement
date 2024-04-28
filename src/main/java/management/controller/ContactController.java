@@ -2,6 +2,7 @@ package management.controller;
 
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import ezvcard.VCard;
 import ezvcard.property.*;
 import io.vproxy.vfx.manager.font.FontManager;
 import io.vproxy.vfx.manager.font.FontUsage;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import management.Data;
 import management.MainPane;
+import management.VTableViewScene;
 import utils.ConstantSet;
 import utils.TUtils;
 
@@ -98,7 +100,7 @@ public class ContactController {
             if (name == null) {
                 SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空哦owo");
             } else {
-                Data person = new Data();
+                VCard person = new VCard();
                 person.addFormattedName(new FormattedName(name));
                 person.addTelephoneNumber(new Telephone(phone));
                 person.addEmail(email);
@@ -110,11 +112,14 @@ public class ContactController {
                     setPostalCode(postalCode);
                 }});
                 person.addNote(remark);
-                MainPane.addressBook.add(person);
+                Data vCardProperties = Data.vCardtoData(person);
+                MainPane.addressBook.add(vCardProperties);
+                VTableViewScene.table.getItems().add(vCardProperties);
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
+                SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了！");
             }
-        }else if(flag == ConstantSet.UPDATE_CONTACT){
+        } else if (flag == ConstantSet.UPDATE_CONTACT) {
 
         }
     }
