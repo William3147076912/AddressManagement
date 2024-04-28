@@ -17,7 +17,7 @@ public class Export {
         File file=new File(filename);
         try {
             file.createNewFile();
-            Path path= Paths.get("src/main/resources/vCard/"+filename);
+            Path path= Paths.get(filename);
             VCardWriter writer=new VCardWriter(path, VCardVersion.V4_0);
             for(Group group: ManageGroup.groups)
             {

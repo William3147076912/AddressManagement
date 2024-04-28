@@ -3,99 +3,288 @@ VERSION:4.0
 PRODID:ez-vcard 0.12.1
 KIND:group
 FN:ungroup
-MEMBER:21844375-bca6-4a90-a2af-cdcab292f6db
-MEMBER:40c3654b-c7e3-4963-a949-3a077add02bf
-MEMBER:2190404c-ff51-4132-a5c5-5e5e3a20f695
-MEMBER:1b31dff4-fb04-43c7-aee6-e6d25890ad0e
-MEMBER:47460de4-9933-4447-83a2-563e8afa6bf5
-MEMBER:05b6a4f5-a801-4625-9442-31fa925144c4
-MEMBER:2295b7a5-fd28-4c30-b5a6-1f7153d581c1
-MEMBER:838344ab-32e4-4cd7-9491-a504fcdbcfbf
-MEMBER:1a60bc41-1122-42b8-8177-19717197823f
-MEMBER:72ca98c7-28a5-4aa6-b47a-242e413ed936
-MEMBER:3bb948b2-1f76-4b9d-ad2f-329d3d9ff82a
-MEMBER:a6ace2b8-cdcf-4cf3-bffd-d7534c8e6552
-MEMBER:5fdd9e15-4a65-42c7-bc95-c29ab7c1c19c
-MEMBER:4ad44dcd-2f06-4f1a-af87-a3d6531f0096
-MEMBER:2e6ae727-10df-4dfc-8a79-f5aff8ca657b
-MEMBER:9f7a311c-3777-4b68-92a3-b02c07df5c5b
-MEMBER:ae3da529-e98d-4a76-b18a-07296709a150
-MEMBER:d5ac27f9-1242-4ddd-885d-8d48f642d67b
-MEMBER:fe3f6506-21d5-40c1-81af-2cb91470be56
-MEMBER:9c5cfa8a-0063-4504-8408-9ed081f908cf
-MEMBER:0863dafc-27d6-4e07-8893-36a34ae48b61
-MEMBER:964f1ca3-4bba-4bed-bab1-9cb168f32429
-MEMBER:2d554af7-b673-4af2-917d-d3344635d64c
-MEMBER:04b6c3a6-ccda-4b37-95e3-821514472f09
-MEMBER:03c081c1-aad5-469d-add9-52eb127daa36
-MEMBER:5f83f72f-ef19-479e-a8d1-57bdfedd5f44
-MEMBER:1bc710cc-e00e-4963-9f4c-b51f6a42c0d4
-MEMBER:13a51a9c-9ed1-474a-9fd1-549e67ee765d
-MEMBER:0af450cd-c30c-4c81-be6a-cf38fc9295f6
-MEMBER:7f4d519c-9672-41e8-ba3d-78f0d0f2b170
-MEMBER:b74cb170-73dc-4610-b77e-7b03b07b2348
-MEMBER:6a24ca3f-e77a-4c77-83e5-195dfd3ec92a
-MEMBER:e7d4ee72-f9c6-494d-a2e0-84da20025c8e
-MEMBER:a587d5bb-4514-4665-9a95-5c31475d7060
-MEMBER:a8c2523b-5766-48fb-b353-29666f2a7d1f
-MEMBER:19fd4f73-1e0e-4237-a17b-84bec672650f
-MEMBER:a5ca5fdd-bb76-4639-bf1d-f1b803b870a2
-MEMBER:ef355dc4-3cd1-445c-b829-ee46e535ffab
-MEMBER:c0a54dd2-3389-4814-94bc-7dacdff702b6
-MEMBER:447be1f9-ea17-4e28-b150-0c57ca593983
-MEMBER:1be62bdc-b394-4bed-a4bc-9972ce7f6c95
-MEMBER:51aea214-a781-4861-9fd8-73bd8a22f141
-MEMBER:f826636e-1422-43b4-9925-0eff29b9730d
-MEMBER:69fa859d-f740-440e-b5a4-8a421eb205ab
-MEMBER:6b580c69-01ed-4b19-80c5-d2a616c68a2c
-MEMBER:1dc05778-142a-427e-b0d5-9460b4eec639
-MEMBER:8d6c94c6-c359-47c4-a472-11fb51843631
-MEMBER:d9991525-a9e4-446d-b684-5897263c16a5
-MEMBER:8d866c18-a852-4ae2-9f26-1647a087f218
-MEMBER:18d07ddb-804c-43de-b84f-d1b161d92532
-MEMBER:4a479eb2-4e24-4043-9b27-39361bbce503
-MEMBER:f7d54389-c27d-4169-b33f-83b5205185b4
-MEMBER:9dd8e6e0-e95e-4e2c-91e1-718dcde666a5
-MEMBER:4504b616-e528-441b-b7f9-eb4e7acd469e
-MEMBER:26f3ec5d-6d52-4f2e-a739-471bd8a6c998
-MEMBER:5db1aabd-0ad4-471c-978e-fbe16ddbe39b
-MEMBER:6b32dfe4-6d84-431e-a5e0-faf2ac3b4ed2
-MEMBER:349766ad-6ada-4c97-8881-ec823dfe6a2d
-MEMBER:5c020837-894b-49cd-aa2c-bfb95c74ac29
-MEMBER:c3647f2f-f351-4887-868e-41d9933909e1
-MEMBER:abc83554-86d0-422c-b828-ead48fe93abb
-MEMBER:47b41eec-36b2-418b-bd4f-b9eef769be49
-MEMBER:f8d7d74d-a671-4f9c-a28a-1f21cfb6b731
-MEMBER:60ca7f71-46c6-4544-9431-2f20e7ee51d2
-MEMBER:ac8e7819-c8d5-4872-aa87-639cf370fac6
-MEMBER:2105c3b6-9e2d-4f89-9d76-e78b77dbab8a
-MEMBER:a471b0b7-c02b-40b2-b16a-bf007784489b
-MEMBER:65eda61c-4e02-40c5-b59a-9f8206d7318f
-MEMBER:b6a27654-f2ac-4ac9-83e9-34a8901e85c9
-MEMBER:62bdd74e-ce33-46b3-a86f-5f9e7929eb50
-MEMBER:edbc1f1e-9973-4395-8a3a-41a27237ffd0
-MEMBER:6755de43-9241-4e92-aaba-66452f631b59
-MEMBER:9d6e66bb-2ccc-461e-a712-8d0f0b6e6a71
-MEMBER:86c44a97-dab7-4c55-89e3-c9db56fa92e5
-MEMBER:cf8ea7d1-c9cb-484d-beba-7419e8b7fa6e
-MEMBER:e7ba7732-88fa-45cc-b908-f88babfc6ee4
-MEMBER:99e48e99-9717-4703-842c-8e3d338df0cc
-MEMBER:94d5dbfa-5e82-427f-a4e9-360ed3e8bac0
-MEMBER:8dd34b2e-efb8-4e50-83c8-12b55a979f4e
-MEMBER:8dadf63b-6968-475e-b742-4c343d426478
-MEMBER:012f7c70-6cb9-4f1e-9c3d-57a1a9b15b01
-MEMBER:88c1b255-4837-43d5-b401-4eb6ca3bf142
-MEMBER:15e50b31-cd61-4b01-8c1a-09b2c851da04
-MEMBER:e589803e-0339-465b-812d-fd19ff56d89b
-MEMBER:7ea936c1-220a-4849-a3ac-0b08d88dd214
-MEMBER:edc1e4dc-e8d6-4ff3-95f1-7584e55e4922
-MEMBER:25c4423e-ed00-44a1-b687-cf6e3d6f8697
-MEMBER:512e3050-bab7-461d-a797-588cea2d692d
-MEMBER:14a67945-667e-4f45-b33b-b9dc16f46a6a
-MEMBER:3d77c97f-b010-4e91-84cb-d6ba705d4852
-MEMBER:ccf1ad14-01e5-4292-a835-f41c0e668e10
-MEMBER:beff4fdb-c097-4653-b733-f26b2bef4071
-MEMBER:cba2da32-928d-40c3-b5f2-5d6cc6c4c3ee
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5d087509-2
+ a03-4259-a48e-d652779141bf ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f1acb61-e
+ 4d4-4eba-bf56-1cf6e9202374 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=39253238-b
+ a79-47a7-95a2-03b6a598b978 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=648cdbc7-8
+ ba4-4b37-b8e9-6415f19db099 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d8fdb47c-2
+ 2c5-4979-9f1c-0a62ebacb2d6 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f27e7bad-d
+ fd1-4dbf-842b-68c31f516baa ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4504580d-c
+ 015-42ec-907a-102de5372ae8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=8942a5bd-4
+ d2f-4eb4-894e-30fe564c6808 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4e941de4-1
+ fd0-4868-b16c-7189d8bf89ff ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=772c7493-d
+ b1a-4c3b-9222-8d64b4a4569f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=85d2cb35-f
+ f06-4eb3-a623-07609d479ac8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a2adcecd-e
+ b73-4f6c-b320-a2b0b4fcae6f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c38acfa0-4
+ 4b9-4b3d-a7f0-b3be0133fea1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d096aa22-8
+ 4cd-4197-b53c-12501fb66ae7 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c9544222-4
+ b55-4f54-9de1-22364582bde1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ff4c2851-5
+ 2e0-4a5b-beb8-a92b64f845e8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f157c370-9
+ 36b-42fc-afa9-1f11d4039760 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f6894e3-8
+ 09e-4923-b235-8991ba130c0d ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=e77f2a94-1
+ 037-4545-98c2-9c9d6aca2e73 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a4120a44-1
+ f80-48a7-b06b-2bc408a32ee8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f992ec3e-b
+ f24-4138-ad7e-0853e64fd04f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d65e7508-7
+ 122-41ce-94ca-a476c1d52e88 ]
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+PRODID:ez-vcard 0.12.1
+KIND:group
+FN:ungroup
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5d087509-2
+ a03-4259-a48e-d652779141bf ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f1acb61-e
+ 4d4-4eba-bf56-1cf6e9202374 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=39253238-b
+ a79-47a7-95a2-03b6a598b978 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=648cdbc7-8
+ ba4-4b37-b8e9-6415f19db099 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d8fdb47c-2
+ 2c5-4979-9f1c-0a62ebacb2d6 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f27e7bad-d
+ fd1-4dbf-842b-68c31f516baa ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4504580d-c
+ 015-42ec-907a-102de5372ae8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=8942a5bd-4
+ d2f-4eb4-894e-30fe564c6808 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4e941de4-1
+ fd0-4868-b16c-7189d8bf89ff ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=772c7493-d
+ b1a-4c3b-9222-8d64b4a4569f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=85d2cb35-f
+ f06-4eb3-a623-07609d479ac8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a2adcecd-e
+ b73-4f6c-b320-a2b0b4fcae6f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c38acfa0-4
+ 4b9-4b3d-a7f0-b3be0133fea1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d096aa22-8
+ 4cd-4197-b53c-12501fb66ae7 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c9544222-4
+ b55-4f54-9de1-22364582bde1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ff4c2851-5
+ 2e0-4a5b-beb8-a92b64f845e8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f157c370-9
+ 36b-42fc-afa9-1f11d4039760 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f6894e3-8
+ 09e-4923-b235-8991ba130c0d ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=e77f2a94-1
+ 037-4545-98c2-9c9d6aca2e73 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a4120a44-1
+ f80-48a7-b06b-2bc408a32ee8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f992ec3e-b
+ f24-4138-ad7e-0853e64fd04f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d65e7508-7
+ 122-41ce-94ca-a476c1d52e88 ]
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+PRODID:ez-vcard 0.12.1
+KIND:group
+FN:ungroup
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5d087509-2
+ a03-4259-a48e-d652779141bf ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f1acb61-e
+ 4d4-4eba-bf56-1cf6e9202374 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=39253238-b
+ a79-47a7-95a2-03b6a598b978 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=648cdbc7-8
+ ba4-4b37-b8e9-6415f19db099 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d8fdb47c-2
+ 2c5-4979-9f1c-0a62ebacb2d6 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f27e7bad-d
+ fd1-4dbf-842b-68c31f516baa ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4504580d-c
+ 015-42ec-907a-102de5372ae8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=8942a5bd-4
+ d2f-4eb4-894e-30fe564c6808 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4e941de4-1
+ fd0-4868-b16c-7189d8bf89ff ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=772c7493-d
+ b1a-4c3b-9222-8d64b4a4569f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=85d2cb35-f
+ f06-4eb3-a623-07609d479ac8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a2adcecd-e
+ b73-4f6c-b320-a2b0b4fcae6f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c38acfa0-4
+ 4b9-4b3d-a7f0-b3be0133fea1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d096aa22-8
+ 4cd-4197-b53c-12501fb66ae7 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c9544222-4
+ b55-4f54-9de1-22364582bde1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ff4c2851-5
+ 2e0-4a5b-beb8-a92b64f845e8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f157c370-9
+ 36b-42fc-afa9-1f11d4039760 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f6894e3-8
+ 09e-4923-b235-8991ba130c0d ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=e77f2a94-1
+ 037-4545-98c2-9c9d6aca2e73 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a4120a44-1
+ f80-48a7-b06b-2bc408a32ee8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f992ec3e-b
+ f24-4138-ad7e-0853e64fd04f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d65e7508-7
+ 122-41ce-94ca-a476c1d52e88 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5d087509-2
+ a03-4259-a48e-d652779141bf ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f1acb61-e
+ 4d4-4eba-bf56-1cf6e9202374 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=39253238-b
+ a79-47a7-95a2-03b6a598b978 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=648cdbc7-8
+ ba4-4b37-b8e9-6415f19db099 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d8fdb47c-2
+ 2c5-4979-9f1c-0a62ebacb2d6 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f27e7bad-d
+ fd1-4dbf-842b-68c31f516baa ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4504580d-c
+ 015-42ec-907a-102de5372ae8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=8942a5bd-4
+ d2f-4eb4-894e-30fe564c6808 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4e941de4-1
+ fd0-4868-b16c-7189d8bf89ff ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=772c7493-d
+ b1a-4c3b-9222-8d64b4a4569f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=85d2cb35-f
+ f06-4eb3-a623-07609d479ac8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a2adcecd-e
+ b73-4f6c-b320-a2b0b4fcae6f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c38acfa0-4
+ 4b9-4b3d-a7f0-b3be0133fea1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d096aa22-8
+ 4cd-4197-b53c-12501fb66ae7 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c9544222-4
+ b55-4f54-9de1-22364582bde1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ff4c2851-5
+ 2e0-4a5b-beb8-a92b64f845e8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f157c370-9
+ 36b-42fc-afa9-1f11d4039760 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f6894e3-8
+ 09e-4923-b235-8991ba130c0d ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=e77f2a94-1
+ 037-4545-98c2-9c9d6aca2e73 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a4120a44-1
+ f80-48a7-b06b-2bc408a32ee8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f992ec3e-b
+ f24-4138-ad7e-0853e64fd04f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d65e7508-7
+ 122-41ce-94ca-a476c1d52e88 ]
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+PRODID:ez-vcard 0.12.1
+KIND:group
+FN:ungroup
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5d087509-2
+ a03-4259-a48e-d652779141bf ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f1acb61-e
+ 4d4-4eba-bf56-1cf6e9202374 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=39253238-b
+ a79-47a7-95a2-03b6a598b978 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=648cdbc7-8
+ ba4-4b37-b8e9-6415f19db099 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d8fdb47c-2
+ 2c5-4979-9f1c-0a62ebacb2d6 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f27e7bad-d
+ fd1-4dbf-842b-68c31f516baa ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4504580d-c
+ 015-42ec-907a-102de5372ae8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=8942a5bd-4
+ d2f-4eb4-894e-30fe564c6808 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4e941de4-1
+ fd0-4868-b16c-7189d8bf89ff ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=772c7493-d
+ b1a-4c3b-9222-8d64b4a4569f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=85d2cb35-f
+ f06-4eb3-a623-07609d479ac8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a2adcecd-e
+ b73-4f6c-b320-a2b0b4fcae6f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c38acfa0-4
+ 4b9-4b3d-a7f0-b3be0133fea1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d096aa22-8
+ 4cd-4197-b53c-12501fb66ae7 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c9544222-4
+ b55-4f54-9de1-22364582bde1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ff4c2851-5
+ 2e0-4a5b-beb8-a92b64f845e8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f157c370-9
+ 36b-42fc-afa9-1f11d4039760 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f6894e3-8
+ 09e-4923-b235-8991ba130c0d ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=e77f2a94-1
+ 037-4545-98c2-9c9d6aca2e73 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a4120a44-1
+ f80-48a7-b06b-2bc408a32ee8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f992ec3e-b
+ f24-4138-ad7e-0853e64fd04f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d65e7508-7
+ 122-41ce-94ca-a476c1d52e88 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5d087509-2
+ a03-4259-a48e-d652779141bf ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f1acb61-e
+ 4d4-4eba-bf56-1cf6e9202374 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=39253238-b
+ a79-47a7-95a2-03b6a598b978 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=648cdbc7-8
+ ba4-4b37-b8e9-6415f19db099 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d8fdb47c-2
+ 2c5-4979-9f1c-0a62ebacb2d6 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f27e7bad-d
+ fd1-4dbf-842b-68c31f516baa ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4504580d-c
+ 015-42ec-907a-102de5372ae8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=8942a5bd-4
+ d2f-4eb4-894e-30fe564c6808 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4e941de4-1
+ fd0-4868-b16c-7189d8bf89ff ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=772c7493-d
+ b1a-4c3b-9222-8d64b4a4569f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=85d2cb35-f
+ f06-4eb3-a623-07609d479ac8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a2adcecd-e
+ b73-4f6c-b320-a2b0b4fcae6f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c38acfa0-4
+ 4b9-4b3d-a7f0-b3be0133fea1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d096aa22-8
+ 4cd-4197-b53c-12501fb66ae7 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=c9544222-4
+ b55-4f54-9de1-22364582bde1 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ff4c2851-5
+ 2e0-4a5b-beb8-a92b64f845e8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f157c370-9
+ 36b-42fc-afa9-1f11d4039760 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=6f6894e3-8
+ 09e-4923-b235-8991ba130c0d ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=e77f2a94-1
+ 037-4545-98c2-9c9d6aca2e73 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=a4120a44-1
+ f80-48a7-b06b-2bc408a32ee8 ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f992ec3e-b
+ f24-4138-ad7e-0853e64fd04f ]
+MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=d65e7508-7
+ 122-41ce-94ca-a476c1d52e88 ]
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
@@ -103,181 +292,181 @@ PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
 TEL;TYPE=CELL:137 2353 6940
 FN:556
-UID:36226974-810e-494a-9d67-a6e1a5afd634
+UID:5d087509-2a03-4259-a48e-d652779141bf
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:607331d5-e132-4334-9cc7-fd177eeffc67
 TEL;TYPE=CELL:137 2645 1295
 FN:558
+UID:6f1acb61-e4d4-4eba-bf56-1cf6e9202374
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:d5c3f5d8-3c28-4ddc-b1b6-0fa705d3c4a4
 TEL;TYPE=CELL:158 1681 2359
 FN:559
+UID:39253238-ba79-47a7-95a2-03b6a598b978
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:fa4348af-b604-4a92-8f40-ed6d60f96271
 TEL;TYPE=CELL:134 3383 7910
 FN:560
+UID:648cdbc7-8ba4-4b37-b8e9-6415f19db099
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:38d38dd7-87c3-4a36-b23d-c671b21f1eed
 TEL;TYPE=CELL:13717325911
 FN:本机号码
+UID:d8fdb47c-22c5-4979-9f1c-0a62ebacb2d6
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:07dcbe5d-a050-4ee7-8492-7e83064b25f5
 TEL;TYPE=CELL:185 7874 7406
 FN:方某某
+UID:f27e7bad-dfd1-4dbf-842b-68c31f516baa
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:dad6be7d-5679-4b41-aada-08f35237c42f
 TEL;TYPE=CELL:178 1862 0062
 FN:浩铭
+UID:4504580d-c015-42ec-907a-102de5372ae8
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
 ADR;TYPE=WORK;CHARSET=UTF-8:;;深圳市龙岗区坂田华为基地
-UID:db712f09-2f36-4b91-810f-a17e0cfbab44
 TEL;TYPE=CELL:950800
 FN:华为消费者服务热线
 EMAIL;TYPE=HOME:mobile@huawei.com
+UID:8942a5bd-4d2f-4eb4-894e-30fe564c6808
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:29375026-d19e-457a-8e34-5a5c6d300899
 TEL;TYPE=CELL:553
 FN:杰
+UID:4e941de4-1fd0-4868-b16c-7189d8bf89ff
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:f0f24c9b-b7f3-42b3-8771-4099e225efc1
 TEL;TYPE=CELL:137 2459 5740
 FN:杰
+UID:772c7493-db1a-4c3b-9222-8d64b4a4569f
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:649d1a4b-8814-464a-9b20-9c643639d271
 TEL;TYPE=CELL:132 0255 2372
 FN:快递送餐
 ORG;CHARSET=UTF-8:邮政
+UID:85d2cb35-ff06-4eb3-a623-07609d479ac8
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:2a74d15a-da0a-4c7f-bb73-36eb832ffc94
 TEL;TYPE=CELL:135 4394 9848
 FN:李号码
+UID:a2adcecd-eb73-4f6c-b320-a2b0b4fcae6f
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:a22c7b7e-8bbb-49b1-a69a-3647c5a48de8
 TEL;TYPE=CELL:137 9015 2511
 FN:林茂
+UID:c38acfa0-44b9-4b3d-a7f0-b3be0133fea1
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:9d6f3afc-38ca-4019-b9cc-2b2a60f55000
 TEL;TYPE=CELL:198 2052 8299
 FN:林润琦
+UID:d096aa22-84cd-4197-b53c-12501fb66ae7
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:a77ea19d-fb18-4615-ab66-1b32026d33a5
 TEL;TYPE=CELL:559
 FN:妈
+UID:c9544222-4b55-4f54-9de1-22364582bde1
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:92af3cec-b803-4721-bd5e-fe8073657d12
 TEL;TYPE=CELL:135 8028 3823
 FN:王纯
 NOTE;CHARSET=UTF-8:班主任
+UID:ff4c2851-52e0-4a5b-beb8-a92b64f845e8
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:abf480aa-deff-4b7f-ba87-7cf056ca023b
 TEL;TYPE=CELL:135 8012 7101
 FN:王庆伟
 NOTE;CHARSET=UTF-8:高一上学期
+UID:f157c370-936b-42fc-afa9-1f11d4039760
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:96e85153-18ed-45e4-a2e2-fe583255e63b
 TEL;TYPE=CELL:175 2063 1571
 TEL;TYPE=CELL:137 6059 1052
 FN:文煜
+UID:6f6894e3-809e-4923-b235-8991ba130c0d
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:ddebc7b0-f71e-44c3-a331-7444c1200b41
 TEL;TYPE=CELL:137 2448 0979
 FN:叶
+UID:e77f2a94-1037-4545-98c2-9c9d6aca2e73
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:31f86dce-4fe2-45d6-a8d9-20764d89c69e
 TEL;TYPE=CELL:159 9252 1013
 FN:郑医生
 ORG;CHARSET=UTF-8:郑林口腔
+UID:a4120a44-1f80-48a7-b06b-2bc408a32ee8
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:312e2d7c-5114-4ec1-99e9-f3d175a7a8de
 TEL;TYPE=CELL:554
 TEL;TYPE=CELL:137 9485 7071
 FN:枝
+UID:f992ec3e-bf24-4138-ad7e-0853e64fd04f
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
 ADR:;;二仙桥
-UID:d51a08df-b580-4acd-b570-0dbf5a27ceae
 TEL;TYPE=CELL:1008611
 FN:中国移动话费查询
+UID:d65e7508-7122-41ce-94ca-a476c1d52e88
 END:VCARD

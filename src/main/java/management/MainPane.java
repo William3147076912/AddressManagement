@@ -23,7 +23,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.Export;
+import utils.Import;
 import utils.MyImageManager;
+import vjson.JSON;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,7 +49,8 @@ public class MainPane extends Application {
     private VSceneGroup sceneGroup;
     public static AddressBook addressBook;
     public static ArrayList<VCard> groups = new ArrayList<>();
-    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
+//    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
+    public String filepath="src/main/resources/vCard/00001.vcf";
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -55,84 +59,7 @@ public class MainPane extends Application {
     public void init() throws Exception {
         super.init();
         addressBook = new AddressBook();
-        VCardReader reader = new VCardReader(file);
-
-//        VCard un=new VCard();
-//        Kind kind=Kind.group();
-//        un.setKind(kind);
-//        un.setFormattedName("ungroup");
-
-        try {
-            Data person;
-            VCard temp;
-
-            while (  (temp=reader.readNext()) != null) {
-                if(temp.getKind().isIndividual())
-                {
-                    person =Data.vCardtoData(temp);
-                    addressBook.add(person);
-
-                    if(person.getUid()==null)
-                    {
-                        Uid uid = new Uid(UUID.randomUUID().toString());
-                        person.setUid(uid);
-                    }
-
-//                System.out.println(person.getUid().getValue());
-//                Member member=new Member(person.getUid().getValue());
-//                un.addMember(member);
-
-                    List<Photo> photoList = person.getPhotos();
-                    if (!photoList.isEmpty()) {
-                        Photo photo;
-                        for (int i = 0; i < photoList.size(); i++) {
-                            photo = photoList.get(i);
-                            byte[] data = photo.getData();
-                            String filepath = "src/main/resources/vCard/" + person.getFormattedName().getValue() + i + ".jpg";
-                            File file1 = new File(filepath);
-                            file1.createNewFile();
-                            FileOutputStream fos = new FileOutputStream(file1);
-                            fos.write(data);
-                            fos.close();
-                        }
-
-                    }
-                }
-                else if(temp.getKind().isGroup())
-                {
-                    groups.add(temp);
-                }
-
-            }
-        } finally {
-            reader.close();
-        }
-
-//        File file2=new File(String.valueOf(groupfile));
-//        file2.createNewFile();
-//        VCardWriter vCardWriter=new VCardWriter(groupfile,VCardVersion.V4_0);
-//        vCardWriter.write(un);
-//        vCardWriter.close();
-
-        ArrayList<Data> allperson=addressBook.getAll();
-        for(VCard onegroup: groups)
-        {
-            List<Member> members=onegroup.getMembers();
-            Group group1=new Group(onegroup.getFormattedName().getValue());
-            for (Member member:members)
-            {
-                for(Data person:allperson)
-                {
-                    if(person.getUid().getValue() == member.getValue())
-                    {
-                        group1.addmember(person);
-                    }
-                }
-
-            }
-            ManageGroup.addgroup(group1);
-        }
-
+        Import.importVcard(filepath);
     }
 
     @Override
@@ -143,17 +70,7 @@ public class MainPane extends Application {
         var stage = new VStage(primaryStage) {
             @Override
             public void close() {
-                try {
-                    VCardWriter vCardWriter=new VCardWriter(file, VCardVersion.V3_0);
-                    ArrayList<Data> PersonList= addressBook.getAll();
-                    for(Data person:PersonList)
-                    {
-                        vCardWriter.write(person);
-                    }
-                    vCardWriter.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                Export.export(filepath);
                 super.close();
                 TaskManager.get().terminate();
                 //GlobalScreenUtils.unregister();
