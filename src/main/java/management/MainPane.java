@@ -50,7 +50,7 @@ public class MainPane extends Application {
     public static AddressBook addressBook;
     public static ArrayList<VCard> groups = new ArrayList<>();
 //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
-    public String filepath="src/main/resources/vCard/00001.vcf";
+    public String filepath="src/main/resources/vCard/sample.vcf";
     public static void main(String[] args) {
         Application.launch(args);
     }

@@ -90,12 +90,12 @@ public class ContactController {
             String phone = phoneField.getText();
             String email = emailField.getText();
             String homepage = homepageField.getText();
-            String birthday = birthdayField.getValue().toString();
+            LocalDate birthday = birthdayField.getValue();
             String company = companyField.getText();
             String address = addressField.getText();
             String postalCode = postalCodeField.getText();
             String remark = remarkField.getText();
-            if (name.isEmpty()) {
+            if (name == null) {
                 SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空哦owo");
             } else {
                 Data person = new Data();
@@ -103,7 +103,7 @@ public class ContactController {
                 person.addTelephoneNumber(new Telephone(phone));
                 person.addEmail(email);
                 person.addUrl(new Url(homepage));
-                person.setBirthday(LocalDate.parse(birthday));
+                person.setBirthday(birthday);
                 person.setOrganization(company);
                 person.addAddress(new Address() {{
                     setStreetAddress(address);
@@ -114,6 +114,8 @@ public class ContactController {
                 Stage stage = (Stage) pane.getScene().getWindow();
                 stage.close();
             }
+        }else if(flag == ConstantSet.UPDATE_CONTACT){
+
         }
     }
 
