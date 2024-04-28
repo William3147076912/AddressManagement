@@ -7,6 +7,7 @@ import ezvcard.property.Member;
 import ezvcard.property.Photo;
 import ezvcard.property.Uid;
 import management.*;
+import org.apache.commons.math3.stat.inference.GTest;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,6 +57,12 @@ public class Import {
                 }
                 else if(temp.getKind().isGroup())
                 {
+//                    VCard group=new VCard();
+//                    Kind kind=Kind.group();
+//                    group.setKind(kind);
+                    String group;
+                    group= temp.getMembers().get(0).getValue();
+//                    VCard newd=group.getAgent().getVCard();
                     MainPane.groups.add(temp);
                     hasGroup=true;
                 }
@@ -68,16 +75,16 @@ public class Import {
                 Kind kind= Kind.group();
                 un.setKind(kind);
                 un.setFormattedName("ungroup");
-                Group group=new Group(un.getFormattedName().getValue());
+//                Group group=new Group(un.getFormattedName().getValue());
                 //System.out.println(person.getUid().getValue());
                 for (Data person: MainPane.addressBook.getAll())
                 {
                     Member member=new Member(person.getUid().getValue());
                     un.addMember(member);
-                    group.addmember(person);
+//                    group.addmember(person);
                 }
                 MainPane.groups.add(un);
-                ManageGroup.addgroup(group);
+//                ManageGroup.addgroup(group);
             }//如果新导入的文件没有分组信息，则将新添加的联系人放入"ungroup"分组
             else if(!hasGroup)
             {
@@ -106,39 +113,38 @@ public class Import {
                     un=agroup;
                 }
 
-                Group group=new Group(un.getFormattedName().getValue());
+//                Group group=new Group(un.getFormattedName().getValue());
                 //System.out.println(person.getUid().getValue());
                 for (Data person: peopleToAdd)
                 {
                     Member member=new Member(person.getUid().getValue());
                     un.addMember(member);
-                    group.addmember(person);
+//                    group.addmember(person);
                 }
                 MainPane.groups.add(un);
-                ManageGroup.addgroup(group);
-            }else
-            {
-                ArrayList<Data> allperson=MainPane.addressBook.getAll();
-                for(VCard onegroup: MainPane.groups)
-                {
-                    List<Member> members=onegroup.getMembers();
-                    Group group1=new Group(onegroup.getFormattedName().getValue());
-                    for (Member member:members)
-                    {
-                        for(Data person:allperson)
-                        {
-                            if(person.getUid().getValue() == member.getValue())
-                            {
-                                group1.addmember(person);
-                            }
-                        }
-
-                    }
-                    ManageGroup.addgroup(group1);
-                }
+//                ManageGroup.addgroup(group);
             }
             reader.close();
         }
+    ArrayList<Data> allperson=MainPane.addressBook.getAll();
+        for(VCard onegroup: MainPane.groups)
+    {
+        List<Member> members=onegroup.getMembers();
+        Group group1=new Group(onegroup.getFormattedName().getValue());
+        for (Member member:members)
+        {
+            for(Data person:allperson)
+            {
+                System.out.println(person.getUid().getValue());
+                System.out.println(member.getValue());
+                if(person.getUid().getValue().equals(member.getValue()) )
+                {
+                    group1.addmember(person);
+                }
+            }
 
+        }
+        ManageGroup.addgroup(group1);
+    }
     }
 }
