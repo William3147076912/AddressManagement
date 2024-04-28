@@ -30,7 +30,7 @@ public class Group {
     {
         Member member;
 //        Telephone telephone=data.getTelephoneNumbers().get(0);
-        member = new Member(data.getUid().toString());
+        member = new Member(data.getUid().getValue());
         this.group.addMember(member);
         this.groupMember.add(data);
     }

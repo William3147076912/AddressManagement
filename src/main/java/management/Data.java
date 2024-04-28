@@ -43,12 +43,13 @@ public class Data extends VCard {
     public static Data vCardtoData(VCard vCard) {
 
         Data person = new Data();
-
 /*       person.type = ThreadLocalRandom.current().nextBoolean() ? "classic" : "new";
         person. bandwidth = ThreadLocalRandom.current().nextInt(10) * 100 + 100;
         person. createTime = System.currentTimeMillis();*/
 //        Uid uid = new Uid(UUID.randomUUID().toString());
 //        person.setUid(uid);
+        Uid uid=vCard.getUid();
+        person.setUid(uid);
         for (Address address : vCard.getAddresses()) {
             person.addAddress(address);
         }
