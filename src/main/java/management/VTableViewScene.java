@@ -22,16 +22,14 @@ import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import io.vproxy.vfx.util.MiscUtils;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -52,10 +50,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
@@ -253,7 +248,58 @@ public class VTableViewScene extends VScene {
                         searchTable.getColumns().get(0).setPrefWidth(100);//重新设置nameCol的宽度
                         searchTable.getNode().setPrefHeight(500);
                         //从table中取数据放入table中
-                        searchTable.setItems(table.getItems());
+                        //searchTable.setItems(table.getItems());
+                        // 创建 TableView 的数据源
+                        List<Data> items = table.getItems();
+                        searchTable.setItems(items);
+                        /*// 创建 TableColumn
+                        //column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+                        // 表示创建了一个 SimpleStringProperty 对象的值工厂。这个值工厂会将每个单元格的数据作为参数传入，并将其作为 SimpleStringProperty 的值。
+                        // 这样，每个单元格将显示一个字符串，该字符串的值与该单元格中的数据相同。
+                        TableColumn<String, String> column = new TableColumn<>("Data");
+                        column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+                        // 将 TableColumn 添加到 TableView
+                        tableView.getColumns().add(column);*/
+
+
+                        // 将 TextField 的文本属性绑定到 TableView 的数据源
+                        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                            if (!newValue.isEmpty()) {
+                                //System.out.println("clear！");
+                                searchTable.getItems().removeAll(items);
+                                String text = searchField.getText();
+                                for (var data : items) {
+                                    // 使用正则表达式检查输入框是否含有数字
+                                    if (searchField.getText().matches(".*\\d.*")) {
+                                        if (!data.getTelephoneNumbers().isEmpty() && data.getTelephoneNumbers().get(0).getText().contains(text)) {//根据手机号
+                                            searchTable.getItems().add(data);
+                                        } else if (!data.getEmails().isEmpty() && data.getEmails().get(0).getValue().contains(text)) {//根据邮箱
+                                            searchTable.getItems().add(data);
+                                        } else if (data.getBirthday() != null && data.getBirthday().getDate().toString().contains(text)) {//根据生日
+                                            searchTable.getItems().add(data);
+                                        } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getPostalCode().contains(text)) {//根据邮编
+                                            searchTable.getItems().add(data);
+                                        } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress().matches(text)) {//根据地址（防止含有数字的地址）
+                                            searchTable.getItems().add(data);
+                                        }
+                                    } else if (data.getFormattedName().getValue().contains(text)) {//根据名字
+                                        searchTable.getItems().add(data);
+                                    } else if (Pinyin.getPinYin(data.getFormattedName().getValue()).contains(text)) {//根据拼音
+                                        searchTable.getItems().add(data);
+                                    } else if (!Objects.requireNonNull(Pinyin.getInitialConsonant(data.getFormattedName().getValue())).isEmpty()
+                                            && Objects.requireNonNull(Pinyin.getInitialConsonant(data.getFormattedName().getValue())).contains(text)) {//根据名字的声母
+                                        searchTable.getItems().add(data);
+                                    } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress().matches(text)) {//根据地址
+                                        searchTable.getItems().add(data);
+                                    } else if (!data.getOrganizations().isEmpty() && data.getOrganizations().get(0).getValues().get(0).matches(text)) {//根据公司
+                                        searchTable.getItems().add(data);
+                                    }
+                                }
+                            } else {
+                                searchTable.getItems().removeAll(items);
+                                searchTable.setItems(items);
+                            }
+                        });
 
                         var hScrollPane = VScrollPane.makeHorizontalScrollPaneToManage(searchTable);
                         hScrollPane.getNode().setPrefWidth(600);
@@ -328,7 +374,7 @@ public class VTableViewScene extends VScene {
         var phoneCol = new VTableColumn<Data, String>("phone", data -> data.getTelephoneNumbers().isEmpty() ? "" : data.getTelephoneNumbers().get(0).getText());
         var emailCol = new VTableColumn<Data, String>("email", data -> data.getEmails().isEmpty() ? "" : data.getEmails().get(0).getValue());
         var homePageCol = new VTableColumn<Data, String>("homePage", data -> data.getUrls().isEmpty() ? "" : data.getUrls().get(0).getValue());
-        var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getText());
+        var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getDate().toString());
         var companyCol = new VTableColumn<Data, String>("company", data -> data.getOrganizations().isEmpty() ? "" : data.getOrganizations().get(0).getValues().get(0));
         var addressCol = new VTableColumn<Data, String>("address", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getStreetAddress());
         var postalCodeCol = new VTableColumn<Data, String>("postalCode", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getPostalCode());
