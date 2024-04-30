@@ -3,6 +3,7 @@ package management;
 import ezvcard.VCard;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 数组+链式存储的存储结构
@@ -63,7 +64,11 @@ public class AddressBook {
         headNode.setNumberOfLinked(headNode.getNumberOfLinked() + 1);//该链表首结点记录存储联系人数目的变量加1
     }
 
-
+    public void addAll(List<Data> people) {
+        for (var person : people) {
+            add(person);
+        }
+    }
 
     /**
      * 为了避免相同name存在而错误删除,另外用第一个phoneNumber作为区别
@@ -131,6 +136,7 @@ public class AddressBook {
             pointer.setNext(node);
         }
     }
+
 
     /**
      * 为了避免因存在相同姓名的联系人而导致的查询信息错误

@@ -24,7 +24,7 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/group.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         PopupScene.fadeTransition(scene);//实现界面淡入淡出
         scene.setFill(Color.TRANSPARENT);//背景透明化

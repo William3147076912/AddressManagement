@@ -59,7 +59,8 @@ import java.util.function.Supplier;
  */
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
-    public static List<FusionButton> groupList = new ArrayList<>();//组列表
+    public static VBox groupList;//组列表
+    public static List<Data> peopleList = new ArrayList<>();
     public static VTableView<Data> table;
     public static VTableView<Data> searchTable;
 
@@ -71,11 +72,23 @@ public class VTableViewScene extends VScene {
         setPrefHeight(50);
     }};
 
-    public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) throws IOException {
+    public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
+
+        //将数据结构里的数据copy一份到peopleList
+        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();//取联系人链表数组的地址
+        for (int i = 0; i < 27; i++) {//遍历该链表数组
+            AddressBookHeadNode headNode = headNodes[i];
+            AddressBookNode bookNode = headNode.getFirstNode();
+            while (bookNode != null) {
+                peopleList.add(bookNode.getData());
+                bookNode = bookNode.getNext();
+            }
+        }
+
         var msgLabel = new ThemeLabel(
-                "             Click the column name to sort the rows (name, phoneNumber and birthday are sortable).\n" +
+                "             Click the column name to sort the rows (name, phoneNumber and birthday can be sortable).\n" +
                         "Tips: try to sort by multiple columns, hover on \"name\" cells, drag the table, and click certain line twice:)"
         );
         FXUtils.observeWidthCenter(getContentPane(), msgLabel);
@@ -84,16 +97,7 @@ public class VTableViewScene extends VScene {
         msgLabel.setFont(Font.font(20));
         FXUtils.observeWidthCenter(getContentPane(), msgLabel);//组件水平居中
         table = setTable();
-        //从所有联系人所在的数据结构中取数据放入table中
-        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();//取联系人链表数组的地址
-        for (int i = 0; i < 27; i++) {//遍历该链表数组
-            AddressBookHeadNode headNode = headNodes[i];
-            AddressBookNode bookNode = headNode.getFirstNode();
-            while (bookNode != null) {
-                table.getItems().add(bookNode.getData());
-                bookNode = bookNode.getNext();
-            }
-        }
+        table.getItems().addAll(peopleList);
         /*// 监听table中数据的变化  失败品，有待研究
         table.getNode().getProperties().addListener(new MapChangeListener<Object, Object>() {
             @Override
@@ -225,6 +229,33 @@ public class VTableViewScene extends VScene {
                     setPrefHeight(40);
                 }},
                 new HPadding(10),
+                new FusionButton("Create Group") {
+                    {
+                        setOnAction(e -> {
+                            //打开新建分组窗口
+                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            Scene scene;
+                            try {
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/group.fxml"));
+                                scene = new Scene(fxmlLoader.load());
+                                PopupScene.fadeTransition(scene);//添加淡入淡出的效果
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            scene.setFill(Color.TRANSPARENT);//舞台透明
+                            new Stage() {{
+                                setScene(scene);
+                                initStyle(StageStyle.TRANSPARENT);//窗口透明
+                                initModality(Modality.APPLICATION_MODAL);
+                                show();
+                            }};
+
+                        });
+                        setPrefWidth(200);
+                        setPrefHeight(40);
+                    }
+                },
+                new HPadding(50),
                 new FusionButton("Search") {{
                     setOnAction(e -> {
                         var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
@@ -244,14 +275,13 @@ public class VTableViewScene extends VScene {
                         FXUtils.observeWidthCenter(popUpScene.getContentPane(), searchField);
 
                         searchTable = setTable();
-                        searchTable.getColumns().remove(0);
+                        searchTable.getColumns().remove(0);//删掉选中按钮列
                         searchTable.getColumns().get(0).setPrefWidth(100);//重新设置nameCol的宽度
                         searchTable.getNode().setPrefHeight(500);
                         //从table中取数据放入table中
                         //searchTable.setItems(table.getItems());
                         // 创建 TableView 的数据源
-                        List<Data> items = table.getItems();
-                        searchTable.setItems(items);
+                        searchTable.setItems(peopleList);
                         /*// 创建 TableColumn
                         //column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
                         // 表示创建了一个 SimpleStringProperty 对象的值工厂。这个值工厂会将每个单元格的数据作为参数传入，并将其作为 SimpleStringProperty 的值。
@@ -266,9 +296,9 @@ public class VTableViewScene extends VScene {
                         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
                             if (!newValue.isEmpty()) {
                                 //System.out.println("clear！");
-                                searchTable.getItems().removeAll(items);
+                                searchTable.getItems().removeAll(peopleList);
                                 String text = searchField.getText();
-                                for (var data : items) {
+                                for (var data : peopleList) {
                                     // 使用正则表达式检查输入框是否含有数字
                                     if (searchField.getText().matches(".*\\d.*")) {
                                         if (!data.getTelephoneNumbers().isEmpty() && data.getTelephoneNumbers().get(0).getText().contains(text)) {//根据手机号
@@ -296,8 +326,8 @@ public class VTableViewScene extends VScene {
                                     }
                                 }
                             } else {
-                                searchTable.getItems().removeAll(items);
-                                searchTable.setItems(items);
+                                searchTable.getItems().removeAll(peopleList);
+                                searchTable.setItems(peopleList);
                             }
                         });
 
@@ -337,7 +367,7 @@ public class VTableViewScene extends VScene {
             FontManager.get().setFont(this, settings -> settings.setSize(15));
         }};
         FXUtils.observeWidthCenter(menuPane.getNode(), contactLabel);
-        var vbox = new VBox(
+         groupList = new VBox(
                 new ThemeLabel("address list") {{
                     FontManager.get().setFont(this, settings -> settings.setSize(20));
                     setAlignment(Pos.CENTER_RIGHT);
@@ -349,10 +379,10 @@ public class VTableViewScene extends VScene {
                 }},
                 new ThemeLabel("----------------------")
         );
-        menuPane.setContent(vbox);
+        menuPane.setContent(groupList);
 
         allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
-        vbox.getChildren().addAll(allContactBtn);
+        groupList.getChildren().addAll(allContactBtn);
 
         var hBox = new HBox(
                 hScrollPane.getNode(),
@@ -494,7 +524,7 @@ public class VTableViewScene extends VScene {
                     var phone = selectedItem.getTelephoneNumbers().isEmpty() ? null : selectedItem.getTelephoneNumbers().get(0).getText();
                     var email = selectedItem.getEmails().isEmpty() ? null : selectedItem.getEmails().get(0).getValue();
                     var homePage = selectedItem.getUrls().isEmpty() ? null : selectedItem.getUrls().get(0).getValue();
-                    var birthday = selectedItem.getBirthday() == null ? null : selectedItem.getBirthday().getText();
+                    var birthday = selectedItem.getBirthday() == null ? null : selectedItem.getBirthday().getDate().toString();
                     var company = selectedItem.getOrganizations().isEmpty() ? null : selectedItem.getOrganizations().get(0).getValues().get(0);
                     var address = selectedItem.getAddresses().isEmpty() ? null : selectedItem.getAddresses().get(0).getStreetAddress();
                     var postalCode = selectedItem.getAddresses().isEmpty() ? null : selectedItem.getAddresses().get(0).getPostalCode();
@@ -514,7 +544,7 @@ public class VTableViewScene extends VScene {
                     emailField.setText(email);
                     homepageField.setText(homePage);
                     if (birthday != null) {
-                        birthdayField.setValue(LocalDate.parse(birthday, TUtils.formatter));
+                        birthdayField.setValue(LocalDate.parse(birthday));
                     }
                     companyField.setText(company);
                     addressField.setText(address);
