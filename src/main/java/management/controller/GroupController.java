@@ -3,6 +3,8 @@ package management.controller;
 import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import com.leewyatt.rxcontrols.event.RXActionEvent;
+import io.vproxy.vfx.ui.alert.SimpleAlert;
+import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.table.VTableColumn;
 import io.vproxy.vfx.ui.table.VTableView;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -52,7 +55,18 @@ public class GroupController {
 
     @FXML
     void save(MouseEvent event) {
-
+        if (groupName.getText().isEmpty()) {
+            SimpleAlert.show(Alert.AlertType.ERROR, "组名不能为空（♯▼皿▼）");
+        } else if (exitingContacts.getItems().isEmpty()) {
+            SimpleAlert.show(Alert.AlertType.ERROR, "你在创建什么ヽ(#ﾟДﾟ)ﾉ┌┛Σ(ノ´Д`)ノ");
+        } else {
+            //创建新建组的按钮
+            VTableViewScene.groupList.getChildren().add(new FusionButton(groupName.getText()));
+            //成功界面展示
+            Stage stage = (Stage) pane.getScene().getWindow();
+            stage.close();
+            SimpleAlert.show(Alert.AlertType.INFORMATION,"Congratulations，添加成功了☆*:.｡. o(≧▽≦)o .｡.:*☆");
+        }
     }
 
     @FXML
@@ -95,7 +109,6 @@ public class GroupController {
             getColumns().addAll(name2, phone2);
         }};
         contacts.getItems().addAll(peopleList);
-        //exitingContacts.getItems().addAll(peopleList);
         pane.getChildren().addAll(contacts.getNode(), exitingContacts.getNode());
         // 将 TextField 的文本属性绑定到 TableView 的数据源
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -149,7 +162,9 @@ public class GroupController {
         removeContacts.getScrollPane().getNode().setOnMouseClicked(event -> {
             //取得该行联系人
             Data selectedItem = removeContacts.getSelectedItem();
-            if (selectedItem == null) {return;}//如果为空则跳过
+            if (selectedItem == null) {
+                return;
+            }//如果为空则跳过
             removeContacts.getItems().remove(selectedItem);
             try {
                 //由于此事件与上面的动态绑定构成了多线程，且exitingContacts，由于所用列表使用了arraylist是一个线程不安全数组

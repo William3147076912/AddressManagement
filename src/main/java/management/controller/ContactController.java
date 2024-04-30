@@ -139,9 +139,6 @@ public class ContactController {
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.close();
             SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了(* ^ ω ^)");
-
-        } else if (flag == ConstantSet.UPDATE_CONTACT) {
-
         }
     }
 

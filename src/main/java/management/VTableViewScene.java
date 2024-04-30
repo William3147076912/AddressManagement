@@ -380,9 +380,11 @@ public class VTableViewScene extends VScene {
                 new ThemeLabel("----------------------")
         );
         menuPane.setContent(groupList);
-
         allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
         groupList.getChildren().addAll(allContactBtn);
+        allContactBtn.setOnMouseClicked(event->{
+            //sceneGroupSup.sj
+        });
 
         var hBox = new HBox(
                 hScrollPane.getNode(),

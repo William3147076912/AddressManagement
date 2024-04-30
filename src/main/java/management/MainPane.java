@@ -46,7 +46,7 @@ import java.util.*;
  */
 public class MainPane extends Application {
     private final List<VScene> mainScenes = new ArrayList<>();
-    private VSceneGroup sceneGroup;
+    public static VSceneGroup sceneGroup;
     public static AddressBook addressBook;
     public static ArrayList<VCard> groups = new ArrayList<>();
 //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
