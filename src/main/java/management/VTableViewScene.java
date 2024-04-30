@@ -60,16 +60,12 @@ import java.util.function.Supplier;
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
     public static VBox groupList;//组列表
-    public static List<Data> peopleList = new ArrayList<>();
+    public static List<List<Data>> peopleList = new ArrayList<>();//存储所有分组的所有用户信息
     public static VTableView<Data> table;
     public static VTableView<Data> searchTable;
-
+    public static boolean defaultGroupOrNot = true;//识别当前界面展示的是所有人的那个组还是其他组
     public static FusionButton allContactBtn = new FusionButton() {{
         setDisable(true);//默认“所有联系人”按钮不可用
-        setLayoutX(300);
-        setLayoutY(300);
-        setPrefWidth(100);
-        setPrefHeight(50);
     }};
 
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
@@ -77,15 +73,17 @@ public class VTableViewScene extends VScene {
         enableAutoContentWidthHeight();
 
         //将数据结构里的数据copy一份到peopleList
+        List<Data> dataList = new ArrayList<>();
         AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();//取联系人链表数组的地址
         for (int i = 0; i < 27; i++) {//遍历该链表数组
             AddressBookHeadNode headNode = headNodes[i];
             AddressBookNode bookNode = headNode.getFirstNode();
             while (bookNode != null) {
-                peopleList.add(bookNode.getData());
+                dataList.add(bookNode.getData());
                 bookNode = bookNode.getNext();
             }
         }
+        peopleList.add(dataList);
 
         var msgLabel = new ThemeLabel(
                 "             Click the column name to sort the rows (name, phoneNumber and birthday can be sortable).\n" +
@@ -97,7 +95,7 @@ public class VTableViewScene extends VScene {
         msgLabel.setFont(Font.font(20));
         FXUtils.observeWidthCenter(getContentPane(), msgLabel);//组件水平居中
         table = setTable();
-        table.getItems().addAll(peopleList);
+        table.getItems().addAll(peopleList.get(0));
         /*// 监听table中数据的变化  失败品，有待研究
         table.getNode().getProperties().addListener(new MapChangeListener<Object, Object>() {
             @Override
@@ -159,7 +157,7 @@ public class VTableViewScene extends VScene {
                     setPrefHeight(40);
                 }},
                 new HPadding(10),
-                new FusionButton("Add Contact") {{
+                new FusionButton("Add") {{
                     setOnAction(e -> {
                         //打开添加联系人窗口
 //                        table.getItems().add(new Data());
@@ -185,7 +183,7 @@ public class VTableViewScene extends VScene {
                     setPrefHeight(40);
                 }},
                 new HPadding(10),
-                new FusionButton("Del Contact") {{
+                new FusionButton("Del") {{
                     setOnAction(e -> {
                         if (delList.isEmpty()) return;
                         var popUpScene = PopupScene.setPopUpScene(sceneGroupSup);
@@ -281,7 +279,7 @@ public class VTableViewScene extends VScene {
                         //从table中取数据放入table中
                         //searchTable.setItems(table.getItems());
                         // 创建 TableView 的数据源
-                        searchTable.setItems(peopleList);
+                        searchTable.setItems(peopleList.get(0));
                         /*// 创建 TableColumn
                         //column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
                         // 表示创建了一个 SimpleStringProperty 对象的值工厂。这个值工厂会将每个单元格的数据作为参数传入，并将其作为 SimpleStringProperty 的值。
@@ -296,9 +294,9 @@ public class VTableViewScene extends VScene {
                         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
                             if (!newValue.isEmpty()) {
                                 //System.out.println("clear！");
-                                searchTable.getItems().removeAll(peopleList);
+                                searchTable.getItems().removeAll(peopleList.get(0));
                                 String text = searchField.getText();
-                                for (var data : peopleList) {
+                                for (var data : peopleList.get(0)) {
                                     // 使用正则表达式检查输入框是否含有数字
                                     if (searchField.getText().matches(".*\\d.*")) {
                                         if (!data.getTelephoneNumbers().isEmpty() && data.getTelephoneNumbers().get(0).getText().contains(text)) {//根据手机号
@@ -326,8 +324,8 @@ public class VTableViewScene extends VScene {
                                     }
                                 }
                             } else {
-                                searchTable.getItems().removeAll(peopleList);
-                                searchTable.setItems(peopleList);
+                                searchTable.getItems().removeAll(peopleList.get(0));
+                                searchTable.setItems(peopleList.get(0));
                             }
                         });
 
@@ -367,7 +365,7 @@ public class VTableViewScene extends VScene {
             FontManager.get().setFont(this, settings -> settings.setSize(15));
         }};
         FXUtils.observeWidthCenter(menuPane.getNode(), contactLabel);
-         groupList = new VBox(
+        groupList = new VBox(
                 new ThemeLabel("address list") {{
                     FontManager.get().setFont(this, settings -> settings.setSize(20));
                     setAlignment(Pos.CENTER_RIGHT);
@@ -382,8 +380,14 @@ public class VTableViewScene extends VScene {
         menuPane.setContent(groupList);
         allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
         groupList.getChildren().addAll(allContactBtn);
-        allContactBtn.setOnMouseClicked(event->{
-            //sceneGroupSup.sj
+        allContactBtn.setOnMouseClicked(event -> {
+            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
+                FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
+                if (node != allContactBtn) node.setDisable(false);
+                else allContactBtn.setDisable(true);
+            }
+            //按到本按钮执行跳到所有人组所在的scene
+            MainPane.sceneGroup.show(MainPane.mainScenes.get(1), VSceneShowMethod.FROM_LEFT);
         });
 
         var hBox = new HBox(

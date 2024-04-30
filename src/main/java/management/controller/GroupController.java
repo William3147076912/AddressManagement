@@ -13,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -22,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import management.*;
+import utils.ConstantSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +63,22 @@ public class GroupController {
             SimpleAlert.show(Alert.AlertType.ERROR, "你在创建什么ヽ(#ﾟДﾟ)ﾉ┌┛Σ(ノ´Д`)ノ");
         } else {
             //创建新建组的按钮
-            VTableViewScene.groupList.getChildren().add(new FusionButton(groupName.getText()));
+            VTableViewScene.groupList.getChildren().add(
+                    new FusionButton(groupName.getText() + "(" + exitingContacts.getItems().size() + ")") {{
+                        setOnMouseClicked(event -> {
+                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
+                                FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
+                                if (node != this) node.setDisable(false);
+                                else setDisable(true);
+                            }
+                        });
+                    }});
+            //将联系人数据存入peopleList
+            VTableViewScene.peopleList.add(exitingContacts.getItems());
             //成功界面展示
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.close();
-            SimpleAlert.show(Alert.AlertType.INFORMATION,"Congratulations，添加成功了☆*:.｡. o(≧▽≦)o .｡.:*☆");
+            SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了☆*:.｡. o(≧▽≦)o .｡.:*☆");
         }
     }
 
@@ -78,7 +91,7 @@ public class GroupController {
     public void initialize() {
         groupName.clear();
         searchField.clear();
-        peopleList = VTableViewScene.peopleList;
+        peopleList = VTableViewScene.peopleList.get(0);
         var name1 = new VTableColumn<Data, String>("name", data -> data.getFormattedName() == null ? "" : data.getFormattedName().getValue()) {{
             setAlignment(Pos.CENTER);
             setMinWidth(70);
