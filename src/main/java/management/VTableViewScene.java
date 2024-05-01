@@ -1,11 +1,9 @@
 package management;
 
 import com.leewyatt.rxcontrols.controls.RXLineButton;
+import com.leewyatt.rxcontrols.controls.RXTextField;
 import ezvcard.VCard;
-import ezvcard.property.Address;
-import ezvcard.property.FormattedName;
-import ezvcard.property.Telephone;
-import ezvcard.property.Uid;
+import ezvcard.property.*;
 import io.vproxy.vfx.control.click.ClickEventHandler;
 import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
@@ -30,6 +28,7 @@ import javafx.geometry.Pos;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -40,6 +39,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.controller.ContactController;
+import management.controller.GroupController;
 import org.jetbrains.annotations.NotNull;
 import utils.ConstantSet;
 import utils.PopupScene;
@@ -53,37 +53,28 @@ import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * @author fcj
  */
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
-    public static VBox groupList;//组列表
-    public static List<List<Data>> peopleList = new ArrayList<>();//存储所有分组的所有用户信息
+    public static VBox groupList;//组列表菜单
     public static VTableView<Data> table;
     public static VTableView<Data> searchTable;
-    public static boolean defaultGroupOrNot = true;//识别当前界面展示的是所有人的那个组还是其他组
+    public static boolean defaultGroupOrNot = true;//识别当前界面展示的是”all people“组还是其他组
     public static FusionButton allContactBtn = new FusionButton() {{
         setDisable(true);//默认“所有联系人”按钮不可用
     }};
+    private List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的所有用户信息
+    private List<VCard> groups = AddressBook.getGroups();//包含已存在的所有组信息
 
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
+        getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());//设置自定义css主题
 
-        //将数据结构里的数据copy一份到peopleList
-        List<Data> dataList = new ArrayList<>();
-        AddressBookHeadNode[] headNodes = MainPane.addressBook.getAddressBookHeadNodes();//取联系人链表数组的地址
-        for (int i = 0; i < 27; i++) {//遍历该链表数组
-            AddressBookHeadNode headNode = headNodes[i];
-            AddressBookNode bookNode = headNode.getFirstNode();
-            while (bookNode != null) {
-                dataList.add(bookNode.getData());
-                bookNode = bookNode.getNext();
-            }
-        }
-        peopleList.add(dataList);
 
         var msgLabel = new ThemeLabel(
                 "             Click the column name to sort the rows (name, phoneNumber and birthday can be sortable).\n" +
@@ -138,6 +129,52 @@ public class VTableViewScene extends VScene {
             getNode().setLayoutY(100);
             getNode().setPrefHeight(60);
         }};
+
+
+        var menuPane = new VScrollPane() {{
+            getNode().setPrefWidth(150);
+            getNode().setPrefHeight(400);
+        }};
+        FXUtils.observeWidthCenter(getContentPane(), menuPane.getNode());
+        var contactLabel = new Label("all people") {{
+            FontManager.get().setFont(this, settings -> settings.setSize(15));
+        }};
+        FXUtils.observeWidthCenter(menuPane.getNode(), contactLabel);
+        groupList = new VBox(
+                new ThemeLabel("address list") {{
+                    FontManager.get().setFont(this, settings -> settings.setSize(20));
+                    setAlignment(Pos.CENTER_RIGHT);
+                    setBackground(new Background(new BackgroundFill(
+                            null,
+                            CornerRadii.EMPTY,
+                            Insets.EMPTY
+                    )));
+                }},
+                new ThemeLabel("----------------------")
+        );
+        menuPane.setContent(groupList);
+        allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
+        groupList.getChildren().addAll(allContactBtn);
+        allContactBtn.setOnMouseClicked(event -> {
+            table.getItems().clear();
+            table.getItems().addAll(peopleList.get(0));
+            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
+                FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
+                if (node != allContactBtn) node.setDisable(false);
+                else allContactBtn.setDisable(true);
+            }
+            //按到本按钮执行跳到所有人组所在的scene
+            MainPane.sceneGroup.show(MainPane.mainScenes.get(1), VSceneShowMethod.FROM_LEFT);
+        });
+
+        var hBox = new HBox(
+                hScrollPane.getNode(),
+                new HPadding(10),
+                menuPane.getNode()
+        );
+        hBox.setLayoutY(170);
+        FXUtils.observeWidthCenter(getContentPane(), hBox);
+
         controlPane.getContentPane().getChildren().add(new HBox(
                 new FusionButton("Select All") {{
                     setOnAction(e -> {
@@ -159,25 +196,75 @@ public class VTableViewScene extends VScene {
                 new HPadding(10),
                 new FusionButton("Add") {{
                     setOnAction(e -> {
-                        //打开添加联系人窗口
-//                        table.getItems().add(new Data());
-                        allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
-                        Scene scene;
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
-                            ContactController.flag = ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
-                            scene = new Scene(fxmlLoader.load());
-                            PopupScene.fadeTransition(scene);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
+                        //根据defaultGroupOrNot来选择打开添加联系人窗口（true）还是打开分组窗口（false）
+                        if (defaultGroupOrNot) {
+                            //打开添加联系人窗口
+                            //table.getItems().add(new Data());
+                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            Scene scene;
+                            try {
+                                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
+                                ContactController.flag = ConstantSet.CREATE_CONTACT;//切换为添加联系人功能
+                                scene = new Scene(fxmlLoader.load());
+                                PopupScene.fadeTransition(scene);
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            scene.setFill(Color.TRANSPARENT);//舞台透明
+                            new Stage() {{
+                                setScene(scene);
+                                initStyle(StageStyle.TRANSPARENT);//窗口透明
+                                initModality(Modality.APPLICATION_MODAL);
+                                show();
+                            }};
+                        } else {
+                            //打开分组窗口
+                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            Scene scene;
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/group.fxml"));
+                            ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();
+                            RXTextField groupName = (RXTextField) namespace.get("groupName");
+                            int index = -1;
+                            try {
+                                StringBuilder name = new StringBuilder();//小组名称
+                                for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groups.size() + ConstantSet.GROUP_LIST_OFFSET; i++) {
+                                    //找到分组界面按钮中不可用的那个就能得到当前展示的是哪个分组
+                                    FusionButton fusionButton = (FusionButton) groupList.getChildren().get(i);
+                                    if (fusionButton.isDisabled()) {
+                                        index = i - ConstantSet.GROUP_LIST_OFFSET;//取得该组在组列表的下标
+                                        for (int j = 0; j < fusionButton.getTextNode().getText().length(); j++) {//取得组名
+                                            if (fusionButton.getTextNode().getText().charAt(j) != '(') {
+                                                name.append(fusionButton.getTextNode().getText().charAt(j));
+                                            }
+                                        }
+                                        groupName.setText(name.toString());//设置展示界面的组名文本框
+                                    }
+
+                                }
+                                scene = new Scene(fxmlLoader.load());
+                                PopupScene.fadeTransition(scene);//添加淡入淡出的效果
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            scene.setFill(Color.TRANSPARENT);//舞台透明
+                            int finalIndex = index;
+                            new Stage() {{
+                                setScene(scene);
+                                initStyle(StageStyle.TRANSPARENT);//窗口透明
+                                initModality(Modality.APPLICATION_MODAL);
+                                show();
+                                setOnCloseRequest(event -> {//保存数据
+                                            peopleList.get(finalIndex).clear();
+                                            peopleList.get(finalIndex).addAll(GroupController.getExitingContacts().getItems());
+                                            groups.get(finalIndex).getMembers().clear();
+                                            //利用stream流提取每个联系人的uid组成数组设置groups
+                                            //groups.get(finalIndex).addMember(new Member(GroupController.getExitingContacts().getItems().get(0).getUid().getValue()));
+                                            groups.get(finalIndex).getMembers().addAll(GroupController.getExitingContacts().getItems()
+                                                    .stream().map(contacts -> new Member(contacts.getUid().getValue())).collect(Collectors.toList()));
+                                        }
+                                );
+                            }};
                         }
-                        scene.setFill(Color.TRANSPARENT);//舞台透明
-                        new Stage() {{
-                            setScene(scene);
-                            initStyle(StageStyle.TRANSPARENT);//窗口透明
-                            initModality(Modality.APPLICATION_MODAL);
-                            show();
-                        }};
                     });
                     setPrefWidth(120);
                     setPrefHeight(40);
@@ -247,7 +334,6 @@ public class VTableViewScene extends VScene {
                                 initModality(Modality.APPLICATION_MODAL);
                                 show();
                             }};
-
                         });
                         setPrefWidth(200);
                         setPrefHeight(40);
@@ -266,7 +352,8 @@ public class VTableViewScene extends VScene {
                         msgLabel.setCenterShape(true);
                         msgLabel.setLayoutY(160);
 
-                        TextField searchField = new TextField();
+                        RXTextField searchField = new RXTextField();
+                        searchField.getStyleClass().add("text-field");
                         searchField.setPromptText("搜索全部联系人...");
                         searchField.setLayoutY(200);
                         searchField.setMaxWidth(400);
@@ -291,6 +378,7 @@ public class VTableViewScene extends VScene {
 
 
                         // 将 TextField 的文本属性绑定到 TableView 的数据源
+                        searchField.setStyle("");
                         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
                             if (!newValue.isEmpty()) {
                                 //System.out.println("clear！");
@@ -356,47 +444,6 @@ public class VTableViewScene extends VScene {
         ));
         FXUtils.observeWidthCenter(getContentPane(), controlPane.getNode());
 
-        var menuPane = new VScrollPane() {{
-            getNode().setPrefWidth(150);
-            getNode().setPrefHeight(400);
-        }};
-        FXUtils.observeWidthCenter(getContentPane(), menuPane.getNode());
-        var contactLabel = new Label("all people") {{
-            FontManager.get().setFont(this, settings -> settings.setSize(15));
-        }};
-        FXUtils.observeWidthCenter(menuPane.getNode(), contactLabel);
-        groupList = new VBox(
-                new ThemeLabel("address list") {{
-                    FontManager.get().setFont(this, settings -> settings.setSize(20));
-                    setAlignment(Pos.CENTER_RIGHT);
-                    setBackground(new Background(new BackgroundFill(
-                            null,
-                            CornerRadii.EMPTY,
-                            Insets.EMPTY
-                    )));
-                }},
-                new ThemeLabel("----------------------")
-        );
-        menuPane.setContent(groupList);
-        allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
-        groupList.getChildren().addAll(allContactBtn);
-        allContactBtn.setOnMouseClicked(event -> {
-            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
-                FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
-                if (node != allContactBtn) node.setDisable(false);
-                else allContactBtn.setDisable(true);
-            }
-            //按到本按钮执行跳到所有人组所在的scene
-            MainPane.sceneGroup.show(MainPane.mainScenes.get(1), VSceneShowMethod.FROM_LEFT);
-        });
-
-        var hBox = new HBox(
-                hScrollPane.getNode(),
-                new HPadding(10),
-                menuPane.getNode()
-        );
-        hBox.setLayoutY(170);
-        FXUtils.observeWidthCenter(getContentPane(), hBox);
         getContentPane().getChildren().addAll(msgLabel, controlPane.getNode(), hBox);
     }
 

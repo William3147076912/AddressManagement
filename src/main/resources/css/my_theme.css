@@ -1,13 +1,16 @@
 .dialog-pane {
-    -fx-background-color:  rgb(23, 27, 30); /* 设置背景颜色 */
+    -fx-background-color: rgb(23, 27, 30); /* 设置背景颜色 */
 }
-.tableColumn{
+
+.tableColumn {
     -fx-text-fill: rgb(26, 31, 33);
     -fx-prompt-text-fill: white;
 }
+
 .text-field {
     -fx-text-fill: white;
     -fx-background-color: rgb(26, 31, 33);
+    background-color: rgb(26, 31, 33); /* 设置背景颜色 */
     -fx-border-color: #d9d9d9;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
@@ -28,3 +31,30 @@
 .text-field:disabled {
     -fx-opacity: 0.5;
 }
+
+.text-area {
+    -fx-text-fill: rgb(26, 31, 33);
+    -fx-background-color: rgb(26, 31, 33);
+    background-color: rgb(26, 31, 33); /* 设置背景颜色 */
+    -fx-border-color: #d9d9d9;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.text-area:focused {
+    -fx-border-color: #0078d4;
+    -fx-border-width: 2px;
+}
+
+.text-area:hover {
+    -fx-border-color: #0078d4;
+}
+
+.text-area:disabled {
+    -fx-opacity: 0.5;
+}
+
+

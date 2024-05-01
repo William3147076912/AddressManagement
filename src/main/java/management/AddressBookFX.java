@@ -1,3 +1,4 @@
+/*
 package management;
 
 import ezvcard.VCard;
@@ -69,6 +70,7 @@ public class AddressBookFX extends Application {
         }
     }
 
+*/
 /*        for (int i = 0; i < addressBookHeadNodes.length; i++) {//初始化范围递增块包含的联系人的数目以及标签的数目之和
             for (int j = 0; j <= i; j++) {
                 if (addressBookHeadNodes[j].getNumberOfLinked() != 0)
@@ -76,17 +78,20 @@ public class AddressBookFX extends Application {
                 blocksContactPeopleNum[i] += addressBookHeadNodes[j].getNumberOfLinked();
             }
             blocksContactPeopleNum[i]--;//因为ListView初始下标为0，所以为了后续定位准确将每个块元素的总数-1；
-        }*/
+        }*//*
 
 
 
-    /**
+
+    */
+/**
      * 更新用来存放展示在FX界面上所有联系人的对象--contactPeopleArr
      * 创建新的用于存放主ListView中显示的数据的对象
      * 更新用于存放当前块以及之前所有块所含联系人以及标签数目之和的对象
      *
      * @return ObservableList<String>类型 用于存放主ListView中显示的数据的对象--blocksContactPeopleNum
-     */
+     *//*
+
     public static ObservableList<String> updateContactPeopleArrAndListViewAndBlocksContactPeopleNumData() {
         contactPeopleArr.clear();//清空用于存放原来展示在FX界面上所有联系人的对象
         ObservableList<String> contactPersonOL = FXCollections.observableArrayList();//创建新的用于存放主ListView中显示的数据的对象
@@ -162,14 +167,16 @@ public class AddressBookFX extends Application {
         }
     }
 
-    /**
+    */
+/**
      * 将修改联系人信息界面和新建联系人界面的创建联系人对象的代码进行封装复用
      *
      * @param nameTf         姓名输入框
      * @param phoneNumberTfs 一个或多个电话号码输入框
      * @param emailTfs       一个或多个邮箱输入框输入框
      * @return ContactPerson类型的联系人对象
-     */
+     *//*
+
     public static Data createContactPerson(TextField nameTf, ArrayList<TextField> phoneNumberTfs, ArrayList<TextField> emailTfs) {//使用修改联系人信息界面和新建联系人界面的信息创建联系人对象并返回
         String name = nameTf.getText();
         String phoneNumber;
@@ -247,6 +254,7 @@ public class AddressBookFX extends Application {
         searchOrAddPane.setSpacing(10);//设置结点间水平间隔
         searchOrAddPane.setPadding(new Insets(16, 16, 6, 16));//设置内边距
 
+*/
 /*        ObservableList<String> contactPersonOL = FXCollections.observableArrayList();
         for (AddressBookHeadNode addressBookHeadNode : addressBookHeadNodes) {
             if (addressBookHeadNode.getNumberOfLinked() != 0) {
@@ -259,7 +267,8 @@ public class AddressBookFX extends Application {
                     pointer = pointer.getNext();
                 }
             }
-        }*/
+        }*//*
+
         contactPersonOL = updateContactPeopleArrAndListViewAndBlocksContactPeopleNumData();//初始化原始填充界面的数据信息
         contactPersonLV = new ListView<>(contactPersonOL);
         contactPersonLV.setPrefWidth(360);//设置ListView的水平宽度
@@ -289,13 +298,15 @@ public class AddressBookFX extends Application {
                 anchorLabels[finalI].setTextFill(Color.LIGHTSKYBLUE);
                 anchorLabels[finalI].setStyle("-fx-font-weight: bold");
                 activeLabelIndex = finalI;//设置活动标签下标为此时点击的标签下标
-                /*int blockIndex = 0;//确定联系人列表中应该处于被选中状态的条目的下标
+                */
+/*int blockIndex = 0;//确定联系人列表中应该处于被选中状态的条目的下标
                 for (int j = 0; j < finalI1; j++) {
                     if (addressBookHeadNodes[j].getNumberOfLinked() != 0) {
                         blockIndex++;//刚刚好的“错位”
                         blockIndex += addressBookHeadNodes[j].getNumberOfLinked();
                     }
-                }*/
+                }*//*
+
                 int blockIndex;
                 if (finalI1 == 0) {
                     blockIndex = 0;
@@ -339,8 +350,10 @@ public class AddressBookFX extends Application {
 
             int curRowIndex = 1;//这个变量很重要,记录当前要向GridPane界面中填充TextFiled文本输入框结点的行标
             TextField nameTf = new TextField(person.getFormattedName().getValue());
-            nameTf.setEditable(false);/*用户不可以修改姓名(根据普遍情况人们也不会轻易修改联系人姓名，而多是修改联系人更换的电话号码)
-                                       若想要修改姓名需要删除联系人后，新建联系人，将姓名和电话号码均修改*/
+            nameTf.setEditable(false);*/
+/*用户不可以修改姓名(根据普遍情况人们也不会轻易修改联系人姓名，而多是修改联系人更换的电话号码)
+                                       若想要修改姓名需要删除联系人后，新建联系人，将姓名和电话号码均修改*//*
+
             Button addPhoneNumberBt = new Button("+");
             ArrayList<TextField> phoneNumberTfs = new ArrayList<>();
             for (int i = 0; i < person.getTelephoneNumbers().size(); i++) {
@@ -411,10 +424,12 @@ public class AddressBookFX extends Application {
                 //巧妙的利用了phoneNumberTfs.size()+emailTfs.size()作为添加邮箱文本输入框的行标
             });
 
-            /**
+            */
+/**
              * 修改时,用于展示的contactPeopleArr内的数据以及AddressBook内相应链表内的数据都要更新
              * 缺点：没有判断用户是否修改了联系人信息，每次点击都会执行相应方法，删除联系人，在将由当前联系人信息界面信息获取创建联系人，重新添加到相应位置
-             */
+             *//*
+
             saveBt.setOnAction(e -> {//修改当前被选中的查看联系人信息界面的联系人的信息
                 Data contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
                 if (contactPerson == null) {
@@ -432,21 +447,30 @@ public class AddressBookFX extends Application {
                 contactPersonInformationStage.hide();//隐藏查看联系人信息界面
             });
 
-            /**
+            */
+/**
              * 限制：可以在用户不修改联系人第一个手机号码的情况下完成底层联系人数据删除
-             */
+             *//*
+
             removeBt.setOnAction(e -> {//删除当前被选中的查看联系人信息界面的联系人的信息
                 String name = nameTf.getText();
                 String phoneNumber = phoneNumberTfs.get(0).getText();
                 confirmDeleteAlert(name, phoneNumber);
+*/
 /*                String name = nameTf.getText();
                 String phoneNumber = phoneNumberTfs.get(0).getText();
                 addressBook.remove(name,phoneNumber);//在底层数据中删除
-*//*                contactPeopleArr.remove((int) newValue);//前台点击显示数据中删除
-                contactPersonOL.remove((int) newValue);//在显示的列表中删除*//*//这种情况会在删除只含有一个联系人信息的block后出现"数据紊乱";
+*//*
+*/
+/*                contactPeopleArr.remove((int) newValue);//前台点击显示数据中删除
+                contactPersonOL.remove((int) newValue);//在显示的列表中删除*//*
+*/
+/*//*
+/这种情况会在删除只含有一个联系人信息的block后出现"数据紊乱";
                 contactPersonOL = updateContactPeopleArrAndListViewAndBlocksContactPeopleNumData();
                 contactPersonLV.setItems(contactPersonOL);
-                contactPersonInformationStage.hide();*/
+                contactPersonInformationStage.hide();*//*
+
             });
 
             contactPersonInformationStage.setScene(cPInformScene);
@@ -454,14 +478,18 @@ public class AddressBookFX extends Application {
             contactPersonInformationStage.setResizable(false);
             contactPersonInformationStage.show();
         });
-        /*new ChangeListener<Number>() {
+        */
+/*new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            }*/
+            }*//*
 
-        /**
+
+        */
+/**
          * 点击添加联系人按钮触发的事件，代码查看联系人信息界面类似
-         */
+         *//*
+
         addContactPersonBt.setOnAction(event -> {//显示添加联系人界面
             Stage createContactPersonStage = new Stage();
 
@@ -538,9 +566,11 @@ public class AddressBookFX extends Application {
             });
 
 
-            /**
+            */
+/**
              * 修改时,用于展示的contactPeopleArr内的数据以及AddressBook内相应链表内的数据都要更新
-             */
+             *//*
+
             saveBt.setOnAction(e -> {//使用添加联系人界面的信息创建联系人并添加该联系人
                 Data contactPerson = createContactPerson(nameTf, phoneNumberTfs, emailTfs);
                 if (contactPerson == null) {
@@ -561,11 +591,13 @@ public class AddressBookFX extends Application {
             createContactPersonStage.show();
         });
 
-        /**
+        */
+/**
          *模糊查询(搜索)需要遍历所有联系人的所有信息,若查找到则返回显示该联系人
          * 该方法支持：姓名（或姓名子集）、姓名拼音大小写（或姓名拼音大小写子集）、电话号码（或电话号码子集）、邮箱（或邮箱子集）查询
          *
-         */
+         *//*
+
         searchBt.setOnAction(event -> {//搜索按钮点击触发的事件
             String searchContent = searchTf.getText();//获取搜索框内容
             if (Pattern.matches("^\\s*$", searchContent)) {
@@ -635,4 +667,4 @@ public class AddressBookFX extends Application {
         primaryStage.show();
 
     }
-}
+}*/

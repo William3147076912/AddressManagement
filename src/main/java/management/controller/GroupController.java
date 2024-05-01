@@ -3,6 +3,9 @@ package management.controller;
 import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import com.leewyatt.rxcontrols.event.RXActionEvent;
+import ezvcard.VCard;
+import ezvcard.property.Kind;
+import ezvcard.property.Member;
 import io.vproxy.vfx.ui.alert.SimpleAlert;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.table.VTableColumn;
@@ -21,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import management.*;
 import utils.ConstantSet;
@@ -31,23 +35,24 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GroupController {
-    @FXML
-    private RXTextField groupName;
-
-    @FXML
-    private AnchorPane pane;
-
-    @FXML
-    private RXLineButton save;
-
-    @FXML
-    private RXTextField searchField;
-
     //由于原版的tableView用起来实在是不习惯，而这个技术栈的tableview又不支持fxml
     //so我就在初始化时添加以下组件，在sceneBuilder上是预览不到效果的
-    private List<Data> peopleList;
-    private VTableView<Data> contacts;
-    private VTableView<Data> exitingContacts;
+    private static VTableView<Data> contacts;
+    private static VTableView<Data> exitingContacts;
+    @FXML
+    private RXTextField groupName;
+    @FXML
+    private AnchorPane pane;
+    @FXML
+    private RXTextField searchField;
+    private VBox groupList = VTableViewScene.groupList;
+    private List<VCard> groups = AddressBook.getGroups();//组表
+    private List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的所有用户信息
+
+    //外部调用exitingContacts的唯一方法
+    public static VTableView<Data> getExitingContacts() {
+        return exitingContacts;
+    }
 
     @FXML
     void deleteText(RXActionEvent event) {//文本框删除功能
@@ -63,18 +68,28 @@ public class GroupController {
             SimpleAlert.show(Alert.AlertType.ERROR, "你在创建什么ヽ(#ﾟДﾟ)ﾉ┌┛Σ(ノ´Д`)ノ");
         } else {
             //创建新建组的按钮
-            VTableViewScene.groupList.getChildren().add(
+            groupList.getChildren().add(
                     new FusionButton(groupName.getText() + "(" + exitingContacts.getItems().size() + ")") {{
                         setOnMouseClicked(event -> {
+                            VTableViewScene.table.getItems().clear();
+                            VTableViewScene.table.getItems().addAll(exitingContacts.getItems());
                             for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
                                 FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
                                 if (node != this) node.setDisable(false);
                                 else setDisable(true);
                             }
                         });
-                    }});
+                    }}
+            );
             //将联系人数据存入peopleList
-            VTableViewScene.peopleList.add(exitingContacts.getItems());
+            peopleList.add(exitingContacts.getItems());
+            //将联系人uid存入groups组表
+            groups.add(new VCard() {{
+                setKind(Kind.group());
+                setFormattedName(groupName.getText());
+                getMembers().addAll(exitingContacts.getItems()
+                        .stream().map(contacts -> new Member(contacts.getUid().toString())).collect(Collectors.toList()));
+            }});
             //成功界面展示
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.close();
@@ -91,7 +106,7 @@ public class GroupController {
     public void initialize() {
         groupName.clear();
         searchField.clear();
-        peopleList = VTableViewScene.peopleList.get(0);
+
         var name1 = new VTableColumn<Data, String>("name", data -> data.getFormattedName() == null ? "" : data.getFormattedName().getValue()) {{
             setAlignment(Pos.CENTER);
             setMinWidth(70);
@@ -121,15 +136,15 @@ public class GroupController {
             getNode().setPrefSize(180, 340);
             getColumns().addAll(name2, phone2);
         }};
-        contacts.getItems().addAll(peopleList);
+        contacts.getItems().addAll(peopleList.get(0));
         pane.getChildren().addAll(contacts.getNode(), exitingContacts.getNode());
         // 将 TextField 的文本属性绑定到 TableView 的数据源
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 //System.out.println("clear！");
-                contacts.getItems().removeAll(peopleList);
+                contacts.getItems().removeAll(peopleList.get(0));
                 String text = searchField.getText();
-                for (var data : peopleList) {
+                for (var data : peopleList.get(0)) {
                     if (exitingContacts.getItems().contains(data)) {//如果该联系人信息已经在已有联系人列表中则直接跳过
                         continue;
                     }
@@ -162,7 +177,7 @@ public class GroupController {
             } else {
                 contacts.getItems().clear();//清除数据
                 //用stream流过滤掉那些exitingContacts有的联系人
-                contacts.setItems(peopleList
+                contacts.setItems(peopleList.get(0)
                         .stream().filter(contact -> !exitingContacts.getItems().contains(contact)).collect(Collectors.toList()));
             }
         });
