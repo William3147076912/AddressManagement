@@ -1,4 +1,1 @@
-//歌单，频谱
-RX:PaneMediaController
-//新建页面方式
-VFX:_06bVTableViewDemoScene
+//在除all people外的其他界面使用add功能时不是新建分组而是替换原分组

@@ -108,6 +108,7 @@ public class Import {
                     for (Member member : groups.get(finalI).getMembers()) {
                         for (Data person : peopleList.get(0)) {
                             if (member.getValue().equals(person.getUid().getValue())) {
+                                //System.out.println(member.getValue());
                                 add(person);
                             }
                         }

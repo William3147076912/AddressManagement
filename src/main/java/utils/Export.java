@@ -30,6 +30,7 @@ public class Export {
             for (VCard group : groups) {
                 if ("all people".equals(group.getFormattedName().getValue())) continue;
                 writer.write(group);
+                //System.out.println(group.getMembers().get(0));
             }
             writer.setTargetVersion(VCardVersion.V3_0);
             List<Data> datas = peopleList.get(0);

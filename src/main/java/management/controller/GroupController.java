@@ -1,6 +1,5 @@
 package management.controller;
 
-import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import com.leewyatt.rxcontrols.event.RXActionEvent;
 import ezvcard.VCard;
@@ -10,18 +9,9 @@ import io.vproxy.vfx.ui.alert.SimpleAlert;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.table.VTableColumn;
 import io.vproxy.vfx.ui.table.VTableView;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -29,7 +19,6 @@ import javafx.stage.Stage;
 import management.*;
 import utils.ConstantSet;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,7 +34,7 @@ public class GroupController {
     private AnchorPane pane;
     @FXML
     private RXTextField searchField;
-    private VBox groupList = VTableViewScene.groupList;
+    private VBox groupBox = VTableViewScene.groupBox;
     private List<VCard> groups = AddressBook.getGroups();//组表
     private List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的所有用户信息
 
@@ -68,13 +57,13 @@ public class GroupController {
             SimpleAlert.show(Alert.AlertType.ERROR, "你在创建什么ヽ(#ﾟДﾟ)ﾉ┌┛Σ(ノ´Д`)ノ");
         } else {
             //创建新建组的按钮
-            groupList.getChildren().add(
+            groupBox.getChildren().add(
                     new FusionButton(groupName.getText() + "(" + exitingContacts.getItems().size() + ")") {{
                         setOnMouseClicked(event -> {
                             VTableViewScene.table.getItems().clear();
                             VTableViewScene.table.getItems().addAll(exitingContacts.getItems());
-                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
-                                FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
+                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupBox.getChildren().size(); i++) {
+                                FusionButton node = (FusionButton) VTableViewScene.groupBox.getChildren().get(i);
                                 if (node != this) node.setDisable(false);
                                 else setDisable(true);
                             }
@@ -88,7 +77,7 @@ public class GroupController {
                 setKind(Kind.group());
                 setFormattedName(groupName.getText());
                 getMembers().addAll(exitingContacts.getItems()
-                        .stream().map(contacts -> new Member(contacts.getUid().toString())).collect(Collectors.toList()));
+                        .stream().map(contacts -> new Member(contacts.getUid().getValue())).collect(Collectors.toList()));
             }});
             //成功界面展示
             Stage stage = (Stage) pane.getScene().getWindow();

@@ -7,51 +7,37 @@ import ezvcard.property.*;
 import io.vproxy.vfx.control.click.ClickEventHandler;
 import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
-import io.vproxy.vfx.manager.font.FontUsages;
-import io.vproxy.vfx.theme.Theme;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.layout.HPadding;
-import io.vproxy.vfx.ui.layout.VPadding;
 import io.vproxy.vfx.ui.pane.FusionPane;
 import io.vproxy.vfx.ui.scene.*;
 import io.vproxy.vfx.ui.table.VTableColumn;
 import io.vproxy.vfx.ui.table.VTableView;
-import io.vproxy.vfx.ui.wrapper.FusionW;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
-import io.vproxy.vfx.util.MiscUtils;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.*;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.controller.ContactController;
 import management.controller.GroupController;
-import org.jetbrains.annotations.NotNull;
 import utils.ConstantSet;
 import utils.PopupScene;
-import utils.TUtils;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -60,13 +46,10 @@ import java.util.stream.Collectors;
  */
 public class VTableViewScene extends VScene {
     public static List<Data> delList = new ArrayList<>();
-    public static VBox groupList;//组列表菜单
+    public static VBox groupBox;//组列表菜单
     public static VTableView<Data> table;
     public static VTableView<Data> searchTable;
     public static boolean defaultGroupOrNot = true;//识别当前界面展示的是”all people“组还是其他组
-    public static FusionButton allContactBtn = new FusionButton() {{
-        setDisable(true);//默认“所有联系人”按钮不可用
-    }};
     private List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的所有用户信息
     private List<VCard> groups = AddressBook.getGroups();//包含已存在的所有组信息
 
@@ -140,7 +123,7 @@ public class VTableViewScene extends VScene {
             FontManager.get().setFont(this, settings -> settings.setSize(15));
         }};
         FXUtils.observeWidthCenter(menuPane.getNode(), contactLabel);
-        groupList = new VBox(
+        groupBox = new VBox(
                 new ThemeLabel("address list") {{
                     FontManager.get().setFont(this, settings -> settings.setSize(20));
                     setAlignment(Pos.CENTER_RIGHT);
@@ -152,20 +135,33 @@ public class VTableViewScene extends VScene {
                 }},
                 new ThemeLabel("----------------------")
         );
-        menuPane.setContent(groupList);
-        allContactBtn.setText("All People(" + table.getItems().size() + ")");//初始化按钮文本
-        groupList.getChildren().addAll(allContactBtn);
-        allContactBtn.setOnMouseClicked(event -> {
-            table.getItems().clear();
-            table.getItems().addAll(peopleList.get(0));
-            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupList.getChildren().size(); i++) {
-                FusionButton node = (FusionButton) VTableViewScene.groupList.getChildren().get(i);
-                if (node != allContactBtn) node.setDisable(false);
-                else allContactBtn.setDisable(true);
-            }
-            //按到本按钮执行跳到所有人组所在的scene
-            MainPane.sceneGroup.show(MainPane.mainScenes.get(1), VSceneShowMethod.FROM_LEFT);
-        });
+        menuPane.setContent(groupBox);
+        //根据当前组表个数创建分组按钮
+        for (int i = 0; i < groups.size(); i++) {
+            int finalI = i;
+            groupBox.getChildren().add(
+                    new FusionButton() {{
+                        if (finalI == 0) setDisable(true);//默认“所有联系人”按钮不可用
+                        setText(groups.get(finalI).getFormattedName().getValue() + "(" + peopleList.get(finalI).size() + ")");//初始化按钮文本
+                        setOnMouseClicked(event -> {
+                            table.getItems().clear();
+                            table.getItems().addAll(peopleList.get(finalI));
+                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupBox.getChildren().size(); i++) {//本按钮禁用，其余按钮可用
+
+                                FusionButton node = (FusionButton) VTableViewScene.groupBox.getChildren().get(i);
+                                if (node != this) node.setDisable(false);
+                                else {
+                                    //通过判断按钮是否为all people来切换defaultGroupOrNot进而切换add按钮的逻辑
+                                    defaultGroupOrNot = i == ConstantSet.GROUP_LIST_OFFSET;
+                                    this.setDisable(true);
+                                }
+                            }
+                            //按到本按钮执行跳到所有人组所在的scene
+                            MainPane.sceneGroup.show(MainPane.mainScenes.get(1), VSceneShowMethod.FROM_LEFT);
+                        });
+                    }}
+            );
+        }
 
         var hBox = new HBox(
                 hScrollPane.getNode(),
@@ -175,6 +171,7 @@ public class VTableViewScene extends VScene {
         hBox.setLayoutY(170);
         FXUtils.observeWidthCenter(getContentPane(), hBox);
 
+        FusionButton allContactBtn = (FusionButton) groupBox.getChildren().get(ConstantSet.GROUP_LIST_OFFSET);
         controlPane.getContentPane().getChildren().add(new HBox(
                 new FusionButton("Select All") {{
                     setOnAction(e -> {
@@ -200,7 +197,7 @@ public class VTableViewScene extends VScene {
                         if (defaultGroupOrNot) {
                             //打开添加联系人窗口
                             //table.getItems().add(new Data());
-                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            //allContactBtn.setText("All People(" + peopleList.get(0).size() + ")");//刷新按钮文本
                             Scene scene;
                             try {
                                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
@@ -219,33 +216,34 @@ public class VTableViewScene extends VScene {
                             }};
                         } else {
                             //打开分组窗口
-                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            //allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
                             Scene scene;
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/group.fxml"));
-                            ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();
-                            RXTextField groupName = (RXTextField) namespace.get("groupName");
-                            int index = -1;
                             try {
-                                StringBuilder name = new StringBuilder();//小组名称
-                                for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groups.size() + ConstantSet.GROUP_LIST_OFFSET; i++) {
-                                    //找到分组界面按钮中不可用的那个就能得到当前展示的是哪个分组
-                                    FusionButton fusionButton = (FusionButton) groupList.getChildren().get(i);
-                                    if (fusionButton.isDisabled()) {
-                                        index = i - ConstantSet.GROUP_LIST_OFFSET;//取得该组在组列表的下标
-                                        for (int j = 0; j < fusionButton.getTextNode().getText().length(); j++) {//取得组名
-                                            if (fusionButton.getTextNode().getText().charAt(j) != '(') {
-                                                name.append(fusionButton.getTextNode().getText().charAt(j));
-                                            }
-                                        }
-                                        groupName.setText(name.toString());//设置展示界面的组名文本框
-                                    }
-
-                                }
                                 scene = new Scene(fxmlLoader.load());
-                                PopupScene.fadeTransition(scene);//添加淡入淡出的效果
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
+                            ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();
+                            RXTextField groupName = (RXTextField) namespace.get("groupName");
+                            int index = -1;
+                            StringBuilder name = new StringBuilder();//小组名称
+                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groups.size() + ConstantSet.GROUP_LIST_OFFSET; i++) {
+                                //找到分组界面按钮中不可用的那个就能得到当前展示的是哪个分组
+                                FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                                if (fusionButton.isDisabled()) {
+                                    index = i - ConstantSet.GROUP_LIST_OFFSET;//取得该组在组列表的下标
+                                    GroupController.getExitingContacts().getItems().addAll(peopleList.get(index));
+                                    for (int j = 0; j < fusionButton.getTextNode().getText().length(); j++) {//取得组名
+                                        if (fusionButton.getTextNode().getText().charAt(j) != '(') {
+                                            name.append(fusionButton.getTextNode().getText().charAt(j));
+                                        } else break;
+                                    }
+                                    groupName.setText(name.toString());//设置展示界面的组名文本框
+                                }
+
+                            }
+                            PopupScene.fadeTransition(scene);//添加淡入淡出的效果
                             scene.setFill(Color.TRANSPARENT);//舞台透明
                             int finalIndex = index;
                             new Stage() {{
@@ -290,7 +288,34 @@ public class VTableViewScene extends VScene {
                         }};
                         sureBtn.setOnAction(ee -> {
                             table.getItems().removeAll(delList);
-                            allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            //allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                            //更新数据与组按钮的文本
+                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
+                                FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                                int index = i - ConstantSet.GROUP_LIST_OFFSET;//分组按钮所代表的组的下标
+                                if (index == 0 && fusionButton.isDisabled()) {//如果是all people界面
+                                    //删除delList列表中联系人的所有数据，包括其uid
+                                    for (int j = 0; j < peopleList.size(); j++) {//由于peopleList 与groups大小必定相同，所以用同一个循环清除数据
+                                        peopleList.get(j).removeAll(delList);
+                                        groups.get(j).getMembers().removeAll(delList
+                                                .stream().map(contacts -> new Member(contacts.getUid().getValue())).collect(Collectors.toList()));
+                                    }
+                                } else if (fusionButton.isDisabled()) {//其他界面
+                                    peopleList.get(index).removeAll(delList);
+                                    groups.get(index).getMembers().removeAll(delList
+                                            .stream().map(contacts -> new Member(contacts.getUid().getValue())).collect(Collectors.toList()));
+                                }
+                                StringBuilder name = new StringBuilder();
+                                for (int j = 0; j < fusionButton.getTextNode().getText().length(); j++) {//取得组名
+                                    if (fusionButton.getTextNode().getText().charAt(j) != '(') {
+                                        name.append(fusionButton.getTextNode().getText().charAt(j));
+                                    } else break;
+                                }
+                                fusionButton.setText(name + "(" + peopleList.get(i - ConstantSet.GROUP_LIST_OFFSET).size() + ")");//更新展示界面的组名文本框
+                            }
+                            for (Data item : peopleList.get(0)) {//清空选择按钮
+                                item.choiceButton.getTextNode().setText("");
+                            }
                             delList.clear();//清空删除列表
                             sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
                             FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
