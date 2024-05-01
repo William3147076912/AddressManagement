@@ -45,12 +45,13 @@ import java.util.*;
  * @date 2024/4/19 下午7:17
  */
 public class MainPane extends Application {
-    private final List<VScene> mainScenes = new ArrayList<>();
-    private VSceneGroup sceneGroup;
+    public static List<VScene> mainScenes = new ArrayList<>();
+    public static VSceneGroup sceneGroup;
     public static AddressBook addressBook;
-    public static ArrayList<VCard> groups = new ArrayList<>();
-//    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
-    public String filepath="src/main/resources/vCard/sample.vcf";
+
+    //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
+    public String filepath = "src/main/resources/vCard/sample.vcf";
+
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -58,7 +59,6 @@ public class MainPane extends Application {
     @Override
     public void init() throws Exception {
         super.init();
-        addressBook = new AddressBook();
         Import.importVcard(filepath);
     }
 
@@ -68,8 +68,10 @@ public class MainPane extends Application {
         MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/up-arrow.png", Map.of("white", 0xffffffff));
 
         var stage = new VStage(primaryStage) {
+            // 在程序关闭前添加一个回调
             @Override
             public void close() {
+                //保存数据
                 Export.export(filepath);
                 super.close();
                 TaskManager.get().terminate();

@@ -3,42 +3,56 @@
 <?import com.leewyatt.rxcontrols.controls.RXLineButton?>
 <?import com.leewyatt.rxcontrols.controls.RXTextField?>
 <?import io.vproxy.vfx.ui.wrapper.ThemeLabel?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="595.0" style="-fx-background-color: rgb(23, 27, 30);-fx-effect: dropshadow(gaussian, black, 50, 0, 0, 0);   -fx-background-insets: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="management.controller.GroupController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="603.0" prefWidth="595.0"
+            style="-fx-background-color: rgb(23, 27, 30);-fx-effect: dropshadow(gaussian, black, 50, 0, 0, 0);   -fx-background-insets: 50;"
+            stylesheets="@../css/pane_field.css,@../css/my_theme.css" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="management.controller.GroupController">
     <children>
-        <RXLineButton layoutX="177.0" layoutY="497.0" lineType="RISE" onMouseClicked="#save" prefHeight="43.0" prefWidth="114.0" text="Save" textAlignment="CENTER" textFill="#f2efef">
+        <RXLineButton layoutX="177.0" layoutY="497.0" lineType="RISE" onMouseClicked="#save" prefHeight="43.0"
+                      prefWidth="114.0" text="Save" textAlignment="CENTER" textFill="#f2efef">
             <font>
-                <Font size="26.0" />
+                <Font size="26.0"/>
             </font>
         </RXLineButton>
-        <RXLineButton layoutX="317.0" layoutY="497.0" lineSpacing="3.0" lineType="RISE" onMouseClicked="#cancel" prefHeight="43.0" prefWidth="114.0" text="Cancel" textFill="#fcfbfb">
+        <RXLineButton layoutX="317.0" layoutY="497.0" lineSpacing="3.0" lineType="RISE" onMouseClicked="#cancel"
+                      prefHeight="43.0" prefWidth="114.0" text="Cancel" textFill="#fcfbfb">
             <font>
-                <Font size="26.0" />
+                <Font size="26.0"/>
             </font>
         </RXLineButton>
-      <RXTextField fx:id="groupName" layoutX="117.0" layoutY="95.0" prefHeight="23.0" prefWidth="351.0" promptText="请输入分组名字" />
-      <ThemeLabel layoutX="117.0" layoutY="118.0" prefHeight="34.0" prefWidth="62.0" text="通讯录" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </ThemeLabel>
-      <RXTextField fx:id="searchField" layoutX="117.0" layoutY="150.0" promptText="查找联系人..." />
-      <ListView fx:id="contacts" layoutX="117.0" layoutY="181.0" prefHeight="313.0" prefWidth="162.0" />
-      <ThemeLabel layoutX="317.0" layoutY="118.0" prefHeight="34.0" prefWidth="129.0" text="已有联系人" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </ThemeLabel>
-      <ListView fx:id="exitingContacts" layoutX="317.0" layoutY="152.0" prefHeight="342.0" prefWidth="162.0" />
-      <ImageView fitHeight="43.0" fitWidth="36.0" layoutX="280.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/右指向标.png" />
-         </image>
-      </ImageView>
+        <RXTextField fx:id="groupName" layoutX="117.0" layoutY="95.0" onClickButton="#deleteText" prefHeight="10.0"
+                     prefWidth="351.0" promptText="请输入分组名字" styleClass="text-field"/>
+        <ThemeLabel layoutX="117.0" layoutY="123.0" prefHeight="34.0" prefWidth="62.0" text="通讯录" textFill="WHITE">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </ThemeLabel>
+        <RXTextField fx:id="searchField" layoutX="117.0" layoutY="154.0" prefHeight="7.0"
+                     prefWidth="170.0" promptText="查找联系人..." onClickButton="#deleteText" styleClass="text-field"/>
+        <ThemeLabel layoutX="317.0" layoutY="126.0" prefHeight="34.0" prefWidth="129.0" text="已有联系人"
+                    textFill="WHITE">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </ThemeLabel>
+        <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="291.0" layoutY="312.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../images/右指向标.png"/>
+            </image>
+        </ImageView>
+        <ThemeLabel alignment="CENTER" layoutX="178.0" layoutY="51.0" prefHeight="43.0" prefWidth="239.0"
+                    text="新建分组꒰ঌ( ⌯' '⌯)໒꒱" textFill="WHITE">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </ThemeLabel>
+
     </children>
 </AnchorPane>

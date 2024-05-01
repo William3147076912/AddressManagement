@@ -33,4 +33,19 @@ public class Pinyin {
         }
         return t4.toString();
     }
+
+    public static String getInitialConsonant(String str) {
+        char[] t1 = str.toCharArray();
+        StringBuilder result = new StringBuilder();
+        for (char c : t1) {
+            // 判断是否为汉字字符
+            if (Character.toString(c).matches("[\\u4E00-\\u9FA5]+")) {
+                result.append(getPinYin(Character.toString(c)).charAt(0));
+            } else {
+                return null;
+            }
+
+        }
+        return result.toString();
+    }
 }

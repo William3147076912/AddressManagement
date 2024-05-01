@@ -238,14 +238,14 @@ public class RandomInfo {
     }
 
     public static void main(String[] args) throws IOException {
-        File cr=new File("src/main/resources/vCard/sample.vcf");
+        File cr = new File("src/main/resources/vCard/sample.vcf");
         cr.createNewFile();
-        Path file=Paths.get("src/main/resources/vCard/sample.vcf");
+        Path file = Paths.get("src/main/resources/vCard/sample.vcf");
 
         VCardWriter writer;
         writer = new VCardWriter(file, VCardVersion.V3_0);
         for (int i = 0; i < 100; i++) {
-            VCard vCard=new VCard();
+            VCard vCard = new VCard();
             System.out.println("---------------------------------------");
             //获取性别
             System.out.println("性别: " + getRandomSex() + "   ");
@@ -261,36 +261,36 @@ public class RandomInfo {
             String name;
             if (randomInt(2) % 2 == 0) {
                 System.out.println("姓名: " + getRandomBoyName() + "   ");
-                name=getRandomBoyName();
+                name = getRandomBoyName();
             } else {
                 System.out.println("姓名: " + getRandomGirlName() + "   ");
-                name=getRandomGirlName();
+                name = getRandomGirlName();
             }
             vCard.setFormattedName(name);
             //获取手机号
             System.out.println("手机号: " + getRandomPhone() + "   ");
-            Telephone telephone=new Telephone(getRandomPhone());
+            Telephone telephone = new Telephone(getRandomPhone());
             vCard.addTelephoneNumber(telephone);
             //获取邮箱
             System.out.println("邮箱: " + getRandomQQEmail() + "   ");
-            Email email=new Email(getRandomQQEmail());
+            Email email = new Email(getRandomQQEmail());
             vCard.addEmail(email);
             //获取个人主页
             System.out.println("个人主页：" + getRandomPersonalHomepage() + "   ");
-            Url url=new Url(getRandomPersonalHomepage());
+            Url url = new Url(getRandomPersonalHomepage());
             vCard.addUrl(url);
             //获取生日
             System.out.println("生日：: " + getRandomBirthday() + "   ");
-            Birthday birthday=new Birthday(getRandomBirthday());
+            Birthday birthday = new Birthday(LocalDate.parse(getRandomBirthday()));
             vCard.setBirthday(birthday);
             //获取公司名称
             System.out.println("工作单位: " + getRandomCompany(/*默认为中国地区*/) + "   ");
             vCard.setOrganization(getRandomCompany());
             //获取地址和邮编
             System.out.println("地址: " + getRandomAddress() + "   " + "邮政编码：" + getRandomPostalCode());
-            Address address=new Address();
-            String street=getRandomAddress();
-            String post=getRandomPostalCode();
+            Address address = new Address();
+            String street = getRandomAddress();
+            String post = getRandomPostalCode();
             address.setStreetAddress(street);
             address.setPostalCode(post);
             vCard.addAddress(address);
@@ -312,7 +312,7 @@ public class RandomInfo {
             int day = generateRandomDay(month, year);
 
             // 使用DateTimeFormatter格式化生日日期
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate birthday = LocalDate.of(year, month, day);
 
             return birthday.format(formatter);

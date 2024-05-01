@@ -39,6 +39,7 @@ public final class PopupScene {
         return new VScene(VSceneRole.POPUP) {{
             enableAutoContentWidthHeight();
 
+            getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());//设置自定义css主题
             getNode().setBackground(new Background(new BackgroundFill(
                     Theme.current().subSceneBackgroundColor(),
                     CornerRadii.EMPTY,

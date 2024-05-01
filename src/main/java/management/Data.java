@@ -48,7 +48,7 @@ public class Data extends VCard {
         person. createTime = System.currentTimeMillis();*/
 //        Uid uid = new Uid(UUID.randomUUID().toString());
 //        person.setUid(uid);
-        Uid uid=vCard.getUid();
+        Uid uid = vCard.getUid();
         person.setUid(uid);
         for (Address address : vCard.getAddresses()) {
             person.addAddress(address);
