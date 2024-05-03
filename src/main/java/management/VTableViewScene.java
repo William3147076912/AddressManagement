@@ -627,7 +627,7 @@ public class VTableViewScene extends VScene {
                     stage.show();
                     //取得该行联系人所有信息并展示在界面文本框
                     Data selectedItem = table.getSelectedItem();
-                    selectedItem.getPhotos().get(0).getData()
+                    //selectedItem.getPhotos().get(0).getData()
                     var name = selectedItem.getFormattedName().getValue();
                     var phone = selectedItem.getTelephoneNumbers().isEmpty() ? "" : selectedItem.getTelephoneNumbers().get(0).getText();
                     var email = selectedItem.getEmails().isEmpty() ? "" : selectedItem.getEmails().get(0).getValue();
