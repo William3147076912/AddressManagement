@@ -1,5 +1,6 @@
 package management;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.leewyatt.rxcontrols.controls.RXTranslationButton;
 import ezvcard.VCard;
 import ezvcard.VCardVersion;
@@ -9,6 +10,7 @@ import ezvcard.property.*;
 import io.vproxy.vfx.control.globalscreen.GlobalScreenUtils;
 import io.vproxy.vfx.manager.task.TaskManager;
 import io.vproxy.vfx.theme.Theme;
+import io.vproxy.vfx.ui.alert.SimpleAlert;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.button.FusionImageButton;
 import io.vproxy.vfx.ui.layout.HPadding;
@@ -21,28 +23,30 @@ import io.vproxy.vfx.util.FXUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
+import javafx.stage.Window;
+import utils.ConstantSet;
 import utils.Export;
 import utils.Import;
 import utils.MyImageManager;
 import vjson.JSON;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Writer;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.interfaces.ECPublicKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 /**
  * @Author fcj
@@ -52,10 +56,13 @@ import java.util.*;
 public class MainPane extends Application {
     public static List<VScene> mainScenes = new ArrayList<>();
     public static VSceneGroup sceneGroup;
-    public static AddressBook addressBook;
-
+    public static boolean running = true;
+    public static VTableViewScene vTableViewScene=new VTableViewScene(()->sceneGroup);
+    public VBox groupBox = VTableViewScene.groupBox;
     //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
     public String filepath = "src/main/resources/vCard/sample.vcf";
+    private List<VCard> groups = AddressBook.getGroups();
+    private List<List<Data>> peopleList = AddressBook.getPeopleList();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -74,6 +81,7 @@ public class MainPane extends Application {
             // 在程序关闭前添加一个回调
             @Override
             public void close() {
+                running = false;//关闭自定义线程
                 //保存数据
                 Export.export(filepath);
                 super.close();
@@ -193,22 +201,69 @@ public class MainPane extends Application {
             setLayoutX(-2);
             setLayoutY(-1);
         }};
-        var importExportIntro=new ThemeLabel("可导入导出vCard文件，即.vcf文件");
+        var importExportIntro = new ThemeLabel("可导入导出vCard文件，即.vcf文件");
         importExportIntro.setFont(Font.font(20));
-        var importBtn= new RXTranslationButton("Import"){{
+        var importBtn = new RXTranslationButton("Import") {{
             getStyleClass().add("import_export_btn");
-            setPrefSize(200,100);
+            setPrefSize(200, 100);
             setTranslationDir(TranslationDir.TOP_TO_BOTTOM);
-            setGraphic(new ImageView(new Image("file:src/main/resources/images/import.png",100,100,true,true)));
+            setGraphic(new ImageView(new Image("file:src/main/resources/images/import.png", 100, 100, true, true)));
+            setOnMouseClicked(event -> {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("选择vCard文件");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("联系人文件", "*.vcf")
+                );
+                Window window = menuScene.getSelfNode().getScene().getWindow();
+                File selectedFile = fileChooser.showOpenDialog(window);
+                if (selectedFile != null) {
+                    try {
+                        Import.importVcard(selectedFile.getPath());
+                        for (int i = ConstantSet.GROUP_LIST_OFFSET; groupBox != null && i < groupBox.getChildren().size(); i++) {
+                            FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                            fusionButton.setDisable(i == ConstantSet.GROUP_LIST_OFFSET);
+                        }
+                        VTableViewScene.table.getItems().clear();
+                        VTableViewScene.table.getItems().addAll(peopleList.get(0));
+                        //System.out.println(AddressBook.getPeopleList().get(0).size());
+                        SimpleAlert.show(Alert.AlertType.INFORMATION, "导入成功(๑¯ω¯๑)");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
         }};
-        var exportBtn= new RXTranslationButton("Export"){{
+        var exportBtn = new RXTranslationButton("Export") {{
             getStyleClass().add("import_export_btn");
-            setPrefSize(200,100);
+            setPrefSize(200, 100);
             setTranslationDir(TranslationDir.BOTTOM_TO_TOP);
-            setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png",100,100,true,true)));
+            setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png", 100, 100, true, true)));
+            setOnMouseClicked(event -> {
+                Frame frame=new Frame("选择");
+                FileDialog fileDialog=new FileDialog(frame,"选择",FileDialog.SAVE);
+
+                //文件后缀过滤好像没起作用
+                fileDialog.setFilenameFilter(new FilenameFilter() {
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".vcf");
+                    }
+                });
+
+                fileDialog.setFile("exportfile.vcf");
+                fileDialog.setVisible(true);
+                if(fileDialog.getDirectory()!=null&&fileDialog.getFile()!=null)
+                {
+                    String directory=fileDialog.getDirectory();
+                    String filename = fileDialog.getFile();
+                    // 在选择的文件夹中创建文件对象
+                    directory=directory.replace('\\','/');
+                    Export.export(directory+filename);
+                    System.out.println(directory+filename);
+                }
+            });
         }};
-        menuBox.getChildren().addAll(importExportIntro,new VPadding(40),importBtn,new VPadding(40),exportBtn);
-        FXUtils.observeWidthCenter(menuScene.getContentPane(),menuBox);
+        menuBox.getChildren().addAll(importExportIntro, new VPadding(40), importBtn, new VPadding(40), exportBtn);
+        FXUtils.observeWidthCenter(menuScene.getContentPane(), menuBox);
 
         menuBtn.setOnAction(e -> stage.getRootSceneGroup().show(menuScene, VSceneShowMethod.FROM_LEFT));
         stage.getRoot().getContentPane().getChildren().add(menuBtn);
