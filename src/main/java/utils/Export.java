@@ -28,7 +28,7 @@ public class Export {
             //    writer.write(group.getGroup());
             //}
             for (VCard group : groups) {
-                if ("all people".equals(group.getFormattedName().getValue())) continue;
+                if ("All People".equals(group.getFormattedName().getValue())) continue;//跳过默认组
                 writer.write(group);
                 //System.out.println(group.getMembers().get(0));
             }

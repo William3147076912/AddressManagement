@@ -52,7 +52,7 @@ public class Import {
                 if (groups.isEmpty()) {//如果组表一开始为空，创建"all people"组
                     groups.add(new VCard() {{
                         setKind(Kind.group());
-                        setFormattedName("all people");
+                        setFormattedName("All People");
                     }});
                 }
                 groups.add(temp);//将识别到的组塞入组表
@@ -69,7 +69,7 @@ public class Import {
             if (groups.isEmpty()) {//应用于vCard文件为低版本没有分组概念的情况    ->应用启动时加载的vCard无分组
                 VCard allPeople = new VCard();
                 allPeople.setKind(Kind.group());//设置 vCard 对象的 KIND 属性为 "all people"
-                allPeople.setFormattedName("all people");
+                allPeople.setFormattedName("All People");
                 for (Data data : peopleList.get(0)) {//存此次添加的联系人的uid到该组
                     Member member = new Member(data.getUid().getValue());//记录所有人的uid作为其在该组内的标识
                     allPeople.addMember(member);

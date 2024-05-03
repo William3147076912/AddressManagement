@@ -35,7 +35,21 @@ public final class PopupScene {
 
     @NotNull
     @Contract("_ -> new")
-    public static VScene setPopUpScene(Supplier<VSceneGroup> sceneGroupSup) {
+    public static VScene setPopUpScene() {
+        return new VScene(VSceneRole.POPUP) {{
+            enableAutoContentWidthHeight();
+
+            getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());//设置自定义css主题
+            getNode().setBackground(new Background(new BackgroundFill(
+                    Theme.current().subSceneBackgroundColor(),
+                    CornerRadii.EMPTY,
+                    Insets.EMPTY
+            )));
+            getNode().setPrefWidth(500);
+            getNode().setPrefHeight(500);
+        }};
+    }
+    public static VScene setPopUpScene(VSceneGroup sceneGroup) {
         return new VScene(VSceneRole.POPUP) {{
             enableAutoContentWidthHeight();
 
@@ -67,8 +81,8 @@ public final class PopupScene {
         fadeTransition.play();// 播放透明度动画
     }
 
-    public static VScene setContactScene(Supplier<VSceneGroup> sceneGroupSup) {
-        var contactScene = setPopUpScene(sceneGroupSup);
+    public static VScene setContactScene() {
+        var contactScene = setPopUpScene();
         var gridPane = new GridPane();
         var menuPane = new VScrollPane() {{
             getNode().setPrefWidth(600);
