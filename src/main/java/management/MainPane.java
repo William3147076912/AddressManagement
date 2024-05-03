@@ -1,5 +1,6 @@
 package management;
 
+import com.leewyatt.rxcontrols.controls.RXTranslationButton;
 import ezvcard.VCard;
 import ezvcard.VCardVersion;
 import ezvcard.io.text.VCardReader;
@@ -15,12 +16,16 @@ import io.vproxy.vfx.ui.layout.VPadding;
 import io.vproxy.vfx.ui.pane.FusionPane;
 import io.vproxy.vfx.ui.scene.*;
 import io.vproxy.vfx.ui.stage.VStage;
+import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.Export;
@@ -64,8 +69,6 @@ public class MainPane extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/setting.png", Map.of("white", 0xffffffff));
-        MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/up-arrow.png", Map.of("white", 0xffffffff));
 
         var stage = new VStage(primaryStage) {
             // 在程序关闭前添加一个回调
@@ -80,7 +83,7 @@ public class MainPane extends Application {
         };
         stage.getInitialScene().enableAutoContentWidthHeight();
 
-        stage.setTitle("VFX Intro");
+        stage.setTitle("VFX AddressBook");
         mainScenes.add(new IntroScene());
         mainScenes.add(new VTableViewScene(() -> sceneGroup));
         var initialScene = mainScenes.get(0);
@@ -166,38 +169,54 @@ public class MainPane extends Application {
         );
         stage.getInitialScene().getContentPane().getChildren().add(box);
 
-        var settingScene = new VScene(VSceneRole.DRAWER_VERTICAL);
-        settingScene.getNode().setPrefWidth(450);
-        settingScene.enableAutoContentWidth();
-        settingScene.getNode().setBackground(new Background(new BackgroundFill(
+        var menuScene = new VScene(VSceneRole.DRAWER_VERTICAL);
+        menuScene.getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());
+        menuScene.getNode().setPrefWidth(450);
+        menuScene.enableAutoContentWidth();
+        menuScene.getNode().setBackground(new Background(new BackgroundFill(
                 Theme.current().subSceneBackgroundColor(),
                 CornerRadii.EMPTY,
                 Insets.EMPTY
         )));
-        stage.getRootSceneGroup().addScene(settingScene, VSceneHideMethod.TO_LEFT);
-        var settingBox = new VBox() {{
+        stage.getRootSceneGroup().addScene(menuScene, VSceneHideMethod.TO_LEFT);
+        var menuBox = new VBox() {{
             setPadding(new Insets(0, 0, 0, 24));
             getChildren().add(new VPadding(20));
         }};
-        settingScene.getContentPane().getChildren().add(settingBox);
-        settingBox.getChildren().add(new VPadding(20));
+        menuScene.getContentPane().getChildren().add(menuBox);
+        menuBox.getChildren().add(new VPadding(20));
 
-        var settingBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/setting.png")) {{
+        var menuBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/menu.png")) {{
             setPrefWidth(40);
             setPrefHeight(VStage.TITLE_BAR_HEIGHT + 1);
             getImageView().setFitHeight(15);
             setLayoutX(-2);
             setLayoutY(-1);
         }};
-        settingBtn.setOnAction(e -> stage.getRootSceneGroup().show(settingScene, VSceneShowMethod.FROM_LEFT));
-        stage.getRoot().getContentPane().getChildren().add(settingBtn);
+        var importExportIntro=new ThemeLabel("可导入导出vCard文件，即.vcf文件");
+        importExportIntro.setFont(Font.font(20));
+        var importBtn= new RXTranslationButton("Import"){{
+            getStyleClass().add("import_export_btn");
+            setPrefSize(200,100);
+            setTranslationDir(TranslationDir.TOP_TO_BOTTOM);
+            setGraphic(new ImageView(new Image("file:src/main/resources/images/import.png",100,100,true,true)));
+        }};
+        var exportBtn= new RXTranslationButton("Export"){{
+            getStyleClass().add("import_export_btn");
+            setPrefSize(200,100);
+            setTranslationDir(TranslationDir.BOTTOM_TO_TOP);
+            setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png",100,100,true,true)));
+        }};
+        menuBox.getChildren().addAll(importExportIntro,new VPadding(40),importBtn,new VPadding(40),exportBtn);
+        FXUtils.observeWidthCenter(menuScene.getContentPane(),menuBox);
+
+        menuBtn.setOnAction(e -> stage.getRootSceneGroup().show(menuScene, VSceneShowMethod.FROM_LEFT));
+        stage.getRoot().getContentPane().getChildren().add(menuBtn);
 
         stage.getStage().setWidth(1280);
         stage.getStage().setHeight(800);
         stage.getStage().centerOnScreen();
         stage.getStage().initStyle(StageStyle.TRANSPARENT);
         stage.getStage().show();
-
-
     }
 }

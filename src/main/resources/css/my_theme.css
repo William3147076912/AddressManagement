@@ -68,3 +68,7 @@
     -fx-background-radius: 15;
     -fx-background-color: #8f2121;
 }
+
+.import_export_btn{
+    -fx-background-color:  rgb(23, 27, 30);
+}

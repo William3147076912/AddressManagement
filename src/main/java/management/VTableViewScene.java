@@ -397,7 +397,7 @@ public class VTableViewScene extends VScene {
 
                         RXTextField searchField = new RXTextField();
                         searchField.getStyleClass().add("text-field");
-                        searchField.setPromptText("搜索全部联系人...");
+                        searchField.setPromptText("搜索联系人...");
                         searchField.setLayoutY(200);
                         searchField.setMaxWidth(400);
                         FXUtils.observeWidthCenter(popUpScene.getContentPane(), searchField);
@@ -421,7 +421,6 @@ public class VTableViewScene extends VScene {
 
 
                         // 将 TextField 的文本属性绑定到 TableView 的数据源
-                        searchField.setStyle("");
                         searchField.setOnClickButton(event -> {//增加按到×清空文本框的功能
                             RXTextField tf = (RXTextField) event.getSource();
                             tf.clear();
