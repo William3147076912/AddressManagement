@@ -691,6 +691,7 @@ public class VTableViewScene extends VScene {
                             }
                             //设置新数据
                             VCard newItem = new VCard();
+                            newItem.setUid(selectedItem.getUid());
                             newItem.setFormattedName(nameField.getText());
                             newItem.addTelephoneNumber(phoneField.getText());
                             newItem.addEmail(emailField.getText());
