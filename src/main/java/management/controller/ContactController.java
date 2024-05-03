@@ -5,9 +5,11 @@ import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import com.leewyatt.rxcontrols.event.RXActionEvent;
 import ezvcard.VCard;
+import ezvcard.parameter.ImageType;
 import ezvcard.property.*;
 import io.vproxy.vfx.ui.alert.SimpleAlert;
 import io.vproxy.vfx.ui.button.FusionButton;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -24,7 +26,12 @@ import management.Data;
 import management.VTableViewScene;
 import utils.ConstantSet;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -70,23 +77,33 @@ public class ContactController {
     }
 
     @FXML
-    void setImage(MouseEvent event) {
-
+    void setImage(MouseEvent event) throws MalformedURLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("选择图片");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("图片文件", "*.png", "*.jpg", "*.gif", "*.bmp")
+                new FileChooser.ExtensionFilter("图片文件", "*.png", "*.jpg", "*.gif")
         );
         Window window = image.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(window);
         if (selectedFile != null) {
             // 如果用户选择了图片文件，则加载并显示在图片视图中
             image.setImage(new Image(selectedFile.toURI().toString()));
+            //将image存到本地
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image.getImage(), null);
+            String suffix = selectedFile.getName().substring(selectedFile.getName().lastIndexOf('.') + 1);
+            File outputFile = new File("src/main/resources/images/" + nameField.getText() + "." + suffix);
+            try {
+                // Write the BufferedImage to the file
+                ImageIO.write(bufferedImage, suffix, outputFile);
+                System.out.println("Image saved successfully.");
+            } catch (IOException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
         }
     }
 
     @FXML
-    void save(MouseEvent event) {
+    void save(MouseEvent event) throws MalformedURLException {
         if (contactControl == ConstantSet.CREATE_CONTACT) {
             String name = nameField.getText();
             String phone = phoneField.getText();
@@ -107,8 +124,12 @@ public class ContactController {
                 SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能含有数字(ꐦ ಠ皿ಠ )");
                 return;
             }
-
             VCard person = new VCard();
+
+            String imageName = new URL(image.getImage().getUrl()).getFile().toLowerCase();
+            if (imageName.contains(".png")) person.addPhoto(new Photo(image.getImage().getUrl(), ImageType.PNG));
+            else if (imageName.contains(".jpg")) person.addPhoto(new Photo(image.getImage().getUrl(), ImageType.JPEG));
+            else if (imageName.contains(".gif")) person.addPhoto(new Photo(image.getImage().getUrl(), ImageType.GIF));
             person.addFormattedName(new FormattedName(name));
             person.addTelephoneNumber(new Telephone(phone));
             person.addEmail(email);

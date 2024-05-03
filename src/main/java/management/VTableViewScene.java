@@ -1,5 +1,6 @@
 package management;
 
+import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import ezvcard.VCard;
@@ -24,6 +25,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -625,6 +627,7 @@ public class VTableViewScene extends VScene {
                     stage.show();
                     //取得该行联系人所有信息并展示在界面文本框
                     Data selectedItem = table.getSelectedItem();
+                    selectedItem.getPhotos().get(0).getData()
                     var name = selectedItem.getFormattedName().getValue();
                     var phone = selectedItem.getTelephoneNumbers().isEmpty() ? "" : selectedItem.getTelephoneNumbers().get(0).getText();
                     var email = selectedItem.getEmails().isEmpty() ? "" : selectedItem.getEmails().get(0).getValue();
@@ -635,6 +638,7 @@ public class VTableViewScene extends VScene {
                     var postalCode = selectedItem.getAddresses().isEmpty() ? "" : selectedItem.getAddresses().get(0).getPostalCode();
                     var remark = selectedItem.getNotes().isEmpty() ? "" : selectedItem.getNotes().get(0).getValue();
                     ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();//取得fxml中所有拥有fx:id的组件
+                    RXAvatar image = (RXAvatar) namespace.get("image");
                     TextField nameField = (TextField) namespace.get("nameField");
                     TextField phoneField = (TextField) namespace.get("phoneField");
                     TextField emailField = (TextField) namespace.get("emailField");
@@ -693,7 +697,7 @@ public class VTableViewScene extends VScene {
 
                             //成功界面展示
                             stage.close();
-                            SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，添加成功了☆*:.｡. o(≧▽≦)o .｡.:*☆");
+                            SimpleAlert.show(Alert.AlertType.INFORMATION, "Congratulations，修改成功了☆*:.｡. o(≧▽≦)o .｡.:*☆");
                         }
                     });
                 } catch (IOException e) {

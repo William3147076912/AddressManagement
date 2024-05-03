@@ -40,7 +40,7 @@ public class Import {
                 if (!photoList.isEmpty()) {//如果该联系人的图片不为空，读取并保存在本地
                     for (Photo photo : photoList) {
                         byte[] data = photo.getData();//转二进制
-                        String photoFilepath = "src/main/resources/vCard/" + person.getUid().getValue() + ".jpg";
+                        String photoFilepath = "src/main/resources/vCard/" + person.getUid().getValue() + "."+photo.getContentType().getValue();
                         File file1 = new File(photoFilepath);
                         file1.createNewFile();
                         FileOutputStream fos = new FileOutputStream(file1);
