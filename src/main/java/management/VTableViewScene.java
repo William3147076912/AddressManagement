@@ -506,8 +506,8 @@ public class VTableViewScene extends VScene {
 
         getContentPane().getChildren().addAll(msgLabel, controlPane.getNode(), hBox);
         //设置一个线程专门负责界面数据与peopleList和groups组表的同步
-        new Thread(() -> {
-            while (MainPane.running) {
+       /* new Thread(() -> {
+            while (true) {
                 try {
                     Thread.sleep(1000);//每1s刷新一次groupBox界面
                 } catch (InterruptedException e) {
@@ -521,7 +521,7 @@ public class VTableViewScene extends VScene {
                     }
                 });
             }
-        }, "MyThread").start();
+        }, "MyThread").start();*/
     }
 
     public VTableView<Data> setTable() {
@@ -690,7 +690,6 @@ public class VTableViewScene extends VScene {
                             }
                             //设置新数据
                             VCard newItem = new VCard();
-                            newItem.setUid(selectedItem.getUid());
                             newItem.setFormattedName(nameField.getText());
                             newItem.addTelephoneNumber(phoneField.getText());
                             newItem.addEmail(emailField.getText());

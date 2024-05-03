@@ -186,7 +186,7 @@ public class GroupController {
                                                             RXTextField groupName = (RXTextField) namespace.get("groupName");
                                                             int index = -1;
                                                             StringBuilder name = new StringBuilder();//小组名称
-                                                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
+                                                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groups.size() + ConstantSet.GROUP_LIST_OFFSET; i++) {
                                                                 //找到分组界面按钮中不可用的那个就能得到当前展示的是哪个分组
                                                                 FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
                                                                 if (fusionButton.isDisabled()) {

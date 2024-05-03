@@ -1,25 +1,12 @@
 package utils;
 
-import com.leewyatt.rxcontrols.controls.RXTextField;
 import ezvcard.VCard;
 import ezvcard.io.text.VCardReader;
 import ezvcard.property.Kind;
 import ezvcard.property.Member;
 import ezvcard.property.Photo;
 import ezvcard.property.Uid;
-import io.vproxy.vfx.ui.button.FusionButton;
-import io.vproxy.vfx.ui.layout.HPadding;
-import io.vproxy.vfx.ui.scene.VSceneShowMethod;
-import javafx.collections.ObservableMap;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import management.*;
-import management.controller.GroupController;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,12 +15,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Import {
     private static List<VCard> groups = AddressBook.getGroups();//组表
     private static List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的联系人数据
-    private static VBox groupBox = VTableViewScene.groupBox;//存储所有分组的联系人数据
 
     public static void importVcard(String filepath) throws IOException {
         Path file = Paths.get(filepath);
@@ -90,7 +75,7 @@ public class Import {
                     allPeople.addMember(member);
                 }
                 groups.add(allPeople);
-            } else { //如果新导入的文件没有分组信息，将新加入的联系人放入"undefined"+数字 组中
+            } else { //如果新导入的文件没有分组信息，则将新添加的联系人放入"all people"分组，并将新加入的联系人放入"undefined"+数字 组中
                 //->按导入按钮后的vCard无分组
                 boolean hasUndefinedGroup = false;//原先是否有未定义的分组
                 int newIndex = -1;
@@ -100,7 +85,7 @@ public class Import {
                     String groupName = group.getFormattedName().getValue();//取得组名
                     if (groupName.contains("undefined")) {//如果名字包含undefined
                         hasUndefinedGroup = true;
-                        String groupNameIndex = groupName.substring("undefined".length());//取得undefined的数字编号
+                        String groupNameIndex = Pattern.compile("\\d+").matcher(groupName).group();//取得undefined的数字编号
                         newIndex = Integer.parseInt(groupNameIndex) + 1;//要建的分组的数字编号
                     }
                 }
@@ -110,7 +95,6 @@ public class Import {
                     Member member = new Member(data.getUid().getValue());
                     newGroup.addMember(member);
                 }
-                peopleList.add(newContacts);
                 groups.add(newGroup);//将该组加入组表
             }
         } else {//vCard有分组的情况
