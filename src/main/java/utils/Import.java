@@ -96,6 +96,7 @@ public class Import {
                     newGroup.addMember(member);
                 }
                 groups.add(newGroup);//将该组加入组表
+                peopleList.add(newContacts);
             }
         } else {//vCard有分组的情况
             //读取时已经创建"all people"组，所以这里只需要给加载进来的每个组分配其联系人的数据

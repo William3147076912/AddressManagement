@@ -507,17 +507,119 @@ public class VTableViewScene extends VScene {
         getContentPane().getChildren().addAll(msgLabel, controlPane.getNode(), hBox);
         //设置一个线程专门负责界面数据与peopleList和groups组表的同步
         new Thread(() -> {
-            while (true) {
+            while (MainPane.running) {
                 try {
                     Thread.sleep(1000);//每1s刷新一次groupBox界面
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 Platform.runLater(() -> {
-                    for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
-                        FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
-                        int index = i - ConstantSet.GROUP_LIST_OFFSET;
-                        fusionButton.setText(groups.get(index).getFormattedName().getValue() + "(" + peopleList.get(index).size() + ")");
+                    //if (groupBox.getChildren().size() > 7) System.out.println(groupBox.getChildren().size());
+                    if(groupBox.getChildren().size()-ConstantSet.GROUP_LIST_OFFSET!=groups.size()) {
+                        /*System.out.println(groupBox.getChildren().size());
+                        System.out.println(peopleList.size());
+                        System.out.println(groups.size());
+                        try {
+                            wait(100000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }*/
+                        while (groupBox.getChildren().size() > ConstantSet.GROUP_LIST_OFFSET) groupBox.getChildren().remove(ConstantSet.GROUP_LIST_OFFSET);
+                        int temp = defaultGroupOrNot;
+                        for (int i = 0; i < groups.size(); i++) {
+                            int finalI = i;
+                            groupBox.getChildren().add(
+                                    new FusionButton() {{
+                                        if (finalI == temp) setDisable(true);//默认“所有联系人”按钮不可用
+                                        setText(groups.get(finalI).getFormattedName().getValue() + "(" + peopleList.get(finalI).size() + ")");//初始化按钮文本
+                                        setOnMouseClicked(event -> {
+                                            table.getItems().clear();
+                                            table.getItems().addAll(peopleList.get(finalI));
+                                            for (int i = ConstantSet.GROUP_LIST_OFFSET; i < VTableViewScene.groupBox.getChildren().size(); i++) {//本按钮禁用，其余按钮可用
+                                                FusionButton node = (FusionButton) VTableViewScene.groupBox.getChildren().get(i);
+                                                if (node != this) node.setDisable(false);
+                                                else {
+                                                    //通过判断按钮是否为all people来切换defaultGroupOrNot进而切换add按钮的逻辑
+                                                    defaultGroupOrNot = i - ConstantSet.GROUP_LIST_OFFSET;
+                                                    this.setDisable(true);
+                                                    if (defaultGroupOrNot == 0 && controlBox.getChildren().size() > ConstantSet.CONTROL_NODE_SIZE) {
+                                                        //移除最后一个padding和manage group按钮
+                                                        controlBox.getChildren().remove(ConstantSet.CONTROL_NODE_SIZE + 1);
+                                                        controlBox.getChildren().remove(ConstantSet.CONTROL_NODE_SIZE);
+                                                    } else if (defaultGroupOrNot > 0 && controlBox.getChildren().size() == ConstantSet.CONTROL_NODE_SIZE) {//如果是其他组的页面就多展示一个管理组按钮
+                                                        controlBox.getChildren().addAll(
+                                                                new HPadding(30),
+                                                                new FusionButton("Manage Group") {{
+                                                                    setPrefWidth(200);
+                                                                    setPrefHeight(40);
+                                                                    setOnMouseClicked(event -> {
+                                                                        //打开分组窗口
+                                                                        //allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
+                                                                        //设置GroupController为编辑状态
+                                                                        GroupController.setGroupControl(ConstantSet.MANAGE_GROUP);
+                                                                        Scene scene;
+                                                                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/group.fxml"));
+                                                                        try {
+                                                                            scene = new Scene(fxmlLoader.load());
+                                                                        } catch (IOException ex) {
+                                                                            throw new RuntimeException(ex);
+                                                                        }
+                                                                        ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();
+                                                                        RXTextField groupName = (RXTextField) namespace.get("groupName");
+                                                                        StringBuilder name = new StringBuilder();//小组名称
+                                                                        for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
+                                                                            //找到分组界面按钮中不可用的那个就能得到当前展示的是哪个分组
+                                                                            FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                                                                            if (fusionButton.isDisabled()) {
+                                                                                defaultGroupOrNot = i - ConstantSet.GROUP_LIST_OFFSET;//取得该组在组列表的下标
+                                                                                //GroupController.getExitingContacts().getItems().addAll(peopleList.get(defaultGroupOrNot));
+                                                                                for (int j = 0; j < fusionButton.getTextNode().getText().length(); j++) {//取得组名
+                                                                                    if (fusionButton.getTextNode().getText().charAt(j) != '(') {
+                                                                                        name.append(fusionButton.getTextNode().getText().charAt(j));
+                                                                                    } else break;
+                                                                                }
+                                                                                groupName.setText(name.toString());//设置展示界面的组名文本框
+                                                                            }
+                                                                        }
+                                                                        PopupScene.fadeTransition(scene);//添加淡入淡出的效果
+                                                                        scene.setFill(Color.TRANSPARENT);//舞台透明
+                                                                        new Stage() {{
+                                                                            setScene(scene);
+                                                                            initStyle(StageStyle.TRANSPARENT);//窗口透明
+                                                                            initModality(Modality.APPLICATION_MODAL);
+                                                                            show();
+                                                                            setOnCloseRequest(event -> {
+                                                                                        //保存数据
+                                                                                        peopleList.get(defaultGroupOrNot).clear();
+                                                                                        peopleList.get(defaultGroupOrNot).addAll(GroupController.getExitingContacts().getItems());
+                                                                                        groups.get(defaultGroupOrNot).getMembers().clear();
+                                                                                        groups.get(defaultGroupOrNot).getMembers().addAll(GroupController.getExitingContacts().getItems()
+                                                                                                .stream().map(contacts -> new Member(contacts.getUid().getValue())).collect(Collectors.toList()));
+                                                                                        //刷新groupBox
+                                                                                        for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
+                                                                                            FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                                                                                            int index = i - ConstantSet.GROUP_LIST_OFFSET;
+                                                                                            fusionButton.setText(groups.get(index).getFormattedName().getValue() + "(" + peopleList.get(index).size() + ")");
+                                                                                        }
+                                                                                    }
+                                                                            );
+                                                                        }};
+                                                                    });
+                                                                }});
+                                                    }
+                                                }
+                                            }
+                                            //按到本按钮执行跳到所有人组所在的scene
+                                            MainPane.sceneGroup.show(MainPane.mainScenes.get(1), VSceneShowMethod.FROM_LEFT);
+                                        });
+                                    }}
+                            );
+                        }
+                        for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
+                            FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                            int index = i - ConstantSet.GROUP_LIST_OFFSET;
+                            fusionButton.setText(groups.get(index).getFormattedName().getValue() + "(" + peopleList.get(index).size() + ")");
+                        }
                     }
                 });
             }
@@ -647,18 +749,17 @@ public class VTableViewScene extends VScene {
                     var remark = selectedItem.getNotes().isEmpty() ? "" : selectedItem.getNotes().get(0).getValue();
                     ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();//取得fxml中所有拥有fx:id的组件
                     RXAvatar image = (RXAvatar) namespace.get("image");//
-                    if(!selectedItem.getPhotos().isEmpty())
-                    {
-                        Photo photo=selectedItem.getPhotos().get(0);
+                    if (!selectedItem.getPhotos().isEmpty()) {
+                        Photo photo = selectedItem.getPhotos().get(0);
                         byte[] data = photo.getData();//转二进制
-                        String filepath="src/main/resources/images/"+selectedItem.getUid().getValue()+"."+photo.getContentType().getValue();
-                        File file=new File(filepath);
+                        String filepath = "src/main/resources/images/" + selectedItem.getUid().getValue() + "." + photo.getContentType().getValue();
+                        File file = new File(filepath);
                         file.createNewFile();
                         FileOutputStream fos = new FileOutputStream(file);
                         fos.write(data);
                         fos.close();
                         System.out.println(filepath);
-                        image.setImage(new Image("file:"+filepath));
+                        image.setImage(new Image("file:" + filepath));
                     }
                     TextField nameField = (TextField) namespace.get("nameField");
                     TextField phoneField = (TextField) namespace.get("phoneField");
@@ -707,17 +808,13 @@ public class VTableViewScene extends VScene {
                             } catch (MalformedURLException e) {
                                 throw new RuntimeException(e);
                             }
-                            Path path=Paths.get(image.getImage().getUrl().substring(6));
+                            Path path = Paths.get(image.getImage().getUrl().substring(6));
                             try {
-                                if (imageName.contains(".png"))
-                                {
-                                        newItem.addPhoto(new Photo(path, ImageType.PNG));
-                                }
-                                else if (imageName.contains(".jpg"))
-                                {
+                                if (imageName.contains(".png")) {
+                                    newItem.addPhoto(new Photo(path, ImageType.PNG));
+                                } else if (imageName.contains(".jpg")) {
                                     newItem.addPhoto(new Photo(path, ImageType.JPEG));
-                                }
-                                else if (imageName.contains(".gif")){
+                                } else if (imageName.contains(".gif")) {
                                     newItem.addPhoto(new Photo(path, ImageType.GIF));
                                 }
                             } catch (IOException e) {
