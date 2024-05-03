@@ -14,7 +14,7 @@ public class IntroScene extends VScene {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
 
-        var label = new ThemeLabel("Welcome to VFX-AddressBook Management") {{
+        var label = new ThemeLabel("Welcome to VFX AddressBook") {{
             FontManager.get().setFont(this, settings -> settings.setSize(50));
         }};
         getContentPane().getChildren().add(label);

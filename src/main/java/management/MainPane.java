@@ -1,5 +1,6 @@
 package management;
 
+import com.leewyatt.rxcontrols.controls.RXTranslationButton;
 import ezvcard.VCard;
 import ezvcard.VCardVersion;
 import ezvcard.io.text.VCardReader;
@@ -8,6 +9,7 @@ import ezvcard.property.*;
 import io.vproxy.vfx.control.globalscreen.GlobalScreenUtils;
 import io.vproxy.vfx.manager.task.TaskManager;
 import io.vproxy.vfx.theme.Theme;
+import io.vproxy.vfx.ui.alert.SimpleAlert;
 import io.vproxy.vfx.ui.button.FusionButton;
 import io.vproxy.vfx.ui.button.FusionImageButton;
 import io.vproxy.vfx.ui.layout.HPadding;
@@ -15,14 +17,22 @@ import io.vproxy.vfx.ui.layout.VPadding;
 import io.vproxy.vfx.ui.pane.FusionPane;
 import io.vproxy.vfx.ui.scene.*;
 import io.vproxy.vfx.ui.stage.VStage;
+import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
+import utils.ConstantSet;
 import utils.Export;
 import utils.Import;
 import utils.MyImageManager;
@@ -47,10 +57,13 @@ import java.util.*;
 public class MainPane extends Application {
     public static List<VScene> mainScenes = new ArrayList<>();
     public static VSceneGroup sceneGroup;
-    public static AddressBook addressBook;
-
+    public static boolean running = true;
+    public static VTableViewScene vTableViewScene=new VTableViewScene(()->sceneGroup);
+    public VBox groupBox = VTableViewScene.groupBox;
     //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
     public String filepath = "src/main/resources/vCard/sample.vcf";
+    private List<VCard> groups = AddressBook.getGroups();
+    private List<List<Data>> peopleList = AddressBook.getPeopleList();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -64,13 +77,12 @@ public class MainPane extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/setting.png", Map.of("white", 0xffffffff));
-        MyImageManager.get().loadBlackAndChangeColor("file:src/main/resources/images/up-arrow.png", Map.of("white", 0xffffffff));
 
         var stage = new VStage(primaryStage) {
             // 在程序关闭前添加一个回调
             @Override
             public void close() {
+                running = false;//关闭自定义线程
                 //保存数据
                 Export.export(filepath);
                 super.close();
@@ -80,7 +92,7 @@ public class MainPane extends Application {
         };
         stage.getInitialScene().enableAutoContentWidthHeight();
 
-        stage.setTitle("VFX Intro");
+        stage.setTitle("VFX AddressBook");
         mainScenes.add(new IntroScene());
         mainScenes.add(new VTableViewScene(() -> sceneGroup));
         var initialScene = mainScenes.get(0);
@@ -166,38 +178,81 @@ public class MainPane extends Application {
         );
         stage.getInitialScene().getContentPane().getChildren().add(box);
 
-        var settingScene = new VScene(VSceneRole.DRAWER_VERTICAL);
-        settingScene.getNode().setPrefWidth(450);
-        settingScene.enableAutoContentWidth();
-        settingScene.getNode().setBackground(new Background(new BackgroundFill(
+        var menuScene = new VScene(VSceneRole.DRAWER_VERTICAL);
+        menuScene.getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());
+        menuScene.getNode().setPrefWidth(450);
+        menuScene.enableAutoContentWidth();
+        menuScene.getNode().setBackground(new Background(new BackgroundFill(
                 Theme.current().subSceneBackgroundColor(),
                 CornerRadii.EMPTY,
                 Insets.EMPTY
         )));
-        stage.getRootSceneGroup().addScene(settingScene, VSceneHideMethod.TO_LEFT);
-        var settingBox = new VBox() {{
+        stage.getRootSceneGroup().addScene(menuScene, VSceneHideMethod.TO_LEFT);
+        var menuBox = new VBox() {{
             setPadding(new Insets(0, 0, 0, 24));
             getChildren().add(new VPadding(20));
         }};
-        settingScene.getContentPane().getChildren().add(settingBox);
-        settingBox.getChildren().add(new VPadding(20));
+        menuScene.getContentPane().getChildren().add(menuBox);
+        menuBox.getChildren().add(new VPadding(20));
 
-        var settingBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/setting.png")) {{
+        var menuBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/menu.png")) {{
             setPrefWidth(40);
             setPrefHeight(VStage.TITLE_BAR_HEIGHT + 1);
             getImageView().setFitHeight(15);
             setLayoutX(-2);
             setLayoutY(-1);
         }};
-        settingBtn.setOnAction(e -> stage.getRootSceneGroup().show(settingScene, VSceneShowMethod.FROM_LEFT));
-        stage.getRoot().getContentPane().getChildren().add(settingBtn);
+        var importExportIntro = new ThemeLabel("可导入导出vCard文件，即.vcf文件");
+        importExportIntro.setFont(Font.font(20));
+        var importBtn = new RXTranslationButton("Import") {{
+            getStyleClass().add("import_export_btn");
+            setPrefSize(200, 100);
+            setTranslationDir(TranslationDir.TOP_TO_BOTTOM);
+            setGraphic(new ImageView(new Image("file:src/main/resources/images/import.png", 100, 100, true, true)));
+            setOnMouseClicked(event -> {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("选择vCard文件");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("联系人文件", "*.vcf")
+                );
+                Window window = menuScene.getSelfNode().getScene().getWindow();
+                File selectedFile = fileChooser.showOpenDialog(window);
+                if (selectedFile != null) {
+                    try {
+                        Import.importVcard(selectedFile.getPath());
+                        for (int i = ConstantSet.GROUP_LIST_OFFSET; groupBox != null && i < groupBox.getChildren().size(); i++) {
+                            FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
+                            fusionButton.setDisable(i == ConstantSet.GROUP_LIST_OFFSET);
+                        }
+                        VTableViewScene.table.getItems().clear();
+                        VTableViewScene.table.getItems().addAll(peopleList.get(0));
+                        //System.out.println(AddressBook.getPeopleList().get(0).size());
+                        SimpleAlert.show(Alert.AlertType.INFORMATION, "导入成功(๑¯ω¯๑)");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }};
+        var exportBtn = new RXTranslationButton("Export") {{
+            getStyleClass().add("import_export_btn");
+            setPrefSize(200, 100);
+            setTranslationDir(TranslationDir.BOTTOM_TO_TOP);
+            setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png", 100, 100, true, true)));
+            setOnMouseClicked(event -> {
+
+            });
+        }};
+        menuBox.getChildren().addAll(importExportIntro, new VPadding(40), importBtn, new VPadding(40), exportBtn);
+        FXUtils.observeWidthCenter(menuScene.getContentPane(), menuBox);
+
+        menuBtn.setOnAction(e -> stage.getRootSceneGroup().show(menuScene, VSceneShowMethod.FROM_LEFT));
+        stage.getRoot().getContentPane().getChildren().add(menuBtn);
 
         stage.getStage().setWidth(1280);
         stage.getStage().setHeight(800);
         stage.getStage().centerOnScreen();
         stage.getStage().initStyle(StageStyle.TRANSPARENT);
         stage.getStage().show();
-
-
     }
 }
