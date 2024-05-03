@@ -68,6 +68,10 @@ public class Data extends VCard {
             person.addOrganization(organization);
         }
 
+        for(Photo photo:vCard.getPhotos())
+        {
+            person.addPhoto(photo);
+        }
         for (Note note : vCard.getNotes()) {
             person.addNote(note);
         }
