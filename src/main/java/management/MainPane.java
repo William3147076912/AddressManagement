@@ -1,5 +1,6 @@
 package management;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.leewyatt.rxcontrols.controls.RXTranslationButton;
 import ezvcard.VCard;
 import ezvcard.VCardVersion;
@@ -28,9 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 import javafx.stage.Window;
 import utils.ConstantSet;
 import utils.Export;
@@ -38,16 +37,16 @@ import utils.Import;
 import utils.MyImageManager;
 import vjson.JSON;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Writer;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.interfaces.ECPublicKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 /**
  * @Author fcj
@@ -240,7 +239,27 @@ public class MainPane extends Application {
             setTranslationDir(TranslationDir.BOTTOM_TO_TOP);
             setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png", 100, 100, true, true)));
             setOnMouseClicked(event -> {
+                Frame frame=new Frame("选择");
+                FileDialog fileDialog=new FileDialog(frame,"选择",FileDialog.SAVE);
 
+                //文件后缀过滤好像没起作用
+                fileDialog.setFilenameFilter(new FilenameFilter() {
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".vcf");
+                    }
+                });
+
+                fileDialog.setFile("exportfile.vcf");
+                fileDialog.setVisible(true);
+                if(fileDialog.getDirectory()!=null&&fileDialog.getFile()!=null)
+                {
+                    String directory=fileDialog.getDirectory();
+                    String filename = fileDialog.getFile();
+                    // 在选择的文件夹中创建文件对象
+                    directory=directory.replace('\\','/');
+                    Export.export(directory+filename);
+                    System.out.println(directory+filename);
+                }
             });
         }};
         menuBox.getChildren().addAll(importExportIntro, new VPadding(40), importBtn, new VPadding(40), exportBtn);

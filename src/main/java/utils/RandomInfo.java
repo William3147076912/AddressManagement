@@ -238,9 +238,9 @@ public class RandomInfo {
     }
 
     public static void main(String[] args) throws IOException {
-        File cr = new File("src/main/resources/vCard/sample.vcf");
+        File cr = new File("src/main/resources/vCard/sample2.vcf");
         cr.createNewFile();
-        Path file = Paths.get("src/main/resources/vCard/sample.vcf");
+        Path file = Paths.get("src/main/resources/vCard/sample2.vcf");
 
         VCardWriter writer;
         writer = new VCardWriter(file, VCardVersion.V3_0);
