@@ -88,17 +88,18 @@ public class ContactController {
         if (selectedFile != null) {
             // 如果用户选择了图片文件，则加载并显示在图片视图中
             image.setImage(new Image(selectedFile.toURI().toString()));
-            //将image存到本地
-            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image.getImage(), null);
-            String suffix = selectedFile.getName().substring(selectedFile.getName().lastIndexOf('.') + 1);
-            File outputFile = new File("src/main/resources/images/" + nameField.getText() + "." + suffix);
-            try {
-                // Write the BufferedImage to the file
-                ImageIO.write(bufferedImage, suffix, outputFile);
-                System.out.println("Image saved successfully.");
-            } catch (IOException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
+            System.out.println(image.getImage().getUrl()+"替换了界面图片");
+//            //将image存到本地
+//            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image.getImage(), null);
+//            String suffix = selectedFile.getName().substring(selectedFile.getName().lastIndexOf('.') + 1);
+//            File outputFile = new File("src/main/resources/images/" + nameField.getText() + "." + suffix);
+//            try {
+//                // Write the BufferedImage to the file
+//                ImageIO.write(bufferedImage, suffix, outputFile);
+//                System.out.println("Image saved successfully.");
+//            } catch (IOException e) {
+//                System.out.println("Error: " + e.getMessage());
+//            }
         }
     }
 

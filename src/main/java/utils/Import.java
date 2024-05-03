@@ -36,18 +36,18 @@ public class Import {
                     Uid uid = new Uid(UUID.randomUUID().toString());
                     person.setUid(uid);
                 }
-                List<Photo> photoList = person.getPhotos();
-                if (!photoList.isEmpty()) {//如果该联系人的图片不为空，读取并保存在本地
-                    for (Photo photo : photoList) {
-                        byte[] data = photo.getData();//转二进制
-                        String photoFilepath = "src/main/resources/vCard/" + person.getUid().getValue() + "."+photo.getContentType().getValue();
-                        File file1 = new File(photoFilepath);
-                        file1.createNewFile();
-                        FileOutputStream fos = new FileOutputStream(file1);
-                        fos.write(data);
-                        fos.close();
-                    }
-                }
+//                List<Photo> photoList = person.getPhotos();
+//                if (!photoList.isEmpty()) {//如果该联系人的图片不为空，读取并保存在本地
+//                    for (Photo photo : photoList) {
+//                        byte[] data = photo.getData();//转二进制
+//                        String photoFilepath = "src/main/resources/vCard/" + person.getUid().getValue() + "."+photo.getContentType().getValue();
+//                        File file1 = new File(photoFilepath);
+//                        file1.createNewFile();
+//                        FileOutputStream fos = new FileOutputStream(file1);
+//                        fos.write(data);
+//                        fos.close();
+//                    }
+//                }
             } else if (temp.getKind().isGroup()) {//如果该VCard是组织信息
                 if (groups.isEmpty()) {//如果组表一开始为空，创建"all people"组
                     groups.add(new VCard() {{

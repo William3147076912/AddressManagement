@@ -3,7 +3,9 @@ package management;
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import com.sun.prism.shader.FillCircle_ImagePattern_Loader;
 import ezvcard.VCard;
+import ezvcard.parameter.ImageType;
 import ezvcard.property.*;
 import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.manager.font.FontManager;
@@ -35,9 +37,16 @@ import javafx.stage.StageStyle;
 import management.controller.ContactController;
 import management.controller.GroupController;
 import utils.ConstantSet;
+import utils.Import;
 import utils.PopupScene;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Supplier;
@@ -638,7 +647,20 @@ public class VTableViewScene extends VScene {
                     var postalCode = selectedItem.getAddresses().isEmpty() ? "" : selectedItem.getAddresses().get(0).getPostalCode();
                     var remark = selectedItem.getNotes().isEmpty() ? "" : selectedItem.getNotes().get(0).getValue();
                     ObservableMap<String, Object> namespace = fxmlLoader.getNamespace();//取得fxml中所有拥有fx:id的组件
-                    RXAvatar image = (RXAvatar) namespace.get("image");
+                    RXAvatar image = (RXAvatar) namespace.get("image");//
+                    if(!selectedItem.getPhotos().isEmpty())
+                    {
+                        Photo photo=selectedItem.getPhotos().get(0);
+                        byte[] data = photo.getData();//转二进制
+                        String filepath="src/main/resources/images/"+selectedItem.getUid().getValue()+"."+photo.getContentType().getValue();
+                        File file=new File(filepath);
+                        file.createNewFile();
+                        FileOutputStream fos = new FileOutputStream(file);
+                        fos.write(data);
+                        fos.close();
+                        System.out.println(filepath);
+                        image.setImage(new Image("file:"+filepath));
+                    }
                     TextField nameField = (TextField) namespace.get("nameField");
                     TextField phoneField = (TextField) namespace.get("phoneField");
                     TextField emailField = (TextField) namespace.get("emailField");
@@ -679,10 +701,34 @@ public class VTableViewScene extends VScene {
                             address1.setStreetAddress(addressField.getText());
                             address1.setPostalCode(postalCodeField.getText());
                             newItem.getAddresses().add(address1);
+
+                            String imageName = null;
+                            try {
+                                imageName = new URL(image.getImage().getUrl()).getFile().toLowerCase();
+                            } catch (MalformedURLException e) {
+                                throw new RuntimeException(e);
+                            }
+                            Path path=Paths.get(image.getImage().getUrl().substring(6));
+                            try {
+                                if (imageName.contains(".png"))
+                                {
+                                        newItem.addPhoto(new Photo(path, ImageType.PNG));
+                                }
+                                else if (imageName.contains(".jpg"))
+                                {
+                                    newItem.addPhoto(new Photo(path, ImageType.JPEG));
+                                }
+                                else if (imageName.contains(".gif")){
+                                    newItem.addPhoto(new Photo(path, ImageType.GIF));
+                                }
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                             /*newItem.addAddress(new Address() {{
                                 setStreetAddress(addressField.getText());
                                 setPostalCode(postalCodeField.getText());
                             }});*/
+
                             newItem.addNote(remarkField.getText());
                             if (selectedItem.equals(newItem))//没修改但点了保存
                                 SimpleAlert.showAndWait(Alert.AlertType.INFORMATION, "您改了什么Owo");
@@ -691,6 +737,7 @@ public class VTableViewScene extends VScene {
                                     group.set(group.indexOf(selectedItem), Data.vCardtoData(newItem));
                                 }
                             }
+
                             //刷新table
                             table.getItems().clear();
                             table.getItems().addAll(peopleList.get(defaultGroupOrNot));
