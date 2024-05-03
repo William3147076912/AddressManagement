@@ -197,5 +197,7 @@ public class MainPane extends Application {
         stage.getStage().centerOnScreen();
         stage.getStage().initStyle(StageStyle.TRANSPARENT);
         stage.getStage().show();
+
+
     }
 }

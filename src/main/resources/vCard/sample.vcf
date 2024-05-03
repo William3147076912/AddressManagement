@@ -2,1240 +2,1276 @@ BEGIN:VCARD
 VERSION:4.0
 PRODID:ez-vcard 0.12.1
 KIND:group
+FN:fcj
+MEMBER:64980e29-9fe2-4ead-8474-3e048fae7a1a
+MEMBER:efce3007-3c99-457f-886c-d01aedd98dba
+MEMBER:f05bb10f-1558-4c16-b571-31af3356328b
+MEMBER:c8d3b5a9-a0eb-4c94-90f2-792f64a325fc
+MEMBER:c100faa0-29a4-4ddc-b767-f795dbd98e79
+MEMBER:20971cb5-8b8d-4c68-b62f-414cd6066892
+MEMBER:094fbca3-b606-40aa-90f3-6c95dce3828d
+MEMBER:d3d35a78-3b8f-4c06-93d1-cbe1cf7f4187
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+PRODID:ez-vcard 0.12.1
+KIND:group
+FN:cyk
+MEMBER:64980e29-9fe2-4ead-8474-3e048fae7a1a
+MEMBER:efce3007-3c99-457f-886c-d01aedd98dba
+MEMBER:f05bb10f-1558-4c16-b571-31af3356328b
+MEMBER:c8d3b5a9-a0eb-4c94-90f2-792f64a325fc
+MEMBER:c100faa0-29a4-4ddc-b767-f795dbd98e79
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+PRODID:ez-vcard 0.12.1
+KIND:group
 FN:asd
-MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=5df5cc4e-5
- 752-4265-9341-d749d3b650e0 ]
-MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=0583514a-1
- 528-4978-9fc8-747576b57198 ]
-MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=4112910c-c
- 697-4f66-86af-899cac8e198c ]
-MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=f3783b10-1
- 101-4553-9d5e-38f808a6e5df ]
-MEMBER:ezvcard.property.Uid [ group=null | parameters={} | value=ec474bda-b
- fa1-4175-9369-c9c6407a37a6 ]
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+PRODID:ez-vcard 0.12.1
+KIND:group
+FN:ttt
+MEMBER:bb8c1ed5-0fb0-4e37-8076-813a2c5c179c
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;贵州省六盘水市五营区安亭路东新大厦;;;063405
-TEL:15627212407
-URL:http://www.HsecfAdBFkJwqqt2U3282oLbfAfQYWYFuVUEsIXcHq5W60SbVscIS0U1foZn
- .personalwebsite.com
-BDAY:1907-04-13
-FN:明瑗艳
-EMAIL:299805109@qq.com
-ORG:塔布数据 集团
-UID:5df5cc4e-5752-4265-9341-d749d3b650e0
+ADR:;;江苏省丽水市五营区宝祁路爱里舍花园;;;020062
+TEL:17854558546
+URL:http://www.83AI3tNA7o.personalwebsite.com
+BDAY:1927-05-07
+FN:耿瑞园1
+EMAIL:4167357274@qq.com
+ORG:数说故事
+NOTE:asd
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;吉林省葫芦岛市上甘岭区鞍山支路爱里舍花园;;;053520
-TEL:15599594961
-URL:http://www.8i.myhomepage.net
-BDAY:1918-03-27
-FN:薛珠凤
-EMAIL:539052030@qq.com
-ORG:网易之
-UID:0583514a-1528-4978-9fc8-747576b57198
+UID:64980e29-9fe2-4ead-8474-3e048fae7a1a
+ADR:;;吉林省柳州市伊春区中原路和亭佳苑;;;017533
+TEL:18684408638
+URL:http://www..myhomepage.net
+BDAY:1944-05-22
+FN:袁娅娜
+EMAIL:160034085@qq.com
+ORG:京西 金融投资有限公司
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;江苏省昭通市汤旺河区百安路（方泰镇）阳光翠竹苑;;;067450
-TEL:15655320402
-URL:http://www.I7xbOuU0Qfa.personalwebsite.com
-BDAY:1989-12-20
-FN:郁盛毅
-EMAIL:465221977@qq.com
-ORG:网易之 科技有限公司
-UID:4112910c-c697-4f66-86af-899cac8e198c
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;浙江省松原市带岭区安顺路金色家园;;;042186
-TEL:17483719768
-URL:http://www.9RGjs0ehKgerMEbLn5vIHscVopqv6iwJUfSYPQ1SFxUJGC.example.com
-BDAY:1949-11-18
-FN:冀荷娅
-EMAIL:709204234@qq.com
-ORG:腾企鹅
-UID:f3783b10-1101-4553-9d5e-38f808a6e5df
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;黑龙江省宿州市美溪区白水路复华城市花园;;;096056
-TEL:15785686041
-URL:http://www.jKa2tNk0VOuyU3DRqBY5TUkOjpe.myhomepage.net
-BDAY:2000-12-25
-FN:熊霭霞
-EMAIL:7722769081@qq.com
-ORG:千度
-UID:ec474bda-bfa1-4175-9369-c9c6407a37a6
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;云南省开封市红星区安图路耀江花园;;;037741
-TEL:15625727182
-URL:http://www.IJY6FUrRaKVGLXKOEN1SHygdtZ0P4cGVhUx73QZxJKjviXaw.myhomepage.
- net
-BDAY:1946-08-02
-FN:沈倩华
-EMAIL:777698970@qq.com
-ORG:网易之
-UID:4f53835f-3de9-474b-abad-b84bee4588bc
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河南省泰安市西林区中原路博泰新苑;;;036052
-TEL:18319306344
-URL:http://www.qGefkDwgqto9fs52eNSbHKxyTvSmQbvtb9aZ5QHni.example.com
-BDAY:1918-04-29
-FN:沈妹华
-EMAIL:364694792@qq.com
-ORG:阿狸巴巴
-UID:ad2ad7cb-5238-45e9-bfce-cd9838c4b453
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江西省吉安市榆次区宝安公路和亭佳苑;;;052873
-TEL:15572307682
-URL:http://www.uZRsooAkzqYWgamD9Hx3iGjqjr.example.com
-BDAY:1917-02-15
-FN:祁文震
-EMAIL:621718039@qq.com
-ORG:腾企鹅 集团
-UID:3fc6f616-0e14-4202-ba12-1da6efef2b3e
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;甘肃省温州市红星区鞍山支路耀江花园;;;055623
-TEL:17709735256
-URL:http://www.53nsoDzUEMn2LvkfrNvW1Ihjdw.personalwebsite.com
-BDAY:1944-06-13
-FN:应启飞
-EMAIL:056428409@qq.com
+UID:efce3007-3c99-457f-886c-d01aedd98dba
+ADR:;;吉林省晋城市南岔区百安路（方泰镇）住友嘉馨名园;;;038038
+TEL:17617436545
+URL:http://www.TOlK9of2KZx7TSa5j6uwmRSWflASvd45DqC10jB5gU3mnHOOJBzLl.myhome
+ page.net
+BDAY:2004-11-21
+FN:侯菊月
+EMAIL:508757886@qq.com
 ORG:互动派
-UID:0fc28b33-5a65-42cd-973c-4a4396d26623
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;青海省银川市上甘岭区安福路和亭佳苑;;;061567
-TEL:18489783116
-URL:http://www.qSWq.personalwebsite.com
-BDAY:1902-08-04
-FN:燕莺玲
-EMAIL:4783072645@qq.com
-ORG:千度
-UID:a0fea386-394e-4da0-9007-587e1a82a66e
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;安徽省广安市金山屯区宝林路住友嘉馨名园;;;028300
-TEL:18658628867
-URL:http://www.bXp.myhomepage.net
-BDAY:1971-07-25
-FN:于裕贵
-EMAIL:6861696@qq.com
-ORG:图匠 金融投资有限公司
-UID:4e9c54a9-96e2-430b-98f5-d3dc3c269ea2
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;安徽省铁岭市乌伊岭区安业路爱里舍花园;;;087737
-TEL:15154441014
-URL:http://www.FlDrMdtycwRDbnllky2jtRHxD6XwQbUmn.portfolio.org
-BDAY:1956-12-02
-FN:陆之亨
-EMAIL:5707070295@qq.com
-ORG:塔布数据 集团
-UID:0199639c-d442-4fa7-9bec-3674a0755384
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;福建省周口市乌马河区鞍山路东新大厦;;;071253
-TEL:17484180547
-URL:http://www.XIFAu4OH1kDc3VddfEtfAfsOt.example.com
-BDAY:1910-10-13
-FN:骆静卿
-EMAIL:9659404458@qq.com
-ORG:网易之
-UID:06e5f54d-6b06-4d4a-8364-9bf4e4bb2270
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;吉林省辽阳市新青区包头路博泰新苑;;;084534
-TEL:17442811626
-URL:http://www.RBG01Q.example.com
-BDAY:1989-05-08
-FN:双莺巧
-EMAIL:9110247001@qq.com
-ORG:互动派 集团
-UID:3be3a3f2-490f-4e9c-bd90-b41b37ca8ec2
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山西省焦作市金山屯区白城南路爱里舍花园;;;011207
-TEL:18217284948
-URL:http://www.AnpEEzqTWbpvabXS.personalwebsite.com
-BDAY:1919-09-04
-FN:谷梁厚茂
-EMAIL:4434587474@qq.com
-ORG:腾企鹅 有限公司
-UID:3fa3bc6a-b440-46ea-bd91-116256e6f4b6
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河南省马鞍山市汤旺河区安化路真新六街坊;;;069938
-TEL:15333254930
-URL:http://www.oMbfx2e9IdJ2NAAFW.personalwebsite.com
-BDAY:1993-05-31
-FN:屈信明
-EMAIL:289736488@qq.com
-ORG:图匠
-UID:853ec1e3-d1b9-45a0-8072-1f711af5dcf2
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;吉林省柳州市汤旺河区百色路博泰新苑;;;045598
-TEL:17847406243
-URL:http://www.K5cBKKWfNK20Bs9P6MKs9WPZ7Kzh5PduhSX32eAPAABkRMA8WkZVbz5.myho
- mepage.net
-BDAY:2023-08-11
-FN:卜希梅
-EMAIL:0692365588@qq.com
-ORG:网易之 股份有限公司
-UID:b8779f9a-0ad4-4612-a674-0c3f7732c32d
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江苏省成都市汤旺河区宝林路东新大厦;;;066414
-TEL:18736629331
-URL:http://www.Oth.personalwebsite.com
-BDAY:1926-09-19
-FN:毛德磊
-EMAIL:4184129496@qq.com
-ORG:京西
-UID:55d57ff4-173c-4cc5-8f6c-c852508a5586
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江苏省呼伦贝尔市翠峦区宝安路复华城市花园;;;033225
-TEL:13833332198
-URL:http://www.wD9.personalwebsite.com
-BDAY:1909-06-24
-FN:平成腾
-EMAIL:232494245@qq.com
-ORG:塔布数据 金融投资有限公司
-UID:f1ddb57f-1a79-4fde-9e73-4aa548226f33
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山东省四平市榆次区白城路博泰新苑;;;019316
-TEL:13228280083
-URL:http://www.qU4ryNS81mVwr0a5FXihH97KgUG3X3X2w8VmYmPlh9SIAo65As.example.c
- om
-BDAY:1947-08-09
-FN:陶静璧
-EMAIL:300352506@qq.com
-ORG:塔布数据
-UID:d26df567-7967-4077-a0f6-ad332a64bc67
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;贵州省泸州市伊春区保屯路协通公寓;;;045959
-TEL:15536369983
-URL:http://www.TRgEm42voaQRT76BnGw.personalwebsite.com
-BDAY:1919-06-28
-FN:童东启
-EMAIL:0515876407@qq.com
-ORG:塔布数据
-UID:6af9a375-4956-421e-ad4a-58afbd7e2043
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;云南省铁岭市乌马河区安图路金色家园;;;056771
-TEL:17804556898
-URL:http://www.vxnKUfsXuz7ZSzLxeSRCdOxBM76h7mwakI9rzs8ww64IY6LB.example.com
-BDAY:2003-07-09
-FN:羊朗富
-EMAIL:9433127903@qq.com
-ORG:京西
-UID:2e7af4f2-6b8b-4054-8d9f-e532a2f7dc3e
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;湖南省南宁市带岭区百安路（方泰镇）菊园五街坊;;;070570
-TEL:13715815795
-URL:http://www.c15QCivyKJHyiLt5yhotbVtbj.portfolio.org
-BDAY:1983-04-17
-FN:宗维安
-EMAIL:1370151758@qq.com
-ORG:互动派 金融投资有限公司
-UID:837be7d5-9994-404a-89b2-472cb743895b
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;安徽省泉州市榆次区白玉路复华城市花园;;;048971
-TEL:15701088517
-URL:http://www.17UpOdB8glLyRRnrWphA5UEi5jFQTb3djmfa16NzavmYQM.portfolio.org
-BDAY:1964-12-08
-FN:粱蓉筠
-EMAIL:658032513@qq.com
-ORG:网易之 股份有限公司
-UID:1550afff-73ad-4335-9f42-50df09c4bd60
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;广东省石嘴山市美溪区安亭路爱里舍花园;;;053202
-TEL:15127577227
-URL:http://www.GarPSeHvmPDSK7irKo03R.myhomepage.net
-BDAY:1934-02-19
-FN:温钧德
-EMAIL:925165040@qq.com
-ORG:后海金融 有限公司
-UID:f69efecd-c687-47cb-a46c-23588a6bd482
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;台湾省濮阳市带岭区安仁路博泰新苑;;;024519
-TEL:17994863020
-URL:http://www.jQX4nS0i2LX7CzhmkwfZ0HlgC1Snpl3hf6z.portfolio.org
-BDAY:1986-10-21
-FN:劳云静
-EMAIL:3290788392@qq.com
-ORG:网易之 金融投资有限公司
-UID:abf7167b-85a0-48af-b605-02811137ecf5
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江西省保定市西林区宝安公路菊园五街坊;;;088417
-TEL:18490637433
-URL:http://www.9l2QjKDgtELuPB0ga.personalwebsite.com
-BDAY:1938-10-18
-FN:申屠爽欢
-EMAIL:603516199@qq.com
-ORG:腾企鹅
-UID:2d904d3b-3562-49ee-b4e5-e463c1d4df23
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河北省东营市榆次区宝昌路协通公寓;;;061470
-TEL:13144232889
-URL:http://www.zC3M04Quwt9LDZrfKdDRCn6S9g4qZMsdnlf.myhomepage.net
-BDAY:1966-06-03
-FN:吕楠晨
-EMAIL:777077212@qq.com
-ORG:后海金融
-UID:a0985321-6cd6-4ed0-b23c-f6797187fe35
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;福建省白城市美溪区宝林路爱里舍花园;;;045420
-TEL:17551349277
-URL:http://www.75EKAUibuViWPDdlLr2MWU8bwkjT1N8JCG6pgEKhONPmhEH.personalwebs
+UID:f05bb10f-1558-4c16-b571-31af3356328b
+ADR:;;海南省邯郸市红星区百安路（方泰镇）和亭佳苑;;;060441
+TEL:18473860096
+URL:http://www.PlI04d7J3b5Xxc53e12uSWH8Rl2LdtFt4KDeFFoIob7e9Sa.personalwebs
  ite.com
-BDAY:1968-02-15
-FN:陶苑爱
-EMAIL:8168213908@qq.com
-ORG:京西
-UID:0188775e-ec38-49e6-8fd8-02bc967b503e
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江西省昌都地区翠峦区白渡路金色家园;;;091087
-TEL:17114472599
-URL:http://www.wo3ngZF4p.personalwebsite.com
-BDAY:2022-12-01
-FN:双群辉
-EMAIL:993155471@qq.com
-ORG:塔布数据 集团
-UID:fa929153-3fd8-43b0-9428-2c6cba3d6727
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;云南省上饶市上甘岭区澳门路协通公寓;;;073062
-TEL:15790372885
-URL:http://www.1mPZI.personalwebsite.com
-BDAY:1915-08-02
-FN:殴学中
-EMAIL:659182713@qq.com
-ORG:京西 集团
-UID:574dc8bc-776a-49fc-8526-92af2ae0ebf3
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;贵州省东莞市友好区八一路真新六街坊;;;033985
-TEL:17657676456
-URL:http://www.CmDB3.example.com
-BDAY:1903-11-18
-FN:褚亨壮
-EMAIL:001210@qq.com
-ORG:后海金融
-UID:0a91576c-6109-4ca5-a0d0-13e913eaba7c
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江苏省合肥市带岭区包头南路东新大厦;;;057139
-TEL:13531274707
-URL:http://www.N97Bj9eJ44NHag2YKDljThu2LWlDAosxH3ZkGqNAp2NQNzdVxxPDI2h.myho
- mepage.net
-BDAY:1942-02-18
-FN:燕琰琴
-EMAIL:7345678190@qq.com
-ORG:阿狸巴巴 股份有限公司
-UID:96de74f0-7041-47b5-b09e-3e4d1d4c82b3
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;广东省菏泽市美溪区中原路爱里舍花园;;;024992
-TEL:15749298929
-URL:http://www.1.portfolio.org
-BDAY:1907-11-15
-FN:宰坚豪
-EMAIL:521177856@qq.com
-ORG:腾企鹅 股份有限公司
-UID:9360fdf5-afe5-4bbd-bf27-584653b7fdf0
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;吉林省大庆市伊春区包头路协通公寓;;;010673
-TEL:17192104012
-URL:http://www.HFIoql6tbdm6CghXzdM63T3c7WfDyEbusNt3uFr0NDyn.myhomepage.net
-BDAY:1951-03-24
-FN:农华燕
-EMAIL:968837243@qq.com
-ORG:千度 集团
-UID:5604ea4b-f7a3-41f8-ab24-7c9db36be3d0
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;浙江省湘潭市榆次区白水路溢盈河畔别墅;;;084401
-TEL:13732681019
-URL:http://www.HBHiPhztFpGacDDlIquVbTAONSqWsQQF9L8RUu19l0QCTpt.portfolio.or
- g
-BDAY:1993-11-20
-FN:向梦月
-EMAIL:070288632@qq.com
-ORG:京西
-UID:c96125ad-50a4-4ace-87ec-6a9fba99f2ef
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河北省齐齐哈尔市新青区白兰路复华城市花园;;;020995
-TEL:18746123980
-URL:http://www.OVc3SpPVzN0zqgIfQJpCne86Y121fZpfDGSEqsPzgahft1uI6qs3gNpyJkJ.
- personalwebsite.com
-BDAY:1943-09-17
-FN:滑莲婵
-EMAIL:687010461@qq.com
-ORG:后海金融 有限公司
-UID:5a4bfb23-26fc-4215-b939-2f61b656eca2
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;广东省宿州市乌伊岭区白城路金色家园;;;039992
-TEL:13192093403
-URL:http://www.svf.personalwebsite.com
-BDAY:1946-07-31
-FN:雷菲茜
-EMAIL:348652685@qq.com
-ORG:数说故事 科技有限公司
-UID:89d3a95c-dde4-429c-82f4-bea21be6ce76
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;台湾省驻马店市翠峦区宝杨路协通公寓;;;036439
-TEL:18535885565
-URL:http://www.VDp7UhHuLRg0BVNKinAfnSFdNA5ZkXUsv4oJzP3DFe4LTKQyAPbykB9XJq.p
- ersonalwebsite.com
-BDAY:1959-11-19
-FN:庄进明
-EMAIL:421223979@qq.com
-ORG:互动派
-UID:58b21c97-7641-4353-853c-af755a84783b
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;海南省攀枝花市翠峦区宝安路耀江花园;;;041454
-TEL:18661540106
-URL:http://www.cbOAGcGuA7mtRniP6nrPHV8mtktfAOgLGgylX8.portfolio.org
-BDAY:1906-06-27
-FN:韦泰超
-EMAIL:6385204279@qq.com
-ORG:图匠
-UID:bcc858d1-113f-43b6-b875-fd4bc00d393f
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;浙江省淮北市带岭区白玉路协通公寓;;;075581
-TEL:15384037552
-URL:http://www.wYA0IcRluiVQHFUgqnZMYTAProabePS6WF7ocW14IDHA3sZ8X.portfolio.
- org
-BDAY:1953-05-08
-FN:劳晓融
-EMAIL:461429852@qq.com
-ORG:京西
-UID:31a88656-cc7b-489e-83ae-2c3bd4e72403
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河北省达州市乌马河区八一路爱里舍花园;;;062929
-TEL:15517961013
-URL:http://www.ZUReZmBCz4fOj6zkd.portfolio.org
-BDAY:1966-02-19
-FN:古妹玉
-EMAIL:3178025247@qq.com
-ORG:图匠
-UID:e084aca5-96bf-43ba-8fe3-6197fbfd2a61
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山西省娄底市汤旺河区宝安路真新六街坊;;;032737
-TEL:13832703251
-URL:http://www.JgsFhwZsRT.portfolio.org
-BDAY:1908-06-06
-FN:景策俊
-EMAIL:01098336@qq.com
-ORG:图匠
-UID:471fa546-fa03-483a-ae20-e01f356680c2
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;湖南省德阳市友好区安义路复华城市花园;;;021478
-TEL:18614610314
-URL:http://www.NQTW3TT2e865CtohvB0htlEG.personalwebsite.com
-BDAY:2015-04-12
-FN:游彪敬
-EMAIL:845536829@qq.com
-ORG:塔布数据
-UID:b6f9f284-480d-4107-ae9e-c57a85e31f08
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河南省韶关市乌马河区白兰路爱里舍花园;;;099696
-TEL:15548339819
-URL:http://www.CLEk3uGNl1eYOocMseOde65lfjTCY1Xg1TnW8HLdNozYhUVFiH2cmY05Z.po
- rtfolio.org
-BDAY:1936-02-16
-FN:梅环荔
-EMAIL:6532847734@qq.com
-ORG:千度 有限公司
-UID:f8c587da-3070-4c44-8c06-0342daa7ba0e
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;吉林省丽江市带岭区安仁路博泰新苑;;;059435
-TEL:17388504613
-URL:http://www.KgCVfZPVHX8UquJfSdjxJQE6nczKIPVNrbRo69p40jQrRXLj.myhomepage.
- net
-BDAY:1980-04-14
-FN:孟涛致
-EMAIL:811952042@qq.com
+BDAY:1985-11-09
+FN:翁娜融
+EMAIL:7472523723@qq.com
 ORG:阿狸巴巴
-UID:c98c5712-89b7-4052-8dc5-614366936e3d
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;云南省白城市上甘岭区百花街菊园五街坊;;;081734
-TEL:18503357633
-URL:http://www.XsgsKdF1lcyeB4iyLAj.portfolio.org
-BDAY:1944-11-04
-FN:屈宜翠
-EMAIL:980138491@qq.com
-ORG:图匠
-UID:9404af93-3012-4af7-bc38-68579d115469
+UID:c8d3b5a9-a0eb-4c94-90f2-792f64a325fc
+ADR:;;海南省克拉玛依市伊春区白渡路东新大厦;;;012805
+TEL:15493564561
+URL:http://www.dVJrz0dn4X.myhomepage.net
+BDAY:2006-05-26
+FN:贝盛博
+EMAIL:380035845@qq.com
+ORG:阿狸巴巴
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;黑龙江省玉林市友好区保屯路博泰新苑;;;032303
-TEL:18541444523
-URL:http://www.YMzg34V9C8Y6D55aW5QeAcIOinIuAXvcTIto.portfolio.org
-BDAY:2009-03-23
-FN:沃霭荷
-EMAIL:7897414674@qq.com
-ORG:塔布数据 科技有限公司
-UID:f430eecc-7229-450d-ba25-ccf0cdeb3bc2
+UID:c100faa0-29a4-4ddc-b767-f795dbd98e79
+ADR:;;黑龙江省台州市金山屯区宝昌路住友嘉馨名园;;;026706
+TEL:13721817101
+URL:http://www.MMLu6KpVKjcLCq1PyM.personalwebsite.com
+BDAY:1936-06-05
+FN:田永安
+EMAIL:4471496507@qq.com
+ORG:千度
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;台湾省郴州市西林区新四路爱里舍花园;;;063160
-TEL:15571135058
-URL:http://www.wvewtX7bd1GQE3GCRbhBmJKty2x8W4Sib0kc.personalwebsite.com
-BDAY:1907-03-03
-FN:和燕蕊
-EMAIL:6883034814@qq.com
-ORG:后海金融
-UID:6778b194-eb6b-4936-a04b-16b2b1e0b04a
+UID:20971cb5-8b8d-4c68-b62f-414cd6066892
+ADR:;;浙江省郴州市带岭区白城南路阳光翠竹苑;;;058003
+TEL:18542658582
+URL:http://www.tlcEUkWaJhD1apEwqBn68mVlQw6XdOOJJWtASBRyJ.portfolio.org
+BDAY:1974-03-12
+FN:公善群
+EMAIL:626570854@qq.com
+ORG:阿狸巴巴
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;江苏省景德镇市红星区宝通路爱里舍花园;;;010250
-TEL:17682320687
-URL:http://www.fsyWCgruVaCk9pfifvjPL8VGuVxjMQryeq9dsrTtrDG.myhomepage.net
-BDAY:1947-08-28
-FN:邓园爱
-EMAIL:5271823094@qq.com
-ORG:塔布数据
-UID:70ae468d-50e9-4337-975a-a2f4089197ee
+UID:094fbca3-b606-40aa-90f3-6c95dce3828d
+ADR:;;福建省景德镇市五营区安顺路住友嘉馨名园;;;088064
+TEL:18887605168
+URL:http://www.MJzqSSzUUl1wWMGW05S5.myhomepage.net
+BDAY:1934-01-08
+FN:裴琰宜
+EMAIL:874575406@qq.com
+ORG:千度
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;青海省湖州市上甘岭区白玉路真新六街坊;;;066001
-TEL:18493840083
-URL:http://www.qpQgDz90MenYQVEGYuK8A5C5l49tQTcS4oI.example.com
-BDAY:1972-12-20
-FN:鱼心壮
-EMAIL:180405651@qq.com
-ORG:腾企鹅 集团
-UID:b360b845-1680-4680-a3f2-7fc69b40fd3b
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;福建省崇左市乌马河区黄河路金色家园;;;047516
-TEL:15980244486
-URL:http://www.NfB1gTrXCAv3d5FhI3QHuShUqZKrrA2OiSlr5gb9kQ4NoMtm5s4mNM.myhom
- epage.net
-BDAY:2007-04-04
-FN:诸香婉
-EMAIL:8812589113@qq.com
-ORG:京西
-UID:564ddb4a-a2d8-4c59-aa81-518f066d95a6
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;江西省滨州市乌伊岭区安业路复华城市花园;;;095467
-TEL:13398810032
-URL:http://www.bB9VHhwstAt.personalwebsite.com
-BDAY:1984-01-31
-FN:岑飘婷
-EMAIL:359194730@qq.com
-ORG:互动派
-UID:dcb8d25e-a41d-4e97-83d3-4349f4837de0
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;福建省哈密地区带岭区北艾路耀江花园;;;098253
-TEL:15983624630
-URL:http://www.Bjv3k5Lp.myhomepage.net
-BDAY:1944-07-29
-FN:梅弘辉
-EMAIL:512678190@qq.com
-ORG:互动派 股份有限公司
-UID:37d4a06c-3b90-41ee-8c29-3da298c842ff
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;湖北省哈密地区乌伊岭区安波路复华城市花园;;;017079
-TEL:17782717031
-URL:http://www.qyu1Encn6ZIzypNBvsNy5zqBeyZf6KUEZyataHEJLNY.myhomepage.net
-BDAY:1906-08-19
-FN:边茜飘
-EMAIL:4923421542@qq.com
-ORG:腾企鹅 金融投资有限公司
-UID:f918ab4a-22e8-4c16-8c5b-0df3b3c188b4
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山东省韶关市伊春区安化路爱里舍花园;;;073591
-TEL:15386912522
-URL:http://www.nJpeVWxBbD4ppd6nHFmTaYrEefp2BybI0kupanwyjbyoput.portfolio.or
- g
-BDAY:1935-04-18
-FN:卞香燕
-EMAIL:0233070022@qq.com
-ORG:塔布数据 股份有限公司
-UID:ad57daf3-e776-4234-a6cf-923c8e9ef3e0
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;甘肃省辽源市美溪区宝山路金色家园;;;079064
-TEL:13169295568
-URL:http://www.df5oiWTWkJcFL6.portfolio.org
-BDAY:2022-06-08
-FN:殴云亚
-EMAIL:8664548376@qq.com
+UID:37faab75-bb47-4ee3-830e-65a9d473a023
+ADR:;;福建省鹰潭市乌伊岭区百安路（方泰镇）和亭佳苑;;;072704
+TEL:18513439813
+URL:http://www.KDvWZeoTpmLDtDBgomvKMo7yz6R.example.com
+BDAY:2014-04-08
+FN:祁峰晨
+EMAIL:2510427344@qq.com
 ORG:后海金融 股份有限公司
-UID:65c6abac-cb30-4505-a306-5f35dc6a2379
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;江西省遵义市新青区宝安公路耀江花园;;;027063
-TEL:18322466209
-URL:http://www.CE92niAaQpFm.example.com
-BDAY:1941-02-21
-FN:梅会俊
-EMAIL:7495615393@qq.com
+UID:e1e3b01b-8ca8-4e7a-9366-5ac9097d7d96
+ADR:;;湖南省酒泉市西林区巴林路东新大厦;;;064106
+TEL:18612380270
+URL:http://www.OCsQgrxX9DJ16Q6V4sHX.myhomepage.net
+BDAY:1958-04-17
+FN:陆梦艺
+EMAIL:63892910@qq.com
+ORG:塔布数据
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:5d7ae57b-8b94-4cb6-926e-a94b8a3f521c
+ADR:;;河北省孝感市上甘岭区宝祁路东新大厦;;;086006
+TEL:13375501530
+URL:http://www.z0HpOaz7CtMV2CBAmTC.portfolio.org
+BDAY:1917-10-07
+FN:尚淑莎
+EMAIL:175122061@qq.com
+ORG:后海金融 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:c974666f-2965-4623-8946-9c259b5732b1
+ADR:;;湖北省甘南州新青区安国路东新大厦;;;032443
+TEL:17103318772
+URL:http://www.t7JhzS14vV4sPrASl5hOrg2R8qpsZ.example.com
+BDAY:1923-12-30
+FN:吴庆旭
+EMAIL:516452448@qq.com
+ORG:图匠
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:2df6c8a8-91d1-419c-aa15-f7679354c3f1
+ADR:;;台湾省深圳市金山屯区宝源路博泰新苑;;;039098
+TEL:13474630209
+URL:http://www.eRJ99TMuKM8WDVZ9GFaEidvDukvStKoSh0OQbRg4AgO.portfolio.org
+BDAY:1962-09-27
+FN:万慧娴
+EMAIL:70332734@qq.com
+ORG:网易之
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:46c5012f-ae11-4a62-a9f9-a910d3f12a70
+ADR:;;黑龙江省怀化市友好区白水路住友嘉馨名园;;;048434
+TEL:13651604374
+URL:http://www.EpB5r5j8phNfoOYmGwaHBix.myhomepage.net
+BDAY:1917-06-26
+FN:祖胜毅
+EMAIL:0806002270@qq.com
+ORG:塔布数据
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:46fc9790-6ab5-4714-b973-c679eaba25a1
+ADR:;;台湾省莱芜市汤旺河区安图路真新六街坊;;;097387
+TEL:17268539802
+URL:http://www.LAx8STTDV6vZkvM9iWp8RcMgvFiSEpa0Q09oamXqp0t3dU.myhomepage.ne
+ t
+BDAY:1978-12-06
+FN:奚素娅
+EMAIL:040383876@qq.com
+ORG:阿狸巴巴
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:4086fde1-d06a-459d-a884-929dab00b45a
+ADR:;;河南省天水市红星区宝通路阳光翠竹苑;;;019057
+TEL:15900206419
+URL:http://www.7pXr8PK0RN82qggHT0x2Bv8KA.portfolio.org
+BDAY:2015-11-11
+FN:童翰健
+EMAIL:937536855@qq.com
+ORG:千度 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:80592060-c454-4d53-9987-faa35d41e21d
+ADR:;;陕西省海北藏族自治州友好区板泉路真新六街坊;;;058753
+TEL:13508357590
+URL:http://www.uJi7cf6UT4AOlbWH0tpqY8oKNrUk.example.com
+BDAY:1979-12-13
+FN:亓官会磊
+EMAIL:952429323@qq.com
 ORG:数说故事
-UID:9bd57784-2926-4909-822a-f01997d60250
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;河北省广州市新青区保德路协通公寓;;;089712
-TEL:15368633539
-URL:http://www.mOJjEavWEc9mYDqHLTBdDeA.portfolio.org
-BDAY:1966-06-08
-FN:萧维清
-EMAIL:227867820@qq.com
-ORG:塔布数据 科技有限公司
-UID:90753286-edb5-4564-9a18-64387ce12fb5
+UID:7d88c4ad-87bd-46a7-8f70-c439a67e3982
+ADR:;;河北省揭阳市友好区宝通路爱里舍花园;;;068201
+TEL:15420192369
+URL:http://www.D2Mu9qA3tuMqPg50KHo2cDdV0jO1uILwQvNVAFcY6vI.myhomepage.net
+BDAY:1962-11-04
+FN:郁冰娜
+EMAIL:1010414721@qq.com
+ORG:网易之
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;河南省邢台市金山屯区百安路（方泰镇）阳光翠竹苑;;;083698
-TEL:15881534954
-URL:http://www.mUi.portfolio.org
-BDAY:1939-01-29
-FN:牧舒妹
-EMAIL:7541813297@qq.com
-ORG:塔布数据 集团
-UID:77726c91-1673-47d1-b6c1-5a63066c962d
+UID:0642f0ac-97dd-41f6-ae55-5cb5dda61c3a
+ADR:;;河北省镇江市上甘岭区宝林路阳光翠竹苑;;;020297
+TEL:17731029149
+URL:http://www.j.myhomepage.net
+BDAY:1951-11-28
+FN:家媛妍
+EMAIL:691423870@qq.com
+ORG:图匠
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;海南省石嘴山市西林区包头南路耀江花园;;;022856
-TEL:17978361907
-URL:http://www.Sbi30.example.com
-BDAY:1958-03-03
-FN:邹枝馨
-EMAIL:2535372930@qq.com
+UID:02a16273-c3d7-41b0-9547-61562f6faaea
+ADR:;;湖北省鄂尔多斯市新青区百官街爱里舍花园;;;054929
+TEL:18779916058
+URL:http://www.s9T8ihdOGEYh1wGM.myhomepage.net
+BDAY:1981-09-25
+FN:殷莎琰
+EMAIL:2015841190@qq.com
 ORG:腾企鹅
-UID:fbc5607a-11ee-4adc-9649-b41fb51e3080
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;湖南省韶关市五营区安福路溢盈河畔别墅;;;094578
-TEL:15852419441
-URL:http://www.kyf35sKsg22G.portfolio.org
-BDAY:1968-02-19
-FN:项松进
-EMAIL:044696747@qq.com
-ORG:阿狸巴巴 集团
-UID:7704c16b-48f1-4866-9b4c-76f42abe491a
+UID:7856e479-1058-48a2-b747-341cef42c55e
+ADR:;;湖北省内江市金山屯区宝源路溢盈河畔别墅;;;055996
+TEL:17972462815
+URL:http://www.l5QYT1uB7VmHZ4TV9gxBTJFjiTQ1BT9b5jyTz9XgpKrWtDrIxPqPxbS.exam
+ ple.com
+BDAY:1975-09-26
+FN:边飘育
+EMAIL:8874060142@qq.com
+ORG:图匠 股份有限公司
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;青海省雅安市乌伊岭区白水路东新大厦;;;055555
-TEL:13945664994
-URL:http://www.a7Gah5.example.com
-BDAY:2024-11-28
-FN:奚婷雁
-EMAIL:7859901892@qq.com
+UID:4392a7fa-3f25-4786-9110-40e0625dab19
+ADR:;;黑龙江省攀枝花市上甘岭区安福路阳光翠竹苑;;;071620
+TEL:15359710834
+URL:http://www.Pwa64iSGUPiJiehnOwjdchFirVm1IGanAyiWED4.personalwebsite.com
+BDAY:1981-12-04
+FN:瞿荷巧
+EMAIL:449956316@qq.com
+ORG:阿狸巴巴 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:0a1aa125-6875-4bb0-82b6-81e2728ddd14
+ADR:;;江西省晋中市美溪区百安路（方泰镇）金色家园;;;049629
+TEL:13610774957
+URL:http://www.XqVU9YfOjsP21dIuLxSXe00ALo4U4rQAOU1HUfyg0Nn33rJU2uDZIch.port
+ folio.org
+BDAY:2013-08-17
+FN:韶真亚
+EMAIL:4449484985@qq.com
+ORG:后海金融
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:c4ec5c80-643f-443d-bf6b-f368235b7fe7
+ADR:;;浙江省随州市西林区包头路爱里舍花园;;;012135
+TEL:18851818255
+URL:http://www.FoCq4MZNuumLyBQyzWteNYXRwU1Ej7cDLO.portfolio.org
+BDAY:1955-04-04
+FN:牛凝芳
+EMAIL:0024908467@qq.com
+ORG:图匠 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:be4cc608-82cc-4591-aabb-02d5e6770935
+ADR:;;湖北省龙岩市南岔区八一路溢盈河畔别墅;;;074416
+TEL:18210348600
+URL:http://www.Jb8qYnIjdHTmYfI6lBoC5G87n8sfnzYdb8WEgL9cdk4ZOZIBwy4Hki4xMp1U
+ v.myhomepage.net
+BDAY:1947-03-13
+FN:费凝美
+EMAIL:4765406439@qq.com
 ORG:千度
-UID:d7712c88-14c1-43d5-905c-03c49aea3314
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;青海省张家口市南岔区保屯路博泰新苑;;;014157
-TEL:17342172722
-URL:http://www.aXeG7Ekgrl0IQKyOXZz6BL2DbEXkvw7viDqtkPqmxr6nF8fS2HmomWb9APEJ
- 7.portfolio.org
-BDAY:2022-07-19
-FN:杨瑗蓉
-EMAIL:2699887484@qq.com
-ORG:腾企鹅 金融投资有限公司
-UID:9248bed2-28ce-452b-b4aa-2bca07a2895a
+UID:295b4f79-421b-4b58-821c-2f399cffd9bb
+ADR:;;甘肃省东莞市乌伊岭区黄河路真新六街坊;;;015082
+TEL:15844577228
+URL:http://www.ANB50mBxAWM5Bi6I21Q3pDnpsg.personalwebsite.com
+BDAY:1913-12-04
+FN:夹谷珠嘉
+EMAIL:430663321@qq.com
+ORG:后海金融 金融投资有限公司
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;贵州省防城港市上甘岭区保德路金色家园;;;099905
-TEL:15687370605
-URL:http://www.E7j1bCXKAixvyTLYllZyNJnXvaPdoJhneRMlzbTjEQOtUvk.myhomepage.n
- et
-BDAY:1959-10-15
-FN:松珊婵
-EMAIL:949610582@qq.com
-ORG:网易之 有限公司
-UID:3cc0c8d9-aee4-4f84-8f44-db130503f206
+UID:525d4750-fc91-4f35-8c1c-0ac0e0b288aa
+ADR:;;安徽省陇南市上甘岭区鞍山路金色家园;;;036733
+TEL:17164353377
+URL:http://www.K28EIs40HAZsJRisAuvn6VzWKo2.myhomepage.net
+BDAY:2024-03-10
+FN:司空婵婕
+EMAIL:508941307@qq.com
+ORG:图匠 金融投资有限公司
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;吉林省本溪市美溪区百色路爱里舍花园;;;080469
-TEL:13238776908
-URL:http://www.U1ScPfHSmjeXVvoHETnRn3V3GkmBimFFsc52QHHoas691WgAxVBfQ92M.por
- tfolio.org
-BDAY:1981-06-26
-FN:寿月菲
-EMAIL:9266965462@qq.com
+UID:562475c4-498d-464b-a2ce-3f2ab8ed2676
+ADR:;;湖北省吉林市汤旺河区鞍山路爱里舍花园;;;040660
+TEL:13695332389
+URL:http://www.2GK3WLIyek5xVqubBV1828Zp.example.com
+BDAY:1918-06-09
+FN:祁伊荣
+EMAIL:8783459878@qq.com
 ORG:网易之 股份有限公司
-UID:675dd008-63fe-4b6e-b062-4301c7e3e131
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;陕西省河池市南岔区宝联路爱里舍花园;;;082260
-TEL:15538802810
-URL:http://www.Np4X.myhomepage.net
-BDAY:1999-08-19
-FN:郝蓓珍
-EMAIL:206683148@qq.com
-ORG:腾企鹅 集团
-UID:ada86173-3807-47ba-a087-a9906d85ed36
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;海南省滁州市伊春区宝安公路和亭佳苑;;;042275
-TEL:17643848361
-URL:http://www.S8JDuuAgzfmklNX3Rk3OV1r2Bhec8p2RVfDFMDDFNd6Q.personalwebsite
- .com
-BDAY:2004-09-06
-FN:茹友致
-EMAIL:047487170@qq.com
-ORG:后海金融 有限公司
-UID:2beb768f-5a24-4ef6-979c-97042352b736
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;浙江省衡阳市乌伊岭区宝通路真新六街坊;;;082043
-TEL:18162505376
-URL:http://www.zOQWKDc9NUeTqGP9rOHbFHJBCABCm13NKwAmEjm.portfolio.org
-BDAY:1974-08-03
-FN:俞枝芬
-EMAIL:606731671@qq.com
-ORG:互动派 有限公司
-UID:791febaa-a822-4314-8844-5bc42853f7ad
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山东省枣庄市红星区安波路协通公寓;;;036876
-TEL:15278935254
-URL:http://www.a3YnySoJq.personalwebsite.com
-BDAY:1937-06-17
-FN:丁倩玉
-EMAIL:327401999@qq.com
-ORG:腾企鹅 股份有限公司
-UID:3e88ab65-7e4e-4657-970f-791550f7ec8a
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;云南省开封市金山屯区中原路协通公寓;;;065026
-TEL:15799475955
-URL:http://www.qWBjK.myhomepage.net
-BDAY:2015-12-01
-FN:曹信海
-EMAIL:401401152@qq.com
-ORG:网易之 有限公司
-UID:6a4dded0-ab73-49c1-8107-0ef44f2eb9f1
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;台湾省玉溪市友好区安业路东新大厦;;;066861
-TEL:17823635537
-URL:http://www.yWwXnMWIywZeGAbQhdByiaFgqf2CIWl.personalwebsite.com
-BDAY:2019-10-22
-FN:文先平
-EMAIL:324074539@qq.com
-ORG:图匠
-UID:8fee72da-a71e-478d-9955-16aa9dc2f27b
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;海南省普洱市带岭区宝祁路阳光翠竹苑;;;085761
-TEL:13261137235
-URL:http://www.Ee7NUkmPM0Z3JyJytisa1ZuvAq6suw0Iz9me9iPtVYqQ.myhomepage.net
-BDAY:1987-07-22
-FN:林琬滢
-EMAIL:677750647@qq.com
-ORG:腾企鹅 有限公司
-UID:9e483990-b4e8-4dcc-9e6e-fff94621d067
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山西省宿迁市上甘岭区安龙路菊园五街坊;;;094767
-TEL:18926626406
-URL:http://www.S5YfHLatVliyqqi5RXfhmWpoE3cSVIYQA8RWCHxTa5Mww6Do0YwSpwDU.myh
- omepage.net
-BDAY:1990-06-29
-FN:程丽珍
-EMAIL:831073297@qq.com
-ORG:千度 有限公司
-UID:3df37599-a060-4d3f-b917-14417e33a9f6
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;四川省榆林市带岭区保屯路菊园五街坊;;;087801
-TEL:18302053716
-URL:http://www.g6cBBWt4SMsKxbMxLTMLwdJQc4BvAWTPfzOmaCIrIQ5bZaywIfdy7UqEsB1c
- F.example.com
-BDAY:1942-09-20
-FN:居固致
-EMAIL:7422009048@qq.com
-ORG:阿狸巴巴 股份有限公司
-UID:a45e894e-7c1a-4b62-8e4c-9d1626fdf0f8
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;湖南省石家庄市西林区安业路博泰新苑;;;061672
-TEL:17568454433
-URL:http://www.MOgZJZ1gruGonHid7NdDjkJN3lYHLw.example.com
-BDAY:1907-08-10
-FN:第五刚家
-EMAIL:9423269313@qq.com
-ORG:京西 科技有限公司
-UID:93b9a9ca-3af7-433a-acd9-2bebb5cafe8c
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山东省台州市红星区安图路菊园五街坊;;;046348
-TEL:18836771990
-URL:http://www.MGznzrmF3O0UPJ.portfolio.org
-BDAY:1922-05-14
-FN:麻影蓉
-EMAIL:3392433945@qq.com
-ORG:腾企鹅 金融投资有限公司
-UID:7907695c-1424-4573-a767-cc0223868506
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;甘肃省遵义市红星区中原路东新大厦;;;044759
-TEL:17754305720
-URL:http://www.aNJ4FJEmMBz7fMUAVi6OrmD2j4EPbRBUAM1RpvmGpLY1IlDFKWuZ.myhomep
- age.net
-BDAY:1985-05-16
-FN:武蓓宁
-EMAIL:347474092@qq.com
-ORG:阿狸巴巴
-UID:50ce5ed6-691c-4e65-828e-8a5edf5b048c
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;甘肃省威海市翠峦区安顺路溢盈河畔别墅;;;056001
-TEL:13343272321
-URL:http://www.0g5w3.example.com
-BDAY:2019-12-11
-FN:毕安克
-EMAIL:9266497221@qq.com
-ORG:腾企鹅 股份有限公司
-UID:f08b44c4-9404-4103-a18a-4746afe1f8fb
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;黑龙江省丽水市西林区板泉路协通公寓;;;046217
-TEL:17303292652
-URL:http://www.5Z0iYBD1NVDfWEnNBYpbbJdwOvwekREiYMTI7Au7.portfolio.org
-BDAY:1977-08-17
-FN:方晶露
-EMAIL:582849755@qq.com
-ORG:互动派
-UID:4dd8b93c-8964-480e-91b7-f85123741f69
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;浙江省阳泉市榆次区宝昌路爱里舍花园;;;090424
-TEL:18272506510
-URL:http://www.9JhzAdZO9NqgzpfSUJyfpizVjItTYBIMV4A3.myhomepage.net
-BDAY:1991-10-25
-FN:王芸凡
-EMAIL:9271995722@qq.com
-ORG:图匠
-UID:08245a98-d331-4ab0-86cd-4d9adb91d271
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;吉林省玉林市红星区包头南路复华城市花园;;;074116
-TEL:18772811943
-URL:http://www.jOqHlh61QVMBzpFPmCdnjAdvCvVim3cRoA0qKe5PCBYzgeaySABL2j8.myho
- mepage.net
-BDAY:1951-07-10
-FN:闫婉思
-EMAIL:589347144@qq.com
-ORG:千度 股份有限公司
-UID:c5163791-8729-4ccc-8871-37edb184b900
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;甘肃省本溪市上甘岭区包头路爱里舍花园;;;041826
-TEL:18881391905
-URL:http://www.owr19hfGa9kdlfHkP.portfolio.org
-BDAY:1903-11-05
-FN:宰安辰
-EMAIL:508758763@qq.com
-ORG:互动派 股份有限公司
-UID:fdcbf2ff-1e79-4e3e-976e-d07c8f3f4bf3
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;黑龙江省孝感市伊春区宝安公路阳光翠竹苑;;;074845
-TEL:15126924553
-URL:http://www.s741c4yvdeEDWladFqf7jHtnlyXLjBmcS0WnWSWFc6d98aD.example.com
-BDAY:1929-03-21
-FN:隗翠珍
-EMAIL:471951265@qq.com
-ORG:京西 科技有限公司
-UID:43f77f1a-e54e-48c3-885d-aba48fbc46c5
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;吉林省河源市金山屯区宝通路爱里舍花园;;;048673
-TEL:13615478841
-URL:http://www.E7qC5ukcA7kIHJxbr60bF4MSz3pCfpZ1.personalwebsite.com
-BDAY:2013-09-28
-FN:盖德谦
-EMAIL:8268730053@qq.com
-ORG:京西
-UID:77a504dc-c870-4af9-af6b-845019a81cf7
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;安徽省廊坊市南岔区安仁路耀江花园;;;064128
-TEL:13160170668
-URL:http://www.beALead2XNfG10pviCDgSgdGYtavgQZT7u.portfolio.org
-BDAY:1968-04-02
-FN:明娟雁
-EMAIL:271836668@qq.com
-ORG:塔布数据
-UID:f14355b6-9195-48ed-9e72-40f7b84a480b
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山西省盘锦市红星区半淞园路博泰新苑;;;046093
-TEL:17274707082
-URL:http://www.jJ1rCVZi9oc5FhrIJMXpAm7Qa67Z4w6Ui64.portfolio.org
-BDAY:2006-11-05
-FN:姚子顺
-EMAIL:3851996340@qq.com
-ORG:图匠
-UID:682dba69-0682-4028-bb2a-5b06a8609d16
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河北省贵港市美溪区宝山路复华城市花园;;;089963
-TEL:13552025819
-URL:http://www.HWsoglS6kqQ.personalwebsite.com
-BDAY:2004-12-13
-FN:姚永宁
-EMAIL:371717715@qq.com
-ORG:腾企鹅 科技有限公司
-UID:ae67a3f5-d953-4bb7-abf0-6e558afc2cc8
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;山东省河源市翠峦区保屯路东新大厦;;;077428
-TEL:15506965849
-URL:http://www.mA9Ujxxhn4LmZDW15X3YyD88TxqfrbSR9Bn1f9NgzGDbGU5I.example.com
-BDAY:1933-05-24
-FN:狄之国
-EMAIL:4318455209@qq.com
-ORG:京西 集团
-UID:d0a8ea6a-594b-4ddc-9339-5a7abf6c3162
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;甘肃省黄山市金山屯区保德路住友嘉馨名园;;;013228
-TEL:15554107113
-URL:http://www.LwMq7PGihPook35b8DkaiwIIWE74uEh5sVFPp5XnX1ft2couJbvzjlVDBzSX
- .portfolio.org
-BDAY:1935-05-25
-FN:叶克祥
-EMAIL:7030418651@qq.com
-ORG:数说故事 金融投资有限公司
-UID:78fbf6da-dfe5-4699-94da-a1c182913607
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;湖北省定西市友好区安澜路金色家园;;;099924
-TEL:15305006135
-URL:http://www.K16b6Kw9wyPiw2RJ4q.personalwebsite.com
-BDAY:1995-01-31
-FN:乔贞洁
-EMAIL:380822761@qq.com
-ORG:后海金融 科技有限公司
-UID:99cbffe3-d99f-487f-a46d-5ec750c329e4
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;贵州省茂名市五营区安汾路博泰新苑;;;045891
-TEL:15413216849
-URL:http://www.u4AmqfyZPf9SudvClybJ616dRvynBsMmOqE2YgJjzn.example.com
-BDAY:2011-01-29
-FN:伍婵咏
-EMAIL:026941221@qq.com
-ORG:后海金融 集团
-UID:6e6e2ecf-b679-4c72-a39c-2956eacd690f
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;广东省商洛市上甘岭区安图路住友嘉馨名园;;;055403
-TEL:13850451567
-URL:http://www.ZWpjqLYSEluRJ0x2HKea0C9HEbvaEgAhKGJSskDgRFzk8KYOHIi.example.
- com
-BDAY:1968-01-23
-FN:满飘英
-EMAIL:900527625@qq.com
-ORG:腾企鹅
-UID:a969ea12-ee12-4239-8d87-55739d65e751
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;贵州省常德市友好区包头路住友嘉馨名园;;;019337
-TEL:13182050762
-URL:http://www.p3Bw1VHIxx8XGn8ggi3jETwT6.personalwebsite.com
-BDAY:1991-02-17
-FN:武心河
-EMAIL:097689316@qq.com
-ORG:千度
-UID:61ba641b-f40c-4ed3-a009-0c1cc8b2c9f1
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
-PRODID:ez-vcard 0.12.1
-ADR:;;河北省阜新市带岭区安澜路东新大厦;;;010954
-TEL:17872666162
-URL:http://www.ty70KjqZ1zNF7d1asRuOV4RyT23zFzwXDjP2VPCr216Tw.personalwebsit
- e.com
-BDAY:1958-09-24
-FN:吕欣育
-EMAIL:309884247@qq.com
+UID:f92bcb4a-21e8-485f-8714-7d91567b648e
+ADR:;;青海省金昌市西林区安图路协通公寓;;;035118
+TEL:18195756060
+URL:http://www.vsgssN7aWueWXfW3ZTu.portfolio.org
+BDAY:1917-01-15
+FN:金思亨
+EMAIL:52581419@qq.com
 ORG:数说故事
-UID:86deb9a9-46a2-450c-849c-8dd9f3450ff1
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;云南省岳阳市乌伊岭区新四路真新六街坊;;;039248
-TEL:13482311440
-URL:http://www.FKE9U4EInnXYfVU8Eaz5AZihnX1dQDgcMQ8SPzuV.example.com
-BDAY:2023-11-06
-FN:谷梁锦珊
-EMAIL:2230653677@qq.com
-ORG:塔布数据 集团
-UID:5a0f734c-35bd-4fda-8662-9448a6a080c5
+UID:13151bf8-7269-40bf-9416-8af4f2dafcf6
+ADR:;;海南省衡阳市翠峦区白城路菊园五街坊;;;087238
+TEL:18595040313
+URL:http://www.lKI5DfxtZLxSlv4d8S3RnNdu3E599jBa1we69AHutidrFvmJ.example.com
+BDAY:1994-05-15
+FN:罗民保
+EMAIL:5091064098@qq.com
+ORG:网易之 有限公司
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;广东省保山市友好区白渡路爱里舍花园;;;014556
-TEL:15434565987
-URL:http://www.bRyZ3oRjq.personalwebsite.com
-BDAY:1985-03-10
-FN:邬国昌
-EMAIL:966576258@qq.com
-ORG:网易之 金融投资有限公司
-UID:283a36d4-2103-4b4e-989b-8b098c22a290
+UID:9608a067-9224-4912-b41b-1f30e94f2b64
+ADR:;;吉林省毫州市西林区安仁路菊园五街坊;;;031256
+TEL:13801652116
+URL:http://www.BDTDCTpQ2iI1D7cDB5QZXBIeow2JJOXSPuKbpBMorTCT317ToHZ1LU.examp
+ le.com
+BDAY:1939-02-21
+FN:冯鸣乐
+EMAIL:954485206@qq.com
+ORG:京西 股份有限公司
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;河南省洛阳市乌伊岭区安顺路和亭佳苑;;;080665
-TEL:13345655010
-URL:http://www.Io4Amco9l06mtNjJQ41PHuaBJ2edY.myhomepage.net
-BDAY:2021-06-09
-FN:莘思璧
-EMAIL:090811830@qq.com
+UID:edbd6b60-263c-436d-b927-de153e60bdb6
+ADR:;;甘肃省无锡市西林区黄河路菊园五街坊;;;099654
+TEL:13947633266
+URL:http://www.RM.example.com
+BDAY:2021-09-17
+FN:卞梅婕
+EMAIL:9593733923@qq.com
+ORG:千度
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:8f9c27ab-d9f7-4c78-9499-6bf795d22c1e
+ADR:;;湖北省盐城市榆次区安福路阳光翠竹苑;;;012089
+TEL:13626425982
+URL:http://www.FpQ9ZhWjC9VKnUInZm0g8X1YAT3rXqUgcfUqjgymr4DGAHywJOVYcx.perso
+ nalwebsite.com
+BDAY:1932-07-05
+FN:冯凤锦
+EMAIL:260548627@qq.com
+ORG:互动派
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:671de169-452e-48c4-986b-0b6db970b7f5
+ADR:;;台湾省六安市汤旺河区安顺路阳光翠竹苑;;;032330
+TEL:15558228113
+URL:http://www.PtqrH42eu37UQ2mGvUEZLSVsyBFMi2BjhsUsVRm5ZCEmCnIw63ZfiHMPSu.p
+ ortfolio.org
+BDAY:1991-07-27
+FN:红娅燕
+EMAIL:9328952039@qq.com
+ORG:腾企鹅 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:8b2c1287-4916-4d8f-84ac-13655ca1c3c4
+ADR:;;陕西省潮州市汤旺河区白渡桥溢盈河畔别墅;;;047804
+TEL:15648026114
+URL:http://www.nGyOKRqgRt8i6t6ZD2YyKE.myhomepage.net
+BDAY:2022-12-17
+FN:房柔璧
+EMAIL:2179152765@qq.com
+ORG:数说故事 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:f1be60c4-3a46-4100-ae4a-71bcda4a5e66
+ADR:;;山西省呼和浩特市伊春区包头南路协通公寓;;;021313
+TEL:13444466747
+URL:http://www.23sC4iKdSjW240lRo6Q58MUmeo9OK8SeX7tzWRvHJ2nLglI9TCeBBbrX.per
+ sonalwebsite.com
+BDAY:2019-03-14
+FN:贝俊子
+EMAIL:9544530826@qq.com
+ORG:图匠
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:c6f72822-5e67-4840-aab7-c3aa31836b34
+ADR:;;广东省滨州市乌马河区黄河路溢盈河畔别墅;;;044738
+TEL:13514286145
+URL:http://www.48k5eedoNSbitTc5UgzSEzGGNrlec08tI3PN8BRy53JLQ1miegttVFNJ1iyt
+ .portfolio.org
+BDAY:1946-05-25
+FN:楚天世
+EMAIL:5368171116@qq.com
+ORG:阿狸巴巴 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:6efdf8c5-f61c-4299-82bf-797b265db482
+ADR:;;甘肃省通化市金山屯区安顺路爱里舍花园;;;034532
+TEL:17137341127
+URL:http://www.d9w8Nm0NIfTfdT7k9B.example.com
+BDAY:1936-01-12
+FN:公仲菲姣
+EMAIL:7318768924@qq.com
+ORG:千度 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:a2655381-4f6d-48e3-b32f-8dc504c1004b
+ADR:;;台湾省伊春市新青区北艾路溢盈河畔别墅;;;041792
+TEL:15562925750
+URL:http://www.woiBp1YlQmh8xDlxKv7qrhG8M2sFBNrenNIT2Wl0cfFLeFY2m.personalwe
+ bsite.com
+BDAY:2011-07-15
+FN:羊育娣
+EMAIL:7876596628@qq.com
+ORG:数说故事
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:2bfddec5-7e9a-4d44-be27-6250df4671b8
+ADR:;;山东省七台河市友好区安业路真新六街坊;;;083842
+TEL:17838370277
+URL:http://www.aQcgychF9gXzOJcxwxVXnHKiPIoVJia3CjHp.myhomepage.net
+BDAY:1940-04-02
+FN:喻承子
+EMAIL:506036709@qq.com
+ORG:千度 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:7ec2fdef-1dc4-48c5-a01b-f6665042568f
+ADR:;;河南省海北藏族自治州新青区宝昌路溢盈河畔别墅;;;059109
+TEL:17805215124
+URL:http://www.ElOZGErAl7AgYzSwEEghGN.portfolio.org
+BDAY:1930-01-07
+FN:郭琛良
+EMAIL:9851669709@qq.com
 ORG:阿狸巴巴
-UID:2adcbee8-2333-4476-b406-af8587e8d1d5
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;黑龙江省石嘴山市榆次区北艾路溢盈河畔别墅;;;070938
-TEL:15811142422
-URL:http://www.ysghmOYZkielrMFztNdQGxGTKqomPn.myhomepage.net
-BDAY:1959-03-14
-FN:柳波泽
-EMAIL:4844441601@qq.com
+UID:8eac558d-925c-440b-8fe4-f00a80449d07
+ADR:;;江苏省绵阳市乌马河区白玉路溢盈河畔别墅;;;011497
+TEL:17787289087
+URL:http://www.xNu8Oa.example.com
+BDAY:2021-06-29
+FN:粱彪茂
+EMAIL:487287834@qq.com
 ORG:图匠 集团
-UID:b70f4f62-d9ed-4e22-8b80-44cbd41d1bbe
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 PRODID:ez-vcard 0.12.1
-ADR:;;山西省贺州市美溪区安福路阳光翠竹苑;;;073519
-TEL:13175960610
-URL:http://www.hPZsvd6h9FYJTIITJRaVgg6jNHKpxMlJPxXj105.portfolio.org
-BDAY:1935-11-28
-FN:费明兴
-EMAIL:157396817@qq.com
+UID:b5f6b944-b613-4157-b5f3-f076573c9d9f
+ADR:;;广东省巴中市红星区百官街爱里舍花园;;;031173
+TEL:15370271469
+URL:http://www.4nWxtMOs8qpd21iYvIk5mt9fVVLC5dvLU0Zkl9gG0zI.personalwebsite.
+ com
+BDAY:1951-04-09
+FN:何凤莉
+EMAIL:0916851696@qq.com
+ORG:互动派
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:08db2fe6-544f-4eba-8b8c-c414d8015b75
+ADR:;;贵州省运城市红星区百官街协通公寓;;;010206
+TEL:17885871020
+URL:http://www.ctib8MUZOAPdIN.portfolio.org
+BDAY:1978-04-21
+FN:卫舒艳
+EMAIL:2134787385@qq.com
+ORG:京西 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:08b17f9a-5d5b-43b2-9b10-14c5c0c8c022
+ADR:;;浙江省陇南市友好区宝源路复华城市花园;;;095421
+TEL:15664333601
+URL:http://www.Q32fqUQRxMVSR1IpDae2VGy4cdmhM4GAGnWDP44IJt74.example.com
+BDAY:1968-04-29
+FN:江珍聪
+EMAIL:4898261735@qq.com
+ORG:千度 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:10332ea5-0f0b-4a96-b105-72c218ba3b90
+ADR:;;辽宁省雅安市美溪区包头南路复华城市花园;;;036268
+TEL:15439140899
+URL:http://www.pDTAawheCS1S46f1CVaaEJj4wSLwXauHrR35VLNqm.myhomepage.net
+BDAY:1955-10-04
+FN:松静霄
+EMAIL:7196287619@qq.com
+ORG:京西
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:1483d6e9-f173-4a2e-8f9e-54cfd401a258
+ADR:;;山东省渭南市五营区安汾路溢盈河畔别墅;;;040099
+TEL:17735237055
+URL:http://www.2XOq.example.com
+BDAY:1914-07-16
+FN:万欢怡
+EMAIL:690503149@qq.com
+ORG:图匠
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:0d644325-24c8-4b4c-8b5f-17dfab1bed49
+ADR:;;河北省吐鲁番地区带岭区安图路耀江花园;;;016108
+TEL:18103255703
+URL:http://www.gtOe06s.example.com
+BDAY:1931-06-21
+FN:家德军
+EMAIL:097194290@qq.com
+ORG:图匠 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:f18a7c91-8d76-43b6-9f48-f9e202486e00
+ADR:;;海南省丹东市乌伊岭区宝林路金色家园;;;066724
+TEL:15680710479
+URL:http://www.41LSEgrlX9188FPStRGbWSBZuQlHqG1Qv2vZL.example.com
+BDAY:1973-06-17
+FN:蒋爽寒
+EMAIL:942274958@qq.com
+ORG:图匠
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:80676da3-7a88-4340-af00-ceae38d515e4
+ADR:;;贵州省乐山市翠峦区新四路真新六街坊;;;054825
+TEL:17941207171
+URL:http://www.azxrxI9dozdnsIf43oRUmb79CWn5DFnWqDsJp.personalwebsite.com
+BDAY:2016-08-23
+FN:周美玉
+EMAIL:396214691@qq.com
+ORG:互动派 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:804515d2-33cf-459a-b8cd-42fd7385ab5b
+ADR:;;吉林省德州市友好区包头路菊园五街坊;;;033671
+TEL:18725869165
+URL:http://www.N5wnc5XtRmmsWCvdnx5ppqZvqjdMr1Vp.personalwebsite.com
+BDAY:1965-10-18
+FN:田山有
+EMAIL:3119120816@qq.com
+ORG:互动派
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:086ac3c7-377e-4f43-a280-7267fa22ff37
+ADR:;;江西省潍坊市伊春区黄河路爱里舍花园;;;066547
+TEL:17881392875
+URL:http://www.So0NPpMxmSTU0Qowa0H9x8lstxnMNer8zsegUVGmBRFn3.myhomepage.net
+BDAY:1920-04-11
+FN:秦璐梦
+EMAIL:754360724@qq.com
+ORG:腾企鹅 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:72f9c5ba-3d9d-4def-97b4-7b3e19f52efb
+ADR:;;甘肃省宝鸡市汤旺河区白渡路协通公寓;;;072819
+TEL:17115864990
+URL:http://www.rD8fgctmOYp7ct.personalwebsite.com
+BDAY:1913-11-29
+FN:谢华仪
+EMAIL:1410508640@qq.com
+ORG:腾企鹅
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:738b7f93-8749-4d58-98bd-b94c4bfa4ba3
+ADR:;;台湾省七台河市乌马河区白渡桥协通公寓;;;081582
+TEL:13489758114
+URL:http://www.jYtEAT0aUFc4avjjjuI.personalwebsite.com
+BDAY:1914-03-09
+FN:卞晓莎
+EMAIL:234613813@qq.com
+ORG:互动派 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:e5806a71-2e33-43ee-8757-277d25d0e274
+ADR:;;黑龙江省东营市红星区百官街住友嘉馨名园;;;086206
+TEL:15812862804
+URL:http://www.2NQzm7ZZT8cGVG22JOe22C47jCgD8Ae8WLiy3UicfSlmY4ze.personalweb
+ site.com
+BDAY:1986-10-05
+FN:危莺卿
+EMAIL:056255728@qq.com
+ORG:互动派
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:0ed17696-0a58-422c-aaaf-de6184e0ea70
+ADR:;;青海省济宁市新青区百安路（方泰镇）爱里舍花园;;;082756
+TEL:17783029518
+URL:http://www.XogE.myhomepage.net
+BDAY:1924-07-08
+FN:卜江轮
+EMAIL:6824332001@qq.com
+ORG:千度 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:951c7598-090e-4e97-ba6c-80d127f49067
+ADR:;;湖南省酒泉市伊春区白渡路协通公寓;;;011753
+TEL:18666527521
+URL:http://www.Atjb3DXFJS4YT2rPkiYRXhl0vWnmaqowwtEr3DhSrkBHHjgSxu1v.persona
+ lwebsite.com
+BDAY:1983-07-13
+FN:茅广伟
+EMAIL:886422466@qq.com
 ORG:塔布数据
-UID:d3a50efc-5d9b-4bb9-80ee-18d459332e87
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:f013d2f0-d393-4559-ac6e-b8507a319d62
+ADR:;;吉林省海口市带岭区安顺路和亭佳苑;;;047946
+TEL:18478021819
+URL:http://www.Am3XwgHDy9ZrP4qX5syirRPLFjl7FS2HZCq7zasf.portfolio.org
+BDAY:1969-07-08
+FN:庄婕琦
+EMAIL:065342518@qq.com
+ORG:后海金融
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:df1dab25-68d7-4e35-9935-0eeaed32f118
+ADR:;;云南省济南市美溪区新四路协通公寓;;;037898
+TEL:13995248300
+URL:http://www.qqlnrzEM1ZbbVrF3yqRCgJwYSkiKZLKSFHOyENT7l7bxkCTvLWRf.myhomep
+ age.net
+BDAY:1910-05-13
+FN:公坚光
+EMAIL:0242993328@qq.com
+ORG:塔布数据 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:5612149e-5e4e-47d0-8a4b-fc2ee47b097e
+ADR:;;江苏省贺州市带岭区安义路协通公寓;;;090921
+TEL:18423573908
+URL:http://www.AFYBlKU4o7Ir6owOxtS6dBo6tMuiPi6NWQY44q8wiaW1MPGr.personalweb
+ site.com
+BDAY:1926-11-21
+FN:姬洁秋
+EMAIL:8858922764@qq.com
+ORG:后海金融 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:9dd002ae-70e2-4dab-b845-c8892c7e3ae0
+ADR:;;云南省湛江市伊春区宝联路住友嘉馨名园;;;070863
+TEL:15389360237
+URL:http://www.hjEe6632d4SA243BVVxtDSjWTdndK1QqgpAmODSk7w1eJWzKa.portfolio.
+ org
+BDAY:1992-11-22
+FN:季筠琴
+EMAIL:805848648@qq.com
+ORG:腾企鹅
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:5abd0678-46b1-4dd7-80e5-ce621d8ca5cb
+ADR:;;安徽省台州市榆次区安龙路东新大厦;;;080726
+TEL:13619696047
+URL:http://www.SoGYbE2DV6s1VokdI1P4T7p7k2ytOx4oYSFaBbOraoUDo602oQz8Plsa.myh
+ omepage.net
+BDAY:2013-03-26
+FN:邴才朗
+EMAIL:5965870972@qq.com
+ORG:数说故事 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:03ef40dc-8511-4606-a55d-4bea334819e8
+ADR:;;云南省淮安市带岭区宝联路爱里舍花园;;;058168
+TEL:18107227093
+URL:http://www.nGwrSPxJ08ESc1H1LEMbZE8lP2kaAf.personalwebsite.com
+BDAY:2007-05-04
+FN:应厚海
+EMAIL:577134588@qq.com
+ORG:京西
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:517d584e-924f-4499-b10f-40e58f3ef253
+ADR:;;云南省遂宁市上甘岭区保屯路协通公寓;;;066275
+TEL:17351490919
+URL:http://www.7QOCcPH1iqkAHQ2kWkUS5bc3cefB8HNFWz.portfolio.org
+BDAY:1920-06-11
+FN:温瑶真
+EMAIL:0911000065@qq.com
+ORG:阿狸巴巴
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:a1e5fc73-2bab-4f08-b181-5dad0506f29e
+ADR:;;贵州省本溪市翠峦区白兰路溢盈河畔别墅;;;073904
+TEL:17519010491
+URL:http://www.EXOsTeSBdGP4y9l5iQzLVSoTL4wVGswXI7CmdDoNmKQ60n2Q.personalweb
+ site.com
+BDAY:2004-02-22
+FN:姬贞佳
+EMAIL:317629347@qq.com
+ORG:互动派 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:1222a113-c703-4951-b2db-297cf9251ba5
+ADR:;;河南省定西市南岔区宝安公路耀江花园;;;064367
+TEL:18321504552
+URL:http://www.wLDaLDMXWwmvqreP0DbiH.personalwebsite.com
+BDAY:1925-05-30
+FN:姜宁伯
+EMAIL:0229219499@qq.com
+ORG:互动派 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:6878382c-caee-4b10-9ddd-11f067d453bd
+ADR:;;广东省普洱市五营区百花街爱里舍花园;;;023421
+TEL:18676861171
+URL:http://www.OU.example.com
+BDAY:1957-04-12
+FN:鲁惠英
+EMAIL:1645400549@qq.com
+ORG:互动派 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:771ac2e5-0661-45b5-9119-cea826d6598c
+ADR:;;浙江省开封市五营区保定路耀江花园;;;072368
+TEL:17419861186
+URL:http://www.hJdrZoICAPqm7E7xbNqN15aW0PXye2CDjQh2jds3zvMfSBnDne3MePJUTFOw
+ .personalwebsite.com
+BDAY:2004-12-30
+FN:芮武兴
+EMAIL:5503709@qq.com
+ORG:图匠
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:ef54e52b-eb59-41ff-a4d0-5093f05f2bbe
+ADR:;;江苏省广元市带岭区宝安路耀江花园;;;036351
+TEL:13467805407
+URL:http://www.dBYbPgQWi2yMXAOPvgELMYymItRIDwXsW0Ycu9.portfolio.org
+BDAY:1992-09-02
+FN:宣真丹
+EMAIL:1427360787@qq.com
+ORG:塔布数据
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:a901275e-50a6-43f5-8be7-ba58d11d333a
+ADR:;;黑龙江省海北藏族自治州伊春区北艾路东新大厦;;;066631
+TEL:18846725366
+URL:http://www.DyWBCwMQin3kvXUQONnOVQuCvWSIfIcRniRtTyC3I92LJdXaUHiiWoHm.myh
+ omepage.net
+BDAY:1946-07-19
+FN:罗秋育
+EMAIL:833882701@qq.com
+ORG:腾企鹅 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:66a3c76a-9404-4b91-8829-0e481070feab
+ADR:;;湖北省景德镇市南岔区白渡路耀江花园;;;092302
+TEL:17825416888
+URL:http://www.YW.portfolio.org
+BDAY:2016-07-12
+FN:倪静娴
+EMAIL:863453151@qq.com
+ORG:腾企鹅 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:47c5ece6-a33d-45c7-9796-01576121d039
+ADR:;;山西省阜阳市红星区安国路真新六街坊;;;065798
+TEL:17947826364
+URL:http://www.cxgKoHrauUUWmgKJHyKptif4t83P2bOc7tgOuI.example.com
+BDAY:1944-12-18
+FN:游松楠
+EMAIL:071429364@qq.com
+ORG:塔布数据 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:2936aa1f-218b-4858-80e8-d393604303f1
+ADR:;;贵州省盐城市美溪区百花街博泰新苑;;;014056
+TEL:17176150932
+URL:http://www.bsZpENiwsLSUTLQ3QGLOQz18h8d7rCBiB.example.com
+BDAY:1961-04-21
+FN:王春香
+EMAIL:1029310047@qq.com
+ORG:千度 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:ef3d8296-2803-4ce5-bf1f-ff0a0c7bdaa8
+ADR:;;海南省金华市榆次区半淞园路耀江花园;;;053759
+TEL:17568568954
+URL:http://www.fI7rW1BDc57wDeM8uSE1mkuMVL8.personalwebsite.com
+BDAY:1928-05-11
+FN:米行峰
+EMAIL:422663088@qq.com
+ORG:塔布数据 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:1007fd28-3826-48a0-a994-1daa6ee1ff48
+ADR:;;浙江省马鞍山市美溪区板泉路真新六街坊;;;089085
+TEL:15987573034
+URL:http://www.xBAutgNYO.example.com
+BDAY:1974-03-20
+FN:戈信中
+EMAIL:191178547@qq.com
+ORG:网易之 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:b6784fbc-f4f3-4020-83d3-cb27d8fbc065
+ADR:;;河北省南平市带岭区百安路（方泰镇）复华城市花园;;;092660
+TEL:17299634613
+URL:http://www.W.personalwebsite.com
+BDAY:1958-08-22
+FN:施广力
+EMAIL:86881981@qq.com
+ORG:腾企鹅 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:6e0df3a0-072f-4dd3-adf6-0b345f3689dc
+ADR:;;四川省抚州市美溪区宝安路耀江花园;;;014801
+TEL:17573421663
+URL:http://www.nK5KZmMCbbOQvRp9z3rkGLYVErnIBM0ydDr17Gow8L5oy.example.com
+BDAY:2018-10-30
+FN:康眉娥
+EMAIL:5176572232@qq.com
+ORG:塔布数据 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:6eeba87d-653c-4a76-a026-df45d0bc9ab7
+ADR:;;辽宁省抚顺市美溪区白渡路博泰新苑;;;021093
+TEL:13323161705
+URL:http://www.WMHW8oA5YNjPl2zDQGWef8d8SBK0GYBTVab.example.com
+BDAY:2017-11-10
+FN:杨霭锦
+EMAIL:2812142983@qq.com
+ORG:网易之 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:3070a92d-0928-46df-866c-92de074fa18c
+ADR:;;云南省黄冈市南岔区宝安路真新六街坊;;;086553
+TEL:15751188047
+URL:http://www.03qQqTK2mPZAHRzD2hvZu7JftQaTpu8bMCjZL2kDjvGgmJfM.example.com
+BDAY:1995-11-16
+FN:柳力以
+EMAIL:15910122@qq.com
+ORG:京西 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:2d9d8393-3a1f-4c0c-aa87-5aabc7895479
+ADR:;;江苏省株洲市榆次区安福路和亭佳苑;;;012444
+TEL:13171045302
+URL:http://www.5AMmRh1cIY.example.com
+BDAY:1976-04-04
+FN:花姬琬
+EMAIL:2493476126@qq.com
+ORG:京西 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:869ae808-0cfc-4508-961b-8a7406b758d0
+ADR:;;吉林省福州市带岭区安国路金色家园;;;019444
+TEL:15950100366
+URL:http://www.xFyhBALtaPjruP52pssyMW87maUa5.portfolio.org
+BDAY:1985-08-22
+FN:满子生
+EMAIL:627658643@qq.com
+ORG:千度 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:d535607d-efe4-4b30-9cdd-66480268e954
+ADR:;;辽宁省大连市金山屯区安汾路东新大厦;;;016929
+TEL:18624222291
+URL:http://www.3XmI87MLTRCPy6XZ9faU1PJG10ucoHAuzJRiZENqQBWsJVa6mvp618AQpEO.
+ example.com
+BDAY:2024-12-17
+FN:和茗妍
+EMAIL:2918402951@qq.com
+ORG:图匠 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:104cd475-0f52-4d76-8979-5511909099ce
+ADR:;;湖南省遂宁市金山屯区安龙路真新六街坊;;;049357
+TEL:15599303582
+URL:http://www.NDPkqzT3ACmbGx9dGxigxm0qIObMFfNbYr5Ap6KymEFfBIUYWVlRRR4lcvbc
+ s.myhomepage.net
+BDAY:1974-03-05
+FN:谢榕伟
+EMAIL:4983352828@qq.com
+ORG:互动派 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:e46dc394-dada-49fe-80d3-aa1f67dbf47c
+ADR:;;福建省西宁市乌伊岭区宝安路住友嘉馨名园;;;035379
+TEL:13396771868
+URL:http://www.ai03rsDKjohsS5oWxjeU5fYtWhzhdHLHuLtxE.example.com
+BDAY:1906-12-22
+FN:殴珠燕
+EMAIL:9156634423@qq.com
+ORG:图匠 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:d7a3ca8b-c4ec-4f2f-84a3-edd745868d61
+ADR:;;黑龙江省清远市伊春区安汾路阳光翠竹苑;;;042971
+TEL:15542223475
+URL:http://www..personalwebsite.com
+BDAY:1912-01-24
+FN:危勇广
+EMAIL:8617521625@qq.com
+ORG:阿狸巴巴 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:e248b44d-656c-41c8-aa3d-fa91c0db7f1d
+ADR:;;贵州省长沙市汤旺河区白城路真新六街坊;;;047667
+TEL:17290030461
+URL:http://www.tl6XTUh157Rjb.myhomepage.net
+BDAY:1923-06-19
+FN:徐珊婷
+EMAIL:321229142@qq.com
+ORG:互动派 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:0d5da7b9-80d2-4610-8eb9-6ad3ccb49ac6
+ADR:;;河南省襄樊市带岭区安福路东新大厦;;;089522
+TEL:18864579445
+URL:http://www.0gDTbxbaFoa2UwbYj.myhomepage.net
+BDAY:1972-02-01
+FN:季福盛
+EMAIL:5368593300@qq.com
+ORG:互动派 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:09c797ac-afe1-4de3-8af6-4bd3197a2829
+ADR:;;辽宁省莆田市新青区保屯路菊园五街坊;;;054939
+TEL:15793379299
+URL:http://www.3.portfolio.org
+BDAY:1981-02-26
+FN:黎彬士
+EMAIL:6255537799@qq.com
+ORG:千度 有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:93891998-c443-492d-b724-5bd019db7aa3
+ADR:;;海南省信阳市榆次区安福路金色家园;;;032762
+TEL:18335574961
+URL:http://www.J383wIF5Qnb1ZJ4.portfolio.org
+BDAY:2008-09-14
+FN:殴言谦
+EMAIL:0467904753@qq.com
+ORG:互动派
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:d0f786ec-ceef-47af-8fd5-26aad7b47fd1
+ADR:;;江西省厦门市榆次区宝昌路和亭佳苑;;;051346
+TEL:17185853478
+URL:http://www.P2GSgvQf.myhomepage.net
+BDAY:1908-05-30
+FN:万兰毓
+EMAIL:3130192986@qq.com
+ORG:腾企鹅
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:6a05ee1d-f181-47f2-a584-73b63785a347
+ADR:;;辽宁省防城港市新青区鞍山路耀江花园;;;055611
+TEL:15354211214
+URL:http://www.7XF50p5bMKT4e2Pkp8eaYo285.portfolio.org
+BDAY:1984-09-16
+FN:殷钧彬
+EMAIL:520281149@qq.com
+ORG:京西 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:7b4a6338-32af-4ded-b125-2bd084996c9e
+ADR:;;陕西省朔州市南岔区黄河路溢盈河畔别墅;;;010594
+TEL:13296318865
+URL:http://www.jAmnxIefWRh8CffIwoscVHUMPn1lRyFSDpDdJ7rsfJvbOM4gYwhjbhonme2.
+ myhomepage.net
+BDAY:1991-04-17
+FN:宋玉倩
+EMAIL:321416482@qq.com
+ORG:数说故事
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:8b107ac4-f146-4583-8e1f-c097d8fafff1
+ADR:;;黑龙江省松原市伊春区宝昌路爱里舍花园;;;059022
+TEL:18935617190
+URL:http://www.oXXrPKmRFNaCF47iKMfEvpqSUfSpl.personalwebsite.com
+BDAY:2001-09-13
+FN:茹伟树
+EMAIL:6113042150@qq.com
+ORG:腾企鹅 股份有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:913b3e78-b91c-496b-8474-64904eb490c9
+ADR:;;陕西省佳木斯市翠峦区宝安路溢盈河畔别墅;;;035425
+TEL:17896831637
+URL:http://www.wLHKumEMsIEx5iVTMQTUu6jAJXoa50jLw6QX2k6a0DrypECD5RN.personal
+ website.com
+BDAY:2002-05-01
+FN:顾龙江
+EMAIL:3437797359@qq.com
+ORG:塔布数据 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:171b734a-c93c-476c-b3cb-c32966a4e754
+ADR:;;四川省长治市乌马河区保定路金色家园;;;046227
+TEL:17629063352
+URL:http://www..myhomepage.net
+BDAY:2013-03-01
+FN:穆福涛
+EMAIL:255816501@qq.com
+ORG:网易之
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:49164a4f-91d2-43b2-a174-e12dfc9e5819
+ADR:;;安徽省阜阳市红星区安顺路住友嘉馨名园;;;068928
+TEL:18223093440
+URL:http://www.StBKWGb.myhomepage.net
+BDAY:1921-10-20
+FN:康朋子
+EMAIL:945175121@qq.com
+ORG:阿狸巴巴 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:3b828397-9fbe-4800-a036-af2a8d7238e4
+ADR:;;辽宁省汕头市友好区白渡路复华城市花园;;;057740
+TEL:17289172394
+URL:http://www.AoyPy2VAEiRTcdHvhPrYIQye7bydSyJ6OsMlCxMSFsSg9.portfolio.org
+BDAY:1971-12-15
+FN:孟英悦
+EMAIL:301935819@qq.com
+ORG:网易之
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:1df015f3-3079-41fd-bd10-f943d3c4de65
+ADR:;;江苏省汕尾市南岔区白城路菊园五街坊;;;067307
+TEL:18433483716
+URL:http://www.GqHDYNY.personalwebsite.com
+BDAY:1916-03-26
+FN:巴娅枫
+EMAIL:888456183@qq.com
+ORG:图匠 集团
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:f322ada0-52c2-4909-bedf-bf9eddfe6ad5
+ADR:;;海南省漯河市上甘岭区宝安路真新六街坊;;;087010
+TEL:18214315236
+URL:http://www.NELk.myhomepage.net
+BDAY:2009-02-10
+FN:霍星海
+EMAIL:5705080123@qq.com
+ORG:后海金融 金融投资有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:dfcd8eca-2b9b-4c0f-9889-da4d493f133f
+ADR:;;河南省韶关市带岭区白渡路协通公寓;;;093068
+TEL:13812854836
+URL:http://www.5ASklLwtm.myhomepage.net
+BDAY:1903-05-07
+FN:红厚信
+EMAIL:7424890317@qq.com
+ORG:塔布数据 科技有限公司
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+PRODID:ez-vcard 0.12.1
+UID:3319af31-eaf2-4b88-b20b-4e210246e66f
+ADR:;;4;;;4
+TEL:1
+URL:3
+BDAY:2024-05-10
+FN:asd
+EMAIL:2
+ORG:4
+NOTE:4
 END:VCARD

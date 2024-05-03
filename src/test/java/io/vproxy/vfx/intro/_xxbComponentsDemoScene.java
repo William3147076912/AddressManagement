@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 
 import java.util.Arrays;
 
@@ -41,6 +42,7 @@ public class _xxbComponentsDemoScene extends DemoVScene {
         var dialogButton = new Btn("VDialog");
         dialogButton.setOnAction(e -> {
             var dialog = new VDialog<Integer>();
+            //dialog.getStage().getStage().initModality(Modality.APPLICATION_MODAL);
             dialog.setText("Choose a number");
             dialog.setButtons(Arrays.asList(
                 new VDialogButton<>("1", 1),

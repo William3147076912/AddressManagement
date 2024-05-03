@@ -10,7 +10,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 public class Pinyin {
     public static String getPinYin(String src) {//通过联系人姓名汉字获取对应的拼音(小写字母形式)
         char[] t1;
-        t1 = src.toCharArray();
+        t1 = src.replaceAll("\\s", "").toCharArray();//去掉全部何空白字符
         String[] t2;
         HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
         t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
@@ -35,7 +35,7 @@ public class Pinyin {
     }
 
     public static String getInitialConsonant(String str) {
-        char[] t1 = str.toCharArray();
+        char[] t1 = str.replaceAll("\\s", "").toCharArray();
         StringBuilder result = new StringBuilder();
         for (char c : t1) {
             // 判断是否为汉字字符
@@ -46,6 +46,6 @@ public class Pinyin {
             }
 
         }
-        return result.toString();
+        return result.toString().isEmpty()?"":result.toString();
     }
 }
