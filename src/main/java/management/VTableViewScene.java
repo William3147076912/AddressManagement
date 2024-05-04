@@ -64,7 +64,7 @@ public class VTableViewScene extends VScene {
     private VTableView<Data> searchTable;//搜索界面的table列表
     private List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的所有用户信息
     private List<VCard> groups = AddressBook.getGroups();//包含已存在的所有组信息
-    private VTableColumn<Data, StringJoiner> groupCol;
+    private VTableColumn<Data, String> groupCol;
 
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
         super(VSceneRole.MAIN);
@@ -441,6 +441,9 @@ public class VTableViewScene extends VScene {
                                 searchTable.getItems().removeAll(peopleList.get(0));
                                 String text = searchField.getText();
                                 for (var data : peopleList.get(0)) {
+                                    if (data.in.contains(text)) {
+                                        searchTable.getItems().add(data);
+                                    }
                                     // 使用正则表达式检查输入框是否含有数字
                                     if (searchField.getText().matches(".*\\d.*")) {
                                         if (!data.getTelephoneNumbers().isEmpty() && data.getTelephoneNumbers().get(0).getText().contains(text)) {//根据手机号
@@ -515,16 +518,21 @@ public class VTableViewScene extends VScene {
                     throw new RuntimeException(e);
                 }
                 Platform.runLater(() -> {
-                    for (var person : peopleList.get(0)) {
+                    for (var person : peopleList.get(0)) {//更新每个成员的所属分组
                         for (int i = 1; i < groups.size(); i++) {
                             //System.out.println(groups.get(j).getMembers().get(j).getValue());
+                            StringJoiner stringJoiner = new StringJoiner(" ");
+                            for (var str : person.in.split(" ")) {
+                                stringJoiner.add(str);
+                            }
                             for (var member : groups.get(i).getMembers()) {
                                 if (person.getUid().getValue().equals(member.getValue())) {
-                                    if (!person.in.toString().contains(groups.get(i).getFormattedName().getValue())) {
-                                        person.in.add(groups.get(i).getFormattedName().getValue());
+                                    if (!person.in.contains(groups.get(i).getFormattedName().getValue())) {
+                                        stringJoiner.add(groups.get(i).getFormattedName().getValue());
                                     }
                                 }
                             }
+                            person.in = stringJoiner.toString();
                         }
                     }
                     if (groupBox.getChildren().size() - ConstantSet.GROUP_LIST_OFFSET != groups.size()) {
@@ -709,6 +717,7 @@ public class VTableViewScene extends VScene {
         emailCol.setAlignment(Pos.CENTER);
 
         groupCol.setAlignment(Pos.CENTER);
+        groupCol.setComparator(String::compareTo);
 
         homePageCol.setAlignment(Pos.CENTER);
         //homePageCol.setMinWidth(600);

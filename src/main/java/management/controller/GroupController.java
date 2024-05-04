@@ -87,6 +87,9 @@ public class GroupController {
             var result = dialog.showAndWait();
             if (result.isPresent()) {
                 if (result.get() == 1) {
+                    for (var person : peopleList.get(0)) {//删除该组相关的联系人in信息
+                        person.in = person.in.replace(groups.get(defaultGroupOrNot).getFormattedName().getValue(), "");
+                    }
                     groupBox.getChildren().remove(ConstantSet.GROUP_LIST_OFFSET + defaultGroupOrNot);//清除组按钮
                     groups.remove(defaultGroupOrNot);//清除该组索引
                     peopleList.remove(defaultGroupOrNot);//清除该组数据

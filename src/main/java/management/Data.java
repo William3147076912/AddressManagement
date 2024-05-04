@@ -13,7 +13,7 @@ import java.util.jar.Attributes;
 
 public class Data extends VCard {
     public FusionButton choiceButton;
-    public StringJoiner in = new StringJoiner(",", "<", ">");//所属分组
+    public String in= "";//所属分组
 /*    public String type;
     public int bandwidth;
     public long createTime;*/
