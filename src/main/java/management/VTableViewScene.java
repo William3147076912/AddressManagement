@@ -522,17 +522,20 @@ public class VTableViewScene extends VScene {
                         for (int i = 1; i < groups.size(); i++) {
                             //System.out.println(groups.get(j).getMembers().get(j).getValue());
                             StringJoiner stringJoiner = new StringJoiner(" ");
+                            boolean containOrNot = false;
                             for (var str : person.in.split(" ")) {
                                 stringJoiner.add(str);
                             }
                             for (var member : groups.get(i).getMembers()) {
                                 if (person.getUid().getValue().equals(member.getValue())) {
+                                    containOrNot = true;
                                     if (!person.in.contains(groups.get(i).getFormattedName().getValue())) {
                                         stringJoiner.add(groups.get(i).getFormattedName().getValue());
                                     }
                                 }
                             }
-                            person.in = stringJoiner.toString();
+                            if (containOrNot) person.in = stringJoiner.toString();
+                            else person.in = person.in.replace(" " + groups.get(i).getFormattedName().getValue(), "");
                         }
                     }
                     if (groupBox.getChildren().size() - ConstantSet.GROUP_LIST_OFFSET != groups.size()) {
