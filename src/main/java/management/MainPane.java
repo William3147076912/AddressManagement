@@ -38,6 +38,7 @@ import utils.MyImageManager;
 import vjson.JSON;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Path;
@@ -239,7 +240,21 @@ public class MainPane extends Application {
             setTranslationDir(TranslationDir.BOTTOM_TO_TOP);
             setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png", 100, 100, true, true)));
             setOnMouseClicked(event -> {
-                Frame frame=new Frame("选择");
+                FileChooser fileChooser=new FileChooser();
+                fileChooser.setTitle("选择要保存的路径");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("vCard文件","*.vcf")
+                );
+                Window window = menuScene.getSelfNode().getScene().getWindow();
+                File selectedFile = fileChooser.showSaveDialog(window);
+                if (selectedFile != null) {
+                    String directory=selectedFile.getPath();
+                    System.out.println(directory);
+                    Export.export(directory);
+                    SimpleAlert.show(Alert.AlertType.INFORMATION, "导出成功(๑•́ ₃ •̀๑)ｴｰ");
+                }
+
+                /*Frame frame=new Frame("选择");
                 FileDialog fileDialog=new FileDialog(frame,"选择",FileDialog.SAVE);
 
                 //文件后缀过滤好像没起作用
@@ -259,7 +274,7 @@ public class MainPane extends Application {
                     directory=directory.replace('\\','/');
                     Export.export(directory+filename);
                     System.out.println(directory+filename);
-                }
+                }*/
             });
         }};
         menuBox.getChildren().addAll(importExportIntro, new VPadding(40), importBtn, new VPadding(40), exportBtn);
