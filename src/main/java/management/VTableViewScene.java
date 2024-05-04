@@ -64,6 +64,7 @@ public class VTableViewScene extends VScene {
     private VTableView<Data> searchTable;//搜索界面的table列表
     private List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的所有用户信息
     private List<VCard> groups = AddressBook.getGroups();//包含已存在的所有组信息
+    private VTableColumn<Data, StringJoiner> groupCol;
 
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
         super(VSceneRole.MAIN);
@@ -514,8 +515,19 @@ public class VTableViewScene extends VScene {
                     throw new RuntimeException(e);
                 }
                 Platform.runLater(() -> {
-                    //if (groupBox.getChildren().size() > 7) System.out.println(groupBox.getChildren().size());
-                    if(groupBox.getChildren().size()-ConstantSet.GROUP_LIST_OFFSET!=groups.size()) {
+                    for (var person : peopleList.get(0)) {
+                        for (int i = 1; i < groups.size(); i++) {
+                            //System.out.println(groups.get(j).getMembers().get(j).getValue());
+                            for (var member : groups.get(i).getMembers()) {
+                                if (person.getUid().getValue().equals(member.getValue())) {
+                                    if (!person.in.toString().contains(groups.get(i).getFormattedName().getValue())) {
+                                        person.in.add(groups.get(i).getFormattedName().getValue());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (groupBox.getChildren().size() - ConstantSet.GROUP_LIST_OFFSET != groups.size()) {
                         /*System.out.println(groupBox.getChildren().size());
                         System.out.println(peopleList.size());
                         System.out.println(groups.size());
@@ -524,7 +536,8 @@ public class VTableViewScene extends VScene {
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }*/
-                        while (groupBox.getChildren().size() > ConstantSet.GROUP_LIST_OFFSET) groupBox.getChildren().remove(ConstantSet.GROUP_LIST_OFFSET);
+                        while (groupBox.getChildren().size() > ConstantSet.GROUP_LIST_OFFSET)
+                            groupBox.getChildren().remove(ConstantSet.GROUP_LIST_OFFSET);
                         int temp = defaultGroupOrNot;
                         for (int i = 0; i < groups.size(); i++) {
                             int finalI = i;
@@ -636,6 +649,7 @@ public class VTableViewScene extends VScene {
         var phoneCol = new VTableColumn<Data, String>("phone", data -> data.getTelephoneNumbers().isEmpty() ? "" : data.getTelephoneNumbers().get(0).getText());
         var emailCol = new VTableColumn<Data, String>("email", data -> data.getEmails().isEmpty() ? "" : data.getEmails().get(0).getValue());
         var homePageCol = new VTableColumn<Data, String>("homePage", data -> data.getUrls().isEmpty() ? "" : data.getUrls().get(0).getValue());
+        groupCol = new VTableColumn<>("in", data -> data.in);
         var birthdayCol = new VTableColumn<Data, String>("birthday", data -> data.getBirthday() == null ? "" : data.getBirthday().getDate().toString());
         var companyCol = new VTableColumn<Data, String>("company", data -> data.getOrganization() == null ? "" : data.getOrganization().getValues().get(0));
         var addressCol = new VTableColumn<Data, String>("address", data -> data.getAddresses().isEmpty() ? "" : data.getAddresses().get(0).getStreetAddress());
@@ -683,34 +697,36 @@ public class VTableViewScene extends VScene {
 
         //nameCol.setComparator(Comparator.comparing(data -> Pinyin.getPinYin(data.getFormattedName().getValue())));//按拼音排序
         nameCol.setComparator(Comparator.comparing(Pinyin::getPinYin));//按拼音排序
-        nameCol.setMaxWidth(70);
+        //nameCol.setMaxWidth(70);
         nameCol.setAlignment(Pos.CENTER);
 
-        phoneCol.setMaxWidth(100);
+        //phoneCol.setMaxWidth(100);
         phoneCol.setAlignment(Pos.CENTER);
         phoneCol.setComparator(String::compareTo);
 
         emailCol.setAlignment(Pos.CENTER);
-        emailCol.setMaxWidth(200);
+        //emailCol.setMaxWidth(200);
         emailCol.setAlignment(Pos.CENTER);
 
+        groupCol.setAlignment(Pos.CENTER);
+
         homePageCol.setAlignment(Pos.CENTER);
-        homePageCol.setMinWidth(600);
+        //homePageCol.setMinWidth(600);
         birthdayCol.setAlignment(Pos.CENTER);
         birthdayCol.setComparator(String::compareTo);
 
         companyCol.setAlignment(Pos.CENTER);
 
         addressCol.setAlignment(Pos.CENTER);
-        addressCol.setMinWidth(600);
+        //addressCol.setMinWidth(600);
 
         postalCodeCol.setAlignment(Pos.CENTER);
         //postalCodeCol.setComparator(Comparator.comparing(data -> data.getAddresses().get(0).getPostalCode()));
 
         remarkCol.setAlignment(Pos.CENTER);
-        remarkCol.setMaxWidth(800);
+        //remarkCol.setMaxWidth(800);
         //noinspection unchecked
-        table.getColumns().addAll(choiceCol, nameCol, phoneCol, emailCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
+        table.getColumns().addAll(choiceCol, nameCol, phoneCol, emailCol, groupCol, homePageCol, birthdayCol, companyCol, addressCol, postalCodeCol, remarkCol);
 //        for (int i = 0; i < 10; ++i) {
 //            table.getItems().add(new Data());
 //

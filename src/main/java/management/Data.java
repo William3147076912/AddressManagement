@@ -6,12 +6,14 @@ import io.vproxy.base.util.Utils;
 import io.vproxy.vfx.ui.button.FusionButton;
 import utils.TUtils;
 
+import java.util.StringJoiner;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.jar.Attributes;
 
 public class Data extends VCard {
     public FusionButton choiceButton;
+    public StringJoiner in = new StringJoiner(",", "<", ">");//所属分组
 /*    public String type;
     public int bandwidth;
     public long createTime;*/
@@ -68,8 +70,7 @@ public class Data extends VCard {
             person.addOrganization(organization);
         }
 
-        for(Photo photo:vCard.getPhotos())
-        {
+        for (Photo photo : vCard.getPhotos()) {
             person.addPhoto(photo);
         }
         for (Note note : vCard.getNotes()) {
