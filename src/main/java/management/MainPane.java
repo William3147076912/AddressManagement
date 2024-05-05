@@ -1,13 +1,7 @@
 package management;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.leewyatt.rxcontrols.controls.RXTranslationButton;
 import ezvcard.VCard;
-import ezvcard.VCardVersion;
-import ezvcard.io.text.VCardReader;
-import ezvcard.io.text.VCardWriter;
-import ezvcard.property.*;
-import io.vproxy.vfx.control.globalscreen.GlobalScreenUtils;
 import io.vproxy.vfx.manager.task.TaskManager;
 import io.vproxy.vfx.theme.Theme;
 import io.vproxy.vfx.ui.alert.SimpleAlert;
@@ -21,10 +15,8 @@ import io.vproxy.vfx.ui.stage.VStage;
 import io.vproxy.vfx.ui.wrapper.ThemeLabel;
 import io.vproxy.vfx.util.FXUtils;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -35,17 +27,8 @@ import utils.ConstantSet;
 import utils.Export;
 import utils.Import;
 import utils.MyImageManager;
-import vjson.JSON;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.security.interfaces.ECPublicKey;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -282,7 +265,6 @@ public class MainPane extends Application {
 
         menuBtn.setOnAction(e -> stage.getRootSceneGroup().show(menuScene, VSceneShowMethod.FROM_LEFT));
         stage.getRoot().getContentPane().getChildren().add(menuBtn);
-
         stage.getStage().setWidth(1280);
         stage.getStage().setHeight(800);
         stage.getStage().centerOnScreen();

@@ -3,7 +3,6 @@ package utils;
 import io.vproxy.vfx.control.scroll.VScrollPane;
 import io.vproxy.vfx.theme.Theme;
 import io.vproxy.vfx.ui.layout.HPadding;
-import io.vproxy.vfx.ui.layout.VPadding;
 import io.vproxy.vfx.ui.scene.VScene;
 import io.vproxy.vfx.ui.scene.VSceneGroup;
 import io.vproxy.vfx.ui.scene.VSceneRole;
@@ -22,7 +21,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 /**
  * @Author fcj

@@ -1,6 +1,5 @@
 package management;
 
-import com.leewyatt.rxcontrols.controls.RXAudioSpectrum;
 import javafx.application.Application;
 
 /**

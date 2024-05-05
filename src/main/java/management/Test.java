@@ -1,20 +1,12 @@
 package management;
 
-import com.jfoenix.assets.JFoenixResources;
-import io.vproxy.vfx.ui.scene.VScene;
-import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
-import management.controller.ContactController;
-import utils.ConstantSet;
 import utils.PopupScene;
 
 public class Test extends Application {

@@ -3,7 +3,6 @@ package management;
 import com.leewyatt.rxcontrols.controls.RXAvatar;
 import com.leewyatt.rxcontrols.controls.RXLineButton;
 import com.leewyatt.rxcontrols.controls.RXTextField;
-import com.sun.prism.shader.FillCircle_ImagePattern_Loader;
 import ezvcard.VCard;
 import ezvcard.parameter.ImageType;
 import ezvcard.property.*;
@@ -37,7 +36,6 @@ import javafx.stage.StageStyle;
 import management.controller.ContactController;
 import management.controller.GroupController;
 import utils.ConstantSet;
-import utils.Import;
 import utils.PopupScene;
 
 import java.io.File;
@@ -527,7 +525,7 @@ public class VTableViewScene extends VScene {
                                 stringJoiner.add(str);
                             }
                             for (var member : groups.get(i).getMembers()) {
-                                if (person.getUid().getValue().equals(member.getValue())) {
+                                if (person.getUid() != null && person.getUid().getValue().equals(member.getValue())) {
                                     containOrNot = true;
                                     if (!person.in.contains(groups.get(i).getFormattedName().getValue())) {
                                         stringJoiner.add(groups.get(i).getFormattedName().getValue());

@@ -1,10 +1,8 @@
 package utils;
 
 
-import com.beust.ah.A;
 import ezvcard.VCard;
 import ezvcard.VCardVersion;
-import ezvcard.io.scribe.BirthdayScribe;
 import ezvcard.io.text.VCardWriter;
 import ezvcard.property.*;
 import io.codearte.jfairy.Fairy;
@@ -13,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;

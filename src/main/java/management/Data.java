@@ -2,14 +2,7 @@ package management;
 
 import ezvcard.VCard;
 import ezvcard.property.*;
-import io.vproxy.base.util.Utils;
 import io.vproxy.vfx.ui.button.FusionButton;
-import utils.TUtils;
-
-import java.util.StringJoiner;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.jar.Attributes;
 
 public class Data extends VCard {
     public FusionButton choiceButton;

@@ -4,12 +4,9 @@ import ezvcard.VCard;
 import ezvcard.io.text.VCardReader;
 import ezvcard.property.Kind;
 import ezvcard.property.Member;
-import ezvcard.property.Photo;
 import ezvcard.property.Uid;
 import management.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
