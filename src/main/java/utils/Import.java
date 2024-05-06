@@ -7,7 +7,8 @@ import ezvcard.property.Member;
 import ezvcard.property.Uid;
 import management.*;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -18,9 +19,12 @@ public class Import {
     private static List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的联系人数据
 
     public static void importVcard(String filepath) throws IOException {
-        if (filepath.startsWith("/"))filepath = filepath.substring(1);
-        Path file = Paths.get(filepath);
-        VCardReader reader = new VCardReader(file);
+        if (filepath.startsWith("/")) filepath = filepath.substring(1);
+        if (filepath.startsWith("file:")) filepath = filepath.substring(5);
+        //Path file = Paths.get(filepath);
+        //System.out.println(filepath);
+        //System.out.println(file);
+        VCardReader reader = new VCardReader(new InputStreamReader(new FileInputStream(filepath), StandardCharsets.UTF_8));
         boolean hasGroup = false;
         List<Data> newContacts = new ArrayList<>();//暂存此次导入的联系人
         Data person;
@@ -99,7 +103,7 @@ public class Import {
         } else {//vCard有分组的情况
             //读取时已经创建"all people"组，所以这里只需要给加载进来的每个组分配其联系人的数据
             //1.根据组表大小创建分组联系人数据表
-            int index = groups.size() ;
+            int index = groups.size();
             for (int i = 1; i < index; i++) {//舍去"all people"组
                 int finalI = i;
                 peopleList.add(new ArrayList<>() {{

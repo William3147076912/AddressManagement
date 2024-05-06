@@ -37,6 +37,7 @@ import management.controller.ContactController;
 import management.controller.GroupController;
 import utils.ConstantSet;
 import utils.MyImageManager;
+import utils.Pinyin;
 import utils.PopupScene;
 
 import java.io.File;
@@ -68,7 +69,7 @@ public class VTableViewScene extends VScene {
     public VTableViewScene(Supplier<VSceneGroup> sceneGroupSup) {
         super(VSceneRole.MAIN);
         enableAutoContentWidthHeight();
-        getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());//设置自定义css主题
+        getNode().getStylesheets().add("/css/my_theme.css");//设置自定义css主题
 
 
         var msgLabel = new ThemeLabel(
@@ -779,13 +780,13 @@ public class VTableViewScene extends VScene {
                     if (!selectedItem.getPhotos().isEmpty()) {
                         Photo photo = selectedItem.getPhotos().get(0);
                         byte[] data = photo.getData();//转二进制
-                        String filepath = "src/main/resources/images/" + selectedItem.getUid().getValue() + "." + photo.getContentType().getValue();
+                        String filepath = "resources/images/" + selectedItem.getUid().getValue() + "." + photo.getContentType().getValue();
                         File file = new File(filepath);
                         file.createNewFile();
                         FileOutputStream fos = new FileOutputStream(file);
                         fos.write(data);
                         fos.close();
-                        System.out.println(filepath);
+                        //System.out.println(filepath);
                         image.setImage(new Image("file:" + filepath));
                     }
                     TextField nameField = (TextField) namespace.get("nameField");
@@ -818,6 +819,7 @@ public class VTableViewScene extends VScene {
                             }
                             //设置新数据
                             VCard newItem = new VCard();
+                            newItem.setUid(selectedItem.getUid());
                             newItem.setFormattedName(nameField.getText());
                             newItem.addTelephoneNumber(phoneField.getText());
                             newItem.addEmail(emailField.getText());
@@ -835,7 +837,9 @@ public class VTableViewScene extends VScene {
                             } catch (MalformedURLException e) {
                                 throw new RuntimeException(e);
                             }
-                            Path path = Paths.get(image.getImage().getUrl().substring(6));
+                            String str = image.getImage().getUrl().substring(5);
+                            if (str.startsWith("/")) str = str.substring(1);
+                            Path path = Paths.get(str);
                             try {
                                 if (imageName.contains(".png")) {
                                     newItem.addPhoto(new Photo(path, ImageType.PNG));

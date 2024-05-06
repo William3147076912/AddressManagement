@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import management.*;
 import utils.ConstantSet;
+import utils.Pinyin;
 import utils.PopupScene;
 
 import java.io.IOException;

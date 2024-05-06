@@ -41,10 +41,11 @@ public class MainPane extends Application {
     public static List<VScene> mainScenes = new ArrayList<>();
     public static VSceneGroup sceneGroup;
     public static boolean running = true;
-    public static VTableViewScene vTableViewScene=new VTableViewScene(()->sceneGroup);
+    public static VTableViewScene vTableViewScene = new VTableViewScene(() -> sceneGroup);
     public VBox groupBox = VTableViewScene.groupBox;
     //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
-    public String filepath = Objects.requireNonNull(getClass().getResource("/vCard/sample.vcf")).getPath();
+    public String filepath = "resources/vCard/sample.vcf";
+    //public String filepath = "../vCard/sample.vcf";
     private List<VCard> groups = AddressBook.getGroups();
     private List<List<Data>> peopleList = AddressBook.getPeopleList();
 
@@ -162,7 +163,7 @@ public class MainPane extends Application {
         stage.getInitialScene().getContentPane().getChildren().add(box);
 
         var menuScene = new VScene(VSceneRole.DRAWER_VERTICAL);
-        menuScene.getNode().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/my_theme.css")).toExternalForm());
+        menuScene.getNode().getStylesheets().add("/css/my_theme.css");
         menuScene.getNode().setPrefWidth(450);
         menuScene.enableAutoContentWidth();
         menuScene.getNode().setBackground(new Background(new BackgroundFill(
@@ -178,7 +179,7 @@ public class MainPane extends Application {
         menuScene.getContentPane().getChildren().add(menuBox);
         menuBox.getChildren().add(new VPadding(20));
 
-        var menuBtn = new FusionImageButton(MyImageManager.get().load("file:src/main/resources/images/menu.png")) {{
+        var menuBtn = new FusionImageButton(MyImageManager.get().load("file:resources/images/menu.png")) {{
             setPrefWidth(40);
             setPrefHeight(VStage.TITLE_BAR_HEIGHT + 1);
             getImageView().setFitHeight(15);
@@ -191,7 +192,7 @@ public class MainPane extends Application {
             getStyleClass().add("import_export_btn");
             setPrefSize(200, 100);
             setTranslationDir(TranslationDir.TOP_TO_BOTTOM);
-            setGraphic(new ImageView(new Image("file:src/main/resources/images/import.png", 100, 100, true, true)));
+            setGraphic(new ImageView(new Image("file:resources/images/import.png", 100, 100, true, true)));
             setOnMouseClicked(event -> {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("选择vCard文件");
@@ -221,17 +222,17 @@ public class MainPane extends Application {
             getStyleClass().add("import_export_btn");
             setPrefSize(200, 100);
             setTranslationDir(TranslationDir.BOTTOM_TO_TOP);
-            setGraphic(new ImageView(new Image("file:src/main/resources/images/export.png", 100, 100, true, true)));
+            setGraphic(new ImageView(new Image("file:resources/images/export.png", 100, 100, true, true)));
             setOnMouseClicked(event -> {
-                FileChooser fileChooser=new FileChooser();
+                FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("选择要保存的路径");
                 fileChooser.getExtensionFilters().addAll(
-                        new FileChooser.ExtensionFilter("vCard文件","*.vcf")
+                        new FileChooser.ExtensionFilter("vCard文件", "*.vcf")
                 );
                 Window window = menuScene.getSelfNode().getScene().getWindow();
                 File selectedFile = fileChooser.showSaveDialog(window);
                 if (selectedFile != null) {
-                    String directory=selectedFile.getPath();
+                    String directory = selectedFile.getPath();
                     System.out.println(directory);
                     Export.export(directory);
                     SimpleAlert.show(Alert.AlertType.INFORMATION, "导出成功(๑•́ ₃ •̀๑)ｴｰ");
