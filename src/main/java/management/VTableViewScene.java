@@ -36,6 +36,7 @@ import javafx.stage.StageStyle;
 import management.controller.ContactController;
 import management.controller.GroupController;
 import utils.ConstantSet;
+import utils.MyImageManager;
 import utils.PopupScene;
 
 import java.io.File;
@@ -354,7 +355,7 @@ public class VTableViewScene extends VScene {
                             sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
                             FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
                         });
-                        //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));设置背景图片
+                        popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));//设置背景图片
                         popUpScene.getContentPane().getChildren().addAll(msgLabel, sureBtn, closeBtn);
                         sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
                         FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));

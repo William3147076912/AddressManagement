@@ -19,8 +19,6 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
-
-
     <dependencies>
         <!--javafx组件库-->
         <dependency>
@@ -223,6 +221,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>10</source>
+                    <target>10</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

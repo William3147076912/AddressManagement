@@ -44,7 +44,7 @@ public class MainPane extends Application {
     public static VTableViewScene vTableViewScene=new VTableViewScene(()->sceneGroup);
     public VBox groupBox = VTableViewScene.groupBox;
     //    private final Path file= Paths.get("src/main/resources/vCard/make_area_phone_186_5586.vcf");
-    public String filepath = "src/main/resources/vCard/sample.vcf";
+    public String filepath = Objects.requireNonNull(getClass().getResource("/vCard/sample.vcf")).getPath();
     private List<VCard> groups = AddressBook.getGroups();
     private List<List<Data>> peopleList = AddressBook.getPeopleList();
 

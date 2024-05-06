@@ -15,11 +15,12 @@ public class Export {
     private static List<VCard> groups = AddressBook.getGroups();//组表
     private static List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的联系人数据
 
-    public static void export(String filename) {
-        File file = new File(filename);
+    public static void export(String filepath) {
+        File file = new File(filepath);
+        if (filepath.startsWith("/")) filepath = filepath.substring(1);
         try {
             file.createNewFile();
-            Path path = Paths.get(filename);
+            Path path = Paths.get(filepath);
             VCardWriter writer = new VCardWriter(path, VCardVersion.V4_0);
             //for(Group group: Group.groups)
             //{

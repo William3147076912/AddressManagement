@@ -18,6 +18,7 @@ public class Import {
     private static List<List<Data>> peopleList = AddressBook.getPeopleList();//存储所有分组的联系人数据
 
     public static void importVcard(String filepath) throws IOException {
+        if (filepath.startsWith("/"))filepath = filepath.substring(1);
         Path file = Paths.get(filepath);
         VCardReader reader = new VCardReader(file);
         boolean hasGroup = false;
