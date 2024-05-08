@@ -19,7 +19,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>management.FcjMain</mainClass>
+                  <mainClass>management.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

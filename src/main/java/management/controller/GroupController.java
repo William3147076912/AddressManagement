@@ -152,7 +152,7 @@ public class GroupController {
                                     else {
                                         //通过判断按钮是否为all people来切换defaultGroupOrNot进而切换add按钮的逻辑
                                         defaultGroupOrNot = i - ConstantSet.GROUP_LIST_OFFSET;
-                                        System.out.println(defaultGroupOrNot);
+                                        //System.out.println(defaultGroupOrNot);
                                         table.getItems().clear();
                                         table.getItems().addAll(peopleList.get(defaultGroupOrNot));
                                         this.setDisable(true);

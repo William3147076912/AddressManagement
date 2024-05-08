@@ -34,7 +34,7 @@ public class Pinyin {
         return t4.toString();
     }
 
-    public static String getInitialConsonant(String str) {
+    public static String getInitialConsonant(String str) {//判断中文字符并返回汉字声母
         char[] t1 = str.replaceAll("\\s", "").toCharArray();
         StringBuilder result = new StringBuilder();
         for (char c : t1) {

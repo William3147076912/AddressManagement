@@ -237,28 +237,6 @@ public class MainPane extends Application {
                     Export.export(directory);
                     SimpleAlert.show(Alert.AlertType.INFORMATION, "导出成功(๑•́ ₃ •̀๑)ｴｰ");
                 }
-
-                /*Frame frame=new Frame("选择");
-                FileDialog fileDialog=new FileDialog(frame,"选择",FileDialog.SAVE);
-
-                //文件后缀过滤好像没起作用
-                fileDialog.setFilenameFilter(new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
-                        return name.endsWith(".vcf");
-                    }
-                });
-
-                fileDialog.setFile("exportfile.vcf");
-                fileDialog.setVisible(true);
-                if(fileDialog.getDirectory()!=null&&fileDialog.getFile()!=null)
-                {
-                    String directory=fileDialog.getDirectory();
-                    String filename = fileDialog.getFile();
-                    // 在选择的文件夹中创建文件对象
-                    directory=directory.replace('\\','/');
-                    Export.export(directory+filename);
-                    System.out.println(directory+filename);
-                }*/
             });
         }};
         menuBox.getChildren().addAll(importExportIntro, new VPadding(40), importBtn, new VPadding(40), exportBtn);

@@ -32,8 +32,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class ContactController {
     //flag与data是外界与本类交互的工具
@@ -88,7 +91,7 @@ public class ContactController {
         if (selectedFile != null) {
             // 如果用户选择了图片文件，则加载并显示在图片视图中
             image.setImage(new Image(selectedFile.toURI().toString()));
-            System.out.println(image.getImage().getUrl()+"替换了界面图片");
+            System.out.println(image.getImage().getUrl() + "替换了界面图片");
 //            //将image存到本地
 //            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image.getImage(), null);
 //            String suffix = selectedFile.getName().substring(selectedFile.getName().lastIndexOf('.') + 1);
@@ -104,7 +107,7 @@ public class ContactController {
     }
 
     @FXML
-    void save(MouseEvent event) throws MalformedURLException {
+    void save(MouseEvent event) throws IOException {
         if (contactControl == ConstantSet.CREATE_CONTACT) {
             String name = nameField.getText();
             String phone = phoneField.getText();
@@ -128,9 +131,14 @@ public class ContactController {
             VCard person = new VCard();
 
             String imageName = new URL(image.getImage().getUrl()).getFile().toLowerCase();
-            if (imageName.contains(".png")) person.addPhoto(new Photo(image.getImage().getUrl(), ImageType.PNG));
-            else if (imageName.contains(".jpg")) person.addPhoto(new Photo(image.getImage().getUrl(), ImageType.JPEG));
-            else if (imageName.contains(".gif")) person.addPhoto(new Photo(image.getImage().getUrl(), ImageType.GIF));
+            String str = image.getImage().getUrl().substring(5);
+            if (str.startsWith("/")) str = str.substring(1);
+            Path path = Paths.get(str);
+            //System.out.println(imageName);
+            if (imageName.contains(".png")) person.addPhoto(new Photo(path, ImageType.PNG));
+            else if (imageName.contains(".jpg")) person.addPhoto(new Photo(path, ImageType.JPEG));
+            else if (imageName.contains(".gif")) person.addPhoto(new Photo(path, ImageType.GIF));
+            person.setUid(new Uid(UUID.randomUUID().toString()));
             person.addFormattedName(new FormattedName(name));
             person.addTelephoneNumber(new Telephone(phone));
             person.addEmail(email);

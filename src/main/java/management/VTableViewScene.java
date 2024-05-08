@@ -356,7 +356,7 @@ public class VTableViewScene extends VScene {
                             sceneGroupSup.get().hide(popUpScene, VSceneHideMethod.FADE_OUT);
                             FXUtils.runDelay(VScene.ANIMATION_DURATION_MILLIS, () -> sceneGroupSup.get().removeScene(popUpScene));
                         });
-                        popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));//设置背景图片
+                        //popUpScene.setBackgroundImage(MyImageManager.get().load("file:resources/images/delete_confirm.gif"));//设置背景图片
                         popUpScene.getContentPane().getChildren().addAll(msgLabel, sureBtn, closeBtn);
                         sceneGroupSup.get().addScene(popUpScene, VSceneHideMethod.FADE_OUT);
                         FXUtils.runDelay(50, () -> sceneGroupSup.get().show(popUpScene, VSceneShowMethod.FADE_IN));
@@ -511,7 +511,7 @@ public class VTableViewScene extends VScene {
         getContentPane().getChildren().addAll(msgLabel, controlPane.getNode(), hBox);
         //设置一个线程专门负责界面数据与peopleList和groups组表的同步
         new Thread(() -> {
-            while (MainPane.running) {
+            while (MainPane.running) {//接收主界面的运行or停止信号
                 try {
                     Thread.sleep(1000);//每1s刷新一次groupBox界面
                 } catch (InterruptedException e) {
@@ -539,14 +539,6 @@ public class VTableViewScene extends VScene {
                         }
                     }
                     if (groupBox.getChildren().size() - ConstantSet.GROUP_LIST_OFFSET != groups.size()) {
-                        /*System.out.println(groupBox.getChildren().size());
-                        System.out.println(peopleList.size());
-                        System.out.println(groups.size());
-                        try {
-                            wait(100000);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }*/
                         while (groupBox.getChildren().size() > ConstantSet.GROUP_LIST_OFFSET)
                             groupBox.getChildren().remove(ConstantSet.GROUP_LIST_OFFSET);
                         int temp = defaultGroupOrNot;
@@ -577,8 +569,8 @@ public class VTableViewScene extends VScene {
                                                                     setPrefWidth(200);
                                                                     setPrefHeight(40);
                                                                     setOnMouseClicked(event -> {
+                                                                        GroupController.getExitingContacts().getItems().addAll(peopleList.get(defaultGroupOrNot));
                                                                         //打开分组窗口
-                                                                        //allContactBtn.setText("All People(" + table.getItems().size() + ")");//刷新按钮文本
                                                                         //设置GroupController为编辑状态
                                                                         GroupController.setGroupControl(ConstantSet.MANAGE_GROUP);
                                                                         Scene scene;
@@ -639,7 +631,7 @@ public class VTableViewScene extends VScene {
                                     }}
                             );
                         }
-                        for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {
+                        for (int i = ConstantSet.GROUP_LIST_OFFSET; i < groupBox.getChildren().size(); i++) {//更新组按钮文本
                             FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
                             int index = i - ConstantSet.GROUP_LIST_OFFSET;
                             fusionButton.setText(groups.get(index).getFormattedName().getValue() + "(" + peopleList.get(index).size() + ")");
