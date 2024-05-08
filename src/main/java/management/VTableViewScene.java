@@ -191,7 +191,6 @@ public class VTableViewScene extends VScene {
                                                             FusionButton fusionButton = (FusionButton) groupBox.getChildren().get(i);
                                                             if (fusionButton.isDisabled()) {
                                                                 defaultGroupOrNot = i - ConstantSet.GROUP_LIST_OFFSET;//取得该组在组列表的下标
-                                                                //GroupController.getExitingContacts().getItems().addAll(peopleList.get(defaultGroupOrNot));
                                                                 for (int j = 0; j < fusionButton.getTextNode().getText().length(); j++) {//取得组名
                                                                     if (fusionButton.getTextNode().getText().charAt(j) != '(') {
                                                                         name.append(fusionButton.getTextNode().getText().charAt(j));
