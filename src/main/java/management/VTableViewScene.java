@@ -743,6 +743,7 @@ public class VTableViewScene extends VScene {
                 // 这里只是简单地在控制台打印选中的行数据
                 System.out.println("双击了：" + selectedItem);*/
                 Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contact.fxml"));
                 ContactController.contactControl = ConstantSet.UPDATE_CONTACT;//切换为修改联系人功能
                 Scene scene;
@@ -823,25 +824,28 @@ public class VTableViewScene extends VScene {
                             address1.setPostalCode(postalCodeField.getText());
                             newItem.getAddresses().add(address1);
 
-                            String imageName = null;
+                            String imageName;
                             try {
                                 imageName = new URL(image.getImage().getUrl()).getFile().toLowerCase();
                             } catch (MalformedURLException e) {
                                 throw new RuntimeException(e);
                             }
-                            String str = image.getImage().getUrl().substring(5);
-                            if (str.startsWith("/")) str = str.substring(1);
-                            Path path = Paths.get(str);
-                            try {
-                                if (imageName.contains(".png")) {
-                                    newItem.addPhoto(new Photo(path, ImageType.PNG));
-                                } else if (imageName.contains(".jpg")) {
-                                    newItem.addPhoto(new Photo(path, ImageType.JPEG));
-                                } else if (imageName.contains(".gif")) {
-                                    newItem.addPhoto(new Photo(path, ImageType.GIF));
+                            if (!imageName.endsWith("康纳酱.gif")) {//如果不是默认图片
+                                String str = image.getImage().getUrl();
+                                if (str.startsWith("file:")) str = str.substring(5);
+                                if (str.startsWith("/")) str = str.substring(1);
+                                Path path = Paths.get(str);
+                                try {
+                                    if (imageName.contains(".png")) {
+                                        newItem.addPhoto(new Photo(path, ImageType.PNG));
+                                    } else if (imageName.contains(".jpg")) {
+                                        newItem.addPhoto(new Photo(path, ImageType.JPEG));
+                                    } else if (imageName.contains(".gif")) {
+                                        newItem.addPhoto(new Photo(path, ImageType.GIF));
+                                    }
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
                                 }
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
                             }
                             /*newItem.addAddress(new Address() {{
                                 setStreetAddress(addressField.getText());

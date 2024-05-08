@@ -131,13 +131,16 @@ public class ContactController {
             VCard person = new VCard();
 
             String imageName = new URL(image.getImage().getUrl()).getFile().toLowerCase();
-            String str = image.getImage().getUrl().substring(5);
-            if (str.startsWith("/")) str = str.substring(1);
-            Path path = Paths.get(str);
-            //System.out.println(imageName);
-            if (imageName.contains(".png")) person.addPhoto(new Photo(path, ImageType.PNG));
-            else if (imageName.contains(".jpg")) person.addPhoto(new Photo(path, ImageType.JPEG));
-            else if (imageName.contains(".gif")) person.addPhoto(new Photo(path, ImageType.GIF));
+            if (!imageName.endsWith("康纳酱.gif")) {//如果不是默认图片
+                String str = image.getImage().getUrl();
+                if (str.startsWith("file:")) str = str.substring(5);
+                if (str.startsWith("/")) str = str.substring(1);
+                Path path = Paths.get(str);
+                //System.out.println(imageName);
+                if (imageName.contains(".png")) person.addPhoto(new Photo(path, ImageType.PNG));
+                else if (imageName.contains(".jpg")) person.addPhoto(new Photo(path, ImageType.JPEG));
+                else if (imageName.contains(".gif")) person.addPhoto(new Photo(path, ImageType.GIF));
+            }
             person.setUid(new Uid(UUID.randomUUID().toString()));
             person.addFormattedName(new FormattedName(name));
             person.addTelephoneNumber(new Telephone(phone));
