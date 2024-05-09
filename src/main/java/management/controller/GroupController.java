@@ -152,7 +152,7 @@ public class GroupController {
                                     else {
                                         //通过判断按钮是否为all people来切换defaultGroupOrNot进而切换add按钮的逻辑
                                         defaultGroupOrNot = i - ConstantSet.GROUP_LIST_OFFSET;
-                                        System.out.println(defaultGroupOrNot);
+                                        //System.out.println(defaultGroupOrNot);
                                         table.getItems().clear();
                                         table.getItems().addAll(peopleList.get(defaultGroupOrNot));
                                         this.setDisable(true);
@@ -356,7 +356,7 @@ public class GroupController {
                         contacts.getItems().add(data);
                     } else if (Pinyin.getInitialConsonant(data.getFormattedName().getValue()) != null && Objects.requireNonNull(Pinyin.getInitialConsonant(data.getFormattedName().getValue())).contains(text)) {//根据名字的声母
                         contacts.getItems().add(data);
-                    } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress().contains(text)) {//根据地址
+                    } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress() != null && data.getAddresses().get(0).getStreetAddress().contains(text)) {//根据地址
                         contacts.getItems().add(data);
                     } else if (data.getOrganization() != null && data.getOrganization().getValues().get(0).contains(text)) {//根据公司
                         contacts.getItems().add(data);

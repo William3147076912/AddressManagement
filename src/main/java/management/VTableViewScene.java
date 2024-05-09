@@ -451,25 +451,21 @@ public class VTableViewScene extends VScene {
                                             searchTable.getItems().add(data);
                                         } else if (data.getBirthday() != null && data.getBirthday().getDate().toString().contains(text)) {//根据生日
                                             searchTable.getItems().add(data);
-                                        } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getPostalCode().contains(text)) {//根据邮编
+                                        } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getPostalCode() != null && data.getAddresses().get(0).getPostalCode().contains(text)) {//根据邮编
                                             searchTable.getItems().add(data);
-                                        } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress().matches(text)) {//根据地址（防止含有数字的地址）
+                                        } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress() != null && data.getAddresses().get(0).getStreetAddress().matches(text)) {//根据地址（防止含有数字的地址）
                                             searchTable.getItems().add(data);
                                         }
                                     } else if (data.getFormattedName().getValue().contains(text)) {//根据名字
                                         searchTable.getItems().add(data);
-                                    } else if (Pinyin.getPinYin(data.getFormattedName().getValue()).contains(text)) {//根据拼音
+                                    } else if (Pinyin.getPinYin(data.getFormattedName().getValue()).contains(text)) {//根据名字拼音
                                         searchTable.getItems().add(data);
                                     } else if (Pinyin.getInitialConsonant(data.getFormattedName().getValue()) != null && !Objects.requireNonNull(Pinyin.getInitialConsonant(data.getFormattedName().getValue())).isEmpty()
                                             && Objects.requireNonNull(Pinyin.getInitialConsonant(data.getFormattedName().getValue())).contains(text)) {//根据名字的声母
                                         searchTable.getItems().add(data);
-                                    } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress().contains(text)) {//根据地址
-                                        searchTable.getItems().add(data);
-                                    } else if (!data.getAddresses().isEmpty() && Pinyin.getInitialConsonant(data.getAddresses().get(0).getStreetAddress()) != null && Objects.requireNonNull(Pinyin.getInitialConsonant(data.getAddresses().get(0).getStreetAddress())).contains(text)) {//根据地址的声母
+                                    } else if (!data.getAddresses().isEmpty() && data.getAddresses().get(0).getStreetAddress() != null && data.getAddresses().get(0).getStreetAddress().contains(text)) {//根据地址
                                         searchTable.getItems().add(data);
                                     } else if (data.getOrganization() != null && data.getOrganization().getValues().get(0).contains(text)) {//根据公司
-                                        searchTable.getItems().add(data);
-                                    } else if (data.getOrganization() != null && Pinyin.getInitialConsonant(data.getOrganization().getValues().get(0)) != null && Objects.requireNonNull(Pinyin.getInitialConsonant(data.getOrganization().getValues().get(0))).contains(text)) {//根据公司的声母
                                         searchTable.getItems().add(data);
                                     }
                                 }
@@ -807,6 +803,10 @@ public class VTableViewScene extends VScene {
                         if (event.getClickCount() == 2) { // 检查双击事件
                             if (nameField.getText().isEmpty()) {
                                 SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能为空ヽ(#ﾟДﾟ)ﾉ┌┛Σ(ノ´Д`)ノ");
+                                return;
+                            }
+                            if (nameField.getText().matches(".*\\d.*")) {
+                                SimpleAlert.show(Alert.AlertType.ERROR, "姓名不能含有数字(ꐦ ಠ皿ಠ )");
                                 return;
                             }
                             //设置新数据
